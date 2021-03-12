@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuracion" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Observaciones Rechazo" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nueva " %} {% endif %} {% trans "Observacion" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.titulo_rechazo }}
+                                                        <label for="id_nombre">{% trans "Titulo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.observacion_rechazo }}
+                                                        <input type="text" hidden>
+                                                        <label for="id_pais">{% trans "Observacion de Rechazo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'cfg:obs_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

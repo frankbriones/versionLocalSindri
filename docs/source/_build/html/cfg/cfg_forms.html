@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Forms cfg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_views.html"><strong>Views cfg</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Forms cfg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cfg/cfg_forms.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="forms-cfg">
+<h1><strong>Forms cfg</strong><a class="headerlink" href="#forms-cfg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>cfg</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">forms.py</span></code>. Donde se encuentran los formularios de la aplicación cfg, se detalla a continuación cada formulario.</p>
+<div class="section" id="formulario-cfgopeform">
+<h2>Formulario CfgOpeForm<a class="headerlink" href="#formulario-cfgopeform" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hereda de los formularios de Django <code class="docutils literal notranslate"><span class="pre">forms.ModelForm</span></code>, este formulario afecta al modelo <a class="reference internal" href="cfg_models.html#modelo-configgeneral"><span class="std std-ref">Modelo ConfigGeneral</span></a>. Contiene los siguientes campos:</p>
+<ul class="simple">
+<li><p>utilidad_sobre_taller</p></li>
+<li><p>limite_venta</p></li>
+<li><p>aut_externo</p></li>
+<li><p>descuento_max</p></li>
+<li><p>costo_gramo_base</p></li>
+<li><p>utilidad_sobre_base</p></li>
+<li><p>origen_material</p></li>
+<li><p>prct_impuestos</p></li>
+<li><p>anticipo_fabricacion</p></li>
+<li><p>envio_material</p></li>
+<li><p>comprobante_env</p></li>
+<li><p>envio_incluido</p></li>
+<li><p>factura_taller</p></li>
+<li><p>cta_por_pagar</p></li>
+<li><p>orden_compra</p></li>
+<li><p>precio_final_fijo</p></li>
+<li><p>gramo_final_catalogo</p></li>
+<li><p>gramo_final_especial</p></li>
+</ul>
+</div>
+<div class="section" id="formulario-cfgtalform">
+<h2>Formulario CfgTalForm<a class="headerlink" href="#formulario-cfgtalform" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hereda de los formularios de Django <code class="docutils literal notranslate"><span class="pre">forms.ModelForm</span></code>, este formulario afecta al modelo <span class="xref std std-ref">Modelo Taller</span>. Contiene los siguientes campos:</p>
+<ul class="simple">
+<li><p>valor_fraccion</p></li>
+<li><p>tmp_resp_sol</p></li>
+<li><p>escala_peso</p></li>
+<li><p>estandar_tallas</p></li>
+<li><p>costo_gramo_base</p></li>
+<li><p>utilidad_sobre_fabricacion</p></li>
+<li><p>utilidad_sobre_base</p></li>
+<li><p>utilidad_sobre_piedras</p></li>
+<li><p>utilidad_sobre_adicionales</p></li>
+<li><p>prct_impuestos</p></li>
+</ul>
+</div>
+<div class="section" id="formulario-cfgpaisform">
+<h2>Formulario CfgPaisForm<a class="headerlink" href="#formulario-cfgpaisform" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hereda de los formularios de Django <code class="docutils literal notranslate"><span class="pre">forms.ModelForm</span></code>, este formulario afecta al modelo <span class="xref std std-ref">Modelo Paises</span>. Contiene los siguientes campos:</p>
+<ul class="simple">
+<li><p>aut_externo</p></li>
+<li><p>zona_horaria</p></li>
+<li><p>decimales</p></li>
+<li><p>simbolo_moneda</p></li>
+<li><p>documentos_obligatorios</p></li>
+</ul>
+</div>
+<div class="section" id="formulario-rubrosform">
+<h2>Formulario RubrosForm<a class="headerlink" href="#formulario-rubrosform" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hereda de los formularios de Django <code class="docutils literal notranslate"><span class="pre">forms.ModelForm</span></code>, este formulario afecta al modelo <span class="xref std std-ref">Modelo RubrosAsociados</span>. Contiene los siguientes campos:</p>
+<ul class="simple">
+<li><p>descripcion</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

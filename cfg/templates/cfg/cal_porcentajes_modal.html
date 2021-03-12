@@ -1,0 +1,268 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Porcentajes de utilidad" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <br>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <input id="id_gramo_base" name="gramo_base" class="form-control" data-type='currency'>
+                        <label for="id_costo_gramo_base">{% trans "Precio gramo base" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <input id="id_gramo_taller" name="gramo_taller" class="form-control" data-type='currency'>
+                        <label
+                            for="id_cliente-nombres">{% trans "Precio mano de obra por gramo" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <input id="id_gramo_fabricacion" name="gramo_fabricacion" class="form-control" data-type='currency'>
+                        <label
+                            for="id_cliente-nombres">{% trans "Precio venta al cliente por gramo" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <input id="id_impuestos" name="impuestos" class="form-control" data-type='currency'>
+                        <label
+                            for="id_cliente-nombres">{% trans "Porcentaje impuestos (%)" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <input id="id_utilidad_taller" name="utilidad_taller" type="number" lang="en-150" step="0.00000001" class="form-control" readonly>
+                        <label for="id_utilidad">{% trans "Utilidad sobre mano de obra (%)" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-2 col-12">
+                    <div class="form-label-group">
+                        <button onclick="CalcularPorcentajePromedio()" title='{% trans "Calcular" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="bx bxs-calculator"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" id="btnGuardar" onclick="guardarValores()" name="guardar" class="btn btn-primary ml-1">{% trans "Confirmar" %}</button>
+        </div>
+    </div>
+</div>
+<script>
+    let separador_decimales = '{{ user.pais.separador_decimal }}';
+    let separador_miles = '{{ user.pais.separador_miles }}';
+    $(document).ready(function() {
+        utilidad_sobre_taller = parseFloat('{{ configuracion.utilidad_sobre_taller }}'.replace(/,/,'.'));
+        $('#id_utilidad_taller').val(utilidad_sobre_taller);
+        gramo_base = '{{ configuracion.precio_gramo_base }}';
+        $('#id_gramo_base').val(gramo_base)
+        prct_impuestos = '{{ configuracion.prct_impuestos }}' !== 'None' ? parseFloat('{{ configuracion.prct_impuestos }}'.replace(/,/,'.')) : 0;
+        $('#id_impuestos').val(prct_impuestos);
+    });
+
+    function CalcularPorcentajePromedio(){
+        precioGramoBase = FormatoDecimal($('#id_gramo_base'));
+        costoGramoTaller = FormatoDecimal($('#id_gramo_taller'));
+        prct_impuestos = FormatoDecimal($('#id_impuestos'));
+        precioGramoFabricado = FormatoDecimal($('#id_gramo_fabricacion'));
+        if( precioGramoBase === '' || costoGramoTaller === '' || prct_impuestos === '' || precioGramoFabricado === '' ){
+            mensaje('{% trans "Faltan datos por llenar" %}', 'orange');
+            return;
+        }
+        // precioGramoBase = FormatoDecimal(precioGramoBase);
+        // costoGramoTaller = parseFloat(costoGramoTaller);
+        // prct_impuestos = parseFloat(prct_impuestos);
+        // precioGramoFabricado = parseFloat(precioGramoFabricado);
+        if( precioGramoBase < 0 || costoGramoTaller < 0 || prct_impuestos < 0 || precioGramoFabricado < 0 ){
+            mensaje('{% trans "No se permiten valores negativos" %}', 'orange');
+            return;
+        }
+        precioGramoFabricado = precioGramoFabricado/(1+(prct_impuestos/100));
+        porcentajePromedio = ((precioGramoFabricado - (precioGramoBase+costoGramoTaller))/(costoGramoTaller))*100
+        porcentajePromedio = Math.round(porcentajePromedio*100000000)/100000000;
+        // porcentajeBase = porcentajePromedio;
+        // porcentajeTaller = porcentajePromedio;
+        $('#id_utilidad_taller').val(porcentajePromedio);
+        // if( precioGramoBase === 0 ){
+        //     $('#id_utilidad_base').val(0);
+        // } else {
+        //     $('#id_utilidad_base').val(porcentajePromedio);
+        // }
+        // if( costoGramoTaller === 0 ){
+        //     $('#id_utilidad_taller').val(0);    
+        // } else {
+        //     $('#id_utilidad_taller').val(porcentajePromedio);
+        // }
+        // CalcularPorcentajeBase();
+        // CalcularPorcentajeTaller();
+    }
+
+    function guardarValores(){
+
+        // if( porcentajeBase > 100 || porcentajeTaller > 100 ){
+        //     mensaje('{% trans "Existen valores superiores al máximo permitido" %}', 'orange');
+        //     return;
+        // }
+        precioGramoBase = $('#id_gramo_base').val();
+        // porcentajeBase = $('#id_utilidad_base').val();
+        porcentajeTaller = $('#id_utilidad_taller').val();
+        prct_impuestos = $('#id_impuestos').val();
+        precio_gramo_final = $('#id_gramo_fabricacion').val();
+        if( precioGramoBase === '' || precio_gramo_final === '' || porcentajeTaller === '' || prct_impuestos === '' ){
+            mensaje('{% trans "Faltan datos por llenar" %}', 'orange');
+            return;
+        }
+        precioGramoBase = parseFloat(precioGramoBase);
+        // porcentajeBase = parseFloat(porcentajeBase);
+        porcentajeTaller = parseFloat(porcentajeTaller);
+        prct_impuestos = parseFloat(prct_impuestos);
+        precio_gramo_final = parseFloat(precio_gramo_final);
+
+        if( porcentajeTaller < 0 ){
+            mensaje('{% trans "No se permiten valores negativos" %}', 'orange');
+            return;
+        }
+       
+        datos = {
+            'precio_gramo_base': precioGramoBase,
+            // 'utilidad_sobre_base': porcentajeBase,
+            'utilidad_sobre_taller': porcentajeTaller,
+            'precio_gramo_final': precio_gramo_final,
+            'prct_impuestos': prct_impuestos
+        }
+
+        var token = '{{ csrf_token }}';
+        var datos = JSON.stringify(datos);
+        var id_configuracion = '{{ user.config_gen_id }}'
+        var url = "{% url 'cfg:calcular_porcentajes' 0 %}";
+        url = url.replace(/0/, id_configuracion);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    /////////// Formato moneda //////////////////
+    $("input[data-type='currency']").on({
+            keyup: function() {
+            formatCurrency($(this));
+            },
+            blur: function() { 
+            formatCurrency($(this), "blur");
+            }
+        });
+
+        
+        decimales = ('{{ user.pais.decimales }}'.toLowerCase() === 'true');
+
+        function formatNumber(n) {
+            // format number 1000000 to 1,234,567
+            return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, separador_miles);
+        }
+
+
+        function formatCurrency(input, blur) {
+            // appends $ to value, validates decimal side
+            // and puts cursor back in right position.
+            
+            // get input value
+            var input_val = input.val();
+            
+            // don't validate empty input
+            if (input_val === "") { return; }
+        
+            // original length
+            var original_len = input_val.length;
+
+            // initial caret position 
+            var caret_pos = input.prop("selectionStart");
+            
+            // check for decimal
+            if (input_val.indexOf(separador_decimales) >= 0) {
+
+                // get position of first decimal
+                // this prevents multiple decimals from
+                // being entered
+                var decimal_pos = input_val.indexOf(separador_decimales);
+
+                // split number by decimal point
+                var left_side = input_val.substring(0, decimal_pos);
+                var right_side = input_val.substring(decimal_pos);
+
+                // add commas to left side of number
+                left_side = formatNumber(left_side);
+
+                // validate right side
+                right_side = formatNumber(right_side);
+                
+                // On blur make sure 2 numbers after decimal
+                if (blur === "blur") {
+                right_side += "00";
+                }
+                
+                // Limit decimal to only 2 digits
+                right_side = right_side.substring(0, 2);
+
+                // join number by .
+                // input_val = '{{ user.pais.simbolo_moneda }}' + left_side + "," + right_side;
+                input_val = left_side + separador_decimales + right_side;
+
+            } else {
+                // no decimal entered
+                // add commas to number
+                // remove all non-digits
+                input_val = formatNumber(input_val);
+                // input_val = '{{ user.pais.simbolo_moneda }}' + input_val;
+                
+                // final formatting
+                if (blur === "blur" && decimales) {
+                    input_val += separador_decimales + "00";
+                }
+            }
+        
+            // send updated string to input
+            input.val(input_val);
+
+            // put caret back in the right position
+            var updated_len = input_val.length;
+            caret_pos = updated_len - original_len + caret_pos;
+            input[0].setSelectionRange(caret_pos, caret_pos);
+        }
+
+        /////////////// formato decimal ///////////////
+        function FormatoDecimal(input){
+            var valor = input.val();
+            if(separador_miles === ','){
+                valor = valor.replace(/\,/g, '');
+            } else {
+                valor = valor.replace(/\./g, '').replace(/,/, '.');
+            }
+            return parseFloat(valor);
+        }
+</script>
+    

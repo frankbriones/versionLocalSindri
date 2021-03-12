@@ -1,0 +1,69 @@
+{% load static %} {% load i18n %}
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% if detalle.estado.descripcion == 'ACTIVO' %}
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Inactivar detalle" %}</h5>
+            {% else %}
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Activar detalle" %}</h5>
+            {% endif %}
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% if detalle.estado.descripcion == 'ACTIVO' %}
+            {% trans "Se inactivará el detalle seleccionado " %}
+            {% else %}
+            {% trans "Se activará el detalle seleccionado " %}
+            {% endif %}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans "Cancelar" %}</button>
+            {% if detalle.estado.descripcion == 'ACTIVO' %}
+            <a class="btn btn-primary" onclick="actualizarDetallePiedra()" href="#">{% trans "Inactivar" %}</a>
+            {% else %}
+            <a class="btn btn-primary" onclick="actualizarDetallePiedra()" href="#">{% trans "Activar" %}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function(){
+
+    });
+
+
+    function actualizarDetallePiedra(){
+
+        estado = '{{ detalle.estado }}';
+        id_detalle = {{ detalle.id_detalle_piedra }}
+        var token = '{{ csrf_token }}';
+        dato = {
+        'estado': estado
+        }
+        var datos = JSON.stringify(dato);
+
+        var url = "{% url 'ctg:detalles_piedra_actualizar' 0 %}";
+        url = url.replace(/0/, id_detalle);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+</script>

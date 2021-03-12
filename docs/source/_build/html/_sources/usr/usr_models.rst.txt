@@ -1,0 +1,55 @@
+*****************
+**Modelos usr**
+*****************
+
+Dentro de la carpeta **usr** tenemos el archivo llamado ``models.py``. Donde se encuentran los modelos de la aplicación usr
+
+Modelo TipoUsuarios
+======================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo para registrar los tipos de usuarios que existen en el sistema, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_tipo_usuario", "Id del tipo de usuario."
+        "tipo_usuario","Clave del tipo de usuario."
+        "descripcion", "Descripción del tipo de usuario."
+
+Modelo Usuarios
+================
+
+Modelo de tipo abstracto que hereda de ``AbstractUser``. Este es el modelo para el manejo de los usuarios que se registran en el sistema, a los campos que ya incluye el modelo que crea Django por defecto se adicionan los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "pais","Id del país al que pertenece el usuario."
+        "img_perfil", "Url de la imagen de perfil para el usuario."
+        "nueva_clave", "Indica si el usuario ingresa por primera vez después de creado o reestablecida la contraseña."
+        
+Modelo UsuariosGrupos
+======================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo para la asignación de grupo para un usuario, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "usuarios","Id del usuario."
+        "group", "Id del grupo que se le asigna al usuario."
+
+Modelo GruposPermisos
+======================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo para la aignación de permisos que posee un grupo, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "group","Id del grupo de usuarios."
+        "permission", "Id del permiso asignado al grupo."

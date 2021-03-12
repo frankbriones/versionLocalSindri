@@ -1,0 +1,822 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+
+    .caja {
+        font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+        color: #000000;
+        font-size: 25px;
+        font-weight: 400;
+        text-align: right;
+        ;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 10px;
+        /* border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 35px 0px;  */
+        border: 2px solid #5878ca;
+    }
+</style>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/vendors.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/editors/quill/quill.snow.css' %}">
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/bootstrap-extended.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/colors.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/components.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/themes/dark-layout.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/themes/semi-dark-layout.css' %}">
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/pages/app-email.css' %}">
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/assets/css/style.css' %}">
+<!-- END: Custom CSS-->
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/swiper.min.css' %}">
+<!-- END: Vendor CSS-->
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/swiper.css' %}">
+<!-- END: Page CSS-->
+<!-- BEGIN: Content-->
+<div class="app-content content" >
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <div class="sidebar-content email-app-sidebar d-flex">
+                    <!-- sidebar close icon -->
+                    <span class="sidebar-close-icon">
+                        <i class="bx bx-x"></i>
+                    </span>
+                    <!-- sidebar close icon -->
+                    <div class="email-app-menu">
+                        <div class="form-group form-group-compose">
+                            <label for="id_ciudad">{% trans "Filtro" %}</label>
+                            <select name="filtro" id="id_filtro" class="form-control selectrubro">
+                                <option value="1">{% trans "Lo que va del mes" %}</option>
+                                <option value="2">{% trans "El mes anterior" %}</option>
+                                <option value="3">{% trans "Rango de fecha" %}</option>
+                                <option value="4">{% trans "Todas" %}</option>
+                            </select>
+                            <div id="div_fecha_inicio">
+                                <small>{% trans "Fecha inicio" %}</small>
+                                <input type="date" id="id_fecha_inicio" class="form-control">
+                            </div>
+                            <div id="div_fecha_fin">
+                                <small>{% trans "Fecha fin" %}</small>
+                                <input type="date" id="id_fecha_fin" class="form-control">
+                            </div>
+                            <a onclick="obtenerOrdenesfecha(1)" id="btn_filtro">
+                                <label for="getFile" class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i class="bx bxs-filter-alt"></i>{% trans "Filtrar" %}</label>
+                            </a>
+                        </div>
+                        <div class="sidebar-menu-list">
+                            <label class="app-file-label">{% trans "Estados" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="21" id="id_creada">
+                                    <label for="id_creada">{% trans "CREADA" %}</label>
+                                </div>
+                                {% endif %}
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="22" id="id_confirmada">
+                                    <label for="id_confirmada">{% trans "CONFIRMADA" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="23" id="id_pagada">
+                                    <label for="id_pagada">{% trans "PAGADA" %}</label>
+                                </div>
+                            </div>
+
+                            <!-- sidebar label start -->
+                            <!-- <label class="sidebar-label">Labels</label>
+                            <div class="list-group list-group-labels ">
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Product
+                                    <span class="bullet bullet-success bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Work
+                                    <span class="bullet bullet-primary bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Misc
+                                    <span class="bullet bullet-warning bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Family
+                                    <span class="bullet bullet-danger bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Design
+                                    <span class="bullet bullet-info bullet-sm"></span>
+                                </a>
+                            </div> -->
+                            <!-- sidebar label end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- email app overlay -->
+                    <div class="app-content-overlay"></div>
+                    <div class="email-app-area">
+                        <!-- Email list Area -->
+                        <div class="email-app-list-wrapper">
+                            <div class="email-app-list">
+                                <div class="email-action">
+                                    <!-- action left start here -->
+                                    <div class="action-left d-flex align-items-center">
+                                        <!-- delete unread dropdown -->
+                                        <ul class="list-inline m-0 d-flex">
+                                            <!-- <li class="list-inline-item mail-delete">
+                                                <button onclick="generarReporteExcel()" title='{% trans "Exportar a Excel" %}' type="button" class="btn btn-icon action-icon">
+                                                    <span class="fonticon-wrap">
+                                                        <i class="bx bx-file"></i>
+                                                    </span>
+                                                </button>
+                                            </li>
+                                            <li class="list-inline-item mail-unread">
+                                                <button onclick="generarReporte()" title='{% trans "Generar reporte pdf" %}' type="button" class="btn btn-icon action-icon">
+                                                    <span class="fonticon-wrap d-inline mr-25">
+                                                        <i class="bx bx-printer"></i>
+                                                    </span>
+                                                </button>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                    <!-- action left end here -->
+
+                                    <!-- action right start here -->
+                                    <div class="action-right d-flex flex-grow-1 align-items-center justify-content-around">
+                                        <!-- search bar  -->
+                                        <div class="email-fixed-search flex-grow-1">
+                                            <div class="sidebar-toggle d-block d-lg-none">
+                                                <i class="bx bx-menu"></i>
+                                            </div>
+                                            <fieldset class="form-group position-relative has-icon-left m-0">
+                                                <input type="text" class="form-control" id="id_buscar" placeholder='{% trans "Buscar por número de factura" %}'>
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-search"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!-- pagination and page count -->
+                                        <span class="d-none d-sm-block" id="id_cantidad_registros"></span>
+                                    </div>
+                                </div>
+                                <!-- / action right -->
+
+                                <!-- email user list start -->
+                                <div class="email-user-list list-group">
+                                    <div id="id_cont_items" class="align-items-center ">
+                                        <div class="table-responsive">
+                                            <table id="id_tabla" class="table table-hover mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{% trans "No. Factura" %}</th>
+                                                        <th>{% trans "Taller" %}</th>
+                                                        <th>{% trans "Estado" %}</th>
+                                                        <th>{% trans "Fecha creación" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="id_body_table">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Email list Area -->
+
+                        <!-- Detailed Email View -->
+                        <div class="email-app-details">
+                            <!-- email detail view header -->
+                            <div class="email-detail-header" id="atras_detalle">
+                                <div class="email-header-left d-flex align-items-center mb-1">
+                                    <span class="atras mr-50" onclick="ocultarDetalles()">
+                                        <span class="fonticon-wrap d-inline">
+                                            <i class="livicon-evo" data-options="name: chevron-left.svg; size: 32px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+                                            </i>
+                                        </span>
+                                    </span>
+                                    <h5 class="email-detail-title font-weight-normal mb-0" id="id_secuencia_orden">
+                                        <span class="badge badge-light-danger badge-pill ml-1" id="id_estado_orden"></span>
+                                    </h5>
+                                </div>
+                                <div class="email-header-right mb-1 ml-2 pl-1">
+                                    <ul class="list-inline m-0">
+                                        <!-- <li class="list-inline-item">
+                                            <button onclick="generarComprobante()" class="btn btn-icon action-icon">
+                                                <span class="fonticon-wrap">
+                                                    <i class="bx bx-printer"></i>
+                                                </span>
+                                            </button>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- email detail view header end-->
+                            <div class="email-scroll-area" id="div_detalle_orden">
+                                
+                            </div>
+                        </div>
+                        <!--/ Detailed Email View -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+<!-- BEGIN: Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/editors/quill/quill.min.js' %}"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{% static  'base/app-assets/js/scripts/pages/app-email.js' %}"></script>
+<!-- END: Page JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{% static 'base/app-assets/vendors/js/extensions/swiper.min.js' %}"></script>
+<!-- END: Page Vendor JS-->
+<!-- BEGIN: Page JS-->
+<script src="{% static 'base/app-assets/js/scripts/extensions/swiper.js' %}"></script>
+<!-- END: Page JS-->
+{% endblock %}
+{% block js_page %}
+{% load static %}
+<script>
+    let opcion;
+    let registros;
+    let decimales = '{{ user.pais.decimales }}'.toLowerCase() === 'true';
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('#id_fechas').hide();
+        $('#div_fecha_inicio').hide();
+        $('#div_fecha_fin').hide();
+        $('#btn_filtro').hide();
+        $('#id_fecha_inicio', '#id_fecha_fin').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false
+        });
+        $('#id_filtro').val(1);
+        opcion = 1;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    $('#id_filtro').on('change', function(){
+
+        opcion = parseInt($(this).val());
+
+        if ( opcion == 3 ){
+            $('#div_fecha_inicio').show();
+            $('#div_fecha_fin').show();
+            $('#btn_filtro').show();
+        } else {
+            $('#div_fecha_inicio').hide();
+            $('#div_fecha_fin').hide();
+            $('#btn_filtro').hide();
+            obtenerOrdenesfecha(opcion);
+        }
+
+    });
+
+    $('input[type=checkbox]').on('click', function(){
+        limite = 50;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    $('#id_buscar').on('keyup', function(){
+        if($(this).val() == ''){
+            limite = 50;
+            obtenerOrdenesfecha(opcion);
+        }
+    });
+
+    $('#id_buscar').keypress(function(e){
+        if(e.which == 13){
+            obtenerOrdenesfecha(opcion);
+        }
+    });
+
+    async function obtenerOrdenesfecha(opcion){
+
+        estadosBusqueda = []
+        claveBusqueda = $('#id_buscar').val();
+
+        $('.item-estado').each(function(){
+            var estado = $(this);
+            check = estado.prop('checked');
+            if(check){
+                estadosBusqueda.push(parseInt(estado.val()));
+            }
+        });
+
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        var url = "{% url 'trn:facturas_obtener' 2 %}";
+
+        var token = '{{ csrf_token }}';
+
+        var body = {
+            "estadosBusqueda[]": JSON.stringify(estadosBusqueda),
+            "claveBusqueda": claveBusqueda,
+            "opcion": opcion,
+            "fechaInicio": f_inicio,
+            "fechaFin": f_fin
+        };
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            async: true,
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                facturas = res.facturas;
+                registros = res.registros;
+                $('#id_cantidad_registros').text(registros + '{% trans " Registros" %}')
+                $('#id_body_table').empty();
+                
+                facturas.forEach(factura => {
+                    fecha_creacion = new Date(factura.fecha_creacion)
+                    opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                    var tr = 
+                    `<tr onclick="verDetalleFactura(${factura.id_factura})" style="cursor:pointer;">
+                        <td>${factura.numero_factura}</td>
+                        <td>${factura.taller_nombre}</td>
+                        <td>${factura.estado_nombre}</td>
+                        <td>${fecha_creacion.toLocaleString('ja-JP', opciones)}</td>
+                    </tr>`
+                    $('#id_body_table').append(tr);
+                });
+
+                // $('#id_cantidad').text('{% trans "Registros: " %}' + String(ordenes.length))
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    wsSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        $('#id_filtro').val(opcion);
+        obtenerOrdenesfecha(opcion);
+        cargarNotificaciones(message);
+    };
+
+    function verDetalleFactura(id_factura){
+        var url = "{% url 'trn:facturas_detalles' 0 %}";
+        url = url.replace(/0/, id_factura);
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            success: function(res) {
+                crearHtmlDetalleFactura(res);
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function crearHtmlDetalleFactura(detalles){
+        factura = detalles.factura;
+        fecha_creacion = new Date(factura.fecha_creacion)
+        opciones = {year: 'numeric', month: '2-digit', day: '2-digit'}
+        ordenesFactura = detalles.detalles_factura;
+        $('#id_secuencia_orden').html(
+            factura.numero_factura + 
+            `<div class="chip mr-1 ml-1">
+                <div class="chip-body">
+                    <span class="chip-text">${factura.estado_nombre}</span>
+                </div>
+            </div>`
+        );
+        $('#div_detalle_orden').empty();
+        filaDetalleOrden = 
+        `<div class="card " >
+            <div class="card-content">
+                <div class="card-body pb-0 mx-25">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 col-12">
+                            <span class="invoice-number mr-50">{% trans "Factura #" %}</span>
+                            <span>${factura.numero_factura}</span>
+                        </div>
+                        <div class="col-xl-8 col-md-8 col-12">
+                            <div class="d-flex align-items-center justify-content-xl-end flex-wrap">
+                                <div class="mr-3">
+                                </div>
+                                <div>
+                                    <small class="text-muted">{% trans "Fecha creación:" %}</small>
+                                    <span>${fecha_creacion.toLocaleString('ja-JP', opciones)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <h4 class="text-primary">${factura.taller_nombre}</h4>
+                            <!-- <span>Software Development</span> -->  
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                            <img src="${factura.taller_logo}" alt="logo" height="46" width="164">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="invoice-product-details table-responsive mx-md-25">
+                    <table class="table table-borderless mb-0">
+                        <thead id="id_tabla_encabezado">
+                            
+                        </thead>
+                        <tbody id="id_tabla_ordenes">
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-body pt-0 mx-25">
+                    <hr>
+                    <div class="row">
+                        <div class="col-4 col-sm-6 mt-75">
+                        </div>
+                        <div class="col-8 col-sm-6 d-flex justify-content-end mt-75">
+                            <div class="invoice-subtotal">
+                                <div class="invoice-calc d-flex justify-content-between">
+                                    <span class="invoice-title">{% trans "Subtotal" %}</span>
+                                    <span class="invoice-value" id="txt_subtotal_factura"></span>
+                                </div>
+                                <div class="invoice-calc d-flex justify-content-between">
+                                    <span class="invoice-title">{% trans "Subtotal envíos" %}</span>
+                                    <span class="invoice-value" id="txt_total_envios"></span>
+                                </div>
+                                <div class="invoice-calc d-flex justify-content-between">
+                                    <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                    <span class="invoice-value" id="txt_impuestos_factura"></span>
+                                </div>
+                                <hr>
+                                <div class="invoice-calc d-flex justify-content-between">
+                                    <span class="invoice-title">{% trans "Total pagar" %}</span>
+                                    <span class="invoice-value" id="txt_total_factura"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end mb-1" id="id_accion_factura">
+
+                </div>
+            </div>
+        </div>`;
+        $('#div_detalle_orden').append(filaDetalleOrden);
+        if(factura.estado_nombre === 'CREADA'){
+            encabezado = 
+            `
+            <tr class="border-0">
+                <th scope="col">{% trans "Accion" %}</th>
+                <th scope="col">{% trans "Orden" %}</th>
+                <th scope="col">{% trans "Solicita" %}</th>
+                <th scope="col">{% trans "Subtotal" %}</th>
+                <th scope="col">{% trans "Impuestos" %}</th>
+                <th scope="col">{% trans "Envío" %}</th>
+                <th scope="col" class="text-right">{% trans "Total orden" %}</th>
+            </tr>
+            `;
+        } else {
+            encabezado = 
+            `
+            <tr class="border-0">
+                <th scope="col">{% trans "Orden" %}</th>
+                <th scope="col">{% trans "Solicita" %}</th>
+                <th scope="col">{% trans "Subtotal" %}</th>
+                <th scope="col">{% trans "Impuestos" %}</th>
+                <th scope="col">{% trans "Envío" %}</th>
+                <th scope="col" class="text-right">{% trans "Total orden" %}</th>
+            </tr>
+            `;
+        }
+        
+        $('#id_tabla_encabezado').append(encabezado);
+        
+        //////////////////////////// ordenes de factura /////////////////////////////////////////
+
+        $('#id_tabla_ordenes').empty();
+        let subtotalFactura = 0;
+        let impuestosFactura = 0;
+        let totalFactura = 0;
+        let subtotalEnvios = 0;
+        if(decimales){
+            cifrasDecimales = 2;
+        } else {
+            cifrasDecimales = 0;
+        }
+        ordenesFactura.forEach(orden => {
+            total_orden = parseFloat(orden.total_orden) + parseFloat(orden.costo_envio);
+            prct_impuestos_taller = parseFloat(orden.impuestos_orden);
+            subtotalEnvio = parseFloat(orden.costo_envio) / (1 + (prct_impuestos_taller/100));
+            impuestosEnvio = parseFloat(orden.costo_envio) - subtotalEnvio;
+            if(factura.estado_nombre === 'CREADA'){
+                tr=
+                `
+                <tr>
+                    <td>
+                        <button onclick="borrarDetalleFactura(${factura.id_factura}, ${orden.orden_id})" class="btn btn-icon btn-danger rounded-circle" type="button">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </td>
+                    <td>${orden.orden_secuencia}</td>
+                    <td>${orden.solicita}</td>
+                    <td>${orden.subtotal_orden}</td>
+                    <td>${orden.impuestos_orden}</td>
+                    <td>${subtotalEnvio.toFixed(cifrasDecimales)}</td>
+                    <td class="text-primary text-right font-weight-bold">${total_orden.toFixed(cifrasDecimales)}</td>
+                </tr>
+                `;
+            } else {
+                tr=
+                `
+                <tr>
+                    <td>${orden.orden_secuencia}</td>
+                    <td>${orden.solicita}</td>
+                    <td>${orden.subtotal_orden}</td>
+                    <td>${orden.impuestos_orden}</td>
+                    <td>${subtotalEnvio.toFixed(cifrasDecimales)}</td>
+                    <td class="text-primary text-right font-weight-bold">${total_orden.toFixed(cifrasDecimales)}</td>
+                </tr>
+                ` ;
+            }
+            $('#id_tabla_ordenes').append(tr);
+            subtotalFactura += parseFloat(orden.subtotal_orden);
+            impuestosFactura += (parseFloat(orden.impuestos_orden) + impuestosEnvio);
+            subtotalEnvios += subtotalEnvio;
+            totalFactura += parseFloat(total_orden);
+        });
+
+        $('#txt_subtotal_factura').text('{{ user.pais.simbolo_moneda }}' + ' ' + subtotalFactura.toFixed(cifrasDecimales));
+        $('#txt_impuestos_factura').text('{{ user.pais.simbolo_moneda }}' + ' ' + impuestosFactura.toFixed(cifrasDecimales));
+        $('#txt_total_envios').text('{{ user.pais.simbolo_moneda }}' + ' ' + subtotalEnvios.toFixed(cifrasDecimales));
+        $('#txt_total_factura').text('{{ user.pais.simbolo_moneda }}' + ' ' + totalFactura.toFixed(cifrasDecimales));
+
+        $('#id_accion_factura').empty();
+        boton =
+            `
+            <button id="btnEntregaMaterial" type="button" onclick="ocultarDetalles()" name="" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Atrás" %}</span>
+            </button>
+            `;
+        tipoUsuario = '{{ user.tipo_usuario.descripcion }}';
+        if(factura.estado_nombre === 'CREADA' && tipoUsuario === 'USUARIO TALLER'){
+            if(ordenesFactura.length > 0){
+                if(factura.estado_nombe === 'CONFIRMADA'){
+                }
+                else{
+                    boton =
+                    `
+                    <button id="btnEliminarFactura" type="button" onclick="eliminarFactura(${factura.id_factura})" name="" class="btn btn-danger ml-1">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Eliminar" %}</span>
+                    </button>
+                    <button id="btnActualizarFactura" type="button" onclick="actualizarFactura('CONFIRMADA', ${factura.id_factura})" name="" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+                    </button>
+                    `;
+                }
+            } else {
+                boton =
+                `
+                <button id="btnEliminarFactura" type="button" onclick="eliminarFactura(${factura.id_factura})" name="" class="btn btn-danger ml-1">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Eliminar" %}</span>
+                </button>
+                `;
+            }
+        } else {
+            if(factura.estado_nombre === 'CONFIRMADA' && tipoUsuario === 'USUARIO OPERACIONES'){
+                boton =
+                `
+                {% if perms.trn.pagar_factura %}
+
+
+                <button id="btnActualizarFactura" type="button" onclick="actualizarFactura('PAGADA', ${factura.id_factura})" name="" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Pagar" %}</span>
+                </button>
+                {% endif %}
+                `;
+            }
+        }
+        $('#id_accion_factura').append(boton);
+
+        email_app_details = $(".email-app-details");
+        email_app_details.toggleClass('show');
+    }
+
+    function ocultarDetalles(){
+        email_app_details = $(".email-app-details");
+        email_app_details.removeClass('show');
+        // $('#div_detalle_orden').empty();
+        // $('#atras_detalle').empty();
+
+    }
+    
+
+    function actualizarFactura(estado, idFactura){
+        url = "{% url 'trn:facturas_actualizar' 0 %}";
+        url = url.replace(/0/, idFactura);
+
+        token = '{{ csrf_token }}';
+
+        body = JSON.stringify({'estado': estado});
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            async: true,
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                Swal.fire(
+                    '{% trans "Correcto" %}',
+                    '{% trans "La factura ha sido actualizada" %}',
+                    'success'
+                );
+                ocultarDetalles();
+                obtenerOrdenesfecha(opcion);
+                window.location.reload();
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+
+    }
+
+    function borrarDetalleFactura(idFactura, idOrden){
+        url = "{% url 'trn:facturas_detalle_eliminar' %}";
+        token = '{{ csrf_token }}';
+
+        datos = {
+            'id_factura': idFactura,
+            'id_orden': idOrden
+        }
+
+        body = JSON.stringify(datos);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            async: true,
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+                verDetalleFactura(idFactura);
+                email_app_details = $(".email-app-details");
+                email_app_details.toggleClass('show');                
+            },
+            success: function(res) {
+                Swal.fire(
+                    '{% trans "Correcto" %}',
+                    '{% trans "Se ha eliminado el detalle" %}',
+                    'success'
+                );
+
+                
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function eliminarFactura(idFactura){
+        url = "{% url 'trn:facturas_eliminar' %}";
+        token = '{{ csrf_token }}';
+
+        datos = {
+            'id_factura': idFactura
+        }
+
+        body = JSON.stringify(datos);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            async: true,
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+                $('#div_detalle_orden').empty();
+
+            },
+            success: function(res) {
+                Swal.fire(
+                    '{% trans "Correcto" %}',
+                    '{% trans "Se ha eliminado la factura" %}',
+                    'success'
+                );
+                ocultarDetalles();
+                obtenerOrdenesfecha(opcion);
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,11 @@
+*.pyc
+/*.pyc
+/*/*.pyc
+/*/*/*.pyc
+/*/*/*/*.pyc
+*/__pycache__ /*.pyc
+*/*/*.jpg
+*/*/*.pdf
+*/migrations/__pycache__/*.pyc
+media/**/*.jpg
+*.pdf

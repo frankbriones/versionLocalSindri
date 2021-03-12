@@ -1,0 +1,1283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>URLs ctg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Views ctg" href="ctg_views.html" />
+    <link rel="prev" title="Modelos ctg" href="ctg_models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>URLs ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#url-divisiones-lista">url divisiones_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-divisiones-crear">url divisiones_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-divisiones-editar">url divisiones_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-divisiones-actualizar">url divisiones_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-divisiones-buscar-api">url divisiones_buscar_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-categorias-lista">url categorias_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-categorias-crear">url categorias_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-categorias-editar">url categorias_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-categorias-actualizar">url categorias_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-categorias-buscar-api">url categorias_buscar_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-tallas-lista">url tallas_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-tallas-crear">url tallas_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-tallas-editar">url tallas_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-tallas-actualizar">url tallas_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-colores-lista">url colores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-colores-crear">url colores_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-colores-editar">url colores_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-colores-actualizar">url colores_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicionales-lista">url adicionales_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicionales-crear">url adicionales_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-adicional-crear">url detalles_adicional_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicionales-editar">url adicionales_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicionales-actualizar">url adicionales_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicionales-modal-lista">url adicionales_modal_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-adicional-detalle-modal">url adicional_detalle_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedras-lista">url piedras_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedras-crear">url piedras_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-crear">url detalles_piedra_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedras-editar">url piedras_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-agregar">url detalles_piedra_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-categorias-agregar">url detalles_piedra_categorias_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-editar">url detalles_piedra_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-actualizar">url detalles_piedra_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedra-detalle-modal">url piedra_detalle_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-piedra-eliminar">url detalles_piedra_eliminar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedras-modal-lista">url piedras_modal_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-piedras-actualizar">url piedras_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-productos-lista">url productos_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-servicios-lista">url servicios_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-crear">url detalles_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-crear">url items_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-editar">url items_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-item-inactivar-modal">url item_inactivar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-item-activar-modal">url item_activar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-agregar">url detalles_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalles-colores-agregar">url detalles_colores_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-detalle">url items_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-detalle-editar">url items_detalle_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-detalle-actualizar">url items_detalle_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-detalle-eliminar">url items_detalle_eliminar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-contar-cotizacion">url contar_cotizacion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-buscar-items-api">url buscar_items_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-todos-api">url items_todos_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-taller-api">url items_taller_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-division-api">url items_division_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-items-categoria-api">url items_categoria_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalle-buscar">url detalle_buscar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-detalle-piedra-buscar">url detalle_piedra_buscar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-catalogo-gramos">url catalogo_gramos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-catalogo-fijo">url catalogo_fijo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>URLs ctg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ctg/ctg_urls.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="urls-ctg">
+<h1><strong>URLs ctg</strong><a class="headerlink" href="#urls-ctg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>ctg</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">urls.py</span></code>. Donde se encuentran las rutas de la aplicación ctg, se detalla a continuación cada ruta</p>
+<div class="section" id="url-divisiones-lista">
+<h2>url divisiones_lista<a class="headerlink" href="#url-divisiones-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/divisiones/lista</span></code> Ruta hacia la pantalla del listado de divisiones registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-divisioneslistaview"><span class="std std-ref">Vista DivisionesListaView</span></a>.</p>
+</div>
+<div class="section" id="url-divisiones-crear">
+<h2>url divisiones_crear<a class="headerlink" href="#url-divisiones-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/divisiones/crear</span></code> Ruta hacia la pantalla que permite crear una división para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-divisionescrearview"><span class="std std-ref">Vista DivisionesCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-divisiones-editar">
+<h2>url divisiones_editar<a class="headerlink" href="#url-divisiones-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/divisiones/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar una división para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-divisioneseditarview"><span class="std std-ref">Vista DivisionesEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la división a editar <code class="docutils literal notranslate"><span class="pre">id_division</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-divisiones-actualizar">
+<h2>url divisiones_actualizar<a class="headerlink" href="#url-divisiones-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/divisiones/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar una división para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizardivisionmodal"><span class="std std-ref">Vista ActualizarDivisionModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la división a editar <code class="docutils literal notranslate"><span class="pre">id_division</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-divisiones-buscar-api">
+<h2>url divisiones_buscar_api<a class="headerlink" href="#url-divisiones-buscar-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/divisiones/buscar/&lt;int:taller&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de las divisiones registrados para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-busquedadivisionesapiview"><span class="std std-ref">Vista BusquedaDivisionesApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>De tipo entero, se refiere al id del taller al que pertenecen las divisiones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen las divisiones.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-categorias-lista">
+<h2>url categorias_lista<a class="headerlink" href="#url-categorias-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/categorias/lista</span></code> Ruta hacia la pantalla del listado de categorías registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-categoriaslistaview"><span class="std std-ref">Vista CategoriasListaView</span></a>.</p>
+</div>
+<div class="section" id="url-categorias-crear">
+<h2>url categorias_crear<a class="headerlink" href="#url-categorias-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/categorias/crear</span></code> Ruta hacia la pantalla que permite crear una categoría para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-categoriascrearview"><span class="std std-ref">Vista CategoriasCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-categorias-editar">
+<h2>url categorias_editar<a class="headerlink" href="#url-categorias-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/categorias/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar una categoría para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-categoriaseditarview"><span class="std std-ref">Vista CategoriasEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la categoría a editar <code class="docutils literal notranslate"><span class="pre">id_categoria</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-categorias-actualizar">
+<h2>url categorias_actualizar<a class="headerlink" href="#url-categorias-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/categorias/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar una categoría para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizarcategoriamodal"><span class="std std-ref">Vista ActualizarCategoriaModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la categoría a editar <code class="docutils literal notranslate"><span class="pre">id_categoria</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-categorias-buscar-api">
+<h2>url categorias_buscar_api<a class="headerlink" href="#url-categorias-buscar-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/categorias/buscar/&lt;int:division&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de las categorías registradas para una división determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-busquedacategoriasapiview"><span class="std std-ref">Vista BusquedaCategoriasApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>division</p></td>
+<td><p>De tipo entero, se refiere al id de la división a la que pertenecen las categorías.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen las categorías.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-tallas-lista">
+<h2>url tallas_lista<a class="headerlink" href="#url-tallas-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/tallas/lista</span></code> Ruta hacia la pantalla del listado de tallas registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-tallaslistaview"><span class="std std-ref">Vista TallasListaView</span></a>.</p>
+</div>
+<div class="section" id="url-tallas-crear">
+<h2>url tallas_crear<a class="headerlink" href="#url-tallas-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/tallas/crear</span></code> Ruta hacia la pantalla que permite crear una talla para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-tallascrearview"><span class="std std-ref">Vista TallasCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-tallas-editar">
+<h2>url tallas_editar<a class="headerlink" href="#url-tallas-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/tallas/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar una talla para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-tallaseditarview"><span class="std std-ref">Vista TallasEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la talla a editar <code class="docutils literal notranslate"><span class="pre">id_talla</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-tallas-actualizar">
+<h2>url tallas_actualizar<a class="headerlink" href="#url-tallas-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/tallas/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar una talla para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizartallamodal"><span class="std std-ref">Vista ActualizarTallaModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la talla a editar <code class="docutils literal notranslate"><span class="pre">id_talla</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-colores-lista">
+<h2>url colores_lista<a class="headerlink" href="#url-colores-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/colores/lista</span></code> Ruta hacia la pantalla del listado de colores registrados para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-coloreslistaview"><span class="std std-ref">Vista ColoresListaView</span></a>.</p>
+</div>
+<div class="section" id="url-colores-crear">
+<h2>url colores_crear<a class="headerlink" href="#url-colores-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/colores/crear</span></code> Ruta hacia la pantalla que permite crear un color para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-colorescrearview"><span class="std std-ref">Vista ColoresCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-colores-editar">
+<h2>url colores_editar<a class="headerlink" href="#url-colores-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/colores/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar un color para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-coloreseditarview"><span class="std std-ref">Vista ColoresEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del color a editar <code class="docutils literal notranslate"><span class="pre">id_color</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-colores-actualizar">
+<h2>url colores_actualizar<a class="headerlink" href="#url-colores-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/colores/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar un color para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizarcolormodal"><span class="std std-ref">Vista ActualizarColorModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del color a editar <code class="docutils literal notranslate"><span class="pre">id_color</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-adicionales-lista">
+<h2>url adicionales_lista<a class="headerlink" href="#url-adicionales-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/lista</span></code> Ruta hacia la pantalla del listado de adicionales registrados para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-adicionaleslistaview"><span class="std std-ref">Vista AdicionalesListaView</span></a>.</p>
+</div>
+<div class="section" id="url-adicionales-crear">
+<h2>url adicionales_crear<a class="headerlink" href="#url-adicionales-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/crear</span></code> Ruta hacia la pantalla que permite crear un adicional para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-adicionalescrearview"><span class="std std-ref">Vista AdicionalesCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-detalles-adicional-crear">
+<h2>url detalles_adicional_crear<a class="headerlink" href="#url-detalles-adicional-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/detalles/crear/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite crear un detalle para un adicional determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detalleadicionalcrearview"><span class="std std-ref">Vista DetalleAdicionalCrearView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del adicional al que pertenece el detalle <code class="docutils literal notranslate"><span class="pre">id_adicional</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-adicionales-editar">
+<h2>url adicionales_editar<a class="headerlink" href="#url-adicionales-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar un adicional para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-adicionaleseditarview"><span class="std std-ref">Vista AdicionalesEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del adicional a editar <code class="docutils literal notranslate"><span class="pre">id_adicional</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-adicionales-actualizar">
+<h2>url adicionales_actualizar<a class="headerlink" href="#url-adicionales-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar un adicional para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizaradicionalmodal"><span class="std std-ref">Vista ActualizarAdicionalModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del adicional a editar <code class="docutils literal notranslate"><span class="pre">id_adicional</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-adicionales-modal-lista">
+<h2>url adicionales_modal_lista<a class="headerlink" href="#url-adicionales-modal-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/modal/lista/&lt;int:pk&gt;</span></code> Ruta que abre el modal que contiene los adicionales pertenecientes a un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-adicionalesmodallistaview"><span class="std std-ref">Vista AdicionalesModalListaView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del taller al que pertenecen los adicionales <code class="docutils literal notranslate"><span class="pre">id_taller</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-adicional-detalle-modal">
+<h2>url adicional_detalle_modal<a class="headerlink" href="#url-adicional-detalle-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/adicionales/detalle/modal/&lt;int:id_adicional&gt;</span></code> Ruta que abre el modal que contiene la información de un adicional en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-adicionaldetalleview"><span class="std std-ref">Vista adicionalDetalleView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_adicional</p></td>
+<td><p>De tipo entero, se refiere al id del adicional que se consulta <code class="docutils literal notranslate"><span class="pre">id_adicional</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-piedras-lista">
+<h2>url piedras_lista<a class="headerlink" href="#url-piedras-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/lista</span></code> Ruta hacia la pantalla del listado de piedras registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-piedraslistaview"><span class="std std-ref">Vista PiedrasListaView</span></a>.</p>
+</div>
+<div class="section" id="url-piedras-crear">
+<h2>url piedras_crear<a class="headerlink" href="#url-piedras-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/crear</span></code> Ruta hacia la pantalla que permite crear una piedra para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-piedrascrearview"><span class="std std-ref">Vista PiedrasCrearView</span></a>.</p>
+</div>
+<div class="section" id="url-detalles-piedra-crear">
+<h2>url detalles_piedra_crear<a class="headerlink" href="#url-detalles-piedra-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/crear/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite crear un detalle para una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallepiedracrearview"><span class="std std-ref">Vista DetallePiedraCrearView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra al que pertenece el detalle <code class="docutils literal notranslate"><span class="pre">id_piedra</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-piedras-editar">
+<h2>url piedras_editar<a class="headerlink" href="#url-piedras-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite editar una piedra para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-piedraseditarview"><span class="std std-ref">Vista PiedrasEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra a editar <code class="docutils literal notranslate"><span class="pre">id_piedra</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-piedra-agregar">
+<h2>url detalles_piedra_agregar<a class="headerlink" href="#url-detalles-piedra-agregar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/agregar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se pueden crear detalles para una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallepiedraagregarview"><span class="std std-ref">Vista DetallePiedraAgregarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra a la que se le agregan los detalles <code class="docutils literal notranslate"><span class="pre">id_piedra</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-piedra-categorias-agregar">
+<h2>url detalles_piedra_categorias_agregar<a class="headerlink" href="#url-detalles-piedra-categorias-agregar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/categorias/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se registran las categorías en que está disponible una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallepiedracategoriasview"><span class="std std-ref">Vista DetallePiedraCategoriasView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra <code class="docutils literal notranslate"><span class="pre">id_piedra</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-piedra-editar">
+<h2>url detalles_piedra_editar<a class="headerlink" href="#url-detalles-piedra-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se edita la información de un detalle perteneciente a una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallepiedraeditarview"><span class="std std-ref">Vista DetallePiedraEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-piedra-actualizar">
+<h2>url detalles_piedra_actualizar<a class="headerlink" href="#url-detalles-piedra-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar un detalle de una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizardetallepiedramodal"><span class="std std-ref">Vista ActualizarDetallePiedraModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-piedra-detalle-modal">
+<h2>url piedra_detalle_modal<a class="headerlink" href="#url-piedra-detalle-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalle/modal/&lt;int:id_piedra&gt;</span></code> Ruta que abre el modal que contiene la información de una piedra en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-piedradetalleview"><span class="std std-ref">Vista PiedraDetalleView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_piedra</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra que se consulta <code class="docutils literal notranslate"><span class="pre">id_piedra</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-piedra-eliminar">
+<h2>url detalles_piedra_eliminar<a class="headerlink" href="#url-detalles-piedra-eliminar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/detalles/eliminar/&lt;int:id_detalle&gt;</span></code> Ruta que permite eliminar un detalle de una piedra en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallepiedraeliminarview"><span class="std std-ref">Vista DetallePiedraEliminarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a eliminar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-piedras-modal-lista">
+<h2>url piedras_modal_lista<a class="headerlink" href="#url-piedras-modal-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/modal/lista/&lt;int:pk&gt;</span></code> Ruta que abre el modal que contiene las piedras pertenecientes a un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-piedrasmodallistaview"><span class="std std-ref">Vista PiedrasModalListaView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del taller al que pertenecen las piedras <code class="docutils literal notranslate"><span class="pre">id_taller</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-piedras-actualizar">
+<h2>url piedras_actualizar<a class="headerlink" href="#url-piedras-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/piedras/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar una piedra determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizarpiedramodal"><span class="std std-ref">Vista ActualizarPiedraModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-productos-lista">
+<h2>url productos_lista<a class="headerlink" href="#url-productos-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/productos/lista</span></code> Ruta hacia la pantalla del listado de ítems de tipo producto con precio fijo y producto con precio gramo registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-productoslistaview"><span class="std std-ref">Vista ProductosListaView</span></a>.</p>
+</div>
+<div class="section" id="url-servicios-lista">
+<h2>url servicios_lista<a class="headerlink" href="#url-servicios-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/servicios/lista</span></code> Ruta hacia la pantalla del listado de ítems de tipo producto con precio fijo y producto con precio gramo registradas para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-productoslistaview"><span class="std std-ref">Vista ProductosListaView</span></a>.</p>
+</div>
+<div class="section" id="url-detalles-crear">
+<h2>url detalles_crear<a class="headerlink" href="#url-detalles-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/detalles/crear/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite crear un detalle para un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallecrearview"><span class="std std-ref">Vista DetalleCrearView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del ítem al que pertenece el detalle <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-crear">
+<h2>url items_crear<a class="headerlink" href="#url-items-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/crear/&lt;int:tipo&gt;</span></code> Ruta hacia la pantalla que permite crear un ítem para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemscrearview"><span class="std std-ref">Vista ItemsCrearView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenece el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-editar">
+<h2>url items_editar<a class="headerlink" href="#url-items-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/editar/&lt;int:pk&gt;/&lt;int:tipo&gt;</span></code> Ruta hacia la pantalla que permite editar un ítem para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemseditarview"><span class="std std-ref">Vista ItemsEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del ítem a editar <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenece el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-item-inactivar-modal">
+<h2>url item_inactivar_modal<a class="headerlink" href="#url-item-inactivar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/inactivar/modal/&lt;int:id_item&gt;</span></code> Ruta que abre el modal para inactivar un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-inactivaritemmodal"><span class="std std-ref">Vista InactivarItemModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-item-activar-modal">
+<h2>url item_activar_modal<a class="headerlink" href="#url-item-activar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/activar/modal/&lt;int:id_item&gt;</span></code> Ruta que abre el modal para activar un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-activaritemmodal"><span class="std std-ref">Vista ActivarItemModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-agregar">
+<h2>url detalles_agregar<a class="headerlink" href="#url-detalles-agregar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/detalles/agregar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se pueden crear detalles para un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detalleagregarview"><span class="std std-ref">Vista DetalleAgregarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del ítem al que se le agregan los detalles <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalles-colores-agregar">
+<h2>url detalles_colores_agregar<a class="headerlink" href="#url-detalles-colores-agregar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/detalles/colores/agregar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se registran los colores en que está disponible un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detallecoloresagregarview"><span class="std std-ref">Vista DetalleColoresAgregarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del ítem <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-detalle">
+<h2>url items_detalle<a class="headerlink" href="#url-items-detalle" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/detalle/&lt;int:id_item&gt;</span></code> Ruta que abre el modal que contiene la información de un ítem en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemdetalleview"><span class="std std-ref">Vista ItemDetalleView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem que se consulta <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-detalle-editar">
+<h2>url items_detalle_editar<a class="headerlink" href="#url-items-detalle-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/detalle/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla desde donde se edita la información de un detalle perteneciente a un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detalleeditarview"><span class="std std-ref">Vista DetalleEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-detalle-actualizar">
+<h2>url items_detalle_actualizar<a class="headerlink" href="#url-items-detalle-actualizar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/detalle/actualizar/&lt;int:pk&gt;</span></code> Ruta que abre el modal para activar o inactivar un detalle de un ítem determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-actualizardetalleitemmodal"><span class="std std-ref">Vista ActualizarDetalleItemModal</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-detalle-eliminar">
+<h2>url items_detalle_eliminar<a class="headerlink" href="#url-items-detalle-eliminar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/detalle/eliminar/&lt;int:id_detalle&gt;</span></code> Ruta que permite eliminar un detalle de un ítem en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-detalleeliminarview"><span class="std std-ref">Vista DetalleEliminarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle</p></td>
+<td><p>De tipo entero, se refiere al id del detalle a eliminar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-contar-cotizacion">
+<h2>url contar_cotizacion<a class="headerlink" href="#url-contar-cotizacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/cotizar/&lt;int:id_item&gt;/&lt;int:tipo&gt;</span></code> Ruta que permite registrar una cotización para un ítem en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-contarcotizacion"><span class="std std-ref">Vista ContarCotizacion</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem que se cotiza.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de cotización que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-buscar-items-api">
+<h2>url buscar_items_api<a class="headerlink" href="#url-buscar-items-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/buscar/&lt;str:clave&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de un ítem en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-busquedaitemsapiview"><span class="std std-ref">Vista BusquedaItemsApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clave</p></td>
+<td><p>De tipo string, se refiere al texto de búsqueda ingresada por el usuario.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenece el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-todos-api">
+<h2>url items_todos_api<a class="headerlink" href="#url-items-todos-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/todos/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de todos los ítems pertenecientes a un tipo de catálogo en específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemstodosapiview"><span class="std std-ref">Vista ItemsTodosApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-taller-api">
+<h2>url items_taller_api<a class="headerlink" href="#url-items-taller-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/taller/&lt;int:taller&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de todos los ítems pertenecientes a un tipo de catálogo en específico y a un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemsportallerapiview"><span class="std std-ref">Vista ItemsPorTallerApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>De tipo entero, se refiere al id del taller al que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-division-api">
+<h2>url items_division_api<a class="headerlink" href="#url-items-division-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/division/&lt;int:division&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de todos los ítems pertenecientes a un tipo de catálogo en específico y a una división determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemspordivisionapiview"><span class="std std-ref">Vista ItemsPorDivisionApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>division</p></td>
+<td><p>De tipo entero, se refiere al id de la división a la que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-items-categoria-api">
+<h2>url items_categoria_api<a class="headerlink" href="#url-items-categoria-api" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/items/categoria/&lt;int:categoria&gt;/&lt;int:tipo&gt;</span></code> Ruta utilizada para la consulta de todos los ítems pertenecientes a un tipo de catálogo en específico y a una categoría determinada, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-itemsporcategoriaapiview"><span class="std std-ref">Vista ItemsPorCategoriaApiView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de catálogo al que pertenecen los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categoria</p></td>
+<td><p>De tipo entero, se refiere al id de la categoría a la que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalle-buscar">
+<h2>url detalle_buscar<a class="headerlink" href="#url-detalle-buscar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/detalle/buscar/&lt;int:item&gt;/&lt;int:medida&gt;</span></code> Ruta utilizada para la consulta de un detalle perteneciente a un ítem específico, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-busquedadetalle"><span class="std std-ref">Vista BusquedaDetalle</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>De tipo entero, se refiere al id del detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem al que pertenece el detalle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-detalle-piedra-buscar">
+<h2>url detalle_piedra_buscar<a class="headerlink" href="#url-detalle-piedra-buscar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/detalle/piedra/buscar/&lt;int:id_detalle&gt;</span></code> Ruta utilizada para la consulta de un detalle perteneciente a una piedra específica, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-busquedadetallepiedra"><span class="std std-ref">Vista BusquedaDetallePiedra</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle</p></td>
+<td><p>De tipo entero, se refiere al id del detalle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-catalogo-gramos">
+<h2>url catalogo_gramos<a class="headerlink" href="#url-catalogo-gramos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/catalogo/gramo</span></code> Ruta hacia la pantalla del listado de ítem de tipo producto con precio gramo y servicio con precio gramo registrados para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-gramolistaview"><span class="std std-ref">Vista GramoListaView</span></a>.</p>
+</div>
+<div class="section" id="url-catalogo-fijo">
+<h2>url catalogo_fijo<a class="headerlink" href="#url-catalogo-fijo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/catalogo/fijo</span></code> Ruta hacia la pantalla del listado de ítem de tipo producto con precio fijo y servicio con precio fijo registrados para un taller determinado, hace un llamado a la <a class="reference internal" href="ctg_views.html#vista-fijolistaview"><span class="std std-ref">Vista FijoListaView</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ctg_views.html" class="btn btn-neutral float-right" title="Views ctg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ctg_models.html" class="btn btn-neutral float-left" title="Modelos ctg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

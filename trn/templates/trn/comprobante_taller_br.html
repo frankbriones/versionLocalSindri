@@ -1,0 +1,670 @@
+
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="author" content="INNODE">
+    <title>SINDRI</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    
+    <style type="text/css">
+    @page {
+        size: A4 landscape;
+        margin: 40pt, 0.5cm, 15pt, 0.5cm;
+        @frame header_frame {
+            -pdf-frame-content: header_content;
+            left: 15pt; width: 812pt; top: 5pt; height: 80pt;
+        }
+        
+        @frame footer_frame {
+            -pdf-frame-content: footer_content;
+            left: 15pt; width: 812pt; top: 525pt; height: 70pt;
+        }
+    }
+    .tabla-encabezado {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        border-spacing: 0px 0px 0px 0px;
+        background-color: #ffffff;
+        border-collapse: separate;
+        padding: 5px 0px 0px 0px;
+        /* border: solid #101b2d 0.5px; */
+        border-radius:30px;
+        -moz-border-radius:30px;
+    }
+    .tabla-detalles {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        border: 1px solid black;
+        border-spacing: 1px 1px 1px 1px;
+        background-color: #ffffff;
+        /* border-collapse: separate; */
+        padding: 2px 1px 0px 1px;
+        /* border: solid #101b2d 0.5px; */
+        /* border-radius:30px; */
+        /* -moz-border-radius:30px; */
+    }
+    .th-imagen {
+        width: 25%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        /*border: 1px solid black;*/
+        border-spacing: 1px 1px 1px 1px;
+        background-color: #ffffff;
+        /* border-collapse: separate; */
+        padding: 2px 1px 0px 1px;
+        /* border: solid #101b2d 0.5px; */
+        /* border-radius:30px; */
+        /* -moz-border-radius:30px; */
+    }
+    .td-titulo{
+        background-color: #b17c54;
+    }
+    .h1-titulo{
+        color: #ffffff;
+        text-align: center;
+        font-size:  11px;
+    }
+    .td-dato {
+        text-align: left;
+    }
+    .td-parrafo {
+        text-align: left;
+        font-size: 10px;
+        /* padding-top: 8px;
+        line-height: 10px; */
+    }
+    .titulo {
+        color: #5A8DEE;
+        padding-left: 10px;
+        font-weight: 500;
+        font-size: 70px;
+        float: left;
+    }
+    </style>
+</head>
+<body>
+	<div id="header_content">
+		 <table class="tabla-encabezado">
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;">
+                        {% if orden.tienda.sociedad.grupo_empresarial.logotipo %}
+                        <img id="id_img_tmp" name="imagentmp" src="{{ orden.tienda.sociedad.grupo_empresarial.logotipo.url }}" style="float: left; max-width: 100px; text-align: right;" width="200px">
+                        {% else %}
+                        <img id="id_img_tmp" name="imagentmp" src="" alt="logotipo" style="float: left; max-width: 100px;" width="300px">
+                        {% endif %}
+                    </td>
+                    
+                </tr>
+              
+                
+                
+            </tbody>
+        </table>
+       
+    </div>
+
+    <div>
+    	{% if detalleSolicitud %} <br>{% else %}{% endif %}
+    	<table >
+    		<thead style="">
+    			<tr >
+    				<th  style="width: 25%;">
+    					<table>
+    						<tr>
+    							<td >
+    								{% if item.imagen %}
+			    						<div >
+											<img  src="{{ item.imagen.url }}" style="width: 20%; height: 70%">
+			    						</div>
+			    					{% else %}
+			    						<label >No tiene imagen relacionada</label>
+			    					{% endif %}
+			    				</td>
+    						</tr>
+    						
+    					</table>
+
+    					
+    				</th>
+    				<th style="width: 35%; padding: 0px; ">
+    					<table style="">
+    						<tbody style="">
+    							<tr >
+    								<td style="font: 15px; padding: 2px;  ">TIENDA</td>
+    								<td style="font-family: cursive;"><label style="font-family: cursive;">{{orden.tienda.nombre}}</label></td>
+    							</tr>
+    							<!-- <tr></tr> -->
+
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">COLOR</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{orden.color}}
+    									</div>
+    								</td>
+
+    							</tr>
+    							{% if detalleSolicitud %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">SERVICIO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{detalleSolicitud.item.descripcion}}
+    									</div>
+    								</td>
+
+    							</tr>
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">CODIGO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{detalleSolicitud.item.sku}}
+    									</div>
+    								</td>
+
+    							</tr>
+    							{% else %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">PRODUCTO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{item.descripcion}}
+    									</div>
+    								</td>
+
+    							</tr>
+
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">CODIGO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{item.sku}}
+    									</div>
+    								</td>
+
+    							</tr>
+    							{% endif %}
+
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">PESO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%; align-items: center;">
+
+    										{{orden.peso_solicitado}} gr.
+    									</div>
+    								</td>
+
+    							</tr>
+
+
+    							
+
+    							{% if detalleSolicitud %}
+	    							<tr style=" padding: 2px 0 0 0; ">
+	    								<td style=" font: 10px; text-align: left; ">TALLA</td>
+	    								<td >
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{item.talla}}
+	    									</div>
+	    								</td>
+
+	    							</tr>
+	    							<tr style=" padding: 2px 0 0 0; ">
+	    								<td style=" font: 10px; text-align: left; ">LONGITUD</td>
+	    								<td >
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{item.longitud}} {{ detalleSolicitud.item.unidad_medida.simbolo }}
+	    									</div>
+	    								</td>
+
+	    							</tr>
+	    							<tr style=" padding: 2px 0 0 0; ">
+	    								<td style=" font: 10px; text-align: left; ">CANTIDAD PIEDRAS</td>
+	    								<td >
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{item.cantidad_piedras}}
+	    									</div>
+	    								</td>
+
+	    							</tr>
+								{% else %}
+								
+								<tr style=" padding: 2px 0 0 0; ">
+									{% if item.parte_interna  %}
+    								<td style=" font: 10px; text-align: left; ">PARTE INTERNA</td>
+    								<td >
+
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{detalle.id_item.parte_interna}}
+    									</div>
+    								</td>
+    								{% else %}
+    								<td style=" font: 10px; text-align: left; ">PARTE INTERNA</td>
+    								<td >
+
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{detalle.parte_interna.descripcion}}
+    									</div>
+    								</td>
+    								{% endif %}
+
+    							</tr>
+    							
+    							{% endif %}
+
+    							{% if detalleSolicitud %}
+
+    							{% else %}
+
+    							{% if detalle.anchura %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">ANCHURA</td>
+    								<td >
+
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{detalle.anchura.descripcion}}
+	    									</div>
+    								</td>
+
+    							</tr>
+								{% else %}
+								<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">MEDIDA/TALLA</td>
+    								<td >
+
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{detalle.medida}}
+	    									</div>
+    								</td>
+
+    							</tr>
+								{% endif %}
+    							
+    							{% if acabado %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">ACABADO</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{acabado.acabado.descripcion}}
+    									</div>
+    								</td>
+
+    							</tr>
+								{% else %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">ACABADO</td>
+    								<td >
+
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{item.acabado}}
+	    									</div>
+    								</td>
+
+    							</tr>
+    							{% endif %}
+    							{% if talla_mujer and talla_hombre %}
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">TALLA MUJER</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 30px; width: 100%">
+    										{{talla_mujer}}
+    									</div>
+    								</td>
+
+    							</tr>
+
+    							<tr style=" padding: 2px 0 0 0; ">
+    								<td style=" font: 10px; text-align: left; ">TALLA HOMBRE</td>
+    								<td >
+    									<div style="border: 2px solid black; height: 25px; width: 100%">
+    										{{talla_hombre}}
+    									</div>
+    								</td>
+
+    							</tr>
+    							{% endif %}
+    							{% endif %}
+    							{% if detalle.cantidad_piedras %}
+    								<tr style=" padding: 2px 0 0 0; ">
+	    								<td style=" font: 10px; text-align: left; ">CANTIDAD PIEDRAS</td>
+	    								<td >
+	    									<div style="border: 2px solid black; height: 25px; width: 100%">
+	    										{{detalle.cantidad_piedras}}
+	    									</div>
+	    								</td>
+
+    								</tr>
+    							{% endif %}
+
+
+    							
+    							
+    						</tbody>
+    					</table>
+    				</th>
+    				<!-- tercera columna del header del reporte -->
+    				<th style="padding: 0 0 0 5px; width: 40%; ">
+    					<table style="border: 1px solid black;">
+							<thead>
+							  <tr>
+							    <th  colspan="4" style=" height: 25px; text-align: center; padding-top: 2px; background-color: #ffffee; ">
+							    	PIEDRAS<br>
+							    	
+							    </th>
+
+							  </tr>
+							  <tr style="">	
+
+							  	{% if piedras_relacionadas %}
+							    		{% for piedra in piedras_relacionadas %}
+							    			<th style=" text-align: left; border: 1px solid black; padding-top: 4px;" colspan="2">
+							    				
+							    					<label style="text-align: left; padding-left: 5px;  font-variant: 10px;">
+							    						Descripción: {{piedra.piedra}}<br>
+							    						Cantidad: {{piedra.cantidad_piedras}} | Medida: {{piedra.piedra_detalle.medida}}<br>
+
+							    						{% if piedra.diseño %}
+							    							Diseño: {{piedra.diseño}}
+
+							    						{% else %}
+							    						 Diseño: -----
+							    						{% endif %}
+							    					</label>
+							    					<br>
+							    				
+							    			</th>
+							    		{% endfor %}
+							  	{% else %}
+
+							  		
+							  	{% endif %}
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+							    <th  colspan="2" style=" height: 25px; text-align: center; padding-top: 2px; background-color: #ffffee;">RUBROS</th>
+							    <th   colspan="2" style=" height: 25px; text-align: center; padding-top: 2px; background-color: #ffffee;">ADICIONALES</tf>
+							   
+							  </tr>
+
+							  <tr>
+
+							  	<th style=" text-align: left; border: 1px solid black; padding-top: 2px; padding-bottom: 0px;" colspan="2">
+							  		<!-- rubros  asociados -->
+							  		{% if rubros_lista %}
+							    		{% for rubro in rubros_lista %}
+							    				
+							    					<label style="text-align: left; padding-left: 5px; font-size: 10px; ">
+							    						Descripción: {{rubro.rubro.descripcion}}<br>
+							    						Valor: {{rubro.valor}}<br>
+							    					</label>
+							    					
+							    				
+							    		{% endfor %}
+								  	{% else %}
+
+								  	
+								  	{% endif %}
+							  	</th>
+
+
+							  	<th colspan="2" style="text-align: left; padding-top: 2px;">
+							  		{% if adicionales_lista %}
+							    		{% for adicional in adicionales_lista %}
+							    				
+							    					<label style="text-align: left; padding-left: 5px; font-size: 10px; padding-bottom: 0px; padding-top: 2px;">
+							    						Descripcion: {{adicional.adicional.descripcion}}<br>
+							    						Cantidad: {{adicional.cantidad_adicionales}}<br>
+							    					</label>
+							    					
+							    				
+							    		{% endfor %}
+								  	{% else %}
+
+								  	{% endif %}
+							  	</th>
+
+
+							  </tr>
+							  <tr>
+							    	<th colspan="2" style="height: 25px; text-align: center; padding-top: 2px; background-color: #ffffee;">DETALLES</th>
+							    	
+							  		<th colspan="2" style="height: 25px; text-align: center; padding-top: 2px; background-color: #ffffee;">GRABADOS</th> 
+							  </tr>
+
+							  <tr >
+							  	<td style="font-size: 10px;" colspan="2" >
+							  		{% if detalleSolicitud %}
+							  			{{ item.detalle }}
+							  		{% else %}
+							  			{% if orden.datos_extra != 'undefined' %}
+							  				{{orden.datos_extra}}
+							  			{% else %}
+							  				<label style="color: white;">.</label>
+							  			{% endif %}
+							  		{% endif %}
+							  	</td>
+							  	<td >
+							  		
+							  			{% if grabado_mujer %}
+							    			Grabado mujer: <br>{{grabado_mujer}} 
+							    		{% endif %}
+							  	</td>
+							  	<td>
+							  			{% if grabado_hombre %}
+
+							    			Grabado hombre:<br> {{grabado_hombre}} 
+							    		{% endif %}
+							  		
+							  	</td>
+							  	
+							  </tr>
+
+							</tbody>
+						</table>
+	
+    				</th>
+    				<!-- datos extras -->
+    				
+    			</tr>
+    		</thead>
+    	
+    	</table><br>
+  
+
+    <div style="padding-top: 2px;">
+        <table class="tg"  style="border: 1px solid black; ">
+        <thead>
+          <tr>
+            <th class="tg-c3ow"  colspan="6" style="background-color: orange; color: white; height: 30px; padding-top: 5px; font-size: 14px;" >FUNDICION</th>
+                    <th class="tg-c3ow" colspan="4" style="background-color: green; color: white; height: 30px; padding-top: 5px; font-size: 14px;">TORNO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0pky" rowspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;"> PESO INICIAL </td>
+            <td class="tg-c3ow" colspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;">ADICIONALES   </td>
+            <td class="tg-0pky" rowspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;">  PESO FINAL  </td>
+            <td class="tg-0pky" rowspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;">ORFEBRE</td>
+            <td class="tg-c3ow" rowspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;"> PESO FINAL </td>
+            <td class="tg-c3ow" colspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;" rowspan="3">   ORFEBRE   </td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">1</td>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">2</td>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">3</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-c3ow" colspan="7" style="text-align: center; background-color: #b17c54; color: white; height: 30px; padding-top: 5px; font-size: 14px;" >BANCADA</td>
+            <td class="" colspan="3" style="text-align: center;  background-color: #763474; color: white; height: 30px; padding-top: 5px; font-size: 14px;" >PULIMENTO</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">PESO INICIAL</td>
+            <td class="tg-0pky" colspan="3" style="text-align: center; padding-top: 4px; font-size: 12px;" >REGRESO DE ADICIONALES </td>
+            <td class="tg-0pky" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">LIMALHA</td>
+            <td class="tg-0pky" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">FARPA</td>
+            <td class="tg-c3ow" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">ORFEBRE</td>
+            <td class="tg-0pky" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">PESO FINAL</td>
+            <td class="tg-0pky" colspan="2" rowspan="3"  style="text-align: center; padding-top: 4px; font-size: 12px;">ORFEBRE</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">1</td>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">2</td>
+            <td class="tg-0pky" style="padding-left: 2px; font-size: 10px; padding-top: 2px;">3</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+            <td class="tg-0pky" style="text-align: center; padding-top: 3px; font-size: 11px">Gr.</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="tg-0pky" style="height: 25px;"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky" colspan="2"></td>
+          </tr>
+        </tbody>
+        </table>
+    </div>
+
+
+    	
+    	<br>
+    	
+    	<table  >
+
+               
+    		<tr>
+    			<th style="text-align: left;">
+                    <label style=" padding: 0px;">{% trans "FECHA DE INICIO DE FABRICACION: " %}{{ orden.fecha_creacion|date:"d/m/Y" }}</label><br>
+                    {% if orden.fecha_fin_trabajo %}
+                    <label style="text-align: left; padding: 0px;">{% trans "FEHCA ENTREGA DE FABRICACION: " %}{{ fecha_estimada_entrega|date:"d/m/Y" }}</label><br>
+                    {% else %}
+                    <label style="text-align: left; padding: 0px;">{% trans "FECHA ESTIMADA DE ENTREGA: " %}{{ fecha_estimada_entrega|date:"d/m/Y" }}</label><br>
+                    {% endif %}
+
+                
+                    <label>{% trans "FABRICACION N°: " %}{{ orden.secuencia }}</label>
+                </th>
+    			<th>______________________________________________<br>Responsable de recopilacion de datos.</th>
+    			<th>
+    				{{orden.tienda.sociedad.grupo_empresarial}}
+    				<br>
+    				{{orden.tienda.direccion_tienda}}
+    				<br>
+    				e-mail: {{orden.tienda.email}}
+    				<br>
+    				Telefono: {{orden.tienda.telefono}}
+    			</th>
+    		</tr>
+
+    	</table>
+    	
+    </div>
+    <br>
+    {% if contador_imagenes > 1 %}
+	    <table class="tabla-encabezado">
+	        <tbody>
+	            <tr>
+	                <td class="td-titulo">
+	                    <h1 class="h1-titulo">{% trans "IMAGEN DEL O LOS PRODUCTOS" %}</h1>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <table class="tabla-encabezado">
+	        <tbody>
+	            <tr>
+	                {% for imagen in imagenes %}
+	                <td >
+	                    <img id="id_img_tmp" width="300px" height="300px" name="imagentmp" src="{{ imagen.imagen.url }}" style="margin-left: auto; margin-right: auto; display: block;">
+	                </td>
+	                {% endfor %}
+	            </tr>
+	        </tbody>
+	    </table>
+	{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Cotización" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <button type="button" class="btn btn-primary glow mr-1 mb-1" onclick="guardarCotizacion(1)"><i class="bx bx-cart" style="width: 100%; font-size: 70px; border: hidden;"></i> {% trans "Cliente" %}</button>
+                </div>
+                <div class="col-md-6 col-12">
+                    <button type="button" class="btn btn-primary glow mr-1 mb-1" onclick="guardarCotizacion(2)"><i class="bx bx-cart" style="width: 100%; font-size: 70px"></i> {% trans "Interno" %}</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    function guardarCotizacion(tipo) {
+        var id_item = '{{ item.id_item }}';
+        token = '{{ csrf_token }}'
+        if (tipo === 1) {
+            url = "{% url 'ctg:contar_cotizacion' 0 1 %}";
+            url = url.replace(/0/, id_item);
+        }
+        if (tipo === 2) {
+            url = "{% url 'ctg:contar_cotizacion' 0 2 %}";
+            url = url.replace(/0/, id_item);
+        }
+
+        data = {
+            'tipo': tipo
+        };
+
+        data = JSON.stringify(data);
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: data,
+            success: function(response) {
+                let alianza = String(response).toLowerCase() === 'true';
+                console.log(alianza);
+                if (alianza){
+                    var url = "{% url 'trn:ordenes_alianzas_crear' 0 1 %}";
+                } else {
+                    var url = "{% url 'trn:ordenes_item_crear' 0 1 %}";
+                }
+                url = url.replace(/0/, id_item);
+                window.location.replace(url);
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+                cerrar_modal();
+            }
+        });
+    }
+</script>

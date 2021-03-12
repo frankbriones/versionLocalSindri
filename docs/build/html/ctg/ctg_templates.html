@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Templates ctg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Templates ctg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ctg/ctg_templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="templates-ctg">
+<h1><strong>Templates ctg</strong><a class="headerlink" href="#templates-ctg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>ctg</strong> tenemos otra carpeta llamada <strong>templates</strong>. Donde se encuentran los templates de la aplicación ctg correspondiente a la creación, consulta y modificación de clientes en el sistema.</p>
+<div class="section" id="template-activar-item-modal">
+<h2>Template activar_item_modal<a class="headerlink" href="#template-activar-item-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar un ítem, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-activaritem">
+<h3>Función activarItem<a class="headerlink" href="#funcion-activaritem" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-item-activar-modal"><span class="std std-ref">url item_activar_modal</span></a> enviando como parámetro el id del ítem a activar.</p>
+</div>
+</div>
+<div class="section" id="template-inactivar-item-modal">
+<h2>Template inactivar_item_modal<a class="headerlink" href="#template-inactivar-item-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea inactivar un ítem, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-inactivaritem">
+<h3>Función inactivarItem<a class="headerlink" href="#funcion-inactivaritem" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-item-inactivar-modal"><span class="std std-ref">url item_inactivar_modal</span></a> enviando como parámetro el id del ítem a inactivar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-adicional-modal">
+<h2>Template actualizar_adicional_modal<a class="headerlink" href="#template-actualizar-adicional-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar un adicional, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizaradicional">
+<h3>Función actualizarAdicional<a class="headerlink" href="#funcion-actualizaradicional" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-adicionales-actualizar"><span class="std std-ref">url adicionales_actualizar</span></a> enviando como parámetro el id del adicional a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-categoria-modal">
+<h2>Template actualizar_categoria_modal<a class="headerlink" href="#template-actualizar-categoria-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar una categoría, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizarcategoria">
+<h3>Función actualizarCategoria<a class="headerlink" href="#funcion-actualizarcategoria" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-categorias-actualizar"><span class="std std-ref">url categorias_actualizar</span></a> enviando como parámetro el id de la categoría a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-color-modal">
+<h2>Template actualizar_color_modal<a class="headerlink" href="#template-actualizar-color-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar un color, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizarcolor">
+<h3>Función actualizarColor<a class="headerlink" href="#funcion-actualizarcolor" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-colores-actualizar"><span class="std std-ref">url colores_actualizar</span></a> enviando como parámetro el id del color a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-detalle-item-modal">
+<h2>Template actualizar_detalle_item_modal<a class="headerlink" href="#template-actualizar-detalle-item-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar un detalle de ítem, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizardetalle">
+<h3>Función actualizarDetalle<a class="headerlink" href="#funcion-actualizardetalle" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-items-detalle-actualizar"><span class="std std-ref">url items_detalle_actualizar</span></a> enviando como parámetro el id del detalle a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-detalle-piedra-modal">
+<h2>Template actualizar_detalle_piedra_modal<a class="headerlink" href="#template-actualizar-detalle-piedra-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar un detalle de piedra, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizardetallepiedra">
+<h3>Función actualizarDetallePiedra<a class="headerlink" href="#funcion-actualizardetallepiedra" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-actualizar"><span class="std std-ref">url detalles_piedra_actualizar</span></a> enviando como parámetro el id del detalle a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-division-modal">
+<h2>Template actualizar_division_modal<a class="headerlink" href="#template-actualizar-division-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar una división, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizardivision">
+<h3>Función actualizarDivision<a class="headerlink" href="#funcion-actualizardivision" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-divisiones-actualizar"><span class="std std-ref">url divisiones_actualizar</span></a> enviando como parámetro el id de la división a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-piedra-modal">
+<h2>Template actualizar_piedra_modal<a class="headerlink" href="#template-actualizar-piedra-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar una piedra, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizarpiedra">
+<h3>Función actualizarPiedra<a class="headerlink" href="#funcion-actualizarpiedra" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-piedras-actualizar"><span class="std std-ref">url piedras_actualizar</span></a> enviando como parámetro el id de la piedra a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-actualizar-talla-modal">
+<h2>Template actualizar_talla_modal<a class="headerlink" href="#template-actualizar-talla-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar una talla, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizartalla">
+<h3>Función actualizarTalla<a class="headerlink" href="#funcion-actualizartalla" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-tallas-actualizar"><span class="std std-ref">url tallas_actualizar</span></a> enviando como parámetro el id de la talla a actualizar.</p>
+</div>
+</div>
+<div class="section" id="template-adicional-agregar-modal">
+<h2>Template adicional_agregar_modal<a class="headerlink" href="#template-adicional-agregar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea agregar un adicional a la órden que está generando, en el modal se mostrarán los adicionales que estén disponibles para la transacción. Para la consulta de los adicionales realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-adicionales-modal-lista"><span class="std std-ref">url adicionales_modal_lista</span></a>.</p>
+</div>
+<div class="section" id="template-adicionales-form">
+<h2>Template adicionales_form<a class="headerlink" href="#template-adicionales-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar un adicional para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-adicionales-crear"><span class="std std-ref">url adicionales_crear</span></a> en caso de creación de un adicional, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-adicionales-editar"><span class="std std-ref">url adicionales_editar</span></a> en caso de modificar los datos de un adicional enviando como parámetro el id del adicional a editar, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-validarimagen">
+<h3>Función validarImagen<a class="headerlink" href="#funcion-validarimagen" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si la imagen que se carga posee las extensiones de archivo permitidas y si el peso del archivo no supera el máximo permitido.</p>
+</div>
+<div class="section" id="funcion-seleccionarimagen">
+<h3>Función seleccionarImagen<a class="headerlink" href="#funcion-seleccionarimagen" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea una vista previa de la imagen cargada en caso de que cumpla con la validación.</p>
+</div>
+</div>
+<div class="section" id="template-adicionales-lista">
+<h2>Template adicionales_lista<a class="headerlink" href="#template-adicionales-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todos los adicionales que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-adicional-modal"><span class="std std-ref">Template actualizar_adicional_modal</span></a> y a la pantalla de creación o edición de adicionales <a class="reference internal" href="#template-adicionales-form"><span class="std std-ref">Template adicionales_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver adicionales. Para la consulta de los adicionales se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-adicionales-lista"><span class="std std-ref">url adicionales_lista</span></a>.</p>
+</div>
+<div class="section" id="template-catalogo-fijo">
+<h2>Template catalogo_fijo<a class="headerlink" href="#template-catalogo-fijo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todos los ítems de tipo precio fijo que pertenezcan a un país, esta pantalla es solo para los usuarios de tipo operaciones y que posean el permiso para ver ítems. Para la consulta de los ítems se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-catalogo-fijo"><span class="std std-ref">url catalogo_fijo</span></a>, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-buscaritems">
+<h3>Función buscarItems<a class="headerlink" href="#funcion-buscaritems" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems cuyo nombre coincida con el texto ingresado por el usuario en la caja de texto buscar, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-buscar-items-api"><span class="std std-ref">url buscar_items_api</span></a> enviando como parámetro el texto ingresado por el usuario.</p>
+</div>
+<div class="section" id="funcion-buscaritemstaller">
+<h3>Función buscarItemsTaller<a class="headerlink" href="#funcion-buscaritemstaller" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a un taller en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-taller-api"><span class="std std-ref">url items_taller_api</span></a> enviando como parámetro el id del taller seleccionado por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="funcion-buscaritemsdivision">
+<h3>Función buscarItemsDivision<a class="headerlink" href="#funcion-buscaritemsdivision" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a una división en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-division-api"><span class="std std-ref">url items_division_api</span></a> enviando como parámetro el id de la división seleccionada por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="funcion-buscaritemscategoria">
+<h3>Función buscarItemsCategoria<a class="headerlink" href="#funcion-buscaritemscategoria" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a una categoría en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-categoria-api"><span class="std std-ref">url items_categoria_api</span></a> enviando como parámetro el id de la categoría seleccionada por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="funcion-cargaritems">
+<h3>Función cargarItems<a class="headerlink" href="#funcion-cargaritems" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera los elementos HTML para mostrar la información de los ítems obtenidos en la consulta, recibe como parámetro un arreglo de objetos que contiene los ítems obtenidos y el tipo de catálogo al que pertenecen.</p>
+</div>
+<div class="section" id="funcion-verdetalles">
+<h3>Función verDetalles<a class="headerlink" href="#funcion-verdetalles" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Abre un modal que contiene la información detallada de un ítem en específico, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-detalle"><span class="std std-ref">url items_detalle</span></a> enviando como parámetro el id del ítem a consultar.</p>
+</div>
+<div class="section" id="funcion-cargardivisiones">
+<h3>Función cargarDivisiones<a class="headerlink" href="#funcion-cargardivisiones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene las divisiones que pertenecen a un taller en específico seleccionado por el usuario, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-divisiones-buscar-api"><span class="std std-ref">url divisiones_buscar_api</span></a> enviando como parámetro el id del taller a consultar y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="funcion-llenardivisiones">
+<h3>Función llenarDivisiones<a class="headerlink" href="#funcion-llenardivisiones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Llena el elemento HTML que contiene el listado de divisiones para el taller seleccionado, recibe como parámetro un arreglo de objetos que contiene las divisiones obtenidas y el tipo de catálogo al que pertenecen.</p>
+</div>
+<div class="section" id="funcion-cargarcategorias">
+<h3>Función cargarCategorias<a class="headerlink" href="#funcion-cargarcategorias" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene las categorías que pertenecen a una división en específico seleccionada por el usuario, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-categorias-buscar-api"><span class="std std-ref">url categorias_buscar_api</span></a> enviando como parámetro el id de la división a consultar y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="funcion-llenarcategorias">
+<h3>Función llenarCategorias<a class="headerlink" href="#funcion-llenarcategorias" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Llena el elemento HTML que contiene el listado de categorías para la división seleccionada, recibe como parámetro un arreglo de objetos que contiene las categorías obtenidas y el tipo de catálogo al que pertenecen.</p>
+</div>
+</div>
+<div class="section" id="template-catalogo-gramo">
+<h2>Template catalogo_gramo<a class="headerlink" href="#template-catalogo-gramo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todos los ítems de tipo precio gramo que pertenezcan a un país, esta pantalla es solo para los usuarios de tipo operaciones y que posean el permiso para ver ítems. Para la consulta de los ítems se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-catalogo-gramos"><span class="std std-ref">url catalogo_gramos</span></a>, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id1">
+<h3>Función buscarItems<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems cuyo nombre coincida con el texto ingresado por el usuario en la caja de texto buscar, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-buscar-items-api"><span class="std std-ref">url buscar_items_api</span></a> enviando como parámetro el texto ingresado por el usuario.</p>
+</div>
+<div class="section" id="id2">
+<h3>Función buscarItemsTaller<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a un taller en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-taller-api"><span class="std std-ref">url items_taller_api</span></a> enviando como parámetro el id del taller seleccionado por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="id3">
+<h3>Función buscarItemsDivision<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a una división en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-division-api"><span class="std std-ref">url items_division_api</span></a> enviando como parámetro el id de la división seleccionada por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="id4">
+<h3>Función buscarItemsCategoria<a class="headerlink" href="#id4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los ítems que pertenezcan a una categoría en específico, para obtener los ítems realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-categoria-api"><span class="std std-ref">url items_categoria_api</span></a> enviando como parámetro el id de la categoría seleccionada por el usuario y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="id5">
+<h3>Función cargarItems<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera los elementos HTML para mostrar la información de los ítems obtenidos en la consulta, recibe como parámetro un arreglo de objetos que contiene los ítems obtenidos y el tipo de catálogo al que pertenecen.</p>
+</div>
+<div class="section" id="id6">
+<h3>Función verDetalles<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Abre un modal que contiene la información detallada de un ítem en específico, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-detalle"><span class="std std-ref">url items_detalle</span></a> enviando como parámetro el id del ítem a consultar.</p>
+</div>
+<div class="section" id="id7">
+<h3>Función cargarDivisiones<a class="headerlink" href="#id7" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene las divisiones que pertenecen a un taller en específico seleccionado por el usuario, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-divisiones-buscar-api"><span class="std std-ref">url divisiones_buscar_api</span></a> enviando como parámetro el id del taller a consultar y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="id8">
+<h3>Función llenarDivisiones<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Llena el elemento HTML que contiene el listado de divisiones para el taller seleccionado, recibe como parámetro un arreglo de objetos que contiene las divisiones obtenidas y el tipo de catálogo al que pertenecen.</p>
+</div>
+<div class="section" id="id9">
+<h3>Función cargarCategorias<a class="headerlink" href="#id9" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene las categorías que pertenecen a una división en específico seleccionada por el usuario, para esto realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-categorias-buscar-api"><span class="std std-ref">url categorias_buscar_api</span></a> enviando como parámetro el id de la división a consultar y el tipo de catálogo de los ítems.</p>
+</div>
+<div class="section" id="id10">
+<h3>Función llenarCategorias<a class="headerlink" href="#id10" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Llena el elemento HTML que contiene el listado de categorías para la división seleccionada, recibe como parámetro un arreglo de objetos que contiene las categorías obtenidas y el tipo de catálogo al que pertenecen.</p>
+</div>
+</div>
+<div class="section" id="template-categorias-form">
+<h2>Template categorias_form<a class="headerlink" href="#template-categorias-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar una categoría para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-categorias-crear"><span class="std std-ref">url categorias_crear</span></a> en caso de creación de una categoría, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-categorias-editar"><span class="std std-ref">url categorias_editar</span></a> en caso de modificar los datos de una categoría enviando como parámetro el id de la categoría a editar.</p>
+</div>
+<div class="section" id="template-categorias-lista">
+<h2>Template categorias_lista<a class="headerlink" href="#template-categorias-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todas las categorías que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-categoria-modal"><span class="std std-ref">Template actualizar_categoria_modal</span></a> y a la pantalla de creación o edición de categorías <a class="reference internal" href="#template-categorias-form"><span class="std std-ref">Template categorias_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver categorías. Para la consulta de las categorías se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-categorias-lista"><span class="std std-ref">url categorias_lista</span></a>.</p>
+</div>
+<div class="section" id="template-colores-form">
+<h2>Template colores_form<a class="headerlink" href="#template-colores-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar un color para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-colores-crear"><span class="std std-ref">url colores_crear</span></a> en caso de creación de un color, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-colores-editar"><span class="std std-ref">url colores_editar</span></a> en caso de modificar los datos de un color enviando como parámetro el id del color a editar.</p>
+</div>
+<div class="section" id="template-colores-lista">
+<h2>Template colores_lista<a class="headerlink" href="#template-colores-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todos los colores que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-color-modal"><span class="std std-ref">Template actualizar_color_modal</span></a> y a la pantalla de creación o edición de colores <a class="reference internal" href="#template-colores-form"><span class="std std-ref">Template colores_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver colores. Para la consulta de los colores se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-colores-lista"><span class="std std-ref">url colores_lista</span></a>.</p>
+</div>
+<div class="section" id="template-contar-cotizacion-modal">
+<h2>Template contar_cotizacion_modal<a class="headerlink" href="#template-contar-cotizacion-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal desde donde se contabiliza la cantidad de veces en que un ítem es cotizado, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-guardarcotizacion">
+<h3>Función guardarCotizacion<a class="headerlink" href="#funcion-guardarcotizacion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-contar-cotizacion"><span class="std std-ref">url contar_cotizacion</span></a> enviando como parámetro el id del ítem que se va a cotizar y el tipo sea 1 si se cotiza por un cliente o 2 si se cotiza por una consulta de un empleado, esto para registrar una nueva cotización.</p>
+</div>
+</div>
+<div class="section" id="template-detalle-adicional-modal">
+<h2>Template detalle_adicional_modal<a class="headerlink" href="#template-detalle-adicional-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal donde se muestra la información detallada de un adicional esta pantalla es solo para los usuarios de tipo operaciones y que posean el permiso para ver adicionales. Para la consulta realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-adicional-detalle-modal"><span class="std std-ref">url adicional_detalle_modal</span></a> enviando como parámetro el id del adicional a consultar.</p>
+</div>
+<div class="section" id="template-detalle-agregar-modal">
+<h2>Template detalle_agregar_modal<a class="headerlink" href="#template-detalle-agregar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario agregar detalles a un ítem en específico, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para modificar ítems. Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-agregar"><span class="std std-ref">url detalles_agregar</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>talla_min</p></td>
+<td><p>Talla mínima de fabricación del ítem (si tipo = 1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>talla_max</p></td>
+<td><p>Talla máxima de fabricación del ítem (si tipo = 1).</p></td>
+</tr>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>Medida de fabricación del ítem (si tipo = 2).</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_minimo</p></td>
+<td><p>Peso mínimo de fabricación del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_maximo</p></td>
+<td><p>Peso máximo de fabricación del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cantidad_piedras</p></td>
+<td><p>Cantidad de piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_piedras</p></td>
+<td><p>Costo de las piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unidad_medida_id</p></td>
+<td><p>Id de la unidad de medida asignada al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>Identificador del tipo de guardado 1 para talla 2 para longitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="template-detalle-editar-modal">
+<h2>Template detalle_editar_modal<a class="headerlink" href="#template-detalle-editar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario modificar los valores de un detalle perteneciente a un ítem en específico, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-items-detalle-editar"><span class="std std-ref">url items_detalle_editar</span></a> para modificar los datos de un detalle de ítem enviando como parámetro el id del detalle a editar.</p>
+</div>
+<div class="section" id="template-detalle-item-modal">
+<h2>Template detalle_item_modal<a class="headerlink" href="#template-detalle-item-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario ver los detalles de un ítem en específico, realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-items-detalle"><span class="std std-ref">url items_detalle</span></a> para ver los detalles del ítem y poder realizar una cotización o solicitud de trabajo.</p>
+</div>
+<div class="section" id="template-detalle-piedra-agregar-modal">
+<h2>Template detalle_piedra_agregar_modal<a class="headerlink" href="#template-detalle-piedra-agregar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario agregar detalles a una piedra en específico, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para modificar piedras. Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-agregar"><span class="std std-ref">url detalles_piedra_agregar</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>Medida del detalle de la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo</p></td>
+<td><p>Costo especificado para el detalle de piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="template-detalle-piedra-editar-modal">
+<h2>Template detalle_piedra_editar_modal<a class="headerlink" href="#template-detalle-piedra-editar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario modificar los valores de un detalle perteneciente a una piedra en específico, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-editar"><span class="std std-ref">url detalles_piedra_editar</span></a> para modificar los datos de un detalle de piedra enviando como parámetro el id del detalle a editar.</p>
+</div>
+<div class="section" id="template-detalle-piedra-modal">
+<h2>Template detalle_piedra_modal<a class="headerlink" href="#template-detalle-piedra-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario ver los detalles de una piedra en específico, realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-piedra-detalle-modal"><span class="std std-ref">url piedra_detalle_modal</span></a> para ver los detalles de la piedra con sus medidas y categorías en las que se encuentra disponible.</p>
+</div>
+<div class="section" id="template-detalles-adicional-form">
+<h2>Template detalles_adicional_form<a class="headerlink" href="#template-detalles-adicional-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite al usuario agregar las categorías para las que estará disponible a un adicional en específico, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para modificar adicionales. Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-adicional-crear"><span class="std std-ref">url detalles_adicional_crear</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias[]</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías en las que estará disponible el adicional.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="template-detalles-categorias-piedra-form">
+<h2>Template detalles_categorias_piedra_form<a class="headerlink" href="#template-detalles-categorias-piedra-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite al usuario agregar las categorías para las que estará disponible a una piedra en específico, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para modificar piedras. Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-categorias-agregar"><span class="std std-ref">url detalles_piedra_categorias_agregar</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias[]</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías en las que estará disponible la piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="template-detalles-colores-form">
+<h2>Template detalles_colores_form<a class="headerlink" href="#template-detalles-colores-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite al usuario agregar los colores en que estará disponible un ítem en específico, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para modificar ítems. Realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-colores-agregar"><span class="std std-ref">url detalles_colores_agregar</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>colores[]</p></td>
+<td><p>Arreglo que contiene los id’s de los colores en las que estará disponible el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="template-detalles-form">
+<h2>Template detalles_form<a class="headerlink" href="#template-detalles-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que le permite al usuario agregar o eliminar detalles para un ítem en específico, para consultar la información del ítem realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-detalles-crear"><span class="std std-ref">url detalles_crear</span></a> las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-guardaritem">
+<h3>Función guardarItem<a class="headerlink" href="#funcion-guardaritem" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si el usuario tiene agregado al menos un detalle al ítem consultado de ser así lo redirige a la <a class="reference internal" href="ctg_urls.html#url-detalles-colores-agregar"><span class="std std-ref">url detalles_colores_agregar</span></a> enviando como parámetro el id del ítem.</p>
+</div>
+<div class="section" id="funcion-eliminardetalle">
+<h3>Función EliminarDetalle<a class="headerlink" href="#funcion-eliminardetalle" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina un detalle específico para el ítem consultado, para ello realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-items-detalle-eliminar"><span class="std std-ref">url items_detalle_eliminar</span></a> enviando como parámetro el id del detalle a eliminar.</p>
+</div>
+</div>
+<div class="section" id="template-detalles-piedra-form">
+<h2>Template detalles_piedra_form<a class="headerlink" href="#template-detalles-piedra-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que le permite al usuario agregar o eliminar detalles para una piedra en específico, para consultar la información de la piedra realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-crear"><span class="std std-ref">url detalles_piedra_crear</span></a> las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id11">
+<h3>Función guardarItem<a class="headerlink" href="#id11" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si el usuario tiene agregado al menos un detalle a la piedra consultada de ser así lo redirige a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-categorias-agregar"><span class="std std-ref">url detalles_piedra_categorias_agregar</span></a> enviando como parámetro el id de la piedra.</p>
+</div>
+<div class="section" id="id12">
+<h3>Función EliminarDetalle<a class="headerlink" href="#id12" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina un detalle específico para la piedra consultada, para ello realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-detalles-piedra-eliminar"><span class="std std-ref">url detalles_piedra_eliminar</span></a> enviando como parámetro el id del detalle a eliminar.</p>
+</div>
+</div>
+<div class="section" id="template-divisiones-form">
+<h2>Template divisiones_form<a class="headerlink" href="#template-divisiones-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar una división para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-divisiones-crear"><span class="std std-ref">url divisiones_crear</span></a> en caso de creación de una división, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-divisiones-editar"><span class="std std-ref">url divisiones_editar</span></a> en caso de modificar los datos de una división enviando como parámetro el id de la división a editar.</p>
+</div>
+<div class="section" id="template-divisiones-lista">
+<h2>Template divisiones_lista<a class="headerlink" href="#template-divisiones-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todas las divisiones que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-division-modal"><span class="std std-ref">Template actualizar_division_modal</span></a> y a la pantalla de creación o edición de divisiones <a class="reference internal" href="#template-divisiones-form"><span class="std std-ref">Template divisiones_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver divisiones. Para la consulta de las divisiones se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-divisiones-lista"><span class="std std-ref">url divisiones_lista</span></a>.</p>
+</div>
+<div class="section" id="template-items-form">
+<h2>Template items_form<a class="headerlink" href="#template-items-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar un ítem para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-items-crear"><span class="std std-ref">url items_crear</span></a> en caso de creación de un ítem, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-items-editar"><span class="std std-ref">url items_editar</span></a> en caso de modificar los datos de un ítem enviando como parámetro el id del ítem a editar.</p>
+</div>
+<div class="section" id="template-piedra-agregar-modal">
+<h2>Template piedra_agregar_modal<a class="headerlink" href="#template-piedra-agregar-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea agregar una piedra a la órden que está generando, en el modal se mostrarán las piedras que estén disponibles para la transacción. Para la consulta de las piedras realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-piedras-modal-lista"><span class="std std-ref">url piedras_modal_lista</span></a>.</p>
+</div>
+<div class="section" id="template-piedras-form">
+<h2>Template piedras_form<a class="headerlink" href="#template-piedras-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar una piedra para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-piedras-crear"><span class="std std-ref">url piedras_crear</span></a> en caso de creación de una piedra, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-piedras-editar"><span class="std std-ref">url piedras_editar</span></a> en caso de modificar los datos de una piedra enviando como parámetro el id de la piedra a editar.</p>
+</div>
+<div class="section" id="template-piedras-lista">
+<h2>Template piedras_lista<a class="headerlink" href="#template-piedras-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todas las piedras que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-piedra-modal"><span class="std std-ref">Template actualizar_piedra_modal</span></a> y a la pantalla de creación o edición de piedras <a class="reference internal" href="#template-piedras-form"><span class="std std-ref">Template piedras_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver piedras. Para la consulta de las piedras se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-piedras-lista"><span class="std std-ref">url piedras_lista</span></a>.</p>
+</div>
+<div class="section" id="template-productos-lista">
+<h2>Template productos_lista<a class="headerlink" href="#template-productos-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar los ítems de tipo producto con precio fijo y producto con precio gramo que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-activar-item-modal"><span class="std std-ref">Template activar_item_modal</span></a> o <a class="reference internal" href="#template-inactivar-item-modal"><span class="std std-ref">Template inactivar_item_modal</span></a> para activar o inactivar el ítem y a la pantalla de creación o edición de ítems <a class="reference internal" href="#template-items-form"><span class="std std-ref">Template items_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver ítems. Para la consulta de los ítems se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-productos-lista"><span class="std std-ref">url productos_lista</span></a>.</p>
+</div>
+<div class="section" id="template-servicios-lista">
+<h2>Template servicios_lista<a class="headerlink" href="#template-servicios-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar los ítems de tipo servicio con precio fijo y servicio con precio gramo que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-activar-item-modal"><span class="std std-ref">Template activar_item_modal</span></a> o <a class="reference internal" href="#template-inactivar-item-modal"><span class="std std-ref">Template inactivar_item_modal</span></a> para activar o inactivar el ítem y a la pantalla de creación o edición de ítems <a class="reference internal" href="#template-items-form"><span class="std std-ref">Template items_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver ítems. Para la consulta de los ítems se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-servicios-lista"><span class="std std-ref">url servicios_lista</span></a>.</p>
+</div>
+<div class="section" id="template-tallas-form">
+<h2>Template tallas_form<a class="headerlink" href="#template-tallas-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite crear o editar una talla para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-tallas-crear"><span class="std std-ref">url tallas_crear</span></a> en caso de creación de una talla, y una petición de tipo POST a la <a class="reference internal" href="ctg_urls.html#url-tallas-editar"><span class="std std-ref">url tallas_editar</span></a> en caso de modificar los datos de una talla enviando como parámetro el id de la talla a editar.</p>
+</div>
+<div class="section" id="template-tallas-lista">
+<h2>Template tallas_lista<a class="headerlink" href="#template-tallas-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar todas las tallas que pertenezcan al mismo taller. Desde esta pantalla se puede acceder al modal <a class="reference internal" href="#template-actualizar-talla-modal"><span class="std std-ref">Template actualizar_talla_modal</span></a> y a la pantalla de creación o edición de piedras <a class="reference internal" href="#template-tallas-form"><span class="std std-ref">Template tallas_form</span></a>, esta pantalla es solo para los usuarios de tipo taller y que posean el permiso para ver tallas. Para la consulta de las tallas se realiza una petición de tipo GET a la <a class="reference internal" href="ctg_urls.html#url-tallas-lista"><span class="std std-ref">url tallas_lista</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1974 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+
+    .caja {
+        font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+        color: #000000;
+        font-size: 25px;
+        font-weight: 400;
+        text-align: right;
+        ;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 10px;
+        /* border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 35px 0px;  */
+        border: 2px solid #5878ca;
+    }
+</style>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Detalles de solicitud # " %}{{ solicitud.secuencia }}</h4>
+            <div class="justify-content-end">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+                <button id="btnMostrar" type="button" onclick="mostrarRubros()" class="close" aria-label="Close">
+                    <i class="bx bx-show-alt"></i>
+                </button>
+                <button id="btnOcultar" type="button" onclick="ocultarRubros()" class="close" aria-label="Close">
+                    <i class="bx bx-hide"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <!-- <form method="POST" class="form" enctype="multipart/form-data"> -->
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    {% for imagen in imagenes %}
+                                    <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    {% for imagen in imagenes %}
+                                    <div class="carousel-item">
+                                        <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_solicita" class="form-control" disabled value="{{ solicitud.usuario }}">
+                                        <label for="first-name-column">{% trans "Solicita" %}</label>
+                                    </div>
+                                </div>
+                                {% if not solicitud.externa %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.taller }}">
+                                        <label for="first-name-column">{% trans "Taller" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.proveedor }}">
+                                        <label for="first-name-column">{% trans "Proveedor" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if solicitud.estado.descripcion == 'ESPERA COTIZACION TALLER' and user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <select name="item" id="id_item" class="form-control">
+                                            {% for item in items %}
+                                            <option value="{{ item.id_item }}" tipoPrecio='{{item.categoria.precio_taller_obj.tipo.descripcion}}'>{{ item.descripcion }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input hidden>
+                                        <label for="id_item">{% trans "Ítem" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_item_seleccionado" class="form-control" disabled value="{{ item }}">
+                                        <label for="first-name-column">{% trans "Ítem" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea name="detalle" id="id_detalle" class="form-control" disabled></textarea>
+                                        <label for="first-name-column">{% trans "Detalle" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.sku }}">
+                                        <label for="first-name-column">{% trans "SKU" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.origen_material }}">
+                                        <label for="first-name-column">{% trans "Origen de material" %}</label>
+                                    </div>
+                                </div>
+                                {% if item.unidad_medida.descripcion == 'TALLA' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.talla }}">
+                                        <label for="first-name-column">{% trans "Talla" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                {% if item.unidad_medida.descripcion != 'UNIDADES' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.longitud }} {{ item.unidad_medida.simbolo }}">
+                                        <label for="first-name-column">{% trans "Longitud" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.color }}">
+                                        <label for="first-name-column">{% trans "Color" %}</label>
+                                    </div>
+                                </div>
+                                {% if solicitud.acabado %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.acabado }}">
+                                        <label for="first-name-column">{% trans "Acabado" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if solicitud.parte_interna %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.parte_interna }}">
+                                        <label for="first-name-column">{% trans "Parte interna" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.cantidad_piedras }}">
+                                        <label for="first-name-column">{% trans "Cantidad de piedras" %}</label>
+                                    </div>
+                                </div>
+                                {% if user.tipo_usuario_id == 2 and solicitud.estado.descripcion == 'ESPERA COTIZACION TALLER' %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea name="obs_cotizacion" id="id_obs_cotizacion" rows="3" class="form-control"></textarea>
+                                        <label for="first-name-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if solicitud.observacion_cotizado %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea rows="3" class="form-control">{{ solicitud.observacion_cotizado }}</textarea>
+                                        <label for="first-name-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if solicitud.estado.descripcion == 'COTIZADO TALLER' or solicitud.estado.descripcion == 'SOLICITADO A EXTERNO' %}
+                                {% if user.tipo_usuario_id == 3 %}
+                                {% if item.categoria.precio_taller_obj.tipo.descripcion == 'UNIDAD' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_cantidad_unidades" name="cantidad_unidades" type="number" class="form-control" min="0">
+                                        <label for="first-name-column">{% trans "Unidades" %}</label>
+                                    </div>
+                                </div>
+                                {% if item.tipo_catalogo.descripcion == 'SERVICIOS' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_gramos_materia_prima" name="gramos_materia_prima" type="number" class="form-control" min="0" step="0.01">
+                                        <label for="first-name-column">{% trans "Gramos materia prima" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% else %}
+                                {% if item.tipo_catalogo.descripcion == 'SERVICIOS' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input type="number" step="0.01" id="id_peso_trabajo" name="peso_trabajo" class="form-control">
+                                        <label for="email-id-column">{% trans "Peso a trabajar" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <select name="pesos_disponibles" id="id_pesos_disponibles" class="form-control">
+                                            <option value="0">{% trans "Seleccionar" %}</option>
+                                        </select>
+                                        <input type="number" hidden>
+                                        <label for="first-name-column">{% trans "Peso solicitado" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                {% endif %}
+                                {% endif %}
+                                {% if solicitud.estado.descripcion == 'GENERADO CON EXTERNO' or solicitud.estado.descripcion == 'GENERADO CON TALLER' %}
+                                {% if item.tipo_catalogo == 'PRODUCTOS' %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.peso_solicitado }}">
+                                        <label for="first-name-column">{% trans "Peso solicitado" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.unidades_solicitadas }}">
+                                        <label for="first-name-column">{% trans "Cantidad de servicios" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ solicitud.peso_solicitado }}">
+                                        <label for="first-name-column">{% trans "Gramos materia prima" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_divider_rubros">
+                        <div class="divider-text">{% trans "Rubros asociados" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_rubros" data-repeater-list="contact">
+                        {% if rubros_asociados %}
+                        <div class="col-md-12 col-12">
+                            <div class="table-responsive">
+                                <table id="id_lista_adicionales" class="table table-striped table-hover">
+                                    <thead>
+                                        <th>{% trans "Descripción" %}</th>
+                                        <th>{% trans "Precio" %}</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for rubro in rubros_asociados %}
+                                        <tr>
+                                            <td>{{ rubro.rubro.descripcion }}</td>
+                                            <td>{{ rubro.valor }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% else %}
+                        {% if solicitud.estado_id == 3 or solicitud.estado_id == 4 %}
+                        {% if user.tipo_usuario_id == 2 %}
+                        <div id="id_rubros_lista" class="col-md-12 col-12">
+                        </div>
+                        <div class="col-md-12 col-12">
+                            <button onclick="agregarRubro()" class="btn btn-icon rounded-circle btn-primary" type="button" data-repeater-create>
+                                <i class="bx bx-plus"></i>
+                            </button>
+                            <span class="ml-1 font-weight-bold text-primary">{% trans "Agregar Rubro" %}</span>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="divider" id="id_divider_aceptar">
+                        <div class="divider-text">{% trans "Datos de fabricación" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_aceptar">
+                        <div class="col-md-12 col-12">
+                            {% if user.tipo_usuario_id == 2 %}
+                            <div class="row">
+                                {% if item.unidad_medida.descripcion == 'UNIDADES' %}
+                                <div class="col-md-6 col-6">
+                                {% else %}
+                                <div class="col-md-4 col-6">
+                                {% endif %}
+                                    <div class="form-label-group">
+                                        {% if solicitud.costo_fabricacion_unitario %}
+                                        <input type="text" disabled {% if user.pais.decimales %} value="{{ solicitud.costo_fabricacion_unitario }}" {% else %} value="{{ solicitud.costo_fabricacion_unitario|floatformat:'0' }}" {% endif %} class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Costo mano de obra" %}</label>
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" step="0.01" name="costo_unitario" class="form-control" id="id_costo_unitario">
+                                        <label
+                                            for="email-id-column">{% trans "Costo mano de obra" %}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if item.unidad_medida.descripcion == 'UNIDADES' %}
+                                <div class="col-md-6 col-6">
+                                {% else %}
+                                <div class="col-md-4 col-6">
+                                {% endif %}
+                                    <div class="form-label-group">
+                                        {% if solicitud.precio_fabricacion_unitario %}
+                                        <input type="text" disabled {% if user.pais.decimales %} value="{{ solicitud.precio_fabricacion_unitario }}" {% else %} value="{{ solicitud.precio_fabricacion_unitario|floatformat:'0' }}" {% endif %} class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Precio mano de obra" %} ({{user.pais.simbolo_moneda}})</label>
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" step="0.01" name="precio_unitario" class="form-control" id="id_precio_unitario">
+                                        <label
+                                            for="email-id-column">{% trans "Precio mano de obra" %}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-6">
+                                    <div class="form-label-group">
+                                        {% if solicitud.prct_impuestos_ta %}
+                                        <input type="text" disabled value="{{ solicitud.prct_impuestos_ta }}" class="form-control">
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" step="0.01" name="impuestos_taller" class="form-control" id="id_impuestos_taller">
+                                        {% endif %}
+                                        <label
+                                            for="email-id-column">{% trans "Impuestos (%)" %}</label>
+                                    </div>
+                                </div>
+                                {% if item.unidad_medida.descripcion != 'UNIDADES' %}
+                                <div class="col-md-3 col-6">
+                                    <div id="div_peso_min" class="form-label-group">
+                                        {% if solicitud.peso_min %}
+                                        <input type="text" disabled value="{{ solicitud.peso_min }}" class="form-control">
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" step="0.01" name="peso_min" class="form-control" id="id_peso_min">
+                                        {% endif %}
+                                        <label
+                                            for="email-id-column">{% trans "Peso mínimo" %} (gr)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div id="div_peso_max" class="form-label-group">
+                                        {% if solicitud.peso_max %}
+                                        <input type="text" disabled value="{{ solicitud.peso_max }}" class="form-control">
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" step="0.01" name="peso_max" class="form-control"  id="id_peso_max">
+                                        {% endif %}
+                                        <label
+                                            for="email-id-column">{% trans "Peso máximo" %} (gr)</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if item.unidad_medida.descripcion == 'UNIDADES' %}
+                                <div class="col-md-4 col-6">
+                                {% else %}
+                                <div class="col-md-3 col-6">
+                                {% endif %}
+                                    <div class="form-label-group">
+                                        {% if solicitud.tiempo_ent_min %}
+                                        <input type="text" disabled value="{{ solicitud.tiempo_ent_min }}" class="form-control">
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" name="tiempo_min" class="form-control" id="id_tiempo_min">
+                                        {% endif %}
+                                        <label
+                                            for="email-id-column">{% trans "Entrega mín (días)" %}</label>
+                                    </div>
+                                </div>
+                                {% if item.unidad_medida.descripcion == 'UNIDADES' %}
+                                <div class="col-md-4 col-6">
+                                {% else %}
+                                <div class="col-md-3 col-6">
+                                {% endif %}
+                                    <div class="form-label-group">
+                                        {% if solicitud.tiempo_ent_max %}
+                                        <input type="text" disabled value="{{ solicitud.tiempo_ent_max }}" class="form-control">
+                                        {% else %}
+                                        <input type="number" lang="en-150" min="0" name="tiempo_max" class="form-control" id="id_tiempo_max">
+                                        {% endif %}
+                                        <label
+                                            for="email-id-column">{% trans "Entrega máx (días)" %}</label>
+                                    </div>
+                                </div>
+                                {% if perms.trn.ver_detalle_costos_sol %}
+                                <div class="col-12">
+                                    <div class="accordion collapse-icon accordion-icon-rotate" id="divDetalleCostos">
+                                        <div class="card collapse-header">
+                                            <div id="heading5" class="card-header" data-toggle="collapse" data-target="#detalleCostos" aria-expanded="false" aria-controls="detalleCostos" role="tablist">
+                                                <span class="collapse-title">
+                                                    <i class="bx bx-dollar-circle"></i>
+                                                    <span class="align-middle">{% trans "Detalle de costos" %}</span>
+                                                </span>
+                                            </div>
+                                            <div id="detalleCostos" role="tabpanel" data-parent="#divDetalleCostos" aria-labelledby="heading5" class="collapse">
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-4 col-sm-6 mt-75">
+                                                                <p class="text-primary"><b>{% trans "Valores taller" %}</b></p>
+                                                            </div>
+                                                            <div class="col-8 col-sm-6 d-flex justify-content-end mt-75">
+                                                                <div class="invoice-subtotal">
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Materia prima" %}</span>
+                                                                        <span id="val_mat_prima_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Mano de obra" %}</span>
+                                                                        <span id="val_man_obra_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Rubros (fijo)" %}</span>
+                                                                        <span id="val_rubros_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                                        <span id="val_impuestos_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Total taller" %}</span>
+                                                                        <span id="val_total_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-12">
+                                    <br>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <div class="form-label-group">
+                                        <input id="id_precio_gramo_calc" disabled name="precio_gramo_calc" type="text" class="caja">
+                                        <label
+                                            for="email-id-column">{% trans "Precio gramo fabricado" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if user.tipo_usuario_id == 3 %}
+                            <div class="row">
+                                <div class="col-md-2 col-6">
+                                    {% if solicitud.peso_min %}
+                                    <div class="form-label-group">
+                                        <input type="text" disabled value="{{ solicitud.peso_min }}" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Peso mínimo" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    {% if solicitud.peso_max %}
+                                    <div class="form-label-group">
+                                        <input type="text" disabled value="{{ solicitud.peso_max }}" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Peso máximo" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    {% if solicitud.tiempo_ent_min %}
+                                    <div class="form-label-group">
+                                        <input type="text" disabled value='{{ solicitud.tiempo_ent_min }} {% trans "días" %}' class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Entrega mín" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    {% if solicitud.tiempo_ent_max %}
+                                    <div class="form-label-group">
+                                        <input type="text" disabled value='{{ solicitud.tiempo_ent_max }} {% trans "días" %}' class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Entrega máx" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-4 col-6">
+                                    {% if solicitud.precio_fabricacion_unitario %}
+                                    <div class="form-label-group">
+                                        <input type="text" disabled value='{{ solicitud.precio_fabricacion_unitario }}' class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Precio mano de obra (gramo)" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% if user.tipo_usuario_id == 3 %}
+                                <br>
+                                {% if solicitud.estado_id == 8 or solicitud.estado_id == 6 %}
+                                <div class="col-md-9 col-6">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled hidden>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="form-label-group">
+                                        <input style="text-align: right;" type="number" lang="en-150" min="0.00" step="0.01" class="form-control" id="id_descuento" name="descuento">
+                                        <input type="text" hidden class="form-control" id="id_costo" name="costo" />
+                                        <label for="email-id-column">{% trans "Descuento " %} ({{ user.pais.simbolo_moneda }} )</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if perms.trn.ver_detalle_costos_sol %}
+                                <div class="col-12">
+                                    <div class="accordion collapse-icon accordion-icon-rotate" id="divDetalleCostos">
+                                        <div class="card collapse-header">
+                                            <div id="heading5" class="card-header" data-toggle="collapse" data-target="#detalleCostos" aria-expanded="false" aria-controls="detalleCostos" role="tablist">
+                                                <span class="collapse-title">
+                                                    <i class="bx bx-dollar-circle align-middle"></i>
+                                                    <span class="align-middle">{% trans "Detalle de costos" %}</span>
+                                                </span>
+                                            </div>
+                                            <div id="detalleCostos" role="tabpanel" data-parent="#divDetalleCostos" aria-labelledby="heading5" class="collapse">
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-6 mt-75">
+                                                                <p class="text-primary"><b>{% trans "Valores taller" %}</b></p>
+                                                                <p class="text-success"><b>{% trans "Valores joyería" %}</b></p>
+                                                            </div>
+                                                            <div class="col-md-8 col-6 d-flex justify-content-end mt-75">
+                                                                <div class="invoice-subtotal">
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Materia prima" %}</span>
+                                                                        <span id="val_mat_prima_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Mano de obra" %}</span>
+                                                                        <span id="val_man_obra_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Rubros (fijo)" %}</span>
+                                                                        <span id="val_rubros_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                                        <span id="val_impuestos_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Total taller" %}</span>
+                                                                        <span id="val_total_ta" class="text-primary invoice-value"></span>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Costo materia prima" %}</span>
+                                                                        <span id="val_mat_prima_op" class="text-success invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Utilidad" %}</span>
+                                                                        <span id="val_util_op" class="text-success invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Subtotal" %}</span>
+                                                                        <span id="val_subtotal_op" class="text-success invoice-value"></span>
+                                                                    </div>
+                                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                                        <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                                        <span id="val_impuestos_op" class="text-success invoice-value"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-12">
+                                    <br>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="button" class="caja btn btn-outline-primary block" onclick="mostrarModal()">
+                                        $
+                                    </button>
+                                    <input id="id_precio" disabled name="precio" type="text" class="caja">
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="divider" id="id_divider_rechazar">
+                        <div class="divider-text">{% trans "Rechazar solicitud" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_rechazo">
+                        <div class="col-md-12 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea class="form-control" id="id_observacion_ta" name="observacion_ta" rows="2"></textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if solicitud.estado_id == 5 %}
+                    <div class="divider" id="id_divider_rechazar_taller">
+                        <div class="divider-text">{% trans "Solicitud rechazada" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_rechazo_taller">
+                        <div class="col-md-12 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea disabled class="form-control" id="id_observacion_ta_info" name="observacion_ta_info" rows="2">{{ solicitud.observacion_rechazo_ta }}</textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if solicitud.estado_id == 9 %}
+                    <div class="divider" id="id_divider_rechazar_op">
+                        <div class="divider-text">{% trans "Solicitud cancelada" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_rechazo_op">
+                        <div class="col-md-12 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea disabled class="form-control" id="id_observacion_op_info" name="observacion_op_info" rows="2">{{ solicitud.observacion_rechazo_op }}</textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="divider" id="id_divider_evaluar">
+                        <div class="divider-text">{% trans "Tiempo de respuesta" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_evaluacion">
+                        <div class="col-md-12 col-12">
+                            <div class="row">
+                                <div class="col-md-4 col-4">
+                                    <div class="form-label-group">
+                                        <b><span>{% trans "Responder en" %}</span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input type="number" lang="en-150" min="0" class="form-control" id="id_tiempo_dias" name="tiempo_dias" />
+                                        <label for="email-id-column">{% trans "Días" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input type="number" lang="en-150" min="0" max="23" class="form-control" id="id_tiempo_horas" name="tiempo_horas" />
+                                        <label for="email-id-column">{% trans "Horas" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if solicitud.estado_id == 4 %}
+                    <div class="divider" id="id_divider_evaluar_info">
+                        <div class="divider-text">{% trans "Tiempo de respuesta" %}</div>
+                        <br>
+                    </div>
+                    <div class="row" id="id_evaluacion_info">
+                        <div class="col-md-12 col-12">
+                            <div class="row">
+                                <div class="col-md-3 col-4">
+                                    <div class="form-label-group">
+                                        <b><span>{% trans "El taller responderá en" %}</span></b>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <input disabled type="number" lang="en-150" min="0" class="form-control" id="id_tiempo_dias_info" name="tiempo_dias" />
+                                        <label for="email-id-column">{% trans "Días" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <input disabled type="number" lang="en-150" min="0" max="23" class="form-control" id="id_tiempo_horas_info" name="tiempo_horas" />
+                                        <label for="email-id-column">{% trans "Horas" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <input disabled type="number" lang="en-150" min="0" max="59" class="form-control" id="id_tiempo_minutos_info" name="tiempo_minutos" />
+                                        <label for="email-id-column">{% trans "Minutos" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+            <button id="btnCancelar" type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button id="btnConfirmarAceptar" type="button" onclick="responderSolicitud(1)" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+            </button>
+            <button id="btnConfirmarEvaluar" type="button" onclick="responderSolicitud(2)" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+            </button>
+            <button id="btnConfirmaRechazo" type="button" onclick="responderSolicitud(3)" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+            </button>
+            {% if solicitud.estado_id == 3 or solicitud.estado_id == 4 %}
+            {% if user.tipo_usuario_id == 2 %}
+            <button id="btnAceptar" type="button" onclick="aceptar()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Aceptar" %}</span>
+            </button>
+            <button id="btnEvaluar" type="button" onclick="evaluar()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-time d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Evaluar" %}</span>
+            </button>
+            <button id="btnRechazar" type="button" onclick="rechazar()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Rechazar" %}</span>
+            </button>
+            {% endif %}
+            {% endif %}
+            {% if solicitud.estado_id == 8 and user.tipo_usuario_id == 3 %}
+            <button id="btnGeneraOrden" type="button" onclick="generarOrden(1)" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Generar órden" %}</span>
+            </button>
+            <button id="btnRechazar" type="button" name="aceptar" onclick="rechazar()" class="btn btn-primary ml-1">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar solicitud" %}</span>
+            </button>
+            {% endif %}
+            {% if solicitud.estado_id == 6 and user.tipo_usuario_id == 3 %}
+            <button id="btnGeneraOrden" type="button" onclick="generarOrden(2)" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Generar órden" %}</span>
+            </button>
+            <button id="btnRechazar" type="button" name="aceptar" onclick="rechazar()" class="btn btn-primary ml-1">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar solicitud" %}</span>
+            </button>
+            {% endif %}
+            {% if solicitud.estado_id == 5 and user.tipo_usuario_id == 3 %}
+            {% if not solicitud.generado_con_ext %}
+            <button id="btnSolicitarExterno" type="button" onclick="SolicitarExterno()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Solicitar a externo" %}</span>
+            </button>
+            <button id="btnRechazar" type="button" name="aceptar" onclick="rechazar()" class="btn btn-primary ml-1">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar solicitud" %}</span>
+            </button>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{% trans "Precio negociado" %}</h5>
+                <button type="button" class="close" onclick="ocultarModal()" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-12">
+                    <div class="form-label-group">
+                        <input type="number" class="form-control" id="id_precio_negociado" name="precio_negociado" />
+                        <label for="id_precio_negociado">{% trans "Precio" %}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" onclick="ocultarModal()">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                </button>
+                <button type="button" onclick="grabarPrecioNegociado()" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Aceptar" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<script>
+
+    var peso_unidades = 0;
+    var gramos_base = 0;
+    var unidades_solicitadas = 1;
+    var externa = ('{{ solicitud.externa }}'.toLowerCase() === 'true');
+    
+    // valores taller
+    var costo_gramo_base_taller = parseFloat('{{ configuracion_ta.costo_gramo_base }}'.replace(/,/, '.'));
+    var precio_gramo_base_taller = parseFloat('{{ configuracion_ta.precio_gramo_base }}'.replace(/,/, '.'));
+    var prct_utilidad_base_taller = parseFloat('{{ configuracion_ta.utilidad_sobre_base }}'.replace(/,/, '.'));
+    var costo_base_total_ta = 0;
+    var utilidad_base_taller = 0;
+    var precio_base_total_ta = 0;
+    var costo_unitario_taller = parseFloat('{{ solicitud.costo_fabricacion_unitario }}'.replace(/,/, '.'));
+    var costo_total_fabricacion_ta = 0;
+    var prct_util_fabricacion_taller = parseFloat('{{ configuracion_ta.utilidad_sobre_fabricacion }}'.replace(/,/, '.'));
+    var utilidad_fabricacion_taller = 0;
+    var precio_unitario_taller = parseFloat('{{ solicitud.precio_fabricacion_unitario }}'.replace(/,/, '.'));
+    var precio_fabricacion_total_ta = 0;
+    var total_rubros = parseFloat('{{ solicitud.total_rubros }}'.replace(/,/, '.'));
+    var subtotal_taller = 0;
+    var prct_impuestos_taller = parseFloat('{{ configuracion_ta.prct_impuestos }}'.replace(/,/, '.'));
+    if (externa){
+        prct_impuestos_taller = parseFloat('{{ solicitud.prct_impuestos_ta }}'.replace(/,/, '.'));
+    }
+    var impuestos_taller = 0;
+    var total_taller = 0;
+    
+    // valores joyería
+    var costo_gramo_base_op = parseFloat('{{ configuracion_op.costo_gramo_base }}'.replace(/,/, '.'));
+    var precio_gramo_base_op = parseFloat('{{ configuracion_op.precio_gramo_base }}'.replace(/,/, '.'));
+    var costo_base_total_op = 0;
+    var prct_utilidad_base_op = parseFloat('{{ configuracion_op.utilidad_sobre_base }}'.replace(/,/, '.'));
+    var utilidad_base_op = 0;
+    var precio_base_total_op = 0;
+    var prct_util_fabricacion_op = parseFloat('{{ prct_util_fabricacion_op }}'.replace(/,/, '.'));
+    var precio_unitario_op = parseFloat('{{ precio_unitario_op }}'.replace(/,/, '.'));
+    var utilidad_fabricacion_op = 0;
+    var precio_fabricacion_total_op = 0;
+    var subtotal_op = 0;
+    var impuestos_op = 0;
+    var total_fabricacion_op = 0;
+    var subtotal_solicitud = 0;
+    var prct_impuestos_joyeria = parseFloat('{{ configuracion_op.prct_impuestos }}'.replace(/,/, '.'));
+    var impuestos_solicitud = 0;
+    var precio_sistema = 0;
+    var descuento = 0;
+    var precio_final_solicitud = 0;
+    
+    // generales
+    var envio_mat = '{{ configuracion_op.envio_material }}';
+    var origen_material = '{{ solicitud.origen_material }}';
+    var simbolo_moneda = '{{ user.pais.simbolo_moneda }}';
+    var decimales = '{{ user.pais.decimales }}';
+    var cargarAnticipo = '{{ user.config_gen.anticipo_fabricacion }}';
+    var regla_calculo_taller = '{{ precio_definido_taller.tipo.regla_calculo.descripcion }}';
+    if (externa){
+        regla_calculo_taller = 'INVERSA';
+    }
+    var regla_calculo_op = '{{ regla_calculo_op }}';
+    console.log(regla_calculo_op)
+    console.log(regla_calculo_taller)
+    var escala_peso = parseFloat('{{ item.escala_peso }}'.replace(/,/, '.'));
+
+
+    $(document).ready(function () {
+        $('.loader').hide();
+
+        $('#id_item').select2({
+            // allowClear: true,
+            width: '100%',
+            language: {
+                noResults: function() {
+                    return '{% trans "No encontrado" %}'
+                }
+            }
+        });
+
+        var text = $('#id_detalle');
+        $('div.carousel-item:first').addClass('active');
+        
+        detalle = '{{ solicitud.detalle }}';
+        text.val('');
+        text.val(detalle);
+
+        $('#id_item').val('{{ item.id_item }}').trigger('change');
+
+        $('input').css('background-color','#FBFBFB');
+        $('textarea').css('background-color','#FBFBFB');
+        
+        $('#id_evaluacion').hide();
+        $('#id_rechazo').hide();
+        $('#id_aceptar').hide();
+        $('#id_divider_aceptar').hide();
+        $('#id_divider_evaluar').hide();
+        $('#id_divider_rechazar').hide();
+        $('#btnCancelar').hide();
+        $('#btnConfirmarAceptar').hide();
+        $('#btnConfirmarEvaluar').hide();
+        $('#btnConfirmaRechazo').hide();
+        $('#id_divider_rubros').hide();
+        $('#id_rubros').hide();
+        $('#btnOcultar').hide();
+
+        $('#id_descuento').val(0);
+        $('#id_cantidad_unidades').val(0);
+        $('#id_gramos_materia_prima').val(0);
+        $('#id_peso_min').val(0);
+        $('#id_peso_max').val(0);
+
+        var estado = parseInt('{{ solicitud.estado_id }}');
+        fecha_respuesta = '{{ solicitud.tiempo_respuesta|date:"c" }}';
+        fecha_respuesta = new Date(fecha_respuesta);
+        ahora = new Date();
+        diferencia = fecha_respuesta - ahora;
+        dias = Math.floor(diferencia / 86400000);
+        horas = Math.floor((diferencia % 86400000) / 3600000);
+        minutos = Math.round(((diferencia % 86400000) % 3600000) / 60000);
+        if(dias < 0){
+            dias = 0;
+        }
+        if(horas < 0){
+            horas = 0;
+        }
+        if(minutos < 0){
+            minutos = 0;
+        }
+        $('#id_tiempo_dias_info').val(parseInt(dias));
+        $('#id_tiempo_horas_info').val(parseInt(horas));
+        $('#id_tiempo_minutos_info').val(parseInt(minutos));
+
+        if(estado === 8 || estado === 7 || estado === 10 || estado === 6){
+            $('#id_divider_aceptar').show();
+            $('#id_aceptar').show();
+        }
+
+        if(estado === 8 || estado === 6){
+            select = document.getElementById('id_pesos_disponibles');
+            if(estado === 8){
+                escala = '{{ solicitud.taller.escala_peso }}';
+            }
+            if(estado === 6){
+                escala = '{{ solicitud.proveedor.escala_peso }}';
+            }
+            escala = escala.replace(/,/, '.');
+            escala = parseFloat(escala);
+            peso_min = '{{ solicitud.peso_min }}';
+            peso_min = peso_min.replace(/,/, '.');
+            peso_min = parseFloat(peso_min);
+            peso_max = '{{ solicitud.peso_max }}';
+            peso_max = peso_max.replace(/,/, '.');
+            peso_max = parseFloat(peso_max);
+            if (peso_max > peso_min) {
+                for (i = peso_min; i <= peso_max; i = i + escala) {
+                    i = Math.round(i * 100) / 100; // redondeo
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.text = i;
+                    select.add(option);
+                }
+            } else {
+                peso_max = Math.round(peso_max * 100) / 100; // redondeo
+                var option = document.createElement("option");
+                option.value = peso_max;
+                option.text = peso_max;
+                select.add(option);
+            }
+            $('#id_pesos_disponibles').on('change', function(){
+                calcularPrecioSolicitud();
+            });
+        }
+        precio_solicitud_guardado = '{{ solicitud.precio_final_venta }}';
+        if (precio_solicitud_guardado !=='None'){
+            precio_base_total_ta = parseFloat('{{ solicitud.precio_base_total_ta }}'.replace(/,/, '.'));
+            precio_fabricacion_total_ta = parseFloat('{{ solicitud.precio_fabricacion_total }}'.replace(/,/, '.'));
+            total_rubros = parseFloat('{{ solicitud.total_rubros }}'.replace(/,/, '.'));
+            impuestos_taller = parseFloat('{{ solicitud.impuestos_taller }}'.replace(/,/, '.'));
+            total_taller = parseFloat('{{ solicitud.total_taller }}'.replace(/,/, '.'));
+            costo_base_total_op = parseFloat('{{ solicitud.costo_base_total_op }}'.replace(/,/, '.'));
+            utilidad_base_op = parseFloat('{{ solicitud.util_sobre_base_op }}'.replace(/,/, '.'));
+            utilidad_fabricacion_op = parseFloat('{{ solicitud.util_sobre_fabrica_op }}'.replace(/,/, '.'));
+            subtotal_solicitud = parseFloat('{{ solicitud.subtotal_solicitud }}'.replace(/,/, '.'));
+            impuestos_solicitud = parseFloat('{{ solicitud.impuestos_op }}'.replace(/,/, '.'));
+            llenarDetallesCostos();
+            precio_solicitud_guardado = parseFloat(precio_solicitud_guardado.replace(/,/, '.'));
+            $('#id_precio').val('{{ user.pais.simbolo_moneda }}' + ' ' + precio_solicitud_guardado);
+        }
+    });
+
+    $('textarea').keypress(function(e){
+        if(e.which === 13){
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    $('#id_detalle').on('change drop keydown cut paste', function() {
+        text.height('auto');
+        text.height(text.prop('scrollHeight'));
+    });
+
+    $('#id_descuento').on('change', function() {
+        calcularPrecioSolicitud();
+    });
+
+    $('#id_precio_negociado').on('change', function(){
+        $('#id_descuento').val(0);
+        calcularPrecioSolicitud();
+    });
+
+    $('#id_gramos_materia_prima').on('change', function(){
+        calcularPrecioSolicitud();
+    });
+
+    $('#id_cantidad_unidades').on('change', function(){
+        calcularPrecioSolicitud();
+    });
+
+    $('#id_peso_trabajo').on('change', function() {
+        calcularPrecioSolicitud();
+    });
+
+    $('#id_item').on('change', function(){
+        tipoPrecio = $('option:selected', $(this)).attr('tipoPrecio');
+        if(tipoPrecio === 'UNIDAD'){
+            $('#div_peso_min').hide();
+            $('#div_peso_max').hide();
+        } else {
+            $('#div_peso_min').show();
+            $('#div_peso_max').show();
+        }
+    })
+
+    function calcularValoresTallerInverso(peso, origen_material){
+        
+        peso_unidades = peso;
+        
+        // Precio base
+        if(origen_material === 'CLIENTE' || origen_material === 'JOYERIA'){
+            // costo_gramo_base_taller = 0;
+            // precio_gramo_base_taller = 0;
+            costo_base_total_ta = 0;
+            precio_base_total_ta = 0;
+            utilidad_base_taller = 0;
+            prct_utilidad_base_taller = 0;
+        } else {
+            if('{{ item.tipo_catalogo.descripcion }}' === 'PRODUCTOS'){
+                precio_base_total_ta = peso_unidades * precio_gramo_base_taller;
+                precio_base_total_ta = redondear(precio_base_total_ta);
+                costo_base_total_ta = peso_unidades * costo_gramo_base_taller;
+                costo_base_total_ta = redondear(costo_base_total_ta);
+                utilidad_base_taller = precio_base_total_ta - costo_base_total_ta;
+                utilidad_base_taller = redondear(utilidad_base_taller);
+                if(utilidad_base_taller > 0){
+                    prct_utilidad_base_taller = (utilidad_base_taller/costo_base_total_ta) * 100;
+                } else {
+                    prct_utilidad_base_taller = 0;
+                }
+            }
+        }
+
+        // Precio fabricación
+        costo_total_fabricacion_ta = peso_unidades * costo_unitario_taller;
+        costo_total_fabricacion_ta = redondear(costo_total_fabricacion_ta);
+        precio_fabricacion_total_ta = peso_unidades * precio_unitario_taller;
+        precio_fabricacion_total_ta = redondear(precio_fabricacion_total_ta);
+        utilidad_fabricacion_taller = precio_fabricacion_total_ta - costo_total_fabricacion_ta;
+        utilidad_fabricacion_taller = redondear(utilidad_fabricacion_taller);
+        prct_util_fabricacion_taller = (utilidad_fabricacion_taller/costo_total_fabricacion_ta) * 100;
+        if(Number.isNaN(prct_util_fabricacion_taller)){
+            prct_util_fabricacion_taller = 0;
+        }
+
+        // Subtotales
+        subtotal_taller = precio_base_total_ta + precio_fabricacion_total_ta + total_rubros;
+        subtotal_taller = redondear(subtotal_taller);
+        impuestos_taller = subtotal_taller * (prct_impuestos_taller/100);
+        impuestos_taller = redondear(impuestos_taller);
+
+        // Total taller
+        total_taller = subtotal_taller + impuestos_taller;
+        total_taller = redondear(total_taller);
+    }
+
+    function calcularValoresOpNormal(peso, origen_material){
+        peso_unidades = peso;
+        if('{{ item.tipo_catalogo.descripcion }}' === 'SERVICIOS'  && '{{item.categoria.precio_taller_obj.tipo.descripcion}}' === 'UNIDAD'){
+            gramos_base = parseFloat($('#id_gramos_materia_prima').val().replace(/,/,'.'));
+        }
+
+        calcularValoresTallerInverso(peso, origen_material, 0);
+
+        // Precio base
+        if(origen_material === 'CLIENTE' || origen_material === 'TALLER'){
+            // costo_gramo_base_op = 0;
+            // precio_gramo_base_op = 0;
+            costo_base_total_op = 0;
+            precio_base_total_op = 0;
+            utilidad_base_op = 0;
+            prct_utilidad_base_op = 0;
+        } else {
+            if('{{ item.tipo_catalogo.descripcion }}' === 'PRODUCTOS'){
+                precio_base_total_op = peso_unidades * precio_gramo_base_op;
+                precio_base_total_op = redondear(precio_base_total_op);
+                costo_base_total_op = peso_unidades * costo_gramo_base_op;
+                costo_base_total_op = redondear(costo_base_total_op);
+                utilidad_base_op = precio_base_total_op - costo_base_total_op;
+                if(utilidad_base_op > 0){
+                    prct_utilidad_base_op = (utilidad_base_op/costo_base_total_op) * 100;
+                } else {
+                    prct_utilidad_base_op = 0;
+                }
+            } else {
+                precio_base_total_op = gramos_base * precio_gramo_base_op;
+                precio_base_total_op = redondear(precio_base_total_op);
+                costo_base_total_op = gramos_base * costo_gramo_base_op;
+                costo_base_total_op = redondear(costo_base_total_op);
+                utilidad_base_op = precio_base_total_op - costo_base_total_op;
+                if(utilidad_base_op > 0){
+                    prct_utilidad_base_op = (utilidad_base_op/costo_base_total_op) * 100;
+                } else {
+                    prct_utilidad_base_op = 0;
+                }
+            }
+        }
+
+        // Precio fabricación
+        utilidad_fabricacion_op = subtotal_taller * (prct_util_fabricacion_op/100);
+        utilidad_fabricacion_op = redondear(utilidad_fabricacion_op);
+        precio_fabricacion_total_op = subtotal_taller + utilidad_fabricacion_op;
+
+        // Subtotales
+        subtotal_op = precio_base_total_op + precio_fabricacion_total_op;
+        impuestos_op = subtotal_op * (prct_impuestos_joyeria/100);
+        impuestos_op = redondear(impuestos_op);
+
+        // Total orden
+        total_fabricacion_op = subtotal_op + impuestos_op;
+    }
+
+    function calcularValoresOpInverso(peso, origen_material){
+        peso_unidades = peso;
+        if('{{ item.tipo_catalogo.descripcion }}' === 'SERVICIOS' && '{{item.categoria.precio_taller_obj.tipo.descripcion}}' === 'UNIDAD'){
+            gramos_base = parseFloat($('#id_gramos_materia_prima').val().replace(/,/,'.'));
+        }
+
+        calcularValoresTallerInverso(peso, origen_material, 0);
+        
+        // Total orden
+        total_fabricacion_op = peso_unidades * precio_unitario_op;
+        total_fabricacion_op = redondear(total_fabricacion_op);
+        
+        // Subtotales
+        subtotal_op = total_fabricacion_op / (1 + (prct_impuestos_joyeria/100));
+        subtotal_op = redondear(subtotal_op);
+        impuestos_op = total_fabricacion_op - subtotal_op;
+        impuestos_op = redondear(impuestos_op);
+
+        // Precio base
+        if(origen_material === 'CLIENTE' || origen_material === 'TALLER'){
+            // costo_gramo_base_op = 0;
+            // precio_gramo_base_op = 0;
+            costo_base_total_op = 0;
+            precio_base_total_op = 0;
+            utilidad_base_op = 0;
+            prct_utilidad_base_op = 0;
+        } else {
+            if('{{ item.tipo_catalogo.descripcion }}' === 'PRODUCTOS'){
+                precio_base_total_op = peso_unidades * precio_gramo_base_op;
+                precio_base_total_op = redondear(precio_base_total_op);
+                costo_base_total_op = peso_unidades * costo_gramo_base_op;
+                costo_base_total_op = redondear(costo_base_total_op);
+                utilidad_base_op = precio_base_total_op - costo_base_total_op;
+                utilidad_base_op = redondear(utilidad_base_op);
+                if(utilidad_base_op > 0){
+                    prct_utilidad_base_op = (utilidad_base_op/costo_base_total_op) * 100;
+                } else {
+                    prct_utilidad_base_op = 0;
+                }
+            } else {
+                precio_base_total_op = gramos_base * precio_gramo_base_op;
+                precio_base_total_op = redondear(precio_base_total_op);
+                costo_base_total_op = gramos_base * costo_gramo_base_op;
+                costo_base_total_op = redondear(costo_base_total_op);
+                utilidad_base_op = precio_base_total_op - costo_base_total_op;
+                if(utilidad_base_op > 0){
+                    prct_utilidad_base_op = (utilidad_base_op/costo_base_total_op) * 100;
+                } else {
+                    prct_utilidad_base_op = 0;
+                }
+            }
+        }
+
+        // Utilidad fabricación
+        utilidad_fabricacion_op = subtotal_op - subtotal_taller - precio_base_total_op;
+        utilidad_fabricacion_op = redondear(utilidad_fabricacion_op);
+        precio_fabricacion_total_op = subtotal_taller + utilidad_fabricacion_op;
+        precio_fabricacion_total_op = redondear(precio_fabricacion_total_op);
+        prct_util_fabricacion_op = ((precio_fabricacion_total_op - subtotal_taller) / subtotal_taller) * 100;
+    }
+
+    function calcularPrecioSolicitud(){
+
+        origen_material_descripcion = origen_material;
+
+        if ('{{item.categoria.precio_taller_obj.tipo.descripcion}}' !== 'UNIDAD'){
+            if('{{item.categoria.division.tipo_catalogo.descripcion}}' === 'PRODUCTOS'){
+                peso = parseFloat($('#id_pesos_disponibles').val());
+            } else {
+                peso = parseFloat($('#id_peso_trabajo').val());
+            }
+        } else {
+            peso = parseFloat($('#id_cantidad_unidades').val());
+        }
+        
+        // if('{{ item.tipo_catalogo.descripcion }}' === 'PRODUCTOS'){
+        //     peso = parseFloat($('#id_pesos_disponibles').val());
+        // } else {
+        //     peso = parseFloat($('#id_cantidad_unidades').val());
+        // }
+        
+        if(regla_calculo_op === 'INVERSA'){
+            calcularValoresOpInverso(peso, origen_material_descripcion);
+        } else {
+            calcularValoresOpNormal(peso, origen_material_descripcion);
+        }
+
+        subtotal_solicitud = subtotal_op;
+        subtotal_solicitud = redondear(subtotal_solicitud);
+
+        impuestos_solicitud = impuestos_op;
+        impuestos_solicitud = redondear(impuestos_solicitud);
+
+        precio_sistema = subtotal_solicitud + impuestos_solicitud;
+        precio_sistema = redondear(precio_sistema);
+
+        precio_final_solicitud = precio_sistema;
+
+        if($('#id_descuento').val() !== ''){
+            if(parseFloat($('#id_descuento').val().replace(/,/, '.')) > 0){
+                CalcularDescuento();
+            }
+        }
+
+        if($('#id_precio_negociado').val() !== ''){
+            if(parseFloat($('#id_precio_negociado').val().replace(/,/, '.')) !== precio_final_solicitud){
+                grabarPrecioNegociado();
+            }
+        }
+
+        if(decimales === 'True'){
+            precio_mostrar = precio_final_solicitud.toFixed(2);
+        } else {
+            precio_mostrar = Math.round(precio_final_solicitud);
+        }
+
+        llenarDetallesCostos();
+
+        $('#id_precio').val(simbolo_moneda + ' ' + precio_mostrar);
+    }
+
+    function CalcularDescuento() {
+        porcentaje_descuento = parseFloat('{{ user.config_gen.descuento_max }}'.replace(/,/, '.'));
+        descuento_max = precio_final_solicitud * (porcentaje_descuento / 100);
+        descuento_max = Math.round(descuento_max * 100) / 100;
+        descuento = parseFloat($('#id_descuento').val().replace(/,/, '.'));
+        if (descuento < 0){
+            mensaje('{% trans "Descuento debe ser mayor a 0" %}', 'orange');
+            return;
+        }
+        if (descuento <= descuento_max) {
+            precio_final_solicitud = precio_sistema - descuento;
+            precio_final_solicitud = Math.round(precio_final_solicitud * 100) / 100;
+            $('#id_precio_negociado').val(precio_final_solicitud);
+            recalcularPrecioFinal(precio_final_solicitud);
+        } else {
+            mensaje('{% trans "Descuento supera porcentaje permitido" %}', 'orange');
+            $('#id_descuento').val(0);
+            return;
+        }
+    }
+
+    function grabarPrecioNegociado(){
+        precio_contratado = parseFloat($('#id_precio_negociado').val().replace(/,/, '.'));
+        if (precio_contratado >= precio_sistema) {
+            precio_final_solicitud = precio_contratado;
+            precio_final_solicitud = Math.round(precio_final_solicitud * 100) / 100;
+            $('#id_descuento').val(0);
+            recalcularPrecioFinal(precio_final_solicitud);
+            ocultarModal();
+        } else {
+            mensaje('{% trans "Precio contratado no puede ser menor al precio calculado por el sistema" %}', 'orange');
+            return;
+        }
+    }
+
+    function recalcularPrecioFinal(precioFinal){
+
+        precio_final_solicitud = precioFinal;
+        // Subtotales
+        subtotal_solicitud = precio_final_solicitud / (1 + (prct_impuestos_joyeria/100));
+        subtotal_solicitud = redondear(subtotal_solicitud);
+        impuestos_solicitud = precio_final_solicitud - subtotal_solicitud;
+        impuestos_solicitud = redondear(impuestos_solicitud);
+
+        // Utilidad fabricación
+        utilidad_fabricacion_op = subtotal_solicitud - subtotal_taller - precio_base_total_op;
+        utilidad_fabricacion_op = redondear(utilidad_fabricacion_op);
+        precio_fabricacion_total_op = subtotal_taller + utilidad_fabricacion_op;
+        precio_fabricacion_total_op = redondear(precio_fabricacion_total_op);
+        prct_util_fabricacion_op = ((precio_fabricacion_total_op - subtotal_taller) / subtotal_taller) * 100;
+
+    }
+
+    function redondear(valor){
+        if(decimales === 'True'){
+            return Math.round(valor * 100) / 100;
+        } else {
+            return Math.round(valor);
+        }
+    }
+
+    function llenarDetallesCostos(){
+        var digitos;
+        if(decimales === 'True'){
+            digitos = 2;
+        } else {
+            digitos = 0;
+        }
+
+        $('#val_mat_prima_ta').text(simbolo_moneda + ' ' + precio_base_total_ta.toFixed(digitos));
+        $('#val_man_obra_ta').text(simbolo_moneda + ' ' + precio_fabricacion_total_ta.toFixed(digitos));
+        $('#val_rubros_ta').text(simbolo_moneda + ' ' + total_rubros.toFixed(digitos));
+        $('#val_impuestos_ta').text(simbolo_moneda + ' ' + impuestos_taller.toFixed(digitos));
+        $('#val_total_ta').text(simbolo_moneda + ' ' + total_taller.toFixed(digitos));
+        $('#val_mat_prima_op').text(simbolo_moneda + ' ' + costo_base_total_op.toFixed(digitos));
+        $('#val_util_op').text(simbolo_moneda + ' ' + (utilidad_base_op + utilidad_fabricacion_op).toFixed(digitos));
+        $('#val_subtotal_op').text(simbolo_moneda + ' ' + subtotal_solicitud.toFixed(digitos));
+        $('#val_impuestos_op').text(simbolo_moneda + ' ' + impuestos_solicitud.toFixed(digitos));
+    }
+
+    function mostrarRubros(){
+        $('#btnMostrar').hide();
+        $('#btnOcultar').show();
+        $('#id_divider_rubros').show();
+        $('#id_rubros').show();
+    };
+
+    function ocultarRubros(){
+        $('#btnMostrar').show();
+        $('#btnOcultar').hide();
+        $('#id_divider_rubros').hide();
+        $('#id_rubros').hide();
+    }
+
+    function evaluar() {
+        $('#id_evaluacion').show();
+        $('#id_divider_evaluar').show();
+        $('#id_rechazo').hide();
+        $('#id_aceptar').hide();
+        $('#id_divider_aceptar').hide();
+        $('#id_divider_rechazar').hide();
+        $('#id_divider_rubros').hide();
+        $('#id_rubros').hide();
+        $('#btnAceptar').hide();
+        $('#btnEvaluar').hide();
+        $('#btnRechazar').hide();
+        $('#btnConfirmarEvaluar').show();
+        $('#btnCancelar').show();
+    }
+
+    function rechazar() {
+        $('#id_rechazo').show();
+        $('#id_divider_rechazar').show();
+        $('#id_evaluacion').hide();
+        $('#id_aceptar').hide();
+        $('#id_divider_aceptar').hide();
+        $('#id_divider_evaluar').hide();
+        $('#id_divider_rubros').hide();
+        $('#id_rubros').hide();
+        $('#btnAceptar').hide();
+        $('#btnEvaluar').hide();
+        $('#btnRechazar').hide();
+        $('#btnConfirmaRechazo').show();
+        $('#btnCancelar').show();
+        $('#btnGeneraOrden').hide();
+    }
+
+    function aceptar() {
+        prct_impuestos_ta = '{{ configuracion_ta.prct_impuestos }}';
+        prct_impuestos_ta = prct_impuestos_ta.replace(/,/, '.');
+        prct_impuestos_ta = parseFloat(prct_impuestos_ta);
+        utilidad_fab_ta = '{{ configuracion_ta.utilidad_sobre_fabricacion }}';
+        utilidad_fab_ta = utilidad_fab_ta.replace(/,/, '.');
+        utilidad_fab_ta = parseFloat(utilidad_fab_ta);
+        $('#id_aceptar').show();
+        $('#id_divider_aceptar').show();
+        $('#id_divider_rubros').show();
+        $('#id_rubros').show();
+        $('#id_evaluacion').hide();
+        $('#id_rechazo').hide();
+        $('#id_divider_evaluar').hide();
+        $('#id_divider_rechazar').hide();
+        $('#btnAceptar').hide();
+        $('#btnEvaluar').hide();
+        $('#btnRechazar').hide();
+        $('#btnConfirmarAceptar').show();
+        $('#btnCancelar').show();
+        $('#id_impuestos_taller').val(prct_impuestos_ta);
+        $('#id_utilidad_taller').val(utilidad_fab_ta);
+    }
+
+    function responderSolicitud(accion) {
+        
+        var token = '{{ csrf_token }}';
+
+        var solicitud_id = '{{ solicitud.id_solicitud }}';
+
+        /*  1. ACEPTAR SOLICITUD
+            2. EVALUAR SOLICITUD
+            3. RECHAZAR SOLICITUD
+        */
+
+        if (accion === 1) {
+
+            var url = "{% url 'trn:solicitudes_detalle' 0 1 %}";
+            url = url.replace(/0/, solicitud_id);
+
+            var peso_min = $('#id_peso_min').val();
+            var peso_max = $('#id_peso_max').val();
+            var costo_unitario = $('#id_costo_unitario').val();
+            var precio_unitario = $('#id_precio_unitario').val();
+            var tiempo_ent_min = $('#id_tiempo_min').val();
+            var tiempo_ent_max = $('#id_tiempo_max').val();
+            var prct_impuestos = $('#id_impuestos_taller').val();
+            var observacion_cotizado = $('#id_obs_cotizacion').val();
+            var id_item = $('#id_item').val();
+            obtenerRubros();
+
+            if(!id_item){
+                mensaje('{% trans "Seleccione un ítem" %}', 'red');
+                return;
+            }
+
+            if ('{{ item.unidad_medida.descripcion }}' === 'UNIDADES'){
+                if(costo_unitario === '' || precio_unitario == '' || tiempo_ent_min === '' || tiempo_ent_max === '' || prct_impuestos === ''){
+                    mensaje('{% trans "Por favor complete los campos" %}', 'red');
+                    return;
+                }
+                peso_min = 0;
+                peso_max = 0;
+            } else {
+                if(peso_min === '' || peso_max === '' || costo_unitario === '' || precio_unitario == '' || tiempo_ent_min === '' || tiempo_ent_max === '' || prct_impuestos === ''){
+                    mensaje('{% trans "Por favor complete los campos" %}', 'red');
+                    return;
+                }
+                if(parseFloat(peso_min) > parseFloat(peso_max)){
+                    mensaje('{% trans "Peso mínimo no puede ser mayor al peso máximo" %}', 'red');
+                    return;
+                }
+            }
+            
+
+            cont = 0;
+            total_rubros = 0;
+            rubros.forEach(rubro => {
+                if(rubro.valor === ''){
+                    cont++;
+                } else {
+                    total_rubros = total_rubros + parseFloat(rubro.valor);
+                }
+            });
+
+            cantRubros = rubros.reduce((contadorRubro, id_rubro) => {
+                contadorRubro[id_rubro.id] = (contadorRubro[id_rubro.id] || 0) + 1;
+                return contadorRubro;
+            }, {});
+
+            cantidadesRubro = Object.values(cantRubros);
+
+            cantidadesRubro.forEach(cantidad => {
+                if(cantidad > 1)
+                mensaje('{% trans "Existe al menos un rubro ingresado más de una vez" %}', 'red');
+                return;
+            })
+
+            if(cont > 0){
+                mensaje('{% trans "Uno o más rubros no poseen valor" %}', 'red');
+                return;
+            }
+
+            if(parseFloat(tiempo_ent_min) > parseFloat(tiempo_ent_max)){
+                mensaje('{% trans "Tiempo mínimo no puede ser mayor al tiempo máximo" %}', 'red');
+                return;
+            }
+
+            var data = {
+                'peso_min': peso_min,
+                'peso_max': peso_max,
+                'costo_unitario': costo_unitario,
+                'precio_unitario': precio_unitario,
+                'tiempo_ent_min': tiempo_ent_min,
+                'tiempo_ent_max': tiempo_ent_max,
+                'rubros_lista[]': JSON.stringify(rubros),
+                'total_rubros': total_rubros,
+                'prct_impuestos_ta': prct_impuestos,
+                'observacion_cotizado': observacion_cotizado,
+                'id_item': id_item
+            }
+        }
+
+        if (accion === 2) {
+
+            var url = "{% url 'trn:solicitudes_detalle' 0 2 %}";
+            url = url.replace(/0/, solicitud_id);
+            
+            var tiempo_dias = $('#id_tiempo_dias').val();
+            var tiempo_horas = $('#id_tiempo_horas').val();
+            // var tiempo_minutos = $('#id_tiempo_minutos').val();
+            var tiempo_minutos = 0;
+
+            if(tiempo_dias === '' || tiempo_horas === '' ){
+                mensaje('{% trans "Por favor complete los campos" %}', 'red');
+                return;
+            }
+
+            var data = {
+                'tiempo_dias': tiempo_dias,
+                'tiempo_horas': tiempo_horas,
+                'tiempo_minutos': tiempo_minutos
+            }
+            data = JSON.stringify(data);
+        }
+
+        if (accion === 3) {
+            var url = "{% url 'trn:solicitudes_detalle' 0 3 %}";
+            url = url.replace(/0/, solicitud_id);
+
+            var observacion_ta = $('#id_observacion_ta').val();
+
+            if(observacion_ta === ''){
+                mensaje('{% trans "Por favor ingrese una observación" %}', 'red');
+                return;
+            }
+
+            var data = {
+                'observacion_ta': observacion_ta
+            }
+            data = JSON.stringify(data);
+        }
+
+        // data = JSON.stringify(data);
+        $.ajax({
+            headers: {
+                        "X-CSRFToken": token
+                    },
+            type: "POST",
+            url: url,
+            data: data,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function (response) {
+                location.reload(true);
+                cerrar_modal();
+            },
+            error: function (jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    function generarOrden(tipo){
+        var token = '{{ csrf_token }}';
+        id_solicitud = '{{ solicitud.id_solicitud }}';
+
+        if ('{{item.categoria.precio_taller_obj.tipo.descripcion}}' !== 'UNIDAD'){
+            if('{{item.categoria.division.tipo_catalogo.descripcion}}' === 'PRODUCTOS'){
+                peso_solicitado = parseFloat($('#id_pesos_disponibles').val());
+                if(peso_solicitado === 0 || Number.isNaN(peso_solicitado)){
+                    mensaje('{% trans "Seleccione un peso" %}', 'orange');
+                    return;
+                }
+                unidades_solicitadas = 1;
+            } else {
+                peso_solicitado = parseFloat($('#id_peso_trabajo').val());
+                console.log(peso_solicitado)
+                if(peso_solicitado === 0 || Number.isNaN(peso_solicitado)){
+                    mensaje('{% trans "Ingrese peso a trabajar" %}', 'orange');
+                    return;
+                }
+                unidades_solicitadas = 1;
+            }
+        } else {
+            peso_solicitado = $('#id_gramos_materia_prima').val();
+            if(peso_solicitado === ''){
+                mensaje('{% trans "Ingrese cantidad de gramos de materia prima" %}', 'orange');
+                return;
+            }
+            unidades_solicitadas = $('#id_cantidad_unidades').val();
+            if(unidades_solicitadas === ''){
+                mensaje('{% trans "Ingrese cantidad de servicios" %}', 'orange');
+                return;
+            }
+        }
+
+        // if('{{ item.tipo_catalogo.descripcion }}' === 'PRODUCTOS'){
+        //     peso_solicitado = $('#id_pesos_disponibles').val();
+        //     if(peso_solicitado === '0'){
+        //         mensaje('{% trans "Seleccione un peso" %}', 'orange');
+        //         return;
+        //     }
+        //     unidades_solicitadas = 1;
+        // } else {
+        //     peso_solicitado = $('#id_gramos_materia_prima').val();
+        //     if(peso_solicitado === ''){
+        //         mensaje('{% trans "Ingrese cantidad de gramos de materia prima" %}', 'orange');
+        //         return;
+        //     }
+        //     unidades_solicitadas = $('#id_cantidad_unidades').val();
+        //     if(unidades_solicitadas === ''){
+        //         mensaje('{% trans "Ingrese cantidad de servicios" %}', 'orange');
+        //         return;
+        //     }
+        // }
+        
+        url = "{% url 'trn:generar_orden_solicitud' 0 %}";
+        url = url.replace(/0/, id_solicitud);
+        datos = {
+            'peso_solicitado': peso_solicitado,
+            'unidades_solicitadas': unidades_solicitadas,
+            'costo_gramo_base_taller': costo_gramo_base_taller,
+            'precio_gramo_base_taller': precio_gramo_base_taller,
+            'prct_utilidad_base_taller': prct_utilidad_base_taller,
+            'costo_base_total_ta': costo_base_total_ta,
+            'utilidad_base_taller': utilidad_base_taller,
+            'precio_base_total_ta': precio_base_total_ta,
+            'costo_unitario_taller': costo_unitario_taller,
+            'costo_total_fabricacion_ta': costo_total_fabricacion_ta,
+            'prct_util_fabricacion_taller': prct_util_fabricacion_taller,
+            'utilidad_fabricacion_taller': utilidad_fabricacion_taller,
+            'precio_unitario_taller': precio_unitario_taller,
+            'precio_fabricacion_total_ta': precio_fabricacion_total_ta,
+            'total_rubros': total_rubros,
+            'subtotal_taller': subtotal_taller,
+            'prct_impuestos_taller': prct_impuestos_taller,
+            'impuestos_taller': impuestos_taller,
+            'total_taller': total_taller,
+            'costo_gramo_base_op': costo_gramo_base_op,
+            'precio_gramo_base_op': precio_gramo_base_op,
+            'costo_base_total_op': costo_base_total_op,
+            'prct_utilidad_base_op': prct_utilidad_base_op,
+            'utilidad_base_op': utilidad_base_op,
+            'precio_base_total_op': precio_base_total_op,
+            'prct_util_fabricacion_op': prct_util_fabricacion_op,
+            'precio_unitario_op': precio_unitario_op,
+            'utilidad_fabricacion_op': utilidad_fabricacion_op,
+            'precio_fabricacion_total_op': precio_fabricacion_total_op,
+            'subtotal_op': subtotal_op,
+            'impuestos_op': impuestos_solicitud,
+            'total_fabricacion_op': total_fabricacion_op,
+            'subtotal_solicitud': subtotal_solicitud,
+            'prct_impuestos_joyeria': prct_impuestos_joyeria,
+            'impuestos_solicitud': impuestos_solicitud,
+            'precio_sistema': precio_sistema,
+            'descuento': descuento,
+            'precio_final_solicitud': precio_final_solicitud
+        }
+        datos = JSON.stringify(datos);
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: "application/json",
+            success: function(response) {
+                if(tipo === 1){
+                    url = "{% url 'clt:clientes_modal' 0 1 %}";
+                }
+                if(tipo === 2){
+                    url = "{% url 'clt:clientes_modal' 0 2 %}";
+                }
+                url = url.replace(/0/, id_solicitud);
+                return abrir_modal(url);
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+        
+    }
+
+    function SolicitarExterno(){
+
+        var token = '{{ csrf_token }}';
+
+        detalle = $('#id_detalle').val();
+        console.log(detalle);
+
+        solicitud_id = '{{ solicitud.id_solicitud }}';
+
+        var datos = {'detalle': detalle};
+        var data = JSON.stringify(datos);
+
+        var url_modificada = "{% url 'trn:solicitar_externo' 0 %}";
+        url = url_modificada.replace(/0/, solicitud_id);
+
+        $.ajax({
+            headers: {
+                  "X-CSRFToken": token
+              },
+            url: url,
+            data: data,
+            type: "POST",
+            contentType: 'application/json',
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                id_solicitud = response.id_solicitud;
+                if( id_solicitud === '0' ){
+                    mensaje('{% trans "No existen proveedores registrados" %}', 'red');
+                    return;
+                } else {
+                    var url = "{% url 'trn:solicitudes_editar' 0 %}"
+                    url = url.replace(/0/, id_solicitud);
+                    window.location.replace(url);
+                    //location.reload(true);
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    function agregarRubro(){
+        var div = '<div class="row itemrubro"><div class="col-md-5 col-12"><div class="form-label-group"><select name="origen" id="id_origen" class="form-control selectrubro">{% for rubro in rubros %}<option value="{{ rubro.id_rubro }}">{{ rubro.descripcion }}</option>{% endfor %}</select><input type="number" hidden><label for="id_ciudad">{% trans "Rubro" %}</label></div></div><div class="col-md-5 col-12"><div class="form-label-group"><input type="number" name="valor" lang="en-150" class="form-control inputrubro" id="id_valor" onchange="calcularValoresTaller()"><label for="id_valor">{% trans "Valor" %}</label></div></div><div class="col-md-2 col-2 form-group"><button class="btn btn-icon btn-danger rounded-circle buttonrubro" type="button" data-repeater-delete><i class="bx bx-x"></i></button></div></div>';
+        $('#id_rubros_lista').append(div);
+        nombrarElementos();
+    }
+
+    function borrardiv(div){
+        $(div).remove();
+        nombrarElementos();
+        calcularValoresTaller();
+    }
+
+    function nombrarElementos(){
+        num = 0;
+        $('div.itemrubro').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'divrubro'+num);
+            selects = $(this).find('.selectrubro');
+            select = selects[0];
+            $(select).removeAttr('id');
+            $(select).attr('id', 'rubro'+num);
+            inputs = $(this).find('.inputrubro');
+            input = inputs[0];
+            $(input).removeAttr('id');
+            $(input).attr('id', 'rubrovalor'+num);
+            buttons = $(this).find('.buttonrubro');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardiv(divrubro'+num+')');
+        });
+    }
+
+    function obtenerRubros(){
+        num = 0;
+        rubros = []
+        $('div.itemrubro').each(function (){
+            num++;
+            id_rubro = $('#rubro'+num).val();
+            valor = $('#rubrovalor'+num).val();
+            rubro = {'id': id_rubro, 'valor': valor};
+            rubros.push(rubro);
+        });
+    }
+
+    $('#id_costo_unitario').on('change', function(){
+        calcularValoresTaller();
+    });
+
+    $('#id_precio_unitario').on('change', function(){
+        calcularValoresTaller();
+    });
+
+    $('#id_impuestos_taller').on('change', function(){
+        calcularValoresTaller();
+    });
+
+    $('#id_utilidad_taller').on('change', function(){
+        calcularValoresTaller();
+    });
+
+    $('.inputrubro').on('change', function(){
+        calcularValoresTaller();
+    });
+
+    function calcularValoresTaller(){
+        
+        peso_unidades = 1;
+        if($('#id_costo_unitario').val() === ''){
+            $('#id_costo_unitario').val(0);
+        }
+        if($('#id_precio_unitario').val() === ''){
+            $('#id_precio_unitario').val(0);
+        }
+        costo_fabricacion_unitario = parseFloat($('#id_costo_unitario').val().replace(/,/, '.'));
+        precio_fabricacion_unitario = parseFloat($('#id_precio_unitario').val().replace(/,/, '.'));
+        
+        if($('#id_impuestos_taller').val() === ''){
+            $('#id_impuestos_taller').val(0);
+        }
+        prct_impuestos_ta = parseFloat($('#id_impuestos_taller').val().replace(/,/, '.'))
+                
+        obtenerRubros();
+        cont = 0;
+        subtotal_rubros_calc = 0;
+        total_rubros_calc = 0;
+        rubros.forEach(rubro => {
+            if(rubro.valor === ''){
+                cont++;
+            } else {
+                subtotal_rubros_calc += parseFloat(rubro.valor);
+            }
+        });
+
+        // Precio base
+        if(origen_material === 'CLIENTE' || origen_material === 'JOYERIA'){
+            costo_gramo_base_taller = 0;
+            precio_gramo_base_taller = 0;
+            costo_base_total_ta = 0;
+            precio_base_total_ta = 0;
+            utilidad_base_taller = 0;
+            prct_utilidad_base_taller = 0;
+        } else {
+            precio_base_total_ta = peso_unidades * precio_gramo_base_taller;
+            precio_base_total_ta = redondear(precio_base_total_ta);
+            costo_base_total_ta = peso_unidades * costo_gramo_base_taller;
+            costo_base_total_ta = redondear(costo_base_total_ta);
+            utilidad_base_taller = precio_base_total_ta - costo_base_total_ta;
+            utilidad_base_taller = redondear(utilidad_base_taller);
+            if(utilidad_base_taller > 0){
+                prct_utilidad_base_taller = (utilidad_base_taller/costo_base_total_ta) * 100;
+            } else {
+                prct_utilidad_base_taller = 0;
+            }
+        }
+
+        // Precio fabricación
+        costo_total_fabricacion_ta = peso_unidades * costo_fabricacion_unitario;
+        costo_total_fabricacion_ta = redondear(costo_total_fabricacion_ta);
+        precio_fabricacion_total_ta = peso_unidades * precio_fabricacion_unitario;
+        precio_fabricacion_total_ta = redondear(precio_fabricacion_total_ta);
+        utilidad_fabricacion_taller = precio_fabricacion_total_ta - costo_total_fabricacion_ta;
+        utilidad_fabricacion_taller = redondear(utilidad_fabricacion_taller);
+        prct_util_fabricacion_taller = (utilidad_fabricacion_taller/costo_total_fabricacion_ta) * 100;
+
+        // total_rubros_calc = subtotal_rubros_calc * (1 + (prct_impuestos_taller/100));
+        total_rubros = redondear(subtotal_rubros_calc);
+
+        // Subtotales
+        subtotal_taller = precio_base_total_ta + precio_fabricacion_total_ta  + total_rubros;
+        subtotal_taller = redondear(subtotal_taller);
+        impuestos_taller = subtotal_taller * (prct_impuestos_taller/100);
+        impuestos_taller = redondear(impuestos_taller);
+
+        // Total taller
+        total_taller = subtotal_taller + impuestos_taller;
+        total_taller = redondear(total_taller);
+
+        var digitos;
+        if(decimales === 'True'){
+            digitos = 2;
+        } else {
+            digitos = 0;
+        }
+
+        $('#id_precio_gramo_calc').val(total_taller.toFixed(digitos));
+
+        llenarDetallesCostos();
+    }
+
+    $('img.img-fluid').on('click', function(){
+        src = $(this).attr('src');
+        Swal.fire({
+            html:
+                '<img src="'+ src +'" width="100%">',
+            showClass: {
+                popup: 'animated fadein'
+            },
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '<i class="bx bx-check"></i>'
+        });
+    });
+
+    function mostrarModal(){
+        $('#exampleModalCenter').modal('show');
+    }
+
+    function ocultarModal(){
+        $('#exampleModalCenter').modal('hide');
+    }
+</script>

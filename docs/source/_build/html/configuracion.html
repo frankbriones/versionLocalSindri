@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuración del sistema &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Rutas principales del sistema" href="rutas_principales.html" />
+    <link rel="prev" title="Requerimientos" href="requerimientos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Configuración del sistema</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#apps-instaladas">Apps instaladas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#django-channels">Django Channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-de-datos">Base de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internacionalizacion">Internacionalización</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#archivos-estaticos-y-archivos-media">Archivos estáticos y archivos media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autenticacion-de-usuarios">Autenticación de usuarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servidor-de-correos">Servidor de correos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Configuración del sistema</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuracion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuracion-del-sistema">
+<h1><strong>Configuración del sistema</strong><a class="headerlink" href="#configuracion-del-sistema" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta principal del proyecto llamada <strong>sindri</strong> tenemos el archivo de configuración llamado <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>. Donde es necesario realizar ciertas configuraciones necesarias para el correcto funcionamiento del sistema. A continuación se muestran las configuraciones generales del proyecto:</p>
+<div class="section" id="apps-instaladas">
+<h2>Apps instaladas<a class="headerlink" href="#apps-instaladas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las aplicaciones instaladas dentro del proyecto además de las que instala Django por defecto son las siguientes:</p>
+<p><strong>Aplicaciones externas:</strong></p>
+<dl class="simple">
+<dt><a class="reference external" href="https://channels.readthedocs.io/en/latest/">Channels</a></dt><dd><p>Utilizada para la comunicación en tiempo real mediante sockets,
+permite la actualización instantanea de la información mostrada
+en el sistema.</p>
+</dd>
+<dt><a class="reference external" href="https://django-rosetta.readthedocs.io/">Rosetta</a></dt><dd><p>Utilizada para la internacionalización, nos brinda una interfaz
+gráfica para realizar la traducción a los diferentes idiomas
+configurados en el sistema.</p>
+</dd>
+<dt><a class="reference external" href="https://www.django-rest-framework.org/">Rest_framework</a></dt><dd><p>Framework utilizado para la construcción de APIs</p>
+</dd>
+<dt><a class="reference external" href="https://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html">Django_celery_beat</a></dt><dd><p>Utilizada para la creación de tareas periódicas o programadas
+en el sistema</p>
+</dd>
+</dl>
+<p><strong>Aplicaciones propias del sistema:</strong></p>
+<dl class="simple">
+<dt>usr.apps.UsrConfig</dt><dd><p>Aplicacion para el manejo de usuarios del sistema,
+aqui están contenidas las vistas para la creación, edición, consulta, activación e inactivación para: usuarios y roles de usuario</p>
+</dd>
+<dt>bases</dt><dd><p>Contiene templates, clases y modelos utilizadas
+en común dentro del sistema</p>
+</dd>
+<dt>ubc</dt><dd><p>Aplicacion para el manejo de ubicaciones, aqui están
+contenidas las vistas para la creación, edición, consulta,
+activación e inactivación para: países, localidades, ciudades,
+zonas y sectores</p>
+</dd>
+<dt>prv</dt><dd><p>Aplicacion para el manejo de proveedores, aqui están
+contenidas las vistas para la creación, edición, consulta,
+activación e inactivación para: proveedores</p>
+</dd>
+<dt>cfg</dt><dd><p>Aplicacion para el manejo de configuraciones de usuario,
+aqui están contenidas las vistas para la edición de las
+diferentes configuraciones que pueden realizar los usuarios
+para definir el comportamiento que tendrá el sistema</p>
+</dd>
+<dt>ctg</dt><dd><p>Aplicacion para el manejo del catálogo, aqui están contenidas
+las vistas para la creación, edición, consulta, activación e
+inactivación para: divisiones, categorías, tallas, colores,
+ítems, piedras y adicionales</p>
+</dd>
+<dt>clt</dt><dd><p>Aplicacion para el manejo de los clientes, aqui están contenidas
+las vistas para la creación, edición, consulta, activación e
+inactivación para: clientes</p>
+</dd>
+<dt>trn</dt><dd><p>Aplicacion para el manejo de las transacciones, aqui están
+contenidas las vistas para la creación, edición, consulta para:
+solicitudes y órdenes de trabajo así como también la aprobación
+de pagos de las mismas</p>
+</dd>
+<dt>wso</dt><dd><p>Aplicacion que contiene la configuración del server para el uso
+de websockets, con los métodos para conectar, desconectar, enviar
+y recibir mensajes</p>
+</dd>
+<dt>ntf</dt><dd><p>Aplicacion para el manejo de las notificaciones, contiene las
+vistas y los métodos para la generación y modificación automática
+de notificaciones para los usuarios del sistema</p>
+</dd>
+<dt>dsh</dt><dd><p>Aplicacion para el manejo de las estadísticas, aqui están
+contenidas las vistas para las consultas de las estadísticas
+predefinidas en el sistema</p>
+</dd>
+</dl>
+<p>La configuración queda de la siguiente forma:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;channels&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;usr.apps.UsrConfig&#39;</span><span class="p">,</span>  <span class="c1"># usuarios</span>
+    <span class="s1">&#39;bases&#39;</span><span class="p">,</span>  <span class="c1"># paginas principales</span>
+    <span class="s1">&#39;ubc&#39;</span><span class="p">,</span>  <span class="c1"># ubicaciones</span>
+    <span class="s1">&#39;prv&#39;</span><span class="p">,</span>  <span class="c1"># proveedores</span>
+    <span class="s1">&#39;cfg&#39;</span><span class="p">,</span>  <span class="c1"># configuraciones</span>
+    <span class="s1">&#39;ctg&#39;</span><span class="p">,</span>  <span class="c1"># catálogo</span>
+    <span class="s1">&#39;clt&#39;</span><span class="p">,</span>  <span class="c1"># clientes</span>
+    <span class="s1">&#39;trn&#39;</span><span class="p">,</span>  <span class="c1"># transacciones</span>
+    <span class="s1">&#39;rosetta&#39;</span><span class="p">,</span>  <span class="c1"># traduccion idiomas</span>
+    <span class="s1">&#39;rest_framework&#39;</span><span class="p">,</span>  <span class="c1"># apirest</span>
+    <span class="s1">&#39;wso&#39;</span><span class="p">,</span>  <span class="c1"># websockets</span>
+    <span class="s1">&#39;ntf&#39;</span><span class="p">,</span>  <span class="c1"># notificaciones</span>
+    <span class="s1">&#39;dsh&#39;</span><span class="p">,</span>  <span class="c1"># dashboard</span>
+    <span class="s1">&#39;django_celery_beat&#39;</span><span class="p">,</span>  <span class="c1"># tareas periódicas</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="django-channels">
+<h2>Django Channels<a class="headerlink" href="#django-channels" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La configuración necesaria para el funcionamiento de Channels es la siguiente:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">CHANNEL_LAYERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;BACKEND&quot;</span><span class="p">:</span> <span class="s2">&quot;channels_rabbitmq.core.RabbitmqChannelLayer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CONFIG&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;amqp://guest:guest@127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="c1"># &quot;ssl_context&quot;: ... (optional)</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Como broker de mensajes se utilizó RabbitMQ y se configura un host virtual desde el administrador, para más detalles sobre RabbitMQ, su configuración y uso puede revisar la documentación oficial <a class="reference external" href="https://www.rabbitmq.com/documentation.html">aquí</a></p>
+</div>
+<div class="section" id="base-de-datos">
+<h2>Base de datos<a class="headerlink" href="#base-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para el proyecto se utilizó el gestor de bases de datos <a class="reference external" href="https://dev.mysql.com/doc/">MySQL</a>, la configuración para el acceso a la base se la realiza en el siguiente bloque:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;sindridesarrollo&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;Innovacion2019&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="internacionalizacion">
+<h2>Internacionalización<a class="headerlink" href="#internacionalizacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La configuración realizada para la traducción a los diferentes idiomas y dialectos en el sistema es la siguiente:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lenguaje por defecto</span>
+<span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="s1">&#39;es-ec&#39;</span>
+
+<span class="c1"># Lenguajes del sistema</span>
+<span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">&#39;es-ec&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Español Ecuador&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;es-co&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Español Colombia&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;es-cl&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Español Chile&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;es-pe&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Español Perú&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;en-us&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;English USA&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;pt-br&#39;</span><span class="p">,</span> <span class="n">gettext</span><span class="p">(</span><span class="s1">&#39;Português Brasil&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># Carpeta de lenguajes</span>
+<span class="n">LOCALE_PATHS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;locale&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">USE_I18N</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">USE_L10N</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">USE_TZ</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="archivos-estaticos-y-archivos-media">
+<h2>Archivos estáticos y archivos media<a class="headerlink" href="#archivos-estaticos-y-archivos-media" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para la ubicación de los archivos estáticos y media se utiliza la siguiente configuración donde se establece la ruta hacia los archivos</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Archivos estáticos</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">),)</span>
+
+<span class="c1"># Archivos media</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En la ruta de archivos estáticos se guardan los archivos correspondientes a CSS, JavaScript e imágenes propias del sistema. Mientras que en los archivos media se guardan aquellos archivos que son cargados por los usuarios como imágenes de perfil, imágenes de catálogos, archivos de comprobantes, etc.</p>
+</div>
+<div class="section" id="autenticacion-de-usuarios">
+<h2>Autenticación de usuarios<a class="headerlink" href="#autenticacion-de-usuarios" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para la autenticación de los usuarios en el sistema se realizan las siguientes configuraciones:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># modelo de usuarios</span>
+<span class="n">AUTH_USER_MODEL</span> <span class="o">=</span> <span class="s1">&#39;usr.Usuarios&#39;</span>
+
+<span class="c1"># Backend de autenticación de usuario</span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;usr.backends.EmailBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Es necesaria esta configuración debido a que se modificó el modelo de usuario que provee Django por defecto, de la misma forma no se utiliza el backend de autenticación que provee Django por defecto, en su lugar se utiliza un backend personalizado el cual permite que el usuario se pueda autenticar usando su email registrado o su username</p>
+</div>
+<div class="section" id="servidor-de-correos">
+<h2>Servidor de correos<a class="headerlink" href="#servidor-de-correos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para el envío automático de correos electrónicos desde el sistema es necesaria la siguiente configuración</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuracion servidor de correos</span>
+<span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s1">&#39;smtp.gmail.com&#39;</span>
+<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="s1">&#39;587&#39;</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s1">&#39;correo@gmail.com&#39;</span>
+<span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;Pass123&#39;</span>
+<span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rutas_principales.html" class="btn btn-neutral float-right" title="Rutas principales del sistema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="requerimientos.html" class="btn btn-neutral float-left" title="Requerimientos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar piedra" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-12">
+                <form method="POST" id="formPiedras" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4 col-12">
+                                <div class="form-label-group">
+                                    <img id="id_img_tmp" name="imagentmp" {% if piedra %} src="{{ piedra.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                    <input onchange="seleccionarImagen()" type="file" name="imagen" id="id_imagen" class="inputimage center pointer" width="100%">
+                                    <label for="city-column">{% trans "Imagen" %}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-12">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.sku }}
+                                        <label for="first-name-column">{% trans "SKU" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.descripcion }}
+                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                    </div>
+                                </div>
+                                <h6>{% trans "Detalles:" %}</h6>
+                                <br>
+                                <div id="id_detalles_lista" class="col-md-12 col-12">
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <button onclick="agregarDetalle()" class="btn round btn-outline-primary mr-1 mb-1" type="button" data-repeater-create>
+                                        <i class="bx bx-plus"></i><span>{% trans "Agregar detalle" %}</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <h6>{% trans "Categorías relacionadas" %}</h6>
+                                <ul class="list-unstyled mb-0">
+                                    {% for categoria in categorias_lista %}
+                                    <li class="d-inline-block mr-2 mb-1"></li>
+                                        <fieldset>
+                                            <div class="checkbox">
+                                                <input type="checkbox" class="checkbox-input" id="id_check{{categoria.id_categoria}}" value="{{categoria.id_categoria}}">
+                                                <label for="id_check{{categoria.id_categoria}}">{{ categoria.descripcion }}</label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+            <button type="button" onclick="guardarPiedra()" class="btn btn-primary">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Crear" %}</span>
+            </button>
+            {% endif %}
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cerrar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        console.log(error);
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "SKU ya existe" %}','red');
+        }
+
+        categorias_item_lista = {{ categorias_piedra_lista|safe }};
+        categorias_item_lista.forEach(categoria => {
+            categoria_item = categoria[0];
+            $('#id_check'+categoria_item).prop('checked', true);
+        });
+        detalles_lista = {{ detalles|safe }};
+        // console.log(detalles_lista)
+        detalles_lista.forEach(detalle => {
+            console.log(detalle)
+            let div = `
+            <div class="row">
+                <div class="col-md-3 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.medida}" lang="en-150" class="form-control inputdetalle" id="id_medida" readonly>
+                        <label for="id_valor">{% trans "Medida" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.costo_taller}" lang="en-150" class="form-control inputdetalle" id="id_costo" readonly>
+                        <label for="id_valor">{% trans "Costo" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.precio_taller}" lang="en-150" class="form-control inputdetalle" id="id_precio" readonly>
+                        <label for="id_valor">{% trans "Precio" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-1 col-2 form-group">
+                    <button onclick="editarDetalle(${detalle.id_detalle_piedra})" class="btn btn-icon btn-warning rounded-circle" type="button">
+                        <i class="bx bx-edit"></i>
+                    </button>
+                </div>
+            </div>`;
+            $('#id_detalles_lista').append(div);
+            nombrarElementosDetalles();
+        })
+    });
+
+    function editarDetalle(id_detalle){
+        url = "{% url 'ctg:detalles_piedra_editar' 0 %}";
+        url = url.replace(/0/, id_detalle);
+        return abrir_modal(url);
+    }
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(){
+
+        var preview = document.querySelector("img[name='imagentmp']");
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+        var elemento = 'id_imagen';
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+        }
+
+    }
+
+    function agregarDetalle(){
+        let div = `
+        <div class="row itemDetalle">
+            <div class="col-md-3 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_medida">
+                    <label for="id_valor">{% trans "Medida" %}</label>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_costo">
+                    <label for="id_valor">{% trans "Costo" %}</label>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_precio">
+                    <label for="id_valor">{% trans "Precio" %}</label>
+                </div>
+            </div>
+            <div class="col-md-1 col-2 form-group">
+                <button class="btn btn-icon btn-danger rounded-circle buttondetalle" type="button" data-repeater-delete>
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+        </div>`;
+        $('#id_detalles_lista').append(div);
+        nombrarElementosDetalles();
+    }
+
+    function borrardivDetalle(div){
+        $(div).remove();
+        nombrarElementosDetalles();
+    }
+
+    function nombrarElementosDetalles(){
+        num = 0;
+        $('div.itemDetalle').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'divdetalle'+num);
+            inputs = $(this).find('.inputdetalle');
+            $(inputs[0]).removeAttr('id');
+            $(inputs[0]).attr('id', 'id_medida'+num);
+            $(inputs[1]).removeAttr('id');
+            $(inputs[1]).attr('id', 'id_costo'+num);
+            $(inputs[2]).removeAttr('id');
+            $(inputs[2]).attr('id', 'id_precio'+num);
+            buttons = $(this).find('.buttondetalle');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardivDetalle(divdetalle'+num+')');
+        });
+    }
+
+    function obtenerDetalles(){
+        num = 0;
+        detalles = []
+        $('div.itemDetalle').each(function (){
+            num++;
+            medida = $('#id_medida'+num).val();
+            costo = $('#id_costo'+num).val();
+            precio = $('#id_precio'+num).val();
+            detalle = {
+                'medida': medida,
+                'costo': costo,
+                'precio': precio
+            };
+            detalles.push(detalle);
+        });
+    }
+
+    function guardarPiedra(){
+        if($('#id_imagen').val() === ''){
+            mensaje('{% trans "Falta cargar una imagen" %}', 'orange');
+            return;
+        }
+
+        if($('#id_sku').val() === ''){
+            mensaje('{% trans "Ingrese SKU de la piedra" %}', 'orange');
+            return;
+        }
+
+        if($('#id_descripcion').val() === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'orange');
+            return;
+        }
+
+        obtenerDetalles();
+
+        if(detalles.length === 0){
+            mensaje('{% trans "Debe agregar al menos un detalle" %}', 'orange');
+            return;
+        }
+
+        categorias = new Array();
+
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+
+            check = categoria.prop('checked');
+
+            if(check){
+                categorias.push(categoria.val());
+            }
+
+        });
+
+        if(categorias.length === 0){
+            mensaje('{% trans " Seleccione al menos una categoría" %}', 'orange');
+            return;
+        } else {
+            form = document.getElementById('formPiedras');
+            let data = new FormData(form);
+            data.append('detalles_lista[]', JSON.stringify(detalles));
+            data.append('categorias_lista[]', JSON.stringify(categorias));
+            let token = '{{ csrf_token }}';
+            console.log(data)
+            // let piedra_id = '{{ piedra.id_piedra }}';
+
+            let url = "{% url 'ctg:piedras_crear' %}";
+            // let template = url_modificada.replace(/0/, piedra_id);
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: data,
+                success: function(response){
+                    cerrar_modal();
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+        }
+    }
+</script>

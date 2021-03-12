@@ -1,0 +1,1700 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bienvenido a la documentación de Sindri &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Introducción" href="introduccion.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_tasks.html"><strong>Tareas ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_templates.html"><strong>Templates trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_models.html"><strong>Modelos trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_urls.html"><strong>URLs trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_views.html"><strong>Views trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_forms.html"><strong>Forms trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_serializers.html"><strong>Serializadores trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_tasks.html"><strong>Tareas trn</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación usr</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_templates.html"><strong>Templates usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_models.html"><strong>Modelos usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_urls.html"><strong>URLs usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_views.html"><strong>Views usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_forms.html"><strong>Forms usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_backends.html"><strong>Backends usr</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_tasks.html"><strong>Tareas usr</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Bienvenido a la documentación de Sindri</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bienvenido-a-la-documentacion-de-sindri">
+<h1>Bienvenido a la documentación de Sindri<a class="headerlink" href="#bienvenido-a-la-documentacion-de-sindri" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion.html"><strong>Configuración del sistema</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#apps-instaladas">Apps instaladas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#django-channels">Django Channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#base-de-datos">Base de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#internacionalizacion">Internacionalización</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#archivos-estaticos-y-archivos-media">Archivos estáticos y archivos media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#autenticacion-de-usuarios">Autenticación de usuarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuracion.html#servidor-de-correos">Servidor de correos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_templates.html"><strong>Templates Bases</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_templates.html#template-error404">Template error404</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_templates.html#template-home">Template home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_templates.html#template-login">Template login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_templates.html#template-logout">Template logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_templates.html#template-sin-premisos">Template sin_premisos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_models.html"><strong>Modelos Bases</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_models.html#clasemodelo">ClaseModelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_models.html#estados">Estados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_urls.html"><strong>URLs Bases</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-home">url home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-login">url login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-logout">url logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-logout-modal">url logout_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-sin-permisos">url sin_permisos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_urls.html#url-error404">url error404</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_views.html"><strong>Views Bases</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-home">Vista Home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-user-login">Vista user_login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-logout">Vista Logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-sinpermisostemplate">Vista SinPermisosTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-error404template">Vista error404Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bases/bases_views.html#vista-sinpermisos">Vista SinPermisos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_templates.html"><strong>Templates cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-actualizar-rubro-modal">Template actualizar_rubro_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-actualizarrubro">Función actualizarRubro</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cal-porcentajes-modal">Template cal_porcentajes_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-calcularporcentajepromedio">Función CalcularPorcentajePromedio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-calcularporcentajebase">Función CalcularPorcentajeBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-calcularporcentajetaller">Función CalcularPorcentajeTaller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-guardar">Función guardar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-envio-reportes">Template cfg_envio_reportes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-guardarconfiguracion">Función guardarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-ext-form">Template cfg_ext_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#funcion-agregarconfiguracion">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-op-form">Template cfg_op_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-ope-pro-form">Template cfg_ope_pro_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#id1">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-ope-tal-form">Template cfg_ope_tal_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#id2">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-pais-form">Template cfg_pais_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-ta-form">Template cfg_ta_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-cfg-tmp-lim-form">Template cfg_tmp_lim_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_templates.html#id3">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-rubro-form-modal">Template rubro_form_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_templates.html#template-rubros-lista">Template rubros_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_models.html"><strong>Modelos cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-configuracionsistema">Modelo ConfiguracionSistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-configgeneral">Modelo ConfigGeneral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-configutilidadtaller">Modelo ConfigUtilidadTaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-configutilidadproveedor">Modelo ConfigUtilidadProveedor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-operacionestallervista">Modelo OperacionesTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-zonastallervista">Modelo ZonasTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-sectorestallervista">Modelo SectoresTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-operacionesproveedorvista">Modelo OperacionesProveedorVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_models.html#modelo-zonasproveedorvista">Modelo ZonasProveedorVista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_urls.html"><strong>URLs cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-pais-editar">url cfg_pais_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-ope-editar">url cfg_ope_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-calcular-porcentajes">url calcular_porcentajes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-tal-editar">url cfg_tal_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-ope-tal">url cfg_ope_tal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-ope-prv">url cfg_ope_prv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-tmp-vta">url cfg_tmp_vta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-aut-ext">url cfg_aut_ext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-rubros-lista">url cfg_rubros_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-rubros-form">url cfg_rubros_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-rubros-actualizar">url cfg_rubros_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_urls.html#url-cfg-envio-reportes">url cfg_envio_reportes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_views.html"><strong>Views cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgpaiseditarview">Vista CfgPaisEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgopeditarview">Vista CfgOpEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-calculadoraporcentajesview">Vista CalculadoraPorcentajesView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgtaleditarview">Vista CfgTalEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgoperacionestaller">Vista CfgOperacionesTaller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id1">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id2">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgoperacionesproveedor">Vista CfgOperacionesProveedor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id3">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id4">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgtiempoventa">Vista CfgTiempoVenta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id5">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id6">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-cfgpermitirexterno">Vista CfgPermitirExterno</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id7">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id8">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-rubroslistaview">Vista RubrosListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-rubrosformview">Vista RubrosFormView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id9">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id10">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-actualizarrubromodal">Vista ActualizarRubroModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id11">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id12">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_views.html#vista-envioreportesview">Vista EnvioReportesView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id13">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cfg/cfg_views.html#id14">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_forms.html"><strong>Forms cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_forms.html#formulario-cfgopeform">Formulario CfgOpeForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_forms.html#formulario-cfgtalform">Formulario CfgTalForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_forms.html#formulario-cfgpaisform">Formulario CfgPaisForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_forms.html#formulario-rubrosform">Formulario RubrosForm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfg/cfg_tasks.html#formulario-creartareaenvioreporte">Formulario CrearTareaEnvioReporte</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_templates.html"><strong>Templates clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_templates.html#template-actualizar-cliente-modal">Template actualizar_cliente_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-actualizarcliente">Función actualizarCliente</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_templates.html#template-clientes-form">Template clientes_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_templates.html#template-clientes-lista">Template clientes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_templates.html#template-clientes-modal">Template clientes_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-buscarcliente">Función buscarCliente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-habilitarguardado">Función habilitarGuardado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-borrardatos">Función borrarDatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-guardarcliente">Función guardarCliente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_templates.html#funcion-generarorden">Función generarOrden</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_models.html"><strong>Modelos clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_models.html#modelo-clientes">Modelo Clientes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_urls.html"><strong>URLs clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-lista">url clientes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-crear">url clientes_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-editar">url clientes_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-actualizar">url clientes_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-lista-api">url clientes_lista_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-buscar">url clientes_buscar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_urls.html#url-clientes-modal">url clientes_modal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_views.html"><strong>Views clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clienteslistaview">Vista ClientesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clientescrearview">Vista ClientesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clienteseditarview">Vista ClientesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-actualizarclientemodal">Vista ActualizarClienteModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clientesmodalview">Vista ClientesModalView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clienteslistaapiview">Vista ClientesListaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-busquedacliente">Vista BusquedaCliente</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#id2">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_views.html#vista-clientescrearmodal">Vista ClientesCrearModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#id3">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clt/clt_views.html#id4">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_forms.html"><strong>Forms clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_forms.html#formulario-clientesform">Formulario ClientesForm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clt/clt_serializers.html"><strong>Serializadores clt</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clt/clt_serializers.html#serializador-clientesserializer">Serializador ClientesSerializer</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_templates.html"><strong>Templates ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-activar-item-modal">Template activar_item_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-activaritem">Función activarItem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-inactivar-item-modal">Template inactivar_item_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-inactivaritem">Función inactivarItem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-adicional-modal">Template actualizar_adicional_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizaradicional">Función actualizarAdicional</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-categoria-modal">Template actualizar_categoria_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizarcategoria">Función actualizarCategoria</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-color-modal">Template actualizar_color_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizarcolor">Función actualizarColor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-detalle-item-modal">Template actualizar_detalle_item_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizardetalle">Función actualizarDetalle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-detalle-piedra-modal">Template actualizar_detalle_piedra_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizardetallepiedra">Función actualizarDetallePiedra</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-division-modal">Template actualizar_division_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizardivision">Función actualizarDivision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-piedra-modal">Template actualizar_piedra_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizarpiedra">Función actualizarPiedra</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-actualizar-talla-modal">Template actualizar_talla_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-actualizartalla">Función actualizarTalla</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-adicional-agregar-modal">Template adicional_agregar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-adicionales-form">Template adicionales_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-validarimagen">Función validarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-seleccionarimagen">Función seleccionarImagen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-adicionales-lista">Template adicionales_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-catalogo-fijo">Template catalogo_fijo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-buscaritems">Función buscarItems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-buscaritemstaller">Función buscarItemsTaller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-buscaritemsdivision">Función buscarItemsDivision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-buscaritemscategoria">Función buscarItemsCategoria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-cargaritems">Función cargarItems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-verdetalles">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-cargardivisiones">Función cargarDivisiones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-llenardivisiones">Función llenarDivisiones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-cargarcategorias">Función cargarCategorias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-llenarcategorias">Función llenarCategorias</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-catalogo-gramo">Template catalogo_gramo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id1">Función buscarItems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id2">Función buscarItemsTaller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id3">Función buscarItemsDivision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id4">Función buscarItemsCategoria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id5">Función cargarItems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id6">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id7">Función cargarDivisiones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id8">Función llenarDivisiones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id9">Función cargarCategorias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id10">Función llenarCategorias</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-categorias-form">Template categorias_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-categorias-lista">Template categorias_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-colores-form">Template colores_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-colores-lista">Template colores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-contar-cotizacion-modal">Template contar_cotizacion_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-guardarcotizacion">Función guardarCotizacion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-adicional-modal">Template detalle_adicional_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-agregar-modal">Template detalle_agregar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-editar-modal">Template detalle_editar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-item-modal">Template detalle_item_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-piedra-agregar-modal">Template detalle_piedra_agregar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-piedra-editar-modal">Template detalle_piedra_editar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalle-piedra-modal">Template detalle_piedra_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalles-adicional-form">Template detalles_adicional_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalles-categorias-piedra-form">Template detalles_categorias_piedra_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalles-colores-form">Template detalles_colores_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalles-form">Template detalles_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-guardaritem">Función guardarItem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#funcion-eliminardetalle">Función EliminarDetalle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-detalles-piedra-form">Template detalles_piedra_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id11">Función guardarItem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_templates.html#id12">Función EliminarDetalle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-divisiones-form">Template divisiones_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-divisiones-lista">Template divisiones_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-items-form">Template items_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-piedra-agregar-modal">Template piedra_agregar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-piedras-form">Template piedras_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-piedras-lista">Template piedras_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-productos-lista">Template productos_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-servicios-lista">Template servicios_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-tallas-form">Template tallas_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_templates.html#template-tallas-lista">Template tallas_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_models.html"><strong>Modelos ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-tiposcatalogo">Modelo TiposCatalogo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-unidadesmedida">Modelo UnidadesMedida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-divisiones">Modelo Divisiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-categorias">Modelo Categorias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#manager-manejadoritems">Manager ManejadorItems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_models.html#metodo-contar-detalles">Método contar_detalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_models.html#metodo-contar-colores">Método contar_colores</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-items">Modelo Items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_models.html#metodo-comprimirimagen">Método comprimirImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_models.html#metodo-num-detalles">Método num_detalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_models.html#metodo-num-colores">Método num_colores</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-colores">Modelo Colores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-itemscolores">Modelo ItemsColores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-estandartallas">Modelo EstandarTallas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-tallas">Modelo Tallas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-detalleitems">Modelo DetalleItems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-adicionales">Modelo Adicionales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-categoriaadicionales">Modelo CategoriaAdicionales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-piedras">Modelo Piedras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-detallepiedras">Modelo DetallePiedras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-categoriapiedras">Modelo CategoriaPiedras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_models.html#modelo-conteocotizaciones">Modelo ConteoCotizaciones</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_urls.html"><strong>URLs ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-divisiones-lista">url divisiones_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-divisiones-crear">url divisiones_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-divisiones-editar">url divisiones_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-divisiones-actualizar">url divisiones_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-divisiones-buscar-api">url divisiones_buscar_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-categorias-lista">url categorias_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-categorias-crear">url categorias_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-categorias-editar">url categorias_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-categorias-actualizar">url categorias_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-categorias-buscar-api">url categorias_buscar_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-tallas-lista">url tallas_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-tallas-crear">url tallas_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-tallas-editar">url tallas_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-tallas-actualizar">url tallas_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-colores-lista">url colores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-colores-crear">url colores_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-colores-editar">url colores_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-colores-actualizar">url colores_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicionales-lista">url adicionales_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicionales-crear">url adicionales_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-adicional-crear">url detalles_adicional_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicionales-editar">url adicionales_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicionales-actualizar">url adicionales_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicionales-modal-lista">url adicionales_modal_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-adicional-detalle-modal">url adicional_detalle_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedras-lista">url piedras_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedras-crear">url piedras_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-crear">url detalles_piedra_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedras-editar">url piedras_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-agregar">url detalles_piedra_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-categorias-agregar">url detalles_piedra_categorias_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-editar">url detalles_piedra_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-actualizar">url detalles_piedra_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedra-detalle-modal">url piedra_detalle_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-piedra-eliminar">url detalles_piedra_eliminar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedras-modal-lista">url piedras_modal_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-piedras-actualizar">url piedras_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-productos-lista">url productos_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-servicios-lista">url servicios_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-crear">url detalles_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-crear">url items_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-editar">url items_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-item-inactivar-modal">url item_inactivar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-item-activar-modal">url item_activar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-agregar">url detalles_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalles-colores-agregar">url detalles_colores_agregar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-detalle">url items_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-detalle-editar">url items_detalle_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-detalle-actualizar">url items_detalle_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-detalle-eliminar">url items_detalle_eliminar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-contar-cotizacion">url contar_cotizacion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-buscar-items-api">url buscar_items_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-todos-api">url items_todos_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-taller-api">url items_taller_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-division-api">url items_division_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-items-categoria-api">url items_categoria_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalle-buscar">url detalle_buscar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-detalle-piedra-buscar">url detalle_piedra_buscar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-catalogo-gramos">url catalogo_gramos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_urls.html#url-catalogo-fijo">url catalogo_fijo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_views.html"><strong>Views ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-divisioneslistaview">Vista DivisionesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-divisionescrearview">Vista DivisionesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-divisioneseditarview">Vista DivisionesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizardivisionmodal">Vista ActualizarDivisionModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-busquedadivisionesapiview">Vista BusquedaDivisionesApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-categoriaslistaview">Vista CategoriasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-categoriascrearview">Vista CategoriasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-categoriaseditarview">Vista CategoriasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizarcategoriamodal">Vista ActualizarCategoriaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id2">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id3">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-busquedacategoriasapiview">Vista BusquedaCategoriasApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id4">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-tallaslistaview">Vista TallasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-tallascrearview">Vista TallasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-tallaseditarview">Vista TallasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizartallamodal">Vista ActualizarTallaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id5">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id6">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-coloreslistaview">Vista ColoresListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-colorescrearview">Vista ColoresCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-coloreseditarview">Vista ColoresEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizarcolormodal">Vista ActualizarColorModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id7">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id8">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-adicionaleslistaview">Vista AdicionalesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-adicionalesmodallistaview">Vista AdicionalesModalListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-adicionalescrearview">Vista AdicionalesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detalleadicionalcrearview">Vista DetalleAdicionalCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id9">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id10">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-adicionaleseditarview">Vista AdicionalesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizaradicionalmodal">Vista ActualizarAdicionalModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id11">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id12">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-adicionaldetalleview">Vista adicionalDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id13">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-piedraslistaview">Vista PiedrasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-piedrasmodallistaview">Vista PiedrasModalListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-piedrascrearview">Vista PiedrasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-piedraseditarview">Vista PiedrasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallepiedracrearview">Vista DetallePiedraCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id14">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallepiedracategoriasview">Vista DetallePiedraCategoriasView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id15">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id16">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallepiedraagregarview">Vista DetallePiedraAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id17">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id18">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallepiedraeditarview">Vista DetallePiedraEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-piedradetalleview">Vista PiedraDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id19">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizardetallepiedramodal">Vista ActualizarDetallePiedraModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id20">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id21">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallepiedraeliminarview">Vista DetallePiedraEliminarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id22">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizarpiedramodal">Vista ActualizarPiedraModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id23">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id24">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-productoslistaview">Vista ProductosListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id25">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-servicioslistaview">Vista ServiciosListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id26">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-gramolistaview">Vista GramoListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id27">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-busquedaitemsapiview">Vista BusquedaItemsApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id28">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemstodosapiview">Vista ItemsTodosApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id29">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemsportallerapiview">Vista ItemsPorTallerApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id30">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemspordivisionapiview">Vista ItemsPorDivisionApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id31">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemsporcategoriaapiview">Vista ItemsPorCategoriaApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id32">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-fijolistaview">Vista FijoListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id33">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemscrearview">Vista ItemsCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemseditarview">Vista ItemsEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallecrearview">Vista DetalleCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id34">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detalleeditarview">Vista DetalleEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detalleeliminarview">Vista DetalleEliminarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id35">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-actualizardetalleitemmodal">Vista ActualizarDetalleItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id36">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id37">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detallecoloresagregarview">Vista DetalleColoresAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id38">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id39">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-detalleagregarview">Vista DetalleAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id40">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id41">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-itemdetalleview">Vista ItemDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id42">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-inactivaritemmodal">Vista InactivarItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id43">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id44">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-activaritemmodal">Vista ActivarItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id45">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id46">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-contarcotizacion">Vista ContarCotizacion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id47">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id48">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-busquedadetalle">Vista BusquedaDetalle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id49">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_views.html#vista-busquedadetallepiedra">Vista BusquedaDetallePiedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ctg/ctg_views.html#id50">Método GET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_forms.html"><strong>Forms ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-divisionform">Formulario DivisionForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-categoriaform">Formulario CategoriaForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-tallasform">Formulario TallasForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-coloresform">Formulario ColoresForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-adicionalesform">Formulario AdicionalesForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-piedrasform">Formulario PiedrasForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-detallespiedraform">Formulario DetallesPiedraForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-itemsform">Formulario ItemsForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_forms.html#formulario-detallesform">Formulario DetallesForm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-detallesserializer">Serializador DetallesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-detallepiedraserializer">Serializador DetallePiedraSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-divisionesserializer">Serializador DivisionesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-categoriasserializer">Serializador CategoriasSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-coloresserializer">Serializador ColoresSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctg/ctg_serializers.html#serializador-itemsserializer">Serializador ItemsSerializer</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_templates.html"><strong>Tareas dsh</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_templates.html#template-dashboard-operaciones">Template dashboard_operaciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargardatos">Función cargarDatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargartotalesporestado">Función cargarTotalesPorEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargartotalesintext">Función cargarTotalesIntExt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargarfabricacionespormes">Función cargarFabricacionesPorMes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargargramosporjoyeria">Función cargarGramosPorJoyeria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargarproductomascotizado">Función cargarProductoMasCotizado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargarproductomasfabricado">Función cargarProductoMasFabricado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargardetallesproducto">Función cargarDetallesProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargarcategoriacolor">Función cargarCategoriaColor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_templates.html#template-dashboard-taller">Template dashboard_taller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id1">Función cargarDatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id2">Función cargarTotalesPorEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#funcion-cargarsolicitudesestado">Función cargarSolicitudesEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id3">Función cargarFabricacionesPorMes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id4">Función cargarGramosPorJoyeria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id5">Función cargarProductoMasCotizado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id6">Función cargarProductoMasFabricado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id7">Función cargarDetallesProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_templates.html#id8">Función cargarCategoriaColor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_urls.html"><strong>URLs dsh</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_urls.html#url-dashboard-operaciones">url dashboard_operaciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_urls.html#url-dashboard-taller">url dashboard_taller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_urls.html#url-dashboard-usuario-api">url dashboard_usuario_api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_urls.html#url-dashboard-taller-api">url dashboard_taller_api</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsh/dsh_views.html"><strong>Views dsh</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_views.html#vista-dashboardadminopeapiview">Vista DashboardAdminOpeAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_views.html#metodo-get">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_views.html#vista-dashboardadmintalapiview">Vista DashboardAdminTalAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dsh/dsh_views.html#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_views.html#vista-dashboardadminopeview">Vista DashboardAdminOpeView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dsh/dsh_views.html#vista-dashboardadmintalview">Vista DashboardAdminTalView</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_models.html"><strong>Modelos ntf</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_models.html#modelo-notificaciones">Modelo Notificaciones</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_urls.html"><strong>URLs cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_urls.html#url-notificaciones-usuario-lista">url notificaciones_usuario_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_urls.html#url-notificaciones-taller-lista">url notificaciones_taller_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_urls.html#url-notificaciones-usuario-primera">url notificaciones_usuario_primera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_urls.html#url-notificaciones-taller-primera">url notificaciones_taller_primera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_urls.html#url-notificacion-actualizar">url notificacion_actualizar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_views.html"><strong>Views ntf</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_views.html#vista-obtenernotificacionesusuarioview">Vista ObtenerNotificacionesUsuarioView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ntf/ntf_views.html#metodo-get">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_views.html#vista-obtenernotificacionestallerview">Vista ObtenerNotificacionesTallerView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ntf/ntf_views.html#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_views.html#vista-primeranotificacionesusuarioview">Vista PrimeraNotificacionesUsuarioView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ntf/ntf_views.html#id2">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_views.html#vista-primeranotificacionestallerview">Vista PrimeraNotificacionesTallerView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ntf/ntf_views.html#id3">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_views.html#vista-actualizarnotificacionview">Vista ActualizarNotificacionView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ntf/ntf_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_serializers.html#serializador-notificacionesserializer">Serializador NotificacionesSerializer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ntf/ntf_tasks.html"><strong>Tareas ntf</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-crearnotificaciontaller">Tarea crearNotificacionTaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionsolicitudcreada">Tarea NotificacionSolicitudCreada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionsolicitudcotizada">Tarea NotificacionSolicitudCotizada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionordenes">Tarea NotificacionOrdenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionevaluarsolicitud">Tarea NotificacionEvaluarSolicitud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionlimiteventa">Tarea NotificacionLimiteVenta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ntf/ntf_tasks.html#tarea-notificacionordenesactualizar">Tarea NotificacionOrdenesActualizar</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_templates.html"><strong>Templates prv</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_templates.html#template-actualizar-proveedor-modal">Template actualizar_proveedor_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prv/prv_templates.html#funcion-actualizarproveedor">Función actualizarProveedor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_templates.html#template-proveedores-form">Template proveedores_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_templates.html#template-proveedores-lista">Template proveedores_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_models.html"><strong>Modelos prv</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_models.html#modelo-proveedores">Modelo Proveedores</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_urls.html"><strong>URLs prv</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_urls.html#url-proveedores-lista">url proveedores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_urls.html#url-proveedores-crear">url proveedores_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_urls.html#url-proveedores-editar">url proveedores_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_urls.html#url-proveedores-actualizar">url proveedores_actualizar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_views.html"><strong>Views prv</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_views.html#vista-proveedoreslistaview">Vista ProveedoresListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_views.html#vista-proveedorescrearview">Vista ProveedoresCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_views.html#vista-proveedoreseditarview">Vista ProveedoresEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_views.html#vista-actualizarproveedormodal">Vista ActualizarProveedorModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prv/prv_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prv/prv_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prv/prv_forms.html"><strong>Forms prv</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prv/prv_forms.html#formulario-proveedorform">Formulario ProveedorForm</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_templates.html"><strong>Templates ubc</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-actualizar-ciudad-modal">Template actualizar_ciudad_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_templates.html#funcion-actualizarciudad">Función actualizarCiudad</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-actualizar-localidad-modal">Template actualizar_localidad_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_templates.html#funcion-actualizarlocalidad">Función actualizarLocalidad</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-actualizar-sector-modal">Template actualizar_sector_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_templates.html#funcion-actualizarsector">Función actualizarSector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-actualizar-zona-modal">Template actualizar_zona_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_templates.html#funcion-actualizarzona">Función actualizarZona</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-ciudades-form">Template ciudades_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-ciudades-lista">Template ciudades_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-localidades-form">Template localidades_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-localidades-lista">Template localidades_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-paises-form">Template paises_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-paises-lista">Template paises_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-regiones-form">Template regiones_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-regiones-lista">Template regiones_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-sectores-form">Template sectores_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-sectores-lista">Template sectores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-zonas-form">Template zonas_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_templates.html#template-zonas-lista">Template zonas_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_models.html"><strong>Modelos ubc</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-regiones">Modelo Regiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-paises">Modelo Paises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-localidades">Modelo Localidades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-zonas">Modelo Zonas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-ciudades">Modelo Ciudades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_models.html#modelo-sectores">Modelo Sectores</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_urls.html"><strong>URLs ubc</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-regiones-lista">url regiones_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-regiones-crear">url regiones_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-regiones-editar">url regiones_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-paises-lista">url paises_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-paises-crear">url paises_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-paises-editar">url paises_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-localidades-lista">url localidades_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-localidades-crear">url localidades_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-localidades-editar">url localidades_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-localidades-actualizar">url localidades_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-zonas-lista">url zonas_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-zonas-crear">url zonas_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-zonas-editar">url zonas_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-zonas-actualizar">url zonas_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-ciudades-lista">url ciudades_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-ciudades-crear">url ciudades_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-ciudades-editar">url ciudades_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-ciudades-actualizar">url ciudades_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-sectores-lista">url sectores_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-sectores-crear">url sectores_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-sectores-editar">url sectores_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_urls.html#url-sectores-actualizar">url sectores_actualizar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_views.html"><strong>Views ubc</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-regioneslistaview">Vista RegionesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-regionescrearview">Vista RegionesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-regioneseditarview">Vista RegionesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-paiseslistaview">Vista PaisesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-paisescrearview">Vista PaisesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-paiseseditarview">Vista PaisesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-localidadeslistaview">Vista LocalidadesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-localidadescrearview">Vista LocalidadesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-localidadeseditarview">Vista LocalidadesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-actualizarlocalidadmodal">Vista ActualizarLocalidadModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-zonaslistaview">Vista ZonasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-zonascrearview">Vista ZonasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-zonaseditarview">Vista ZonasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-actualizarzonamodal">Vista ActualizarZonaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id1">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id2">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-ciudadeslistaview">Vista CiudadesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-ciudadescrearview">Vista CiudadesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-ciudadeditarview">Vista CiudadEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-actualizarciudadmodal">Vista ActualizarCiudadModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id3">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id4">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-sectoreslistaview">Vista SectoresListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-sectorescrearview">Vista SectoresCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-sectoreseditarview">Vista SectoresEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_views.html#vista-actualizarsectormodal">Vista ActualizarSectorModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id5">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubc/ubc_views.html#id6">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubc/ubc_forms.html"><strong>Forms ubc</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-regionform">Formulario RegionForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-paisform">Formulario PaisForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-localidadform">Formulario LocalidadForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-zonaform">Formulario ZonaForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-ciudadform">Formulario CiudadForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubc/ubc_forms.html#formulario-sectorform">Formulario SectorForm</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_templates.html"><strong>Templates trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-agregar-adicional-modal">Template agregar_adicional_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-calcularprecioadicional">Función calcularPrecioAdicional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-agregar">Función agregar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-agregar-piedra-modal">Template agregar_piedra_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-buscardetallepiedra">Función buscarDetallePiedra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id1">Función agregar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-aprobacion-pago-modal">Template aprobacion_pago_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-aprobarpago">Función aprobarPago</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-comprobante-orden">Template comprobante_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-correo-cliente">Template correo_cliente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-correo-producto-recibido">Template correo_producto_recibido</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-detalle-orden-modal">Template detalle_orden_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-mostrarformulario">Función mostrarFormulario</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-validararchivo">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-enviomaterial">Función envioMaterial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-recibematerial">Función recibeMaterial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-anularorden">Función anularOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-iniciartrabajo">Función iniciarTrabajo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-finalizartrabajo">Función finalizarTrabajo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-enviarproducto">Función enviarProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-recibirproducto">Función recibirProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-cargardocumentosta">Función cargarDocumentosTa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-cargardocumentosop">Función cargarDocumentosOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-devolverproducto">Función devolverProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-finalizarorden">Función finalizarOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-finalizarsinventa">Función finalizarSinVenta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id2">Función finalizarSinVenta</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-detalle-solicitud-modal">Template detalle_solicitud_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-calcularprecio">Función calcularPrecio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-calcularpreciogramofijo">Función calcularPrecioGramoFijo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-calculardescuento">Función CalcularDescuento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-mostrarrubros">Función mostrarRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-ocultarrubros">Función ocultarRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-evaluar">Función evaluar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-rechazar">Función rechazar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-aceptar">Función aceptar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-respondersolicitud">Función responderSolicitud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-generarorden">Función generarOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-solicitarexterno">Función SolicitarExterno</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-agregarrubro">Función agregarRubro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-borrardiv">Función borrardiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-nombrarelementos">Función nombrarElementos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-obtenerrubros">Función obtenerRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-calcularvalorestaller">Función calcularValoresTaller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-ordenes-item-crear">Template ordenes_item_crear</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-buscardetalle">Función buscarDetalle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id3">Función calcularPrecio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id4">Función calcularPrecioGramoFijo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id5">Función CalcularDescuento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-cargaradicionales">Función cargarAdicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-borraradicional">Función borrarAdicional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-buscarelemento">Función buscarElemento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-borraradicionales">Función borrarAdicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id6">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-guardarorden">Función guardarOrden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-ordenes-lista">Template ordenes_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-obtenerordenesfecha">Función obtenerOrdenesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-generarreporte">Función generarReporte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-verdetalles">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-formato">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-ordenes-pagos-lista">Template ordenes_pagos_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id7">Función obtenerOrdenesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id8">Función generarReporte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id9">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id10">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-ordenes-solicitud-crear">Template ordenes_solicitud_crear</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id11">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id12">Función guardarOrden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-reporte-lista-ordenes">Template reporte_lista_ordenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-solicitudes-editar-form">Template solicitudes_editar_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-validarimagen">Función validarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-seleccionarimagen">Función seleccionarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-guardar">Función guardar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-solicitudes-form">Template solicitudes_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id13">Función validarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id14">Función seleccionarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id15">Función guardar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id16">Función agregarRubro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id17">Función borrardiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id18">Función nombrarElementos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id19">Función obtenerRubros</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-solicitudes-lista">Template solicitudes_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#funcion-obtenersolicitudesfecha">Función obtenerSolicitudesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id20">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id21">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_templates.html#template-tipo-solicitud-modal">Template tipo_solicitud_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_templates.html#id22">Función solicitarExterno</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_models.html"><strong>Modelos trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-origenmaterial">Modelo OrigenMaterial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-solicitudtrabajo">Modelo SolicitudTrabajo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-detallesolicitud">Modelo DetalleSolicitud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-ordentrabajo">Modelo OrdenTrabajo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-detalleorden">Modelo DetalleOrden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-rubrosasociados">Modelo RubrosAsociados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_models.html#modelo-solicitudrubros">Modelo SolicitudRubros</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_urls.html"><strong>URLs trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-lista">url solicitudes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-api-lista">url solicitudes_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-api-lista-fecha">url solicitudes_api_lista_fecha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-crear">url solicitudes_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-tipo">url solicitudes_tipo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-editar">url solicitudes_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitudes-detalle">url solicitudes_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-solicitar-externo">url solicitar_externo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-generar-orden-solicitud">url generar_orden_solicitud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-lista">url ordenes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-api-lista">url ordenes_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-api-lista-fecha">url ordenes_api_lista_fecha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-pagos-lista">url ordenes_pagos_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-pagos-api-lista">url ordenes_pagos_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-tipo">url ordenes_tipo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-solicitud-crear">url ordenes_solicitud_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-item-crear">url ordenes_item_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-detalle">url ordenes_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-agregar-piedra">url ordenes_agregar_piedra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-ordenes-agregar-adicional">url ordenes_agregar_adicional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-envio-material">url envio_material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-recibe-material">url recibe_material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-anular-orden">url anular_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-finalizar-trabajo">url finalizar_trabajo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-enviar-producto">url enviar_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-recibir-producto">url recibir_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-cargar-doc-taller">url cargar_doc_taller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-cargar-doc-ope">url cargar_doc_ope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-devolver-producto">url devolver_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-finalizar-orden">url finalizar_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-finalizar-sin-venta">url finalizar_sin_venta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-orden-aprobacion-pago">url orden_aprobacion_pago</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-correo-cliente">url correo_cliente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-correo-cliente-tmp">url correo_cliente_tmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-comprobante-tmp">url comprobante_tmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-rep-ordenes">url rep_ordenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-rep-ordenes-admin-op">url rep_ordenes_admin_op</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_urls.html#url-rep-pagos-aprobados">url rep_pagos_aprobados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_views.html"><strong>Views trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitudeslistaview">Vista SolicitudesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitudeslistaapiview">Vista SolicitudesListaAPIView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitudeslistafechaapiview">Vista SolicitudesListaFechaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#metodo-get">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-tiposolicitudview">Vista TipoSolicitudView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitudescrearview">Vista SolicitudesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitudeseditarview">Vista SolicitudesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicituddetalleview">Vista SolicitudDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id1">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-generarordensolicitudview">Vista GenerarOrdenSolicitudView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id2">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-solicitaraexternoview">Vista SolicitarAExternoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id3">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordeneslistaview">Vista OrdenesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordeneslistaapiview">Vista OrdenesListaAPIView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordeneslistafechaapiview">Vista OrdenesListaFechaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id4">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordenespagoslistaview">Vista OrdenesPagosListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordenespagoslistaapiview">Vista OrdenesPagosListaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id5">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-tipoordenview">Vista TipoOrdenView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-crearordensolicitudview">Vista CrearOrdenSolicitudView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id6">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id7">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-crearordenitemview">Vista CrearOrdenItemView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id8">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id9">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-ordendetalleview">Vista OrdenDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id10">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id11">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-correotemplateview">Vista CorreoTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id12">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-correozonaltemplateview">Vista CorreoZonalTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id13">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-comprobantetemplateview">Vista ComprobanteTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id14">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-reporteordeneslistaview">Vista ReporteOrdenesListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id15">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-reporteordenesadminopview">Vista ReporteOrdenesAdminOpView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id16">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-agregarpiedraview">Vista AgregarPiedraView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id17">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-agregaradicionalview">Vista AgregarAdicionalView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id18">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-aprobacionpagomodalview">Vista AprobacionPagoModalView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id19">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id20">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-enviomaterialview">Vista EnvioMaterialView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id21">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-recibirmaterialview">Vista RecibirMaterialView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id22">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-anularordenview">Vista AnularOrdenView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id23">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-finalizartrabajoview">Vista FinalizarTrabajoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id24">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-enviarproductoview">Vista EnviarProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id25">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-recibirproductoview">Vista RecibirProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id26">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-cargardocumentostaller">Vista CargarDocumentosTaller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id27">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-cargardocumentosoperaciones">Vista CargarDocumentosOperaciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id28">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-devolverproductoview">Vista DevolverProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id29">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-finalizarordenview">Vista FinalizarOrdenView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id30">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-finalizarsinventaview">Vista FinalizarSinVentaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trn/trn_views.html#id31">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-enviarcorreoview">Vista EnviarCorreoView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_views.html#vista-reporteordenespagos">Vista ReporteOrdenesPagos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_forms.html"><strong>Forms trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-solicitudesform">Formulario SolicitudesForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-detallesolicitudform">Formulario DetalleSolicitudForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-solicituddetalleform">Formulario SolicitudDetalleForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-solicitudeditarform">Formulario SolicitudEditarForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-ordenenviomaterialform">Formulario OrdenEnvioMaterialForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_forms.html#formulario-ordenanticipoform">Formulario OrdenAnticipoForm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_serializers.html"><strong>Serializadores trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-ordenesserializer">Serializador OrdenesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-solicitudesserializer">Serializador SolicitudesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-solicitaraexternoserializer">Serializador SolicitarAExternoSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-enviomaterialserializer">Serializador EnvioMaterialSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-recibirmaterialserializer">Serializador RecibirMaterialSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-anularordenserializer">Serializador AnularOrdenSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-finalizartrabajoserializer">Serializador FinalizarTrabajoSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-enviarproductoserializer">Serializador EnviarProductoSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-recibirproductoserializer">Serializador RecibirProductoSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-cargardoctallerserializer">Serializador CargarDocTallerSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-cargardocopserializer">Serializador CargarDocOpSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-devolverproductoserializer">Serializador DevolverProductoSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-finalizarordenserializer">Serializador FinalizarOrdenSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-finalizarsinventaserializer">Serializador FinalizarSinVentaSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_serializers.html#serializador-generarordenserializer">Serializador GenerarOrdenSerializer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn/trn_tasks.html"><strong>Tareas trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_tasks.html#tarea-enviarreporte">Tarea enviarReporte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_tasks.html#tarea-enviarcorreocliente">Tarea enviarCorreoCliente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trn/trn_tasks.html#tarea-enviarcorreozonal">Tarea enviarCorreoZonal</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Aplicación usr</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_templates.html"><strong>Templates usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-activar-usuario-modal">Template activar_usuario_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_templates.html#funcion-activarusuario">Función activarUsuario</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-actualizar-rol-modal">Template actualizar_rol_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_templates.html#funcion-actualizarrol">Función actualizarRol</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-cambiar-contrasena-inicial">Template cambiar_contrasena_inicial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-cambiar-contrasena">Template cambiar_contrasena</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-editar-perfil">Template editar_perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-editar-usuario">Template editar_usuario</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-inactivar-usuario-modal">Template inactivar_usuario_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_templates.html#funcion-inactivarusuario">Función inactivarUsuario</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-reestablecer-contrasena-modal">Template reestablecer_contrasena_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_templates.html#funcion-reiniciacontrasena">Función reiniciaContrasena</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-registro">Template registro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-roles-form">Template roles_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-roles-lista">Template roles_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-roles-permisos-form">Template roles_permisos_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_templates.html#funcion-guardarrol">Función guardarRol</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-tipo-usuarios-lista">Template tipo_usuarios_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_templates.html#template-usuarios-lista">Template usuarios_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_models.html"><strong>Modelos usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-tipousuarios">Modelo TipoUsuarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-taller">Modelo Taller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-roles">Modelo Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-usuarios">Modelo Usuarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-usuariosgrupos">Modelo UsuariosGrupos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_models.html#modelo-grupospermisos">Modelo GruposPermisos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_urls.html"><strong>URLs usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-tipo-usuarios-lista">url tipo_usuarios_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-roles-lista">url roles_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-roles-actualizar">url roles_actualizar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-roles-crear">url roles_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-roles-editar">url roles_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-roles-permisos">url roles_permisos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-lista">url usuario_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-registro">url usuario_registro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-editar">url usuario_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-editar-perfil">url usuario_editar_perfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-inactivar-modal">url usuario_inactivar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-activar-modal">url usuario_activar_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-cambiar-contrasena">url usuario_cambiar_contrasena</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-cambiar-contrasena-modal">url usuario_cambiar_contrasena_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_urls.html#url-usuario-reinicia-contrasena">url usuario_reinicia_contrasena</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_views.html"><strong>Views usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-tipousuarioview">Vista TipoUsuarioView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-rollistaview">Vista RolListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-usuariolistaview">Vista UsuarioListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-editar">Vista Editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-editarperfil">Vista EditarPerfil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-rolescrearview">Vista RolesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-roleseditarview">Vista RolesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-rolespermisos">Vista RolesPermisos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-actualizarrolmodal">Vista ActualizarRolModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id1">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id2">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-registrousuario">Vista RegistroUsuario</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id3">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id4">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-inactivarusuariomodal">Vista InactivarUsuarioModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id5">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id6">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-activarusuariomodal">Vista ActivarUsuarioModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id7">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id8">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-reestablecercontrasenamodal">Vista ReestablecerContrasenaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id9">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id10">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-cambiar-contrasena">Vista cambiar_contrasena</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id11">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id12">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_views.html#vista-cambiar-contrasena-modal">Vista cambiar_contrasena_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id13">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usr/usr_views.html#id14">Método POST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_forms.html"><strong>Forms usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-tipousuarioform">Formulario TipoUsuarioForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-grupoform">Formulario GrupoForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-rolform">Formulario RolForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-rolgrupoform">Formulario RolGrupoForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-registroform">Formulario RegistroForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-asignargrupoform">Formulario AsignarGrupoForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-usuariogrupoform">Formulario UsuarioGrupoForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-editarform">Formulario EditarForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-editarusuarioform">Formulario EditarUsuarioForm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_forms.html#formulario-editarperfilform">Formulario EditarPerfilForm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_backends.html"><strong>Backends usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_backends.html#backend-emailbackend">Backend EmailBackend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usr/usr_tasks.html"><strong>Tareas usr</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usr/usr_tasks.html#tarea-enviarcorreocontrasena">Tarea enviarCorreoContrasena</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduccion.html" class="btn btn-neutral float-right" title="Introducción" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

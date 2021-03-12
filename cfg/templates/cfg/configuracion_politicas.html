@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Políticas" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Políticas y condiciones" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Texto Políticas y condiciones" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" id="frmConfiguracion" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="texto_politicas" class="form-control" id="id_texto_politicas" rows="18">{{ item.detalle }}</textarea>
+                                                        <!-- <input class="form-control" disabled value="{{ item.detalle }}"> -->
+                                                        <label for="first-name-column">{% trans "Texto" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-12">
+                                                    <label class="app-file-label">{% trans "Parámetros" %}</label>
+                                                    <div class="list-group list-group-messages my-50">
+                                                        <button onclick="agregarParametro('{tienda}')" class="btn round btn-outline-primary mr-1 mb-1" type="button">
+                                                            <span>{% trans "Tienda" %}</span>
+                                                        </button>
+                                                        <button onclick="agregarParametro('{dias_entrega}')" class="btn round btn-outline-primary mr-1 mb-1" type="button">
+                                                            <span>{% trans "Días entrega" %}</span>
+                                                        </button>
+                                                        <button onclick="agregarParametro('{dias_revision}')" class="btn round btn-outline-primary mr-1 mb-1" type="button">
+                                                            <span>{% trans "Días revisión" %}</span>
+                                                        </button>
+                                                        <button onclick="agregarParametro('{sociedad}')" class="btn round btn-outline-primary mr-1 mb-1" type="button">
+                                                            <span>{% trans "Sociedad" %}</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <a href="{% url 'bases:home' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    let textoPoliticas = '{{ politicas.descripcion }}';
+    let indice = 0;
+    let id_empresa = '{{ user.grupo_empresarial.id_grupo_empresarial }}';
+
+    $(document).ready(function(){
+        $('#id_texto_politicas').val(textoPoliticas);
+    });
+
+    function agregarParametro(parametro){
+        textoPoliticas = textoPoliticas.slice(0, indice) + parametro + textoPoliticas.slice(indice);
+        $('#id_texto_politicas').val(textoPoliticas);
+    }
+
+    document.getElementById('id_texto_politicas').addEventListener('keyup', e => {
+        textoPoliticas = $('#id_texto_politicas').val();
+        indice = e.target.selectionStart;
+    });
+
+    document.getElementById('id_texto_politicas').addEventListener('click', e => {
+        textoPoliticas = $('#id_texto_politicas').val();
+        indice = e.target.selectionStart;
+    });
+
+    function guardar(){
+
+        data = JSON.stringify({'texto_politicas': textoPoliticas});
+
+        var token = '{{ csrf_token }}';
+        var url = "{% url 'cfg:editar_politicas' 0 %}";
+        url = url.replace(/0/, id_empresa);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            data: data,
+            type: "POST",
+            // beforeSend: function(){
+            //     $('.loader').show();
+            // },
+            // complete: function(){
+            //     $('.loader').hide();
+            // },
+            success: function(response){
+                url = "{% url 'bases:home' %}";
+                location.replace(url);
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                        },
+                    }
+                });
+            }
+        });
+    }
+</script>
+{% endblock %}

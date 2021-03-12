@@ -1,0 +1,57 @@
+{% load static %} {% load i18n %}
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Eliminar sociedad" %}</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% trans "Se eliminará del sistema la sociedad seleccionada " %}{{ sociedad }}{% trans " ¿Está seguro de eliminar la sociedad?" %}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans "Atrás" %}</button>
+            <a class="btn btn-danger" onclick="EliminarSociedad()" href="#">{% trans "Sí, eliminar" %}</a>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function(){
+
+    });
+
+
+    function EliminarSociedad(){
+
+        estado = '{{ sociedad.estado }}';
+        id_sociedad = '{{ sociedad.id_sociedad }}';
+        var token = '{{ csrf_token }}';
+        dato = {
+        'estado': estado
+        }
+        var datos = JSON.stringify(dato);
+
+        var url = "{% url 'est:sociedades_eliminar' 0 %}";
+        url = url.replace(/0/, id_sociedad);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+</script>

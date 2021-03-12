@@ -1,0 +1,93 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar detalle" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.medida }}
+                                <input type="text" hidden>
+                                <label for="id_nombre">{% trans "Medida" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.costo }}
+                                <label for="city-column">{% trans "costo" %} ({{ user.pais.simbolo_moneda }})</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" id="btnGuardar" name="aceptar" class="btn btn-primary ml-1" data-dismiss="modal">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Guardar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    $("#btnGuardar").click(function(e){
+        e.preventDefault();
+        //alert("Probando");
+
+        var piedra_id = {{ piedra.id_piedra }};
+        var token = '{{ csrf_token }}';
+
+        var url_modificada = "{% url 'ctg:detalles_piedra_agregar' 0 %}";
+        var template = url_modificada.replace(/0/, piedra_id);
+
+        medida = $('#id_medida').val();
+        costo = $('#id_costo').val();
+
+        var data = {
+            "medida": medida,
+            "costo": costo
+            };
+
+        data = JSON.stringify(data);
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: template,
+            data: data,
+            success: function(response){
+            //   console.log(response);
+                location.reload(true);
+                cerrar_modal();
+            //   var tipo=(response.startsWith('Proveedor no existe') ? 'red':'green' );
+            //   mensaje(response,tipo);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                error = jqXHR.responseText;
+                duplicado = error.includes('Duplicate');
+                if(duplicado){
+                    mensaje('{% trans "Elemento ya existe" %}','red');
+                }
+                cerrar_modal();
+            }
+        });
+    });
+});
+
+</script>

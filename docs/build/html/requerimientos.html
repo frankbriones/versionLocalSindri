@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Requerimientos &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Configuración del sistema" href="configuracion.html" />
+    <link rel="prev" title="Introducción" href="introduccion.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Requerimientos</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/requerimientos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="requerimientos">
+<h1><strong>Requerimientos</strong><a class="headerlink" href="#requerimientos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Para el correcto funcionamiento del sistema es necesaria la instalación de los siguientes paquetes:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 72%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Paquete</p></th>
+<th class="head"><p>Versión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>aioamqp</p></td>
+<td><p>0.13.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>aioredis</p></td>
+<td><p>1.3.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>alabaster</p></td>
+<td><p>0.7.12+</p></td>
+</tr>
+<tr class="row-odd"><td><p>amqp</p></td>
+<td><p>2.5.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>asgi-redis</p></td>
+<td><p>1.4.3+</p></td>
+</tr>
+<tr class="row-odd"><td><p>asgiref</p></td>
+<td><p>3.2.2+</p></td>
+</tr>
+<tr class="row-even"><td><p>asn1crypto</p></td>
+<td><p>0.24.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>astroid</p></td>
+<td><p>2.2.5+</p></td>
+</tr>
+<tr class="row-even"><td><p>async-timeout</p></td>
+<td><p>3.0.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>attrs</p></td>
+<td><p>19.1.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>autobahn</p></td>
+<td><p>19.9.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Automat</p></td>
+<td><p>0.7.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>autopep8</p></td>
+<td><p>1.4.4+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Babel</p></td>
+<td><p>2.7.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>billiard</p></td>
+<td><p>3.6.1.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>celery</p></td>
+<td><p>4.3.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>certifi</p></td>
+<td><p>2019.6.16+</p></td>
+</tr>
+<tr class="row-odd"><td><p>cffi</p></td>
+<td><p>1.12.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>channels</p></td>
+<td><p>2.2.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>channels-rabbitmq</p></td>
+<td><p>1.1.5+</p></td>
+</tr>
+<tr class="row-even"><td><p>chardet</p></td>
+<td><p>3.0.4+</p></td>
+</tr>
+<tr class="row-odd"><td><p>colorama</p></td>
+<td><p>0.4.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>constantly</p></td>
+<td><p>15.1.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>cryptography</p></td>
+<td><p>2.7+</p></td>
+</tr>
+<tr class="row-even"><td><p>daphne</p></td>
+<td><p>2.3.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>defusedxml</p></td>
+<td><p>0.6.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>diff-match-patch</p></td>
+<td><p>20181111+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Django</p></td>
+<td><p>2.2.4</p></td>
+</tr>
+<tr class="row-even"><td><p>django-betterforms</p></td>
+<td><p>1.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>django-celery-beat</p></td>
+<td><p>1.5.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>django-import-export</p></td>
+<td><p>2.0.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>django-rosetta</p></td>
+<td><p>0.9.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>django-timezone-field</p></td>
+<td><p>3.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>djangorestframework</p></td>
+<td><p>3.10.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>doc8</p></td>
+<td><p>0.8.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>docutils</p></td>
+<td><p>0.16+</p></td>
+</tr>
+<tr class="row-even"><td><p>et-xmlfile</p></td>
+<td><p>1.0.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>flower</p></td>
+<td><p>0.9.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>gevent</p></td>
+<td><p>1.4.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>greenlet</p></td>
+<td><p>0.4.15+</p></td>
+</tr>
+<tr class="row-even"><td><p>hiredis</p></td>
+<td><p>1.0.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>html5lib</p></td>
+<td><p>1.0.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>hyperlink</p></td>
+<td><p>19.0.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>idna</p></td>
+<td><p>2.8+</p></td>
+</tr>
+<tr class="row-even"><td><p>imagesize</p></td>
+<td><p>1.2.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>importlib-metadata</p></td>
+<td><p>0.23+</p></td>
+</tr>
+<tr class="row-even"><td><p>incremental</p></td>
+<td><p>17.5.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>isort</p></td>
+<td><p>4.3.21+</p></td>
+</tr>
+<tr class="row-even"><td><p>jdcal</p></td>
+<td><p>1.4.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jinja2</p></td>
+<td><p>2.11.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>kombu</p></td>
+<td><p>4.6.5+</p></td>
+</tr>
+<tr class="row-odd"><td><p>lazy-object-proxy</p></td>
+<td><p>1.4.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>MarkupPy</p></td>
+<td><p>1.14+</p></td>
+</tr>
+<tr class="row-odd"><td><p>MarkupSafe</p></td>
+<td><p>1.1.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>mccabe</p></td>
+<td><p>0.6.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>more-itertools</p></td>
+<td><p>7.2.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>msgpack</p></td>
+<td><p>0.6.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>msgpack-python</p></td>
+<td><p>0.5.6+</p></td>
+</tr>
+<tr class="row-even"><td><p>mysqlclient</p></td>
+<td><p>1.4.4+</p></td>
+</tr>
+<tr class="row-odd"><td><p>odfpy</p></td>
+<td><p>1.4.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>openpyxl</p></td>
+<td><p>3.0.3+</p></td>
+</tr>
+<tr class="row-odd"><td><p>packaging</p></td>
+<td><p>20.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>pamqp</p></td>
+<td><p>2.3.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>pbr</p></td>
+<td><p>5.4.4+</p></td>
+</tr>
+<tr class="row-even"><td><p>pep8</p></td>
+<td><p>1.7.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pillow</p></td>
+<td><p>6.1.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>polib</p></td>
+<td><p>1.1.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>pycodestyle</p></td>
+<td><p>2.5.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>pycparser</p></td>
+<td><p>2.19+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pygments</p></td>
+<td><p>2.5.2+</p></td>
+</tr>
+<tr class="row-even"><td><p>PyHamcrest</p></td>
+<td><p>1.9.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>pylint</p></td>
+<td><p>2.3.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>pyparsing</p></td>
+<td><p>2.4.6+</p></td>
+</tr>
+<tr class="row-odd"><td><p>PyPDF2</p></td>
+<td><p>1.26.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>python-crontab</p></td>
+<td><p>2.3.9+</p></td>
+</tr>
+<tr class="row-odd"><td><p>python-dateutil</p></td>
+<td><p>2.8.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>pytz</p></td>
+<td><p>2019.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>PyYAML</p></td>
+<td><p>5.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>redis</p></td>
+<td><p>2.10.6+</p></td>
+</tr>
+<tr class="row-odd"><td><p>reportlab</p></td>
+<td><p>3.5.31+</p></td>
+</tr>
+<tr class="row-even"><td><p>requests</p></td>
+<td><p>2.22.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>restructuredtext-lint</p></td>
+<td><p>1.3.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>six</p></td>
+<td><p>1.12.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>snowballstemmer</p></td>
+<td><p>2.0.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>Sphinx</p></td>
+<td><p>2.3.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>sphinx-rtd-theme</p></td>
+<td><p>0.4.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>sphinxcontrib-applehelp</p></td>
+<td><p>1.0.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>sphinxcontrib-devhelp</p></td>
+<td><p>1.0.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>sphinxcontrib-htmlhelp</p></td>
+<td><p>1.0.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>sphinxcontrib-jsmath</p></td>
+<td><p>1.0.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>sphinxcontrib-qthelp</p></td>
+<td><p>1.0.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>sphinxcontrib-serializinghtml</p></td>
+<td><p>1.1.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>sqlparse</p></td>
+<td><p>0.3.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>stevedore</p></td>
+<td><p>1.31.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>tablib</p></td>
+<td><p>0.14.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>tornado</p></td>
+<td><p>5.1.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>Twisted</p></td>
+<td><p>19.7.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>txaio</p></td>
+<td><p>18.8.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>typed-ast</p></td>
+<td><p>1.4.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>urllib3</p></td>
+<td><p>1.25.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>vine</p></td>
+<td><p>1.3.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>webencodings</p></td>
+<td><p>0.5.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>wrapt</p></td>
+<td><p>1.11.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>xhtml2pdf</p></td>
+<td><p>0.2.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>xlrd</p></td>
+<td><p>1.2.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>xlwt</p></td>
+<td><p>1.3.0+</p></td>
+</tr>
+<tr class="row-even"><td><p>zipp</p></td>
+<td><p>0.6.0+</p></td>
+</tr>
+<tr class="row-odd"><td><p>zope.interface</p></td>
+<td><p>4.6.0+</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="configuracion.html" class="btn btn-neutral float-right" title="Configuración del sistema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduccion.html" class="btn btn-neutral float-left" title="Introducción" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

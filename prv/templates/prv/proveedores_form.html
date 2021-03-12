@@ -1,0 +1,204 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Proveedores" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Proveedor" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                {{obj}}
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "proveedor" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.identificacion }}
+                                                        <label for="first-name-column">{% trans "Identificación" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input hidden type="text" id="last-name-column" class="form-control" placeholder="Last Name" name="lname-column">
+                                                        <label hidden for="last-name-column">Last Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.nombres }}
+                                                        <label for="city-column">{% trans "Nombres" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.apellidos }}
+                                                        <label for="country-floating">{% trans "Apellidos" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.ciudad }}
+                                                        <input hidden>
+                                                        <label for="id_ciudad">{% trans "Ciudad" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.zona }}
+                                                        <input hidden>
+                                                        <label for="id_ciudad">{% trans "Zona" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.direccion }}
+                                                        <label for="email-id-column">{% trans "Dirección" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.telefono }}
+                                                        <label for="id_ciudad">{% trans "Teléfono" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.correo }}
+                                                        <label for="email-id-column">{% trans "Correo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="escala_peso" id="id_escala_peso" class="form-control">
+                                                            
+                                                        </select>
+                                                        <input class="form-control" hidden>
+                                                        <label
+                                                            for="email-id-column">{% trans "Escala de peso" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.costo_gramo }}
+                                                        <label for="email-id-column">{% trans "Costo gramo fabricación" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.prct_impuestos }}
+                                                        <label for="email-id-column">{% trans "Porcentaje de impuestos (%)" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.secuencia_ordenes }}
+                                                        <label for="id_secuencia_ordenes">{% trans "Secuencia actual órdenes" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.secuencia_solicitudes }}
+                                                        <label for="id_secuencia_solicitudes">{% trans "Secuencia actual solicitudes" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'prv:proveedores_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "Proveedor ya existe" %}','red');
+        }
+        SecuenciaOrdenes = error.includes('secuencia-ordenes');
+        SecuenciaSolicitudes = error.includes('secuencia-solicitudes');
+        if(SecuenciaOrdenes){
+            mensaje('{% trans "La secuencia de las órdenes de trabajo no puede ser menor a la última registrada" %}','red');
+        }
+        if(SecuenciaSolicitudes){
+            mensaje('{% trans "La secuencia de las solicitudes de trabajo no puede ser menor a la última registrada" %}','red');
+        }
+        identificacion = '{{ obj.identificacion }}';
+        if(identificacion){
+            $('#id_identificacion').prop('readonly', true);
+        }
+        escala_actual = '{{ obj.escala_peso }}';
+        escala_actual = escala_actual.replace(/,/,'.');
+        escala_actual = parseFloat(escala_actual).toFixed(1)
+        var select = document.getElementById('id_escala_peso');
+        for(i=0.1; i<=1; i=i+0.1){
+            i = Math.round(i*100)/100; // redondeo
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.add(option);
+        }
+        $('#id_escala_peso').val(escala_actual);
+    });
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }} {{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

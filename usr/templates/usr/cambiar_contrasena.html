@@ -1,0 +1,142 @@
+{% extends 'base/base.html' %} 
+{% load i18n %}
+{% load static %}
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Usuario" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Contraseña" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Cambiar" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Cambiar contraseña" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                          
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if user.img_perfil %} src="{{ user.img_perfil.url }}" {% else %} src="{% static  'base/img/profile/no_perfil.png' %}" {% endif %} class="img-circle center img-fluid pointer" width="60%">
+                                                        <!-- <input onchange="seleccionarImagen()" type="file" name="imagen" id="id_imagen" class="inputimage center pointer" width="100%"> -->
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="password" class="form-control" id="id_old_password" name="old_password">
+                                                                <label for="first-name-column">{% trans "Contraseña actual" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="password" class="form-control" id="id_new_password1" name="new_password1">
+                                                                <label for="last-name-column">{% trans "Nueva contraseña" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="password" class="form-control" id="id_new_password2" name="new_password2">
+                                                                <label for="last-name-column">{% trans "Confirmar nueva contraseña" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {%if form.errors %}
+                                                    <div class=" col-12 alert border-danger alert-dismissible mb-4" role="alert">
+                                                        {% for field in form %}    
+                                                            {{ field.errors }}
+                                                        {% endfor %}
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    {%endif%}
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'bases:home' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block js_page %}
+<!-- <script>
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script> -->
+{% endblock %}

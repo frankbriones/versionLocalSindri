@@ -1,0 +1,44 @@
+{% load i18n %}
+{% load static %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Tipo de solicitud" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        <a type="button" class="btn btn-primary glow mr-1 mb-1" href="{% url 'trn:solicitudes_crear' 1 item.id_item %}"><i class="bx bx-cart" style="width: 100%; font-size: 70px; border: hidden;"></i> {% trans "Solicitud interna" %}</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <button type="button" class="btn btn-primary glow mr-1 mb-1" onclick="solicitarExterno()"><i class="bx bx-cart" style="width: 100%; font-size: 70px"></i> {% trans "Solicitud externa" %}</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    function solicitarExterno(){
+        proveedores = parseInt('{{ proveedores }}');
+        id_item = '{{item.id_item}}';
+        if(proveedores === 0){
+            mensaje('{% trans "No existen proveedores registrados" %}', 'red');
+            return;
+        } else {
+            var url = "{% url 'trn:solicitudes_crear' 2 0 %}"
+            url = url.replace(/0/, id_item);
+            window.location.replace(url);
+        }
+    }
+</script>

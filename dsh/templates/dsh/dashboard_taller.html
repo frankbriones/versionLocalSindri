@@ -1,0 +1,1414 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Estadísticas" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Estadísticas" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Usuario" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Filtrar" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1">
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <select name="filtro" id="id_filtro" class="form-control selectrubro">
+                                                    <option value="1">{% trans "Lo que va del mes" %}</option>
+                                                    <option value="2">{% trans "El mes anterior" %}</option>
+                                                    <option value="3">{% trans "Rango de fecha" %}</option>
+                                                </select>
+                                                <input type="number" hidden>
+                                                <label for="id_ciudad">{% trans "Filtro" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <ul id="id_fechas" class="list-inline mb-0" style="margin-left: 5%;">
+                                                <li style="text-align: center; vertical-align: middle;">
+                                                    <input type="date" id="id_fecha_inicio" class="form-control">
+                                                    <small>{% trans "Fecha inicio" %}</small>
+                                                </li>
+                                                <li style="text-align: center; vertical-align: middle;">
+                                                    <input type="date" id="id_fecha_fin" class="form-control">
+                                                    <small>{% trans "Fecha fin" %}</small>
+                                                </li>
+                                                <li style="margin-left: 10px;">
+                                                    <a onclick="cargarDatos(3)" title='{% trans "Filtrar" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                        <i class="bx bxs-filter-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class=" col-md-6 col-lg-4 col-sm-12">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <p class="text-muted mb-0 line-ellipsis">{% trans 'Solicitudes Rechazadas' %}</p>
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-warning mx-auto my-1">
+                                                <i class="bx bx-task" ></i>
+                                            </div>
+                                            <h2 class="mb-0" id="id_tot_solicitud_rechazada"></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 col-sm-12">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <p class="text-muted mb-0 line-ellipsis">{% trans 'Categoria mas Fabricada.' %}</p>
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto my-1">
+                                                <i class="bx bx-purchase-tag bx-tada" ></i>
+                                            </div>
+                                            <p class="mb-0" id="div_categoria"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                
+                            <div class="col-md-6 col-lg-4 col-sm-12 ">
+                                <div class="card text-center">
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <p class="text-muted mb-0 line-ellipsis">{% trans 'Color mas Fabricado.' %}</p>
+                                            <div class="badge-circle badge-circle-lg badge-circle-light-primary mx-auto my-1">
+                                                <i class="bx bxs-color-fill bx-tada" ></i>
+                                            </div>
+                                            <p class="mb-0" id="div_color"></p>
+                                        </div>
+                                    </div>
+                                </div>                            
+                            </div>
+                            
+                        </div>
+                        <br/>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Órdenes por estado" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1">
+                                    <div id="div_chart_estados">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Solicitudes por estado" %}</h4>
+                            </div>
+                            <div class="card-body p-2">
+                                
+                                    <br>
+                                    <div id="div_chart_int_ext" class="d-flex justify-content-around flex-wrap">
+                                        
+                                    </div>
+                                    <br>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div id="div_producto_mas_cotizado" class="col-12 col-md-12 mr-auto ml-md-auto"></div>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div id="div_producto_mas_fabricado" class="col-12 col-md-12 mr-auto ml-md-auto"></div>
+                    </div>
+                   <!--  <div class="col-md-12 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Gramos fabricados" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div id="div_gramos_fabricados" class="card-body text-center pb-0">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12 col-12">
+                    
+                    <div class="divider divider-light" >
+                        <div class="divider-text bg-transparent ">{% trans "Gramos Utilizados" %}</div>
+                    </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="card-title ">{% trans "Gramos Utilizados en Productos." %}</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <select id="id_select_gramos" class="form-control"> 
+                                            <option value="1">{% trans 'Año en curso' %}</option>
+                                            <option value="2">{% trans 'Año anterior' %}</option>
+                                            <option value="3">{% trans 'Ultmos 6 meses' %} </option>
+                                            <option value="4">{% trans 'Ultimos 3 meses' %}</option>
+
+                                        </select>
+                                    </div>
+                                        
+                                </div>
+
+                            </div>
+                            <div class="card-content">
+                                <div id="div_gramos_fabricados" class="card-body text-center pb-0">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="card-title ">{% trans "Gramos Utilizados en Servicios." %}</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        <select id="id_select_gramos_servicio" class="form-control"> 
+                                            <option value="1">{% trans 'Año en curso' %}</option>
+                                            <option value="2">{% trans 'Año anterior' %}</option>
+                                            <option value="3">{% trans 'Ultmos 6 meses' %} </option>
+                                            <option value="4">{% trans 'Ultimos 3 meses' %}</option>
+
+                                        </select>
+                                    </div>
+                                        
+                                </div>
+
+                            </div>
+                            <div class="card-content">
+                                <div id="div_gramos_fabricados_servicios" class="card-body text-center pb-0">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                        
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Ranking gramos fabricados" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1" >
+                                    <div id="div_chart_gramos_por_joyeria">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Ranking Gramos Solicitudes" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1">
+                                    <div id="div_chart_gramos_por_solicitud_tienda">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Ranking Servicio/Ordenes" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1">
+                                    <div id="div_chart_servicio_mas_ordenes">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">{% trans "Ranking Tiendas con menos Ordenes" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-1">
+                                    <div id="div_chart_tiendas_menos_ordenes">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- grafica de fabricaciones -->
+                    <div class="col-lg-12">
+                        <div class="divider divider-light">
+                            <div class="divider-text bg-transparent">{% trans 'Fabricaciones Realizadas' %}</div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>    
+                    <div class="col-md-8 col-12 ">
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                 <h4 class="card-title">{% trans "Ordenes por Tipo de Item" %}</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div id="div_fabricaciones" class="d-flex justify-content-center align-items-center "  >
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-2"></div> 
+                </div>
+            </section>
+        </div>
+    </div>
+   
+</div>
+
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    var $primary = '#5A8DEE',
+        $success = '#39DA8A',
+        $danger = '#FF5B5C',
+        $warning = '#FDAC41',
+        $info = '#00CFDD',
+        $label_color_light = '#E6EAEE';
+    
+    
+    $(document).ready(function(){
+        $('.loader').hide();
+        $('#id_filtro').val(1);
+        $('#id_fechas').hide();
+        cargarGraficaGramos(1);
+        cargarGraficaGramosServicio(1);
+        cargarDatos(1);
+    });
+
+    $('#id_filtro').on('change', function(){
+
+        opcion = parseInt($(this).val());
+
+        if ( opcion == 3 ){
+            $('#id_fechas').show();
+        } else {
+            $('#id_fechas').hide();
+            cargarDatos(opcion);
+        }
+
+    });
+
+    function cargarDatos(opcion){
+        cargarGraficaFabricaciones(opcion);
+
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            } else {
+                var url = "{% url 'dsh:dashboard_taller_api' 0 'finicio' 'ffin' %}";
+                url = url.replace(/0/, opcion);
+                url = url.replace(/finicio/, f_inicio);
+                url = url.replace(/ffin/, f_fin);
+            }
+        } else {
+            var url = "{% url 'dsh:dashboard_taller_api' 0 %}";
+            url = url.replace(/0/, opcion);
+        }        
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                totales_por_estado = []
+                totales_por_estado = JSON.parse(res.totales_por_estado);
+                solicitudes_por_estado = JSON.parse(res.solicitudes_por_estado);
+                gramos_por_joyeria = JSON.parse(res.gramos_por_joyeria);
+                servicios_por_tienda = JSON.parse(res.servicios_por_tienda);
+                fabricaciones_por_mes = JSON.parse(res.fabricaciones_por_mes);
+                gramos_servicios_mes = JSON.parse(res.gramos_servicios_mes);
+                tiendas_menos_ordenes = JSON.parse(res.tiendas_menos_ordenes);
+                console.log(fabricaciones_por_mes)
+                cargarTotalesPorEstado(totales_por_estado);
+                cargarSolicitudesEstado(solicitudes_por_estado);
+                // cargarFabricacionesPorMes(fabricaciones_por_mes, res.gramos_fabricados);
+                // cargarGramoSolicitadosPorMes(gramos_servicios_mes, res.gramos_servicios);
+                cargarGramosPorJoyeria(gramos_por_joyeria);
+                cargarGramosSolicitud(servicios_por_tienda);
+                cargarServicioOrdenesTrabajo(res.servicio_mas_ordenes);
+                cargarProductoMasCotizado(res.producto_mas_cotizado);
+                cargarProductoMasFabricado(res.producto_mas_fabricado);
+                cargarCategoria(res.categoria_mas_fabricada);
+                cargarColor(res.color_mas_fabricado);
+                total_solicitud_rechazada(res.total_solicitud_rechazadas);
+                cargarTiendasMenosOrdenes(tiendas_menos_ordenes);
+                // console.log(res.producto_mas_fabricado);
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+        
+    }
+
+    function cargarTotalesPorEstado(totales_por_estado){
+        $('#div_chart_estados').empty();
+        chart = '<div id="chart_estados"></div>';
+        $('#div_chart_estados').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        totales_por_estado.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(parseFloat(elemento[1]));
+        });
+        var opciones = {
+            series: [{
+                name: "Total",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'bar',
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_estados');
+        var chartEstados = new ApexCharts(chart, opciones);
+        chartEstados.render();
+    }
+
+    function cargarSolicitudesEstado(totales_int_ext){
+        var themeColors = [$primary, $warning, $danger, $success, $info];
+        $('#div_chart_int_ext').empty();
+        chart = '<div id="chart_int_ext" class="m-0" style="width: 550px; height: 250px;"></div>';
+        $('#div_chart_int_ext').append(chart);
+       
+        var etiquetas = [];
+        var datos = [];
+        totales_int_ext.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(parseFloat(elemento[1]));
+        });
+
+        var opciones = {
+            series: datos,
+            chart: {
+                width: '100%',
+                height: 'auto',
+                type: 'donut',
+                // sparkline: {
+                //     enabled: true
+                // }
+            },
+            labels: etiquetas,
+            plotOptions: {
+                pie: {
+                    donut: {
+                        labels: {
+                            show: true,
+                            name: {
+                            },
+                            value: {
+
+                            },
+                            
+                        },
+                        
+                    } 
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%',
+                        height: 'auto'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_int_ext');
+        var chartIntExt = new ApexCharts(chart, opciones);
+        chartIntExt.render();
+    }
+
+    function cargarFabricacionesPorMes(fabricaciones_por_mes, gramos){
+        $('#div_gramos_fabricados').empty();
+        if(gramos !== null){
+            total_gramos = '<h1>'+ gramos +' gr</h1>';
+        } else {
+            total_gramos = '<h1>0 gr</h1>';
+        }
+        chart = '<div id="chart_fab_mes"></div>';
+        $('#div_gramos_fabricados').append(total_gramos);
+        $('#div_gramos_fabricados').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        // fabricaciones_por_mes = {{ fabricaciones_por_mes|safe }};
+
+        fabricaciones_por_mes.forEach(elemento => {
+            if(elemento[0] !== 'None'){
+                switch (elemento[0]){
+                    case '1':
+                        etiqueta = '{% trans "Enero" %}';
+                        break;
+                    case '2':
+                        etiqueta = '{% trans "Febrero" %}';
+                        break;
+                    case '3':
+                        etiqueta = '{% trans "Marzo" %}';
+                        break;
+                    case '4':
+                        etiqueta = '{% trans "Abril" %}';
+                        break;
+                    case '5':
+                        etiqueta = '{% trans "Mayo" %}';
+                        break;
+                    case '6':
+                        etiqueta = '{% trans "Junio" %}';
+                        break;
+                    case '7':
+                        etiqueta = '{% trans "Julio" %}';
+                        break;
+                    case '8':
+                        etiqueta = '{% trans "Agosto" %}';
+                        break;
+                    case '9':
+                        etiqueta = '{% trans "Septiembre" %}';
+                        break;
+                    case '10':
+                        etiqueta = '{% trans "Octubre" %}';
+                        break;
+                    case '11':
+                        etiqueta = '{% trans "Noviembre" %}';
+                        break;
+                    case '12':
+                        etiqueta = '{% trans "Diciembre" %}';
+                        break;
+                    default:
+                        etiqueta = '{% trans "Mes" %}';
+                        break;
+                }
+                etiquetas.push(etiqueta);
+                datos.push(parseFloat(elemento[1]));
+            }
+        });
+        var opciones = {
+            series: [{
+                name: "Gramos",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'area',
+                zoom: {
+                    enabled: false
+                }
+            },
+            labels: etiquetas,
+            stroke: {
+                curve: 'straight'
+            },
+            legend: {
+                horizontalAlign: 'left'
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_fab_mes');
+        var chartFabMes = new ApexCharts(chart, opciones);
+        chartFabMes.render();
+    }
+
+    // cargar gramos solicitados en servicios por mes
+    // function cargarGramoSolicitadosPorMes(gramos_servicios_mes, gramos_servicios){
+    //     $('#div_gramos_solicitados').empty();
+    //     if(gramos_servicios !== null){
+    //         total_gramos = '<h1>'+ gramos_servicios +' gr</h1>';
+    //     } else {
+    //         total_gramos = '<h1>0 gr</h1>';
+    //     }
+    //     chart = '<div id="chart_gr_mes"></div>';
+    //     $('#div_gramos_solicitados').append(total_gramos);
+    //     $('#div_gramos_solicitados').append(chart);
+    //     var etiquetas = [];
+    //     var datos = [];
+    //     // fabricaciones_por_mes = {{ fabricaciones_por_mes|safe }};
+    //     gramos_servicios_mes.forEach(elemento => {
+    //         if(elemento[0] !== 'None'){
+    //             switch (elemento[0]){
+    //                 case '1':
+    //                     etiqueta = '{% trans "Enero" %}';
+    //                     break;
+    //                 case '2':
+    //                     etiqueta = '{% trans "Febrero" %}';
+    //                     break;
+    //                 case '3':
+    //                     etiqueta = '{% trans "Marzo" %}';
+    //                     break;
+    //                 case '4':
+    //                     etiqueta = '{% trans "Abril" %}';
+    //                     break;
+    //                 case '5':
+    //                     etiqueta = '{% trans "Mayo" %}';
+    //                     break;
+    //                 case '6':
+    //                     etiqueta = '{% trans "Junio" %}';
+    //                     break;
+    //                 case '7':
+    //                     etiqueta = '{% trans "Julio" %}';
+    //                     break;
+    //                 case '8':
+    //                     etiqueta = '{% trans "Agosto" %}';
+    //                     break;
+    //                 case '9':
+    //                     etiqueta = '{% trans "Septiembre" %}';
+    //                     break;
+    //                 case '10':
+    //                     etiqueta = '{% trans "Octubre" %}';
+    //                     break;
+    //                 case '11':
+    //                     etiqueta = '{% trans "Noviembre" %}';
+    //                     break;
+    //                 case '12':
+    //                     etiqueta = '{% trans "Diciembre" %}';
+    //                     break;
+    //                 default:
+    //                     etiqueta = '{% trans "Mes" %}';
+    //                     break;
+    //             }
+    //             etiquetas.push(etiqueta);
+    //             datos.push(parseFloat(elemento[1]));
+    //         }
+    //     });
+    //     var opciones = {
+    //         series: [{
+    //             name: "Gramos",
+    //             data: datos
+    //         }],
+    //         chart: {
+    //             width: '100%',
+    //             height: '400px',
+    //             type: 'area',
+    //             zoom: {
+    //                 enabled: false
+    //             }
+    //         },
+    //         labels: etiquetas,
+    //         stroke: {
+    //             curve: 'straight'
+    //         },
+    //         legend: {
+    //             horizontalAlign: 'left'
+    //         },
+    //         responsive: [{
+    //             breakpoint: 480,
+    //             options: {
+    //                 chart: {
+    //                     width: '100%'
+    //                 },
+    //                 legend: {
+    //                     position: 'bottom'
+    //                 }
+    //             }
+    //         }]
+    //     };
+    //     var chart = document.getElementById('chart_gr_mes');
+    //     var chartFabMes = new ApexCharts(chart, opciones);
+    //     chartFabMes.render();
+    // }
+
+    // ranking gramos fabricados
+    // function cargarGramosPorJoyeria(gramos_por_joyeria){
+        // $('#div_chart_gramos_por_joyeria').empty();
+        // chart = '<div id="chart_gramos_por_joyeria"></div>';
+        // $('#div_chart_gramos_por_joyeria').append(chart);
+        // var etiquetas = []; 
+        // var datos = [];
+        // gramos_por_joyeria.forEach(elemento => {
+        //     console.log(elemento, 'emento gramos 1 ')
+        //     etiquetas.push(elemento[0]);
+        //     datos.push(elemento[1]);
+        // });
+        // var opciones = {
+        //     series: [{
+        //         name: "Gramos",
+        //         data: datos
+        //     }],
+        //     chart: {
+        //         width: '100%',
+        //         height: '400px',
+        //         type: 'bar',
+        //     },
+        //     labels: etiquetas,
+        //     plotOptions: {
+        //         bar: {
+        //             horizontal: true,
+        //         }
+        //     },
+        //     responsive: [{
+        //         breakpoint: 480,
+        //         options: {
+        //             chart: {
+        //                 width: '100%'
+        //             },
+        //             legend: {
+        //                 position: 'bottom'
+        //             }
+        //         }
+        //     }]
+        // };
+        // var chart = document.getElementById('chart_gramos_por_joyeria');
+        // var chartJoyerias = new ApexCharts(chart, opciones);
+        // chartJoyerias.render();
+    // }
+
+    // Gramos en solicitudes por tienda
+    function cargarGramosSolicitud(servicios_por_tienda){
+        var themeColors = [$primary, $warning, $danger, $success, $info];
+        $('#div_chart_gramos_por_solicitud_tienda').empty();
+        chart = '<div id="chart_gramos_por_solicitud"></div>';
+        $('#div_chart_gramos_por_solicitud_tienda').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        servicios_por_tienda.forEach(elemento => {
+            console.log(elemento, 'elemento gramos 2')
+            etiquetas.push(elemento[0]);
+            datos.push(elemento[1]);
+        });
+        var opciones = {
+            series: [{
+                name: "Gramos",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'bar',
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_gramos_por_solicitud');
+        var chartJoyerias = new ApexCharts(chart, opciones);
+        chartJoyerias.render();
+    }
+
+    
+
+
+    // Carga de servicio con mas ordenes
+    function cargarServicioOrdenesTrabajo(servicio_mas_ordenes){
+        $('#div_chart_servicio_mas_ordenes').empty();
+        chart = '<div id="chart_servicio_ordenes"></div>';
+        $('#div_chart_servicio_mas_ordenes').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        servicio_mas_ordenes.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(elemento[1]);
+        });
+        var opciones = {
+            series: [{
+                name: "Total Ordenes",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'bar',
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_servicio_ordenes');
+        var chartJoyerias = new ApexCharts(chart, opciones);
+        chartJoyerias.render();
+    }
+
+    // Carga de tiendas que generen menos ordenes
+    function cargarTiendasMenosOrdenes(tiendas_menos_ordenes){
+        $('#div_chart_tiendas_menos_ordenes').empty();
+        chart = '<div id="chart_tiendas_ordenes"></div>';
+        $('#div_chart_tiendas_menos_ordenes').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        tiendas_menos_ordenes.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(elemento[1]);
+        });
+        var opciones = {
+            series: [{
+                name: "Total Ordenes",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'bar',
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_tiendas_ordenes');
+        var chartJoyerias = new ApexCharts(chart, opciones);
+        chartJoyerias.render();
+    }
+
+
+
+
+    function cargarProductoMasCotizado(producto_mas_cotizado){
+        $('#div_producto_mas_cotizado').empty();
+        if(producto_mas_cotizado !== null){
+            div = 
+            `<div class="card widget-img-top">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">
+                        {% trans "Producto más cotizado" %}
+                    </h4>
+                </div>
+                <div class="card-content">
+                    <img class="card-img-top px-4 py-0" width="200px" height="150px" src="`+ producto_mas_cotizado.imagen +`" alt="Card image cap" />
+                    <div class="heading-elements">
+                        <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i>
+                    </div>
+                    <div class="text-center">
+                        <h4>`+ producto_mas_cotizado.sku +`</h4>
+                        <p>`+ producto_mas_cotizado.descripcion +`</p>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button  type="button" onclick="cargarDetallesProducto(`+ producto_mas_cotizado.id_item +`)" class="btn btn-primary glow px-2">
+                        {% trans "Ver detalles" %}
+                    </button>
+                </div>
+            </div>`;
+            $('#div_producto_mas_cotizado').append(div);
+        }else{
+            div = '<div class="card widget-img-top"><div class="card-header d-flex justify-content-between align-items-center"><h4 class="card-title">{% trans "Producto más cotizado" %}</h4></div></div>';
+            $('#div_producto_mas_cotizado').append(div);
+        }
+    }
+
+    function total_solicitud_rechazada(total_solicitud_rechazada){
+        $('#id_tot_solicitud_rechazada').empty();
+
+        if(total_solicitud_rechazada !== 0){
+            div = '<h3 class="text-dark p-0">'+ total_solicitud_rechazada +'</h3>';
+        }else{
+            div = '<h3 class="text-dark p-0">0</h3>';
+        }
+            $('#id_tot_solicitud_rechazada').append(div);        
+        
+    }
+
+    function cargarProductoMasFabricado(producto_mas_fabricado){
+        $('#div_producto_mas_fabricado').empty();
+        // console.log(producto_mas_fabricado)
+        if(producto_mas_fabricado){
+            div = '<div class="card widget-img-top"><div class="card-header d-flex justify-content-between align-items-center"><h4 class="card-title">{% trans "Producto más fabricado" %}</h4></div><div class="card-content"><img class="card-img-top px-2" width="200px" height="150px" src="'+ producto_mas_fabricado.imagen +'" alt="Card image cap" /><div class="heading-elements"><i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i></div><div class="text-center"><h4>'+ producto_mas_fabricado.sku +'</h4><p>'+ producto_mas_fabricado.descripcion +'</p></div></div><div class="card-footer text-center"><button type="button" onclick="cargarDetallesProducto('+ producto_mas_fabricado.id_item +')" class="btn btn-primary glow px-2">{% trans "Ver detalles" %}</button></div></div>';
+            $('#div_producto_mas_fabricado').append(div);
+        }else{
+            $('#div_producto_mas_fabricado').empty();
+            
+        }
+    }
+
+    function cargarDetallesProducto(id_item){
+        url = "{% url 'ctg:items_detalle' 0 %}";
+        url = url.replace(/0/, id_item);
+        return abrir_modal(url);
+    }
+
+    function cargarCategoria(categoria){
+        $('#div_categoria').empty();
+        if(categoria !== null){
+            div = '<p class="text-dark p-0">'+ categoria.descripcion +'</p>';
+            $('#div_categoria').append(div);
+        }else{
+            div = '<p class="text-dark p-0">No se registran categorias este mes.</p>';
+            $('#div_categoria').append(div);
+        }
+    }
+
+    function cargarColor(color){
+        $('#div_color').empty();
+        if(color !== null){
+            div = '<p class="text-dark p-0">'+ color.descripcion +'</p>';
+            $('#div_color').append(div);
+        }else{
+            div = '<p class="text-dark p-0">Ninguno</p>';
+            $('#div_color').append(div);
+        }
+    }
+
+
+
+    // agregar cambio del dashboard de operaciones
+    // realizar peticion de acuerdo a la opcion seleccionada
+    $('#id_select_gramos').on('change', function(){
+
+        itemSelececcionado =  $('option:selected', '#id_select_gramos').val();
+        cargarGraficaGramos(itemSelececcionado);
+
+    });
+
+    // peticion GET para graficar gramos fabricados en un lapso de tiempo seleccionado
+    function cargarGraficaGramos(opcion){
+        var url = "{% url 'dsh:grafica_gramos' %}";
+        data = {
+            'opcion': opcion,
+        }
+
+        $.ajax({
+            // async: true,
+            type: "GET",
+            url: url,
+            data: data,
+
+            success: function(res){
+                fabricaciones_por_mes = JSON.parse(res);
+                console.log(fabricaciones_por_mes)
+                cargarFabricacionesPorMes(fabricaciones_por_mes)
+            }
+            // error: function(a, b, c){
+            //     if (a.status === 404){
+            //         mensaje("no existe datos", "red");
+            //     }
+            // }
+        });
+    }
+
+     function cargarFabricacionesPorMes(fabricaciones_por_mes){
+        $('#div_gramos_fabricados').empty();
+        // if(gramos !== null){
+        //     total_gramos = '<h1>'+ gramos +' gr</h1>';
+        // } else {
+        //     total_gramos = '<h1>0 gr</h1>';
+        // }
+        chart = '<div id="chart_fab_mes"></div>';
+        // $('#div_gramos_fabricados').append(total_gramos);
+        $('#div_gramos_fabricados').append(chart);
+        var etiquetas = [];
+        var datos = [];
+
+
+
+        
+        // fabricaciones_por_mes = {{ fabricaciones_por_mes|safe }};
+        console.log(fabricaciones_por_mes)
+        fabricaciones_por_mes.forEach(elemento => {
+            if(elemento[0] !== 'None'){
+                switch (elemento[0]){
+                    case '1':
+                        etiqueta = '{% trans "Enero" %}';
+                        break;
+                    case '2':
+                        etiqueta = '{% trans "Febrero" %}';
+                        break;
+                    case '3':
+                        etiqueta = '{% trans "Marzo" %}';
+                        break;
+                    case '4':
+                        etiqueta = '{% trans "Abril" %}';
+                        break;
+                    case '5':
+                        etiqueta = '{% trans "Mayo" %}';
+                        break;
+                    case '6':
+                        etiqueta = '{% trans "Junio" %}';
+                        break;
+                    case '7':
+                        etiqueta = '{% trans "Julio" %}';
+                        break;
+                    case '8':
+                        etiqueta = '{% trans "Agosto" %}';
+                        break;
+                    case '9':
+                        etiqueta = '{% trans "Septiembre" %}';
+                        break;
+                    case '10':
+                        etiqueta = '{% trans "Octubre" %}';
+                        break;
+                    case '11':
+                        etiqueta = '{% trans "Noviembre" %}';
+                        break;
+                    case '12':
+                        etiqueta = '{% trans "Diciembre" %}';
+                        break;
+                    default:
+                        etiqueta = '{% trans "Mes" %}';
+                        break;
+                }
+                etiquetas.push(etiqueta);
+
+                datos.push(parseFloat(elemento[1]));
+            }
+        });
+        var opciones = {
+            series: [{
+                data: datos
+            }],
+            chart: {
+                height: 300,
+                width: '100%',
+                type: 'area',
+                zoom: {
+                    enabled: false
+                }
+            },
+            labels: etiquetas,
+            stroke: {
+                curve: 'straight'
+            },
+            legend: {
+                horizontalAlign: 'left'
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_fab_mes');
+        var chartFabMes = new ApexCharts(chart, opciones);
+        chartFabMes.render();
+    }
+
+    function cargarGramosPorJoyeria(gramos_por_joyeria){
+        $('#div_chart_gramos_por_joyeria').empty();
+        chart = '<div id="chart_gramos_por_joyeria"  ></div>';
+        $('#div_chart_gramos_por_joyeria').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        // console.log(gramos_por_joyeria)
+
+        gramos_por_joyeria.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(elemento[1]);
+        });
+        var opciones = {
+            series: [{
+                name: "Gramos",
+                data: datos
+            }],
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'bar',
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_gramos_por_joyeria');
+        var chartJoyerias = new ApexCharts(chart, opciones);
+        chartJoyerias.render();
+    }
+
+
+// function nueva 05/02/2021
+    
+
+ $('#id_select_gramos_servicio').on('change', function(){
+        itemSelececcionado =  $('option:selected', '#id_select_gramos_servicio').val();
+        cargarGraficaGramosServicio(itemSelececcionado);
+
+    });
+
+    // peticion GET para graficar gramos fabricados en un lapso de tiempo seleccionado
+    function cargarGraficaGramosServicio(opcion){
+        
+        var url = "{% url 'dsh:grafica_gramos_servicios' %}";
+        data = {
+            'opcion': opcion,
+        }
+
+        $.ajax({
+            // async: true,
+            type: "GET",
+            url: url,
+            data: data,
+
+            success: function(res){
+                fabricaciones_por_mes = JSON.parse(res);
+                cargarFabricacionesPorMesServicios(fabricaciones_por_mes)
+            }
+            // error: function(a, b, c){
+            //     if (a.status === 404){
+            //         mensaje("no existe datos", "red");
+            //     }
+            // }
+        });
+    }
+
+
+
+
+    function cargarFabricacionesPorMesServicios(fabricaciones_por_mes){
+        console.log(fabricaciones_por_mes)
+        $('#div_gramos_fabricados_servicios').empty();
+        // if(gramos !== null){
+        //     total_gramos = '<h1>'+ gramos +' gr</h1>';
+        // } else {
+        //     total_gramos = '<h1>0 gr</h1>';
+        // }
+        chart = '<div id="chart_fab_mes_servicio"></div>';
+        // $('#div_gramos_fabricados').append(total_gramos);
+        $('#div_gramos_fabricados_servicios').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        
+        // fabricaciones_por_mes = {{ fabricaciones_por_mes|safe }};
+        // console.log(fabricaciones_por_mes)
+        fabricaciones_por_mes.forEach(elemento => {
+            if(elemento[0] !== 'None'){
+                switch (elemento[0]){
+                    case 1:
+                        etiqueta = '{% trans "Enero" %}';
+                        break;
+                    case 2:
+                        etiqueta = '{% trans "Febrero" %}';
+                        break;
+                    case 3:
+                        etiqueta = '{% trans "Marzo" %}';
+                        break;
+                    case 4:
+                        etiqueta = '{% trans "Abril" %}';
+                        break;
+                    case 5:
+                        etiqueta = '{% trans "Mayo" %}';
+                        break;
+                    case 6:
+                        etiqueta = '{% trans "Junio" %}';
+                        break;
+                    case 7:
+                        etiqueta = '{% trans "Julio" %}';
+                        break;
+                    case 8:
+                        etiqueta = '{% trans "Agosto" %}';
+                        break;
+                    case 9:
+                        etiqueta = '{% trans "Septiembre" %}';
+                        break;
+                    case 10:
+                        etiqueta = '{% trans "Octubre" %}';
+                        break;
+                    case 11:
+                        etiqueta = '{% trans "Noviembre" %}';
+                        break;
+                    case 12:
+                        etiqueta = '{% trans "Diciembre" %}';
+                        break;
+                    default:
+                        etiqueta = '{% trans "Mes" %}';
+                        break;
+                }
+                etiquetas.push(etiqueta);
+
+                datos.push(parseFloat(elemento[1]));
+            }
+        });
+        var opciones = {
+            series: [{
+                data: datos
+            }],
+            chart: {
+                height: 300,
+                width: '100%',
+                type: 'area',
+                zoom: {
+                    enabled: false
+                }
+            },
+            labels: etiquetas,
+            stroke: {
+                curve: 'straight'
+            },
+            legend: {
+                horizontalAlign: 'left'
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('chart_fab_mes_servicio');
+        var chartFabMes = new ApexCharts(chart, opciones);
+        chartFabMes.render();
+    }
+
+
+
+    // grafica de fabricaciones
+
+    function cargarGraficaFabricaciones(opcion){
+        let f_inicio;
+        let f_fin;
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+        }
+
+        var url = "{% url 'dsh:cargar_fabricaciones' %}";
+
+        data = {
+            'opcion': opcion,
+            'f_inicio': f_inicio,
+            'f_fin': f_fin
+        }
+        console.log(data)
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            data: data,
+
+            success: function(res){
+                // console.log(res)
+                lista = JSON.parse(res);
+                // console.log(lista)
+                // cargarFabricacionesPorMesServicios(fabricaciones_por_mes)
+                cargarCatalogo(lista)
+
+            }
+            // error: function(a, b, c){
+            //     if (a.status === 404){
+            //         mensaje("no existe datos", "red");
+            //     }
+            // }
+        });
+    }
+
+    function cargarCatalogo(lista){
+
+        $('#div_fabricaciones').empty();
+        chart = '<div id="id_fabricaciones" class="mb-1" style="width: 500px; height: 250px;"></div>';
+        $('#div_fabricaciones').append(chart);
+        var etiquetas = [];
+        var datos = [];
+        lista.forEach(elemento => {
+            etiquetas.push(elemento[0]);
+            datos.push(parseFloat(elemento[1]));
+        });
+        var opciones = {
+            series: datos,
+            chart: {
+                width: '100%',
+                height: 'auto',
+                type: 'donut',
+            },
+            labels: etiquetas,
+            colors: ['#FF9800', '#66DA26'],
+            plotOptions: {
+                pie: {
+                    expandOnClick: false,
+                    donut: {
+                        size: '50%',
+                        background: '#dddddd',
+                        labels: {
+                            show: true,
+                            name: {
+                                color: 'black',
+                            },
+                            value: {
+                                show: true,
+                                total: {
+                                    show: true,
+                                }
+                            }
+                        }
+                }
+                }
+            },
+            tooltip:{
+                enabled: true,
+                fillSeriesColor: false,
+                theme: 'light',
+
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('id_fabricaciones');
+        var chartFabricacion = new ApexCharts(chart, opciones);
+        chartFabricacion.render();
+    }
+
+
+
+</script>
+{% endblock %}

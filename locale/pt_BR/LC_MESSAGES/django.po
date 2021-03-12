@@ -1,0 +1,4361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-04 10:15-0500\n"
+"PO-Revision-Date: 2020-03-04 16:39-0519\n"
+"Last-Translator: b'  <jmoran@orocash.ec>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.9.3\n"
+
+#: .\bases\templates\bases\error404.html:55
+msgid "Página no encontrada :("
+msgstr "Página não encontrada :("
+
+#: .\bases\templates\bases\error404.html:57
+msgid "No pudimos encontrar la página que está buscando"
+msgstr "Não foi possível encontrar a página que você estava procurando"
+
+#: .\bases\templates\bases\error404.html:59
+#: .\bases\templates\bases\sin_permisos.html:60
+msgid "Volver al inicio"
+msgstr "Voltar ao início"
+
+#: .\bases\templates\bases\home.html:12
+msgid "Sindri"
+msgstr "Sindri"
+
+#: .\bases\templates\bases\home.html:17
+msgid "Principal"
+msgstr "Principal"
+
+#: .\bases\templates\bases\home.html:19
+msgid "Bienvenido(a)"
+msgstr "Bem-vindo(a)"
+
+#: .\bases\templates\bases\home.html:33
+msgid "Página principal"
+msgstr "Página principal"
+
+#: .\bases\templates\bases\login.html:69
+msgid "Bienvenido"
+msgstr "Bem-vindo"
+
+#: .\bases\templates\bases\login.html:77
+#: .\bases\templates\bases\login.html:160
+msgid "Usuario/Correo"
+msgstr "Nome de usuário / email"
+
+#: .\bases\templates\bases\login.html:81
+#: .\bases\templates\bases\login.html:157
+#: .\usr\templates\usr\cambiar_contrasena.html:39
+msgid "Contraseña"
+msgstr "Senha"
+
+#: .\bases\templates\bases\login.html:94
+msgid "Acceder"
+msgstr "Acesso"
+
+#: .\bases\templates\bases\logout.html:6
+msgid "¿Salir?"
+msgstr "Sair?"
+
+#: .\bases\templates\bases\logout.html:12
+msgid "Seleccione 'Salir' para cerrar la sesión"
+msgstr "Selecione 'Sair' para sair"
+
+#: .\bases\templates\bases\logout.html:15
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:23
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:75
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:84
+#: .\cfg\templates\cfg\cfg_modificar_merma_modal.html:33
+#: .\cfg\templates\cfg\cfg_op_form.html:243
+#: .\cfg\templates\cfg\cfg_pais_form.html:88
+#: .\cfg\templates\cfg\cfg_ta_form.html:117
+#: .\cfg\templates\cfg\rubro_form_modal.html:30
+#: .\clt\templates\clt\actualizar_cliente_modal.html:23
+#: .\clt\templates\clt\clientes_modal.html:75
+#: .\clt\templates\clt\clientes_modal.html:160
+#: .\ctg\templates\ctg\activar_item_modal.html:15
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:23
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:23
+#: .\ctg\templates\ctg\actualizar_color_modal.html:23
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:23
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:23
+#: .\ctg\templates\ctg\actualizar_division_modal.html:23
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:23
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:23
+#: .\ctg\templates\ctg\contar_cotizacion_modal.html:23
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:85
+#: .\ctg\templates\ctg\detalle_editar_modal.html:58
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:35
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:34
+#: .\ctg\templates\ctg\inactivar_item_modal.html:15
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:23
+#: .\trn\templates\trn\agregar_adicional_modal.html:49
+#: .\trn\templates\trn\agregar_piedra_modal.html:60
+#: .\trn\templates\trn\aprobacion_pago_modal.html:252
+#: .\trn\templates\trn\aprobacion_pago_modal.html:364
+#: .\trn\templates\trn\detalle_orden_modal.html:546
+#: .\trn\templates\trn\detalle_orden_modal.html:578
+#: .\trn\templates\trn\detalle_orden_modal.html:609
+#: .\trn\templates\trn\detalle_orden_modal.html:646
+#: .\trn\templates\trn\detalle_orden_modal.html:676
+#: .\trn\templates\trn\detalle_orden_modal.html:707
+#: .\trn\templates\trn\detalle_orden_modal.html:738
+#: .\trn\templates\trn\detalle_orden_modal.html:791
+#: .\trn\templates\trn\detalle_orden_modal.html:835
+#: .\trn\templates\trn\detalle_orden_modal.html:853
+#: .\trn\templates\trn\detalle_solicitud_modal.html:584
+#: .\trn\templates\trn\tipo_solicitud_modal.html:25
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:23
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:23
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:23
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:23
+#: .\usr\templates\usr\activar_usuario_modal.html:15
+#: .\usr\templates\usr\actualizar_rol_modal.html:23
+#: .\usr\templates\usr\inactivar_usuario_modal.html:15
+#: .\usr\templates\usr\reestablecer_contrasena_modal.html:15
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#: .\bases\templates\bases\logout.html:16 .\templates\base\base.html:155
+msgid "Salir"
+msgstr "Sair"
+
+#: .\bases\templates\bases\sin_permisos.html:11
+msgid "No autorizado"
+msgstr "Não autorizado"
+
+#: .\bases\templates\bases\sin_permisos.html:56
+msgid "No está autorizado"
+msgstr "Não autorizado"
+
+#: .\bases\templates\bases\sin_permisos.html:58
+msgid ""
+"No está autorizado para visualizar esta página, por favor ingrese con las "
+"credenciales correctas"
+msgstr ""
+"Você não está autorizado a visualizar esta página, faça o login com as "
+"credenciais corretas"
+
+#: .\bases\templates\bases\sin_permisos.html:61
+msgid "Cambiar de usuario"
+msgstr "Alterar usuário"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:7
+msgid "Inactivar rubro"
+msgstr "Desativar rubro"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:9
+msgid "Activar rubro"
+msgstr "Ativar rubro"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:17
+msgid "Se inactivará el rubro seleccionado "
+msgstr "O rubro selecionado será desativado"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:19
+msgid "Se activará el rubro seleccionado "
+msgstr "O rubro selecionado será ativado"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:25
+#: .\clt\templates\clt\actualizar_cliente_modal.html:25
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:25
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:25
+#: .\ctg\templates\ctg\actualizar_color_modal.html:25
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:25
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:25
+#: .\ctg\templates\ctg\actualizar_division_modal.html:25
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:25
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:25
+#: .\ctg\templates\ctg\inactivar_item_modal.html:16
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:25
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:25
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:25
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:25
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:25
+#: .\usr\templates\usr\actualizar_rol_modal.html:25
+#: .\usr\templates\usr\editar_usuario.html:65
+#: .\usr\templates\usr\inactivar_usuario_modal.html:16
+msgid "Inactivar"
+msgstr "Desativar"
+
+#: .\cfg\templates\cfg\actualizar_rubro_modal.html:27
+#: .\clt\templates\clt\actualizar_cliente_modal.html:27
+#: .\ctg\templates\ctg\activar_item_modal.html:16
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:27
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:27
+#: .\ctg\templates\ctg\actualizar_color_modal.html:27
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:27
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:27
+#: .\ctg\templates\ctg\actualizar_division_modal.html:27
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:27
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:27
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:27
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:27
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:27
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:27
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:27
+#: .\usr\templates\usr\activar_usuario_modal.html:16
+#: .\usr\templates\usr\actualizar_rol_modal.html:27
+#: .\usr\templates\usr\editar_usuario.html:69
+msgid "Activar"
+msgstr "Ativar"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:5
+msgid "Porcentajes de utilidad"
+msgstr "Porcentagens utilidade"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:16
+#: .\usr\templates\usr\registro.html:221 .\usr\templates\usr\registro.html:270
+msgid "Costo gramo base"
+msgstr "Custo básico do grama"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:22
+#: .\cfg\templates\cfg\cfg_op_form.html:68
+#: .\cfg\templates\cfg\cfg_ta_form.html:71
+#, python-format
+msgid "Utilidad sobre gramo base (%%)"
+msgstr "Utilidade em grama base (%%)"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:27
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:46
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:66
+msgid "Calcular"
+msgstr "Calcular"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:35
+msgid "Costo gramo taller"
+msgstr "Custo da grama da oficina"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:41
+#: .\cfg\templates\cfg\cfg_op_form.html:74
+#, python-format
+msgid "Utilidad sobre gramo fabricado (%%)"
+msgstr "Utilidade em grama fabricado (%%)"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:54
+#: .\trn\templates\trn\detalle_solicitud_modal.html:380
+msgid "Precio gramo fabricado"
+msgstr "Preço grama fabricado"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:61
+#: .\cfg\templates\cfg\cfg_op_form.html:80
+#, python-format
+msgid "Porcentaje impuestos (%%)"
+msgstr "Percentual de imposto (%%)"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:77
+#: .\clt\templates\clt\clientes_modal.html:152
+#: .\trn\templates\trn\aprobacion_pago_modal.html:342
+#: .\trn\templates\trn\detalle_orden_modal.html:857
+#: .\trn\templates\trn\detalle_orden_modal.html:861
+#: .\trn\templates\trn\detalle_orden_modal.html:865
+#: .\trn\templates\trn\detalle_solicitud_modal.html:588
+#: .\trn\templates\trn\detalle_solicitud_modal.html:592
+#: .\trn\templates\trn\detalle_solicitud_modal.html:596
+#: .\usr\templates\usr\reestablecer_contrasena_modal.html:16
+msgid "Confirmar"
+msgstr "Confirmar"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:107
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:144
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:173
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:207
+msgid "Faltan datos por llenar"
+msgstr "Dados ausentes para preencher"
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:115
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:153
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:182
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:216
+msgid "No se permiten valores negativos"
+msgstr "Valores negativos não são permitidos."
+
+#: .\cfg\templates\cfg\cal_porcentajes_modal.html:199
+msgid "Existen valores superiores al máximo permitido"
+msgstr "Existem valores superiores ao máximo permitido"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:12
+#: .\cfg\templates\cfg\cfg_ext_form.html:17
+#: .\cfg\templates\cfg\cfg_op_form.html:12
+#: .\cfg\templates\cfg\cfg_pais_form.html:12
+#: .\cfg\templates\cfg\cfg_ta_form.html:12 .\templates\base\base.html:270
+msgid "Configuraciones"
+msgstr "Configurações"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:17
+msgid "Reportes"
+msgstr "Relatórios"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:19
+msgid "Envío"
+msgstr "Envio"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:33
+#: .\templates\base\base.html:285
+msgid "Envío de reportes"
+msgstr "Envio de relatório"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:52
+msgid "Día de envío"
+msgstr "Dia de envio"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:62
+msgid "Hora de envío"
+msgstr "Tempo de envio"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:66
+msgid "Usuarios a enviar"
+msgstr "Usuários a enviar"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:83
+#: .\cfg\templates\cfg\cfg_modificar_merma_modal.html:37
+#: .\cfg\templates\cfg\cfg_op_form.html:242
+#: .\cfg\templates\cfg\cfg_pais_form.html:87
+#: .\cfg\templates\cfg\cfg_ta_form.html:116
+#: .\cfg\templates\cfg\rubro_form_modal.html:34
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:89
+#: .\ctg\templates\ctg\detalle_editar_modal.html:62
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:39
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:38
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:98
+msgid "Guardar"
+msgstr "Salvar"
+
+#: .\cfg\templates\cfg\cfg_envio_reportes.html:149
+msgid "Agregue al menos un usuario"
+msgstr "Adicione pelo menos um usuário"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:12
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:12
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:12
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:12
+msgid "Configuración"
+msgstr "Configuração"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:19
+#: .\cfg\templates\cfg\cfg_ext_form.html:32
+#: .\cfg\templates\cfg\cfg_ext_form.html:65
+#: .\cfg\templates\cfg\cfg_ext_form.html:91
+#: .\cfg\templates\cfg\cfg_ext_form.html:115 .\templates\base\base.html:313
+#: .\usr\templates\usr\registro.html:298
+msgid "Permitir externo"
+msgstr "Permitir externo"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:40
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:66
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:66
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:39
+msgid "Por usuario"
+msgstr "Por usuário"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:45
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:71
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:71
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:44
+msgid "Por zona"
+msgstr "Por zona"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:50
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:76
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:49
+msgid "Por sector"
+msgstr "Por setor"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:59
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:80
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:85
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:58
+msgid "No existen usuarios a configurar"
+msgstr "Não há usuários para configurar"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:64
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:42
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:85
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:42
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:90
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:63
+#: .\dsh\templates\dsh\dashboard_operaciones.html:19
+#: .\dsh\templates\dsh\dashboard_taller.html:19
+#: .\usr\templates\usr\cambiar_contrasena.html:34
+#: .\usr\templates\usr\editar_perfil.html:41
+#: .\usr\templates\usr\editar_perfil.html:90
+#: .\usr\templates\usr\editar_usuario.html:41
+#: .\usr\templates\usr\editar_usuario.html:106
+#: .\usr\templates\usr\registro.html:41 .\usr\templates\usr\registro.html:88
+msgid "Usuario"
+msgstr "Usuário"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:66
+#: .\cfg\templates\cfg\cfg_ext_form.html:92
+#: .\cfg\templates\cfg\cfg_ext_form.html:116
+#: .\cfg\templates\cfg\cfg_merma.html:51
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:45
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:88
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:117
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:45
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:93
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:122
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:151
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:65
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:92
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:118
+#: .\cfg\templates\cfg\rubros_lista.html:61
+#: .\clt\templates\clt\clientes_lista.html:67
+#: .\ctg\templates\ctg\adicionales_lista.html:70
+#: .\ctg\templates\ctg\categorias_lista.html:69
+#: .\ctg\templates\ctg\colores_lista.html:66
+#: .\ctg\templates\ctg\divisiones_lista.html:69
+#: .\ctg\templates\ctg\piedras_lista.html:65
+#: .\ctg\templates\ctg\productos_lista.html:82
+#: .\ctg\templates\ctg\productos_lista.html:151
+#: .\ctg\templates\ctg\servicios_lista.html:82
+#: .\ctg\templates\ctg\servicios_lista.html:151
+#: .\ctg\templates\ctg\tallas_lista.html:69
+#: .\prv\templates\prv\proveedores_lista.html:70
+#: .\trn\templates\trn\ordenes_item_crear.html:868
+#: .\ubc\templates\ubc\ciudades_lista.html:69
+#: .\ubc\templates\ubc\localidades_lista.html:69
+#: .\ubc\templates\ubc\paises_lista.html:69
+#: .\ubc\templates\ubc\regiones_lista.html:69
+#: .\ubc\templates\ubc\sectores_lista.html:69
+#: .\ubc\templates\ubc\zonas_lista.html:69
+#: .\usr\templates\usr\roles_lista.html:70
+#: .\usr\templates\usr\tipo_usuarios_lista.html:29
+#: .\usr\templates\usr\usuarios_lista.html:73
+msgid "Acciones"
+msgstr "Acções"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:85
+#: .\cfg\templates\cfg\cfg_ext_form.html:110
+#: .\usr\templates\usr\roles_lista.html:61
+msgid "No existen roles"
+msgstr "Não há papéis"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:90
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:114
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:119
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:90
+#: .\prv\templates\prv\proveedores_form.html:79
+#: .\prv\templates\prv\proveedores_lista.html:68
+#: .\ubc\templates\ubc\sectores_form.html:54
+#: .\ubc\templates\ubc\zonas_form.html:17
+#: .\ubc\templates\ubc\zonas_form.html:33
+msgid "Zona"
+msgstr "Zona"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:114
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:148
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:116
+#: .\ubc\templates\ubc\sectores_form.html:33
+#: .\usr\templates\usr\editar_usuario.html:168
+#: .\usr\templates\usr\registro.html:148
+msgid "Sector"
+msgstr "Setor"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:156
+#: .\cfg\templates\cfg\cfg_merma.html:88
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:159
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:194
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:159
+#: .\cfg\templates\cfg\rubros_lista.html:103
+#: .\clt\templates\clt\clientes_lista.html:110
+#: .\ctg\templates\ctg\adicionales_lista.html:141
+#: .\ctg\templates\ctg\categorias_lista.html:113
+#: .\ctg\templates\ctg\colores_lista.html:108
+#: .\ctg\templates\ctg\divisiones_lista.html:113
+#: .\ctg\templates\ctg\piedras_lista.html:136
+#: .\ctg\templates\ctg\productos_lista.html:197
+#: .\ctg\templates\ctg\servicios_lista.html:197
+#: .\ctg\templates\ctg\tallas_lista.html:113
+#: .\prv\templates\prv\proveedores_lista.html:115
+#: .\trn\templates\trn\ordenes_lista.html:279
+#: .\trn\templates\trn\ordenes_pagos_lista.html:290
+#: .\trn\templates\trn\solicitudes_lista.html:268
+#: .\ubc\templates\ubc\ciudades_lista.html:113
+#: .\ubc\templates\ubc\localidades_lista.html:113
+#: .\ubc\templates\ubc\paises_lista.html:109
+#: .\ubc\templates\ubc\regiones_lista.html:109
+#: .\ubc\templates\ubc\sectores_lista.html:113
+#: .\ubc\templates\ubc\zonas_lista.html:113
+#: .\usr\templates\usr\roles_lista.html:115
+#: .\usr\templates\usr\usuarios_lista.html:120
+msgid "Procesando..."
+msgstr "Processamento..."
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:157
+#: .\cfg\templates\cfg\cfg_merma.html:89
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:160
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:195
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:160
+#: .\cfg\templates\cfg\rubros_lista.html:104
+#: .\clt\templates\clt\clientes_lista.html:111
+#: .\ctg\templates\ctg\adicionales_lista.html:142
+#: .\ctg\templates\ctg\categorias_lista.html:114
+#: .\ctg\templates\ctg\colores_lista.html:109
+#: .\ctg\templates\ctg\divisiones_lista.html:114
+#: .\ctg\templates\ctg\piedras_lista.html:137
+#: .\ctg\templates\ctg\productos_lista.html:198
+#: .\ctg\templates\ctg\servicios_lista.html:198
+#: .\ctg\templates\ctg\tallas_lista.html:114
+#: .\prv\templates\prv\proveedores_lista.html:116
+#: .\trn\templates\trn\ordenes_lista.html:280
+#: .\trn\templates\trn\ordenes_pagos_lista.html:291
+#: .\trn\templates\trn\solicitudes_lista.html:269
+#: .\ubc\templates\ubc\ciudades_lista.html:114
+#: .\ubc\templates\ubc\localidades_lista.html:114
+#: .\ubc\templates\ubc\paises_lista.html:110
+#: .\ubc\templates\ubc\regiones_lista.html:110
+#: .\ubc\templates\ubc\sectores_lista.html:114
+#: .\ubc\templates\ubc\zonas_lista.html:114
+#: .\usr\templates\usr\roles_lista.html:116
+#: .\usr\templates\usr\usuarios_lista.html:121
+msgid "Mostrar _MENU_ registros"
+msgstr "Mostrar _MENU_ registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:158
+#: .\cfg\templates\cfg\cfg_merma.html:90
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:161
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:196
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:161
+#: .\cfg\templates\cfg\rubros_lista.html:105
+#: .\clt\templates\clt\clientes_lista.html:112
+#: .\ctg\templates\ctg\adicionales_lista.html:143
+#: .\ctg\templates\ctg\categorias_lista.html:115
+#: .\ctg\templates\ctg\colores_lista.html:110
+#: .\ctg\templates\ctg\divisiones_lista.html:115
+#: .\ctg\templates\ctg\piedras_lista.html:138
+#: .\ctg\templates\ctg\productos_lista.html:199
+#: .\ctg\templates\ctg\servicios_lista.html:199
+#: .\ctg\templates\ctg\tallas_lista.html:115
+#: .\prv\templates\prv\proveedores_lista.html:117
+#: .\trn\templates\trn\ordenes_lista.html:281
+#: .\trn\templates\trn\ordenes_pagos_lista.html:292
+#: .\trn\templates\trn\solicitudes_lista.html:270
+#: .\ubc\templates\ubc\ciudades_lista.html:115
+#: .\ubc\templates\ubc\localidades_lista.html:115
+#: .\ubc\templates\ubc\paises_lista.html:111
+#: .\ubc\templates\ubc\regiones_lista.html:111
+#: .\ubc\templates\ubc\sectores_lista.html:115
+#: .\ubc\templates\ubc\zonas_lista.html:115
+#: .\usr\templates\usr\roles_lista.html:117
+#: .\usr\templates\usr\usuarios_lista.html:122
+msgid "No se encontraron resultados"
+msgstr "Nenhum resultado encontrado"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:159
+#: .\cfg\templates\cfg\cfg_merma.html:91
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:162
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:197
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:162
+#: .\cfg\templates\cfg\rubros_lista.html:106
+#: .\clt\templates\clt\clientes_lista.html:113
+#: .\ctg\templates\ctg\adicionales_lista.html:144
+#: .\ctg\templates\ctg\categorias_lista.html:116
+#: .\ctg\templates\ctg\colores_lista.html:111
+#: .\ctg\templates\ctg\divisiones_lista.html:116
+#: .\ctg\templates\ctg\piedras_lista.html:139
+#: .\ctg\templates\ctg\productos_lista.html:200
+#: .\ctg\templates\ctg\servicios_lista.html:200
+#: .\ctg\templates\ctg\tallas_lista.html:116
+#: .\prv\templates\prv\proveedores_lista.html:118
+#: .\trn\templates\trn\ordenes_lista.html:282
+#: .\trn\templates\trn\ordenes_pagos_lista.html:293
+#: .\trn\templates\trn\solicitudes_lista.html:271
+#: .\ubc\templates\ubc\ciudades_lista.html:116
+#: .\ubc\templates\ubc\localidades_lista.html:116
+#: .\ubc\templates\ubc\paises_lista.html:112
+#: .\ubc\templates\ubc\regiones_lista.html:112
+#: .\ubc\templates\ubc\sectores_lista.html:116
+#: .\ubc\templates\ubc\zonas_lista.html:116
+#: .\usr\templates\usr\roles_lista.html:118
+#: .\usr\templates\usr\usuarios_lista.html:123
+msgid "Ningún dato disponible en esta tabla"
+msgstr "Nenhum dado disponível nesta tabela"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:160
+#: .\cfg\templates\cfg\cfg_merma.html:92
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:163
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:198
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:163
+#: .\cfg\templates\cfg\rubros_lista.html:107
+#: .\clt\templates\clt\clientes_lista.html:114
+#: .\ctg\templates\ctg\adicionales_lista.html:145
+#: .\ctg\templates\ctg\categorias_lista.html:117
+#: .\ctg\templates\ctg\colores_lista.html:112
+#: .\ctg\templates\ctg\divisiones_lista.html:117
+#: .\ctg\templates\ctg\piedras_lista.html:140
+#: .\ctg\templates\ctg\productos_lista.html:201
+#: .\ctg\templates\ctg\servicios_lista.html:201
+#: .\ctg\templates\ctg\tallas_lista.html:117
+#: .\prv\templates\prv\proveedores_lista.html:119
+#: .\trn\templates\trn\ordenes_lista.html:283
+#: .\trn\templates\trn\ordenes_pagos_lista.html:294
+#: .\trn\templates\trn\solicitudes_lista.html:272
+#: .\ubc\templates\ubc\ciudades_lista.html:117
+#: .\ubc\templates\ubc\localidades_lista.html:117
+#: .\ubc\templates\ubc\paises_lista.html:113
+#: .\ubc\templates\ubc\regiones_lista.html:113
+#: .\ubc\templates\ubc\sectores_lista.html:117
+#: .\ubc\templates\ubc\zonas_lista.html:117
+#: .\usr\templates\usr\roles_lista.html:119
+#: .\usr\templates\usr\usuarios_lista.html:124
+msgid "Registros del _START_ al _END_ de un total de _TOTAL_ registros"
+msgstr "Registros de _START_ a _END_ de um total de _TOTAL_ registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:161
+#: .\cfg\templates\cfg\cfg_merma.html:93
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:164
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:199
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:164
+#: .\cfg\templates\cfg\rubros_lista.html:108
+#: .\clt\templates\clt\clientes_lista.html:115
+#: .\ctg\templates\ctg\adicionales_lista.html:146
+#: .\ctg\templates\ctg\categorias_lista.html:118
+#: .\ctg\templates\ctg\colores_lista.html:113
+#: .\ctg\templates\ctg\divisiones_lista.html:118
+#: .\ctg\templates\ctg\piedras_lista.html:141
+#: .\ctg\templates\ctg\productos_lista.html:202
+#: .\ctg\templates\ctg\servicios_lista.html:202
+#: .\ctg\templates\ctg\tallas_lista.html:118
+#: .\prv\templates\prv\proveedores_lista.html:120
+#: .\trn\templates\trn\ordenes_lista.html:284
+#: .\trn\templates\trn\ordenes_pagos_lista.html:295
+#: .\trn\templates\trn\solicitudes_lista.html:273
+#: .\ubc\templates\ubc\ciudades_lista.html:118
+#: .\ubc\templates\ubc\localidades_lista.html:118
+#: .\ubc\templates\ubc\paises_lista.html:114
+#: .\ubc\templates\ubc\regiones_lista.html:114
+#: .\ubc\templates\ubc\sectores_lista.html:118
+#: .\ubc\templates\ubc\zonas_lista.html:118
+#: .\usr\templates\usr\roles_lista.html:120
+#: .\usr\templates\usr\usuarios_lista.html:125
+msgid "Registros del 0 al 0 de un total de 0 registros"
+msgstr "Registros de 0 a 0 de um total de 0 registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:162
+#: .\cfg\templates\cfg\cfg_merma.html:94
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:165
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:200
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:165
+#: .\cfg\templates\cfg\rubros_lista.html:109
+#: .\clt\templates\clt\clientes_lista.html:116
+#: .\ctg\templates\ctg\adicionales_lista.html:147
+#: .\ctg\templates\ctg\categorias_lista.html:119
+#: .\ctg\templates\ctg\colores_lista.html:114
+#: .\ctg\templates\ctg\divisiones_lista.html:119
+#: .\ctg\templates\ctg\piedras_lista.html:142
+#: .\ctg\templates\ctg\productos_lista.html:203
+#: .\ctg\templates\ctg\servicios_lista.html:203
+#: .\ctg\templates\ctg\tallas_lista.html:119
+#: .\prv\templates\prv\proveedores_lista.html:121
+#: .\trn\templates\trn\ordenes_lista.html:285
+#: .\trn\templates\trn\ordenes_pagos_lista.html:296
+#: .\trn\templates\trn\solicitudes_lista.html:274
+#: .\ubc\templates\ubc\ciudades_lista.html:119
+#: .\ubc\templates\ubc\localidades_lista.html:119
+#: .\ubc\templates\ubc\paises_lista.html:115
+#: .\ubc\templates\ubc\regiones_lista.html:115
+#: .\ubc\templates\ubc\sectores_lista.html:119
+#: .\ubc\templates\ubc\zonas_lista.html:119
+#: .\usr\templates\usr\roles_lista.html:121
+#: .\usr\templates\usr\usuarios_lista.html:126
+msgid "(filtrado de un total de _MAX_ registros)"
+msgstr "(filtrando um total de _MAX_ registros)"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:164
+#: .\cfg\templates\cfg\cfg_merma.html:96
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:167
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:202
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:167
+#: .\cfg\templates\cfg\rubros_lista.html:111
+#: .\clt\templates\clt\clientes_lista.html:118
+#: .\ctg\templates\ctg\adicionales_lista.html:149
+#: .\ctg\templates\ctg\categorias_lista.html:121
+#: .\ctg\templates\ctg\colores_lista.html:116
+#: .\ctg\templates\ctg\divisiones_lista.html:121
+#: .\ctg\templates\ctg\piedras_lista.html:144
+#: .\ctg\templates\ctg\productos_lista.html:205
+#: .\ctg\templates\ctg\servicios_lista.html:205
+#: .\ctg\templates\ctg\tallas_lista.html:121
+#: .\prv\templates\prv\proveedores_lista.html:123
+#: .\trn\templates\trn\ordenes_lista.html:287
+#: .\trn\templates\trn\ordenes_pagos_lista.html:298
+#: .\trn\templates\trn\solicitudes_lista.html:276
+#: .\ubc\templates\ubc\ciudades_lista.html:121
+#: .\ubc\templates\ubc\localidades_lista.html:121
+#: .\ubc\templates\ubc\paises_lista.html:117
+#: .\ubc\templates\ubc\regiones_lista.html:117
+#: .\ubc\templates\ubc\sectores_lista.html:121
+#: .\ubc\templates\ubc\zonas_lista.html:121
+#: .\usr\templates\usr\roles_lista.html:123
+#: .\usr\templates\usr\usuarios_lista.html:128
+msgid "Buscar:"
+msgstr "Pesquisar:"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:167
+#: .\cfg\templates\cfg\cfg_merma.html:99
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:170
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:205
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:170
+#: .\cfg\templates\cfg\rubros_lista.html:114
+#: .\clt\templates\clt\clientes_lista.html:121
+#: .\ctg\templates\ctg\adicionales_lista.html:152
+#: .\ctg\templates\ctg\categorias_lista.html:124
+#: .\ctg\templates\ctg\colores_lista.html:119
+#: .\ctg\templates\ctg\divisiones_lista.html:124
+#: .\ctg\templates\ctg\piedras_lista.html:147
+#: .\ctg\templates\ctg\productos_lista.html:208
+#: .\ctg\templates\ctg\servicios_lista.html:208
+#: .\ctg\templates\ctg\tallas_lista.html:124
+#: .\prv\templates\prv\proveedores_lista.html:126
+#: .\trn\templates\trn\ordenes_lista.html:290
+#: .\trn\templates\trn\ordenes_pagos_lista.html:301
+#: .\trn\templates\trn\solicitudes_lista.html:279
+#: .\ubc\templates\ubc\ciudades_lista.html:124
+#: .\ubc\templates\ubc\localidades_lista.html:124
+#: .\ubc\templates\ubc\paises_lista.html:120
+#: .\ubc\templates\ubc\regiones_lista.html:120
+#: .\ubc\templates\ubc\sectores_lista.html:124
+#: .\ubc\templates\ubc\zonas_lista.html:124
+#: .\usr\templates\usr\roles_lista.html:126
+#: .\usr\templates\usr\usuarios_lista.html:131
+msgid "Cargando..."
+msgstr "Carregando..."
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:175
+#: .\cfg\templates\cfg\cfg_merma.html:107
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:178
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:213
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:178
+#: .\cfg\templates\cfg\rubros_lista.html:122
+#: .\clt\templates\clt\clientes_lista.html:129
+#: .\ctg\templates\ctg\adicionales_lista.html:160
+#: .\ctg\templates\ctg\categorias_lista.html:132
+#: .\ctg\templates\ctg\colores_lista.html:127
+#: .\ctg\templates\ctg\divisiones_lista.html:132
+#: .\ctg\templates\ctg\piedras_lista.html:155
+#: .\ctg\templates\ctg\productos_lista.html:216
+#: .\ctg\templates\ctg\servicios_lista.html:216
+#: .\ctg\templates\ctg\tallas_lista.html:132
+#: .\prv\templates\prv\proveedores_lista.html:134
+#: .\trn\templates\trn\ordenes_lista.html:298
+#: .\trn\templates\trn\ordenes_pagos_lista.html:309
+#: .\trn\templates\trn\solicitudes_lista.html:287
+#: .\ubc\templates\ubc\ciudades_lista.html:132
+#: .\ubc\templates\ubc\localidades_lista.html:132
+#: .\ubc\templates\ubc\paises_lista.html:128
+#: .\ubc\templates\ubc\regiones_lista.html:128
+#: .\ubc\templates\ubc\sectores_lista.html:132
+#: .\ubc\templates\ubc\zonas_lista.html:132
+#: .\usr\templates\usr\roles_lista.html:134
+#: .\usr\templates\usr\usuarios_lista.html:139
+msgid ": Activar para ordenar la columna de manera ascendente"
+msgstr "Ative para classificar a coluna em ordem crescente"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:176
+#: .\cfg\templates\cfg\cfg_merma.html:108
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:179
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:214
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:179
+#: .\cfg\templates\cfg\rubros_lista.html:123
+#: .\clt\templates\clt\clientes_lista.html:130
+#: .\ctg\templates\ctg\adicionales_lista.html:161
+#: .\ctg\templates\ctg\categorias_lista.html:133
+#: .\ctg\templates\ctg\colores_lista.html:128
+#: .\ctg\templates\ctg\divisiones_lista.html:133
+#: .\ctg\templates\ctg\piedras_lista.html:156
+#: .\ctg\templates\ctg\productos_lista.html:217
+#: .\ctg\templates\ctg\servicios_lista.html:217
+#: .\ctg\templates\ctg\tallas_lista.html:133
+#: .\prv\templates\prv\proveedores_lista.html:135
+#: .\trn\templates\trn\ordenes_lista.html:299
+#: .\trn\templates\trn\ordenes_pagos_lista.html:310
+#: .\trn\templates\trn\solicitudes_lista.html:288
+#: .\ubc\templates\ubc\ciudades_lista.html:133
+#: .\ubc\templates\ubc\localidades_lista.html:133
+#: .\ubc\templates\ubc\paises_lista.html:129
+#: .\ubc\templates\ubc\regiones_lista.html:129
+#: .\ubc\templates\ubc\sectores_lista.html:133
+#: .\ubc\templates\ubc\zonas_lista.html:133
+#: .\usr\templates\usr\roles_lista.html:135
+#: .\usr\templates\usr\usuarios_lista.html:140
+msgid ": Activar para ordenar la columna de manera descendente"
+msgstr "Ative para classificar a coluna em ordem decrescente"
+
+#: .\cfg\templates\cfg\cfg_merma.html:13
+#: .\usr\templates\usr\roles_form.html:42
+#: .\usr\templates\usr\roles_lista.html:12
+#: .\usr\templates\usr\roles_permisos_form.html:13
+msgid "Roles y permisos"
+msgstr "Funções e permissões"
+
+#: .\cfg\templates\cfg\cfg_merma.html:18
+#: .\usr\templates\usr\roles_form.html:44
+#: .\usr\templates\usr\roles_lista.html:17
+#: .\usr\templates\usr\roles_lista.html:33
+#: .\usr\templates\usr\roles_permisos_form.html:18
+msgid "Roles"
+msgstr "Funções"
+
+#: .\cfg\templates\cfg\cfg_merma.html:20
+#: .\usr\templates\usr\roles_permisos_form.html:20
+msgid "permisos"
+msgstr "permissões"
+
+#: .\cfg\templates\cfg\cfg_merma.html:34
+msgid "Porcentajes de Merma"
+msgstr "Porcentagens de merma"
+
+#: .\cfg\templates\cfg\cfg_merma.html:44
+msgid "No existen talleres registrados"
+msgstr "Não há oficinas registradas"
+
+#: .\cfg\templates\cfg\cfg_merma.html:49
+#: .\ctg\templates\ctg\categorias_lista.html:66
+#: .\ctg\templates\ctg\divisiones_lista.html:66
+#: .\ubc\templates\ubc\ciudades_form.html:47
+#: .\ubc\templates\ubc\ciudades_lista.html:66
+#: .\ubc\templates\ubc\localidades_form.html:47
+#: .\ubc\templates\ubc\localidades_lista.html:66
+#: .\ubc\templates\ubc\paises_form.html:47
+#: .\ubc\templates\ubc\paises_lista.html:66
+#: .\ubc\templates\ubc\regiones_form.html:47
+#: .\ubc\templates\ubc\regiones_lista.html:66
+#: .\ubc\templates\ubc\sectores_form.html:47
+#: .\ubc\templates\ubc\sectores_lista.html:66
+#: .\ubc\templates\ubc\zonas_form.html:47
+#: .\ubc\templates\ubc\zonas_lista.html:66
+msgid "Nombre"
+msgstr "Nomes"
+
+#: .\cfg\templates\cfg\cfg_merma.html:50
+msgid "Porcentaje merma"
+msgstr "Porcentagem de merma"
+
+#: .\cfg\templates\cfg\cfg_modificar_merma_modal.html:5
+msgid "Modificar merma"
+msgstr "Modificar merma"
+
+#: .\cfg\templates\cfg\cfg_modificar_merma_modal.html:19
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:91
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:120
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:149
+#: .\cfg\templates\cfg\cfg_ta_form.html:19
+#: .\ctg\templates\ctg\catalogo_fijo.html:78
+#: .\ctg\templates\ctg\catalogo_fijo.html:81
+#: .\ctg\templates\ctg\catalogo_fijo.html:189
+#: .\ctg\templates\ctg\catalogo_fijo.html:192
+#: .\ctg\templates\ctg\catalogo_gramo.html:88
+#: .\ctg\templates\ctg\catalogo_gramo.html:91
+#: .\ctg\templates\ctg\catalogo_gramo.html:180
+#: .\ctg\templates\ctg\catalogo_gramo.html:183
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:50
+#: .\ctg\templates\ctg\detalle_item_modal.html:54
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:50
+#: .\trn\templates\trn\aprobacion_pago_modal.html:80
+#: .\trn\templates\trn\detalle_orden_modal.html:72
+#: .\trn\templates\trn\detalle_solicitud_modal.html:103
+#: .\trn\templates\trn\ordenes_item_crear.html:134
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:120
+#: .\trn\templates\trn\reporte_lista_ordenes.html:125
+#: .\trn\templates\trn\reporte_lista_ordenes.html:200
+#: .\trn\templates\trn\solicitudes_form.html:81
+msgid "Taller"
+msgstr "Oficina"
+
+#: .\cfg\templates\cfg\cfg_modificar_merma_modal.html:25
+#: .\prv\templates\prv\proveedores_form.html:103
+#, python-format
+msgid "Porcentaje de merma (%%)"
+msgstr "Porcentagem de merma (%%)"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:17
+#: .\cfg\templates\cfg\cfg_pais_form.html:17
+#: .\cfg\templates\cfg\cfg_ta_form.html:17
+msgid "General"
+msgstr "Geral"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:19
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:17
+msgid "Operaciones"
+msgstr "Operações"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:33
+#: .\cfg\templates\cfg\cfg_pais_form.html:33
+#: .\cfg\templates\cfg\cfg_ta_form.html:33
+msgid "Configuración general"
+msgstr "Configurações gerais"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:40
+msgid "Calculadora"
+msgstr "Calculadora"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:45
+#: .\cfg\templates\cfg\rubros_lista.html:42
+#: .\clt\templates\clt\clientes_lista.html:47
+#: .\ctg\templates\ctg\adicionales_lista.html:49
+#: .\ctg\templates\ctg\catalogo_fijo.html:66
+#: .\ctg\templates\ctg\catalogo_fijo.html:177
+#: .\ctg\templates\ctg\catalogo_gramo.html:76
+#: .\ctg\templates\ctg\catalogo_gramo.html:168
+#: .\ctg\templates\ctg\categorias_lista.html:50
+#: .\ctg\templates\ctg\colores_lista.html:47
+#: .\ctg\templates\ctg\divisiones_lista.html:50
+#: .\ctg\templates\ctg\piedras_lista.html:44
+#: .\ctg\templates\ctg\productos_lista.html:62
+#: .\ctg\templates\ctg\productos_lista.html:131
+#: .\ctg\templates\ctg\servicios_lista.html:62
+#: .\ctg\templates\ctg\servicios_lista.html:131
+#: .\ctg\templates\ctg\tallas_lista.html:50
+#: .\prv\templates\prv\proveedores_lista.html:50
+#: .\trn\templates\trn\ordenes_item_crear.html:94
+#: .\trn\templates\trn\ordenes_lista.html:45
+#: .\trn\templates\trn\ordenes_pagos_lista.html:45
+#: .\trn\templates\trn\solicitudes_lista.html:42
+#: .\ubc\templates\ubc\ciudades_lista.html:50
+#: .\ubc\templates\ubc\localidades_lista.html:50
+#: .\ubc\templates\ubc\paises_lista.html:50
+#: .\ubc\templates\ubc\regiones_lista.html:50
+#: .\ubc\templates\ubc\sectores_lista.html:50
+#: .\ubc\templates\ubc\zonas_lista.html:50
+#: .\usr\templates\usr\editar_perfil.html:64
+#: .\usr\templates\usr\editar_usuario.html:80
+#: .\usr\templates\usr\roles_lista.html:50
+#: .\usr\templates\usr\usuarios_lista.html:50
+msgid "Expandir"
+msgstr "Expandir"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:62
+#: .\cfg\templates\cfg\cfg_ta_form.html:53
+msgid "Costo gramo base ("
+msgstr "Custo básico do grama ("
+
+#: .\cfg\templates\cfg\cfg_op_form.html:86
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:64
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:91
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:117
+#: .\usr\templates\usr\registro.html:284
+msgid "Tiempo límite de venta (días)"
+msgstr "Prazo de venda (dias)"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:92
+#: .\usr\templates\usr\registro.html:291
+#, python-format
+msgid "Descuento máximo (%%)"
+msgstr "Desconto máximo (%%)"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:104
+#: .\trn\templates\trn\detalle_solicitud_modal.html:136
+#: .\trn\templates\trn\ordenes_item_crear.html:178
+msgid "Origen de material"
+msgstr "Origem material"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:112
+#: .\cfg\templates\cfg\cfg_pais_form.html:48
+msgid "Autorizar externo"
+msgstr "Autorizar externo"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:121
+msgid "Precio final fijo"
+msgstr "Preço final fixo"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:128
+msgid "Precio gramo catálogo "
+msgstr "Catálogo de grama de preço"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:134
+msgid "Precio gramo especial "
+msgstr "Preço especial em gramas"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:140
+msgid "Configuración de órden de trabajo"
+msgstr "Configurações da ordem de serviço"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:146
+msgid "Acción"
+msgstr "Acção"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:147
+msgid "Documento adjunto"
+msgstr "Documento adjunto"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:152
+msgid "Creación de órden"
+msgstr "Criação de ordem"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:161
+#: .\trn\templates\trn\detalle_orden_modal.html:385
+#: .\trn\templates\trn\ordenes_item_crear.html:277
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:204
+msgid "Anticipo de fabricación"
+msgstr "Avanço de fabricação"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:171
+#: .\trn\templates\trn\ordenes_item_crear.html:165
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:136
+msgid "Envío de material"
+msgstr "Envio de material"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:184
+#: .\trn\templates\trn\detalle_orden_modal.html:539
+#: .\trn\templates\trn\detalle_orden_modal.html:669
+msgid "Comprobante de envío"
+msgstr "Prova de envio"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:190
+msgid "Producto recibido"
+msgstr "Produto recebido"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:202
+msgid "Factura de taller"
+msgstr "Fatura da oficina"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:209
+#: .\trn\templates\trn\detalle_orden_modal.html:751
+msgid "Finalizar órden"
+msgstr "Finalizar ordem"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:221
+#: .\trn\templates\trn\detalle_orden_modal.html:480
+#: .\trn\templates\trn\detalle_orden_modal.html:770
+#: .\trn\templates\trn\detalle_orden_modal.html:816
+msgid "Cuenta por pagar"
+msgstr "Conta a pagar"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:233
+#: .\trn\templates\trn\detalle_orden_modal.html:499
+#: .\trn\templates\trn\detalle_orden_modal.html:777
+#: .\trn\templates\trn\detalle_orden_modal.html:821
+msgid "Órden de compra"
+msgstr "Ordem de compra"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:17
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:44
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:17
+msgid "Utilidad"
+msgstr "Utilidade"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:19
+#: .\prv\templates\prv\proveedores_form.html:12
+#: .\prv\templates\prv\proveedores_lista.html:12
+#: .\prv\templates\prv\proveedores_lista.html:17
+#: .\prv\templates\prv\proveedores_lista.html:33
+#: .\templates\base\base.html:260 .\templates\base\base.html:263
+msgid "Proveedores"
+msgstr "Fornecedores"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:32
+msgid "Utilidad proveedores"
+msgstr "Utilidade fornecedores"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:38
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:38
+msgid "No existen configuraciones guardadas"
+msgstr "Não há configurações salvas"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:43
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:86
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:115
+#: .\prv\templates\prv\proveedores_form.html:17
+#: .\trn\templates\trn\aprobacion_pago_modal.html:87
+#: .\trn\templates\trn\detalle_orden_modal.html:79
+#: .\trn\templates\trn\detalle_solicitud_modal.html:110
+#: .\trn\templates\trn\ordenes_item_crear.html:139
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:126
+#: .\trn\templates\trn\solicitudes_editar_form.html:80
+#: .\trn\templates\trn\solicitudes_form.html:85
+msgid "Proveedor"
+msgstr "Fornecedor"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:87
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:116
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:44
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:92
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:121
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:150
+#: .\trn\templates\trn\detalle_solicitud_modal.html:346
+#, python-format
+msgid "Utilidad (%%)"
+msgstr "Utilidade (%%)"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:108
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:113
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:84
+msgid "No existen zonas a configurar"
+msgstr "Não há zonas para configurar"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:19
+msgid "Talleres"
+msgstr "Oficinas"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:32
+msgid "Utilidad talleres"
+msgstr "Utilidade oficinas"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:43
+msgid "taller"
+msgstr "oficina"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:143
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:111
+msgid "No existen sectores a configurar"
+msgstr "Não há setores para configurar"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:19
+#: .\ubc\templates\ubc\localidades_form.html:54
+#: .\ubc\templates\ubc\paises_form.html:17
+#: .\ubc\templates\ubc\zonas_form.html:54 .\usr\templates\usr\registro.html:96
+msgid "País"
+msgstr "País"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:55
+#: .\ubc\templates\ubc\paises_form.html:72
+msgid "Símbolo moneda"
+msgstr "Símbolo monetário"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:62
+#: .\ubc\templates\ubc\paises_form.html:79
+msgid "Cifras decimales"
+msgstr "Números decimais"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:69
+#: .\trn\templates\trn\detalle_solicitud_modal.html:188
+#: .\trn\templates\trn\ordenes_item_crear.html:172
+#: .\trn\templates\trn\ordenes_item_crear.html:185
+#: .\trn\templates\trn\ordenes_item_crear.html:203
+#: .\trn\templates\trn\ordenes_item_crear.html:219
+#: .\trn\templates\trn\ordenes_item_crear.html:518
+#: .\trn\templates\trn\solicitudes_editar_form.html:159
+#: .\ubc\templates\ubc\paises_form.html:86
+msgid "Seleccionar"
+msgstr "Selecione"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:75
+#: .\ubc\templates\ubc\paises_form.html:92
+msgid "Zona horaria"
+msgstr "Fuso horário"
+
+#: .\cfg\templates\cfg\cfg_pais_form.html:82
+msgid "Carga de documentos"
+msgstr "Carregando documentos"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:47
+msgid "Valor gramo fabricado ("
+msgstr "Valor grama fabricado ("
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:59
+#: .\trn\templates\trn\detalle_solicitud_modal.html:335
+#, python-format
+msgid "Impuestos (%%)"
+msgstr "Impostos (%%)"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:65
+#: .\usr\templates\usr\registro.html:277
+#, python-format
+msgid "Utilidad sobre fabricación (%%)"
+msgstr "Utilidade sobre fabricação (%%)"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:77
+#, python-format
+msgid "Utilidad sobre costo piedras (%%)"
+msgstr "Utilidade sobre custo pedras (%%)"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:83
+#, python-format
+msgid "Utilidad sobre costo adicionales (%%)"
+msgstr "Utilidade sobre custo adicionais (%%)"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:89
+msgid "Tiempo de respuesta a solicitudes (minutos)"
+msgstr "Tempo de resposta da solicitação (minutos)"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:99
+#: .\prv\templates\prv\proveedores_form.html:113
+#: .\usr\templates\usr\registro.html:238
+msgid "Escala de peso"
+msgstr "Escala de peso"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:105
+msgid "Escoger una opción"
+msgstr "Escolha uma opção"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:112
+#: .\usr\templates\usr\registro.html:250
+msgid "Estándar tallas"
+msgstr "Padrão tamanhos"
+
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:19
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:32
+msgid "Tiempo límite de venta"
+msgstr "Prazo de venda"
+
+#: .\cfg\templates\cfg\rubro_form_modal.html:7
+#: .\trn\templates\trn\detalle_solicitud_modal.html:265
+#: .\trn\templates\trn\solicitudes_editar_form.html:186
+msgid "Agregar Rubro"
+msgstr "Adicionar Rubro"
+
+#: .\cfg\templates\cfg\rubro_form_modal.html:20
+#: .\cfg\templates\cfg\rubros_lista.html:58
+#: .\ctg\templates\ctg\adicionales_form.html:84
+#: .\ctg\templates\ctg\adicionales_lista.html:67
+#: .\ctg\templates\ctg\categorias_form.html:47
+#: .\ctg\templates\ctg\colores_form.html:44
+#: .\ctg\templates\ctg\colores_lista.html:63
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:62
+#: .\ctg\templates\ctg\detalle_item_modal.html:72
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:62
+#: .\ctg\templates\ctg\detalles_adicional_form.html:61
+#: .\ctg\templates\ctg\detalles_colores_form.html:107
+#: .\ctg\templates\ctg\detalles_colores_form.html:153
+#: .\ctg\templates\ctg\detalles_form.html:109
+#: .\ctg\templates\ctg\divisiones_form.html:47
+#: .\ctg\templates\ctg\items_form.html:126
+#: .\ctg\templates\ctg\piedras_form.html:84
+#: .\ctg\templates\ctg\piedras_lista.html:62
+#: .\ctg\templates\ctg\productos_lista.html:79
+#: .\ctg\templates\ctg\productos_lista.html:148
+#: .\ctg\templates\ctg\servicios_lista.html:79
+#: .\ctg\templates\ctg\servicios_lista.html:148
+#: .\trn\templates\trn\agregar_adicional_modal.html:25
+#: .\trn\templates\trn\agregar_piedra_modal.html:25
+#: .\trn\templates\trn\aprobacion_pago_modal.html:234
+#: .\trn\templates\trn\comprobante_orden.html:224
+#: .\trn\templates\trn\correo_cliente.html:183
+#: .\trn\templates\trn\detalle_orden_modal.html:343
+#: .\trn\templates\trn\detalle_solicitud_modal.html:217
+#: .\trn\templates\trn\ordenes_item_crear.html:146
+#: .\trn\templates\trn\ordenes_item_crear.html:304
+#: .\trn\templates\trn\ordenes_item_crear.html:868
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:112
+#: .\usr\templates\usr\roles_lista.html:66
+#: .\usr\templates\usr\tipo_usuarios_lista.html:28
+msgid "Descripción"
+msgstr "Descrição"
+
+#: .\cfg\templates\cfg\rubro_form_modal.html:57
+msgid "Debe ingresar una descripción"
+msgstr "Você deve inserir uma descrição"
+
+#: .\cfg\templates\cfg\rubro_form_modal.html:75
+msgid "Ya existe un rubro con esa descripción"
+msgstr "Já existe um rubro com essa descrição"
+
+#: .\cfg\templates\cfg\rubros_lista.html:9
+#: .\cfg\templates\cfg\rubros_lista.html:30 .\templates\base\base.html:297
+#: .\trn\templates\trn\detalle_solicitud_modal.html:208
+#: .\trn\templates\trn\solicitudes_editar_form.html:150
+#: .\trn\templates\trn\solicitudes_form.html:158
+msgid "Rubros asociados"
+msgstr "Rubros associados"
+
+#: .\cfg\templates\cfg\rubros_lista.html:14
+#: .\trn\templates\trn\detalle_solicitud_modal.html:244
+#: .\trn\templates\trn\solicitudes_editar_form.html:165
+#: .\trn\templates\trn\solicitudes_form.html:172
+msgid "Rubros"
+msgstr "Rubros"
+
+#: .\cfg\templates\cfg\rubros_lista.html:16
+#: .\clt\templates\clt\clientes_lista.html:16
+#: .\ctg\templates\ctg\adicionales_lista.html:16
+#: .\ctg\templates\ctg\categorias_lista.html:19
+#: .\ctg\templates\ctg\colores_lista.html:16
+#: .\ctg\templates\ctg\divisiones_lista.html:19
+#: .\ctg\templates\ctg\piedras_lista.html:16
+#: .\ctg\templates\ctg\productos_lista.html:19
+#: .\ctg\templates\ctg\servicios_lista.html:19
+#: .\ctg\templates\ctg\tallas_lista.html:19
+#: .\prv\templates\prv\proveedores_lista.html:19
+#: .\trn\templates\trn\ordenes_lista.html:19
+#: .\trn\templates\trn\ordenes_pagos_lista.html:19
+#: .\trn\templates\trn\solicitudes_lista.html:16
+#: .\ubc\templates\ubc\ciudades_lista.html:19
+#: .\ubc\templates\ubc\localidades_lista.html:19
+#: .\ubc\templates\ubc\paises_lista.html:19
+#: .\ubc\templates\ubc\regiones_lista.html:19
+#: .\ubc\templates\ubc\sectores_lista.html:19
+#: .\ubc\templates\ubc\zonas_lista.html:19
+#: .\usr\templates\usr\roles_lista.html:19
+#: .\usr\templates\usr\usuarios_lista.html:19
+msgid "Lista"
+msgstr "Lista"
+
+#: .\cfg\templates\cfg\rubros_lista.html:37
+#: .\clt\templates\clt\clientes_lista.html:42
+#: .\ctg\templates\ctg\adicionales_lista.html:43
+#: .\ctg\templates\ctg\categorias_form.html:19
+#: .\ctg\templates\ctg\categorias_lista.html:45
+#: .\ctg\templates\ctg\colores_lista.html:42
+#: .\ctg\templates\ctg\divisiones_form.html:19
+#: .\ctg\templates\ctg\divisiones_lista.html:45
+#: .\ctg\templates\ctg\piedras_form.html:41
+#: .\ctg\templates\ctg\piedras_lista.html:38
+#: .\ctg\templates\ctg\tallas_form.html:19
+#: .\ctg\templates\ctg\tallas_lista.html:45
+#: .\prv\templates\prv\proveedores_lista.html:45
+#: .\trn\templates\trn\ordenes_item_crear.html:63
+#: .\trn\templates\trn\ordenes_item_crear.html:77
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:60
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:75
+#: .\trn\templates\trn\solicitudes_editar.html:17
+#: .\trn\templates\trn\solicitudes_editar_form.html:56
+#: .\trn\templates\trn\solicitudes_form.html:56
+#: .\ubc\templates\ubc\ciudades_form.html:19
+#: .\ubc\templates\ubc\ciudades_lista.html:45
+#: .\ubc\templates\ubc\localidades_form.html:19
+#: .\ubc\templates\ubc\localidades_lista.html:45
+#: .\ubc\templates\ubc\paises_lista.html:45
+#: .\ubc\templates\ubc\regiones_form.html:19
+#: .\ubc\templates\ubc\regiones_lista.html:45
+#: .\ubc\templates\ubc\sectores_form.html:19
+#: .\ubc\templates\ubc\sectores_lista.html:45
+#: .\ubc\templates\ubc\zonas_form.html:19
+#: .\ubc\templates\ubc\zonas_lista.html:45
+#: .\usr\templates\usr\roles_lista.html:45
+#: .\usr\templates\usr\usuarios_lista.html:45
+msgid "Nueva"
+msgstr "Novo"
+
+#: .\cfg\templates\cfg\rubros_lista.html:53
+msgid "No existen Rubros asociados"
+msgstr "Não há rubros associados"
+
+#: .\cfg\templates\cfg\rubros_lista.html:59
+#: .\ctg\templates\ctg\adicionales_lista.html:68
+#: .\ctg\templates\ctg\categorias_lista.html:67
+#: .\ctg\templates\ctg\colores_lista.html:64
+#: .\ctg\templates\ctg\divisiones_lista.html:67
+#: .\ctg\templates\ctg\piedras_lista.html:63
+#: .\ctg\templates\ctg\tallas_lista.html:67
+#: .\trn\templates\trn\aprobacion_pago_modal.html:100
+#: .\trn\templates\trn\detalle_orden_modal.html:92
+#: .\trn\templates\trn\ordenes_lista.html:198
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+#: .\trn\templates\trn\solicitudes_lista.html:153
+#: .\trn\templates\trn\solicitudes_lista.html:221
+#: .\ubc\templates\ubc\ciudades_lista.html:67
+#: .\ubc\templates\ubc\localidades_lista.html:67
+#: .\ubc\templates\ubc\paises_lista.html:67
+#: .\ubc\templates\ubc\regiones_lista.html:67
+#: .\ubc\templates\ubc\sectores_lista.html:67
+#: .\ubc\templates\ubc\zonas_lista.html:67
+#: .\usr\templates\usr\roles_lista.html:68
+#: .\usr\templates\usr\usuarios_lista.html:71
+msgid "Estado"
+msgstr "Estado"
+
+#: .\cfg\templates\cfg\rubros_lista.html:60
+#: .\clt\templates\clt\clientes_lista.html:66
+#: .\ctg\templates\ctg\adicionales_lista.html:69
+#: .\ctg\templates\ctg\categorias_lista.html:68
+#: .\ctg\templates\ctg\colores_lista.html:65
+#: .\ctg\templates\ctg\divisiones_lista.html:68
+#: .\ctg\templates\ctg\piedras_lista.html:64
+#: .\ctg\templates\ctg\tallas_lista.html:68
+#: .\prv\templates\prv\proveedores_lista.html:69
+#: .\trn\templates\trn\ordenes_lista.html:198
+#: .\trn\templates\trn\reporte_lista_ordenes.html:129
+#: .\trn\templates\trn\reporte_lista_ordenes.html:203
+#: .\trn\templates\trn\solicitudes_lista.html:153
+#: .\trn\templates\trn\solicitudes_lista.html:221
+#: .\ubc\templates\ubc\ciudades_lista.html:68
+#: .\ubc\templates\ubc\localidades_lista.html:68
+#: .\ubc\templates\ubc\paises_lista.html:68
+#: .\ubc\templates\ubc\regiones_lista.html:68
+#: .\ubc\templates\ubc\sectores_lista.html:68
+#: .\ubc\templates\ubc\zonas_lista.html:68
+#: .\usr\templates\usr\roles_lista.html:69
+#: .\usr\templates\usr\usuarios_lista.html:72
+msgid "Fecha creación"
+msgstr "Data de criação"
+
+#: .\clt\templates\clt\actualizar_cliente_modal.html:7
+msgid "Inactivar cliente"
+msgstr "Desativar cliente"
+
+#: .\clt\templates\clt\actualizar_cliente_modal.html:9
+msgid "Activar cliente"
+msgstr "Ativar cliente"
+
+#: .\clt\templates\clt\actualizar_cliente_modal.html:17
+msgid "Se inactivará el cliente seleccionado "
+msgstr "O cliente selecionado será inativado"
+
+#: .\clt\templates\clt\actualizar_cliente_modal.html:19
+msgid "Se activará el cliente seleccionado "
+msgstr "O cliente selecionado será ativado"
+
+#: .\clt\templates\clt\clientes_form.html:12
+#: .\clt\templates\clt\clientes_lista.html:9
+#: .\clt\templates\clt\clientes_lista.html:14
+#: .\clt\templates\clt\clientes_lista.html:30 .\templates\base\base.html:417
+#: .\templates\base\base.html:420
+msgid "Clientes"
+msgstr "Clientes"
+
+#: .\clt\templates\clt\clientes_form.html:17
+#: .\clt\templates\clt\clientes_modal.html:5
+#: .\ctg\templates\ctg\contar_cotizacion_modal.html:13
+#: .\trn\templates\trn\detalle_orden_modal.html:64
+#: .\trn\templates\trn\ordenes_item_crear.html:119
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:104
+#: .\trn\templates\trn\solicitudes_editar.html:25
+msgid "Cliente"
+msgstr "Cliente"
+
+#: .\clt\templates\clt\clientes_form.html:19
+#: .\ctg\templates\ctg\adicionales_form.html:41
+#: .\ctg\templates\ctg\catalogo_fijo.html:61
+#: .\ctg\templates\ctg\catalogo_fijo.html:172
+#: .\ctg\templates\ctg\catalogo_gramo.html:71
+#: .\ctg\templates\ctg\catalogo_gramo.html:163
+#: .\ctg\templates\ctg\colores_form.html:16
+#: .\ctg\templates\ctg\items_form.html:43
+#: .\ctg\templates\ctg\productos_lista.html:57
+#: .\ctg\templates\ctg\productos_lista.html:126
+#: .\ctg\templates\ctg\servicios_lista.html:57
+#: .\ctg\templates\ctg\servicios_lista.html:126
+#: .\prv\templates\prv\proveedores_form.html:19
+#: .\trn\templates\trn\solicitudes_editar_form.html:42
+#: .\trn\templates\trn\solicitudes_form.html:42
+#: .\ubc\templates\ubc\paises_form.html:19
+#: .\usr\templates\usr\registro.html:43
+#: .\usr\templates\usr\tipo_usuarios_lista.html:16
+#: .\wso\templates\wso\prueba.html:16 .\wso\templates\wso\sala.html:16
+msgid "Nuevo"
+msgstr "Novo"
+
+#: .\clt\templates\clt\clientes_form.html:33
+#: .\ctg\templates\ctg\adicionales_form.html:55
+#: .\ctg\templates\ctg\categorias_form.html:33
+#: .\ctg\templates\ctg\colores_form.html:30
+#: .\ctg\templates\ctg\divisiones_form.html:33
+#: .\ctg\templates\ctg\piedras_form.html:55
+#: .\ctg\templates\ctg\tallas_form.html:33
+#: .\prv\templates\prv\proveedores_form.html:33
+#: .\ubc\templates\ubc\ciudades_form.html:33
+#: .\ubc\templates\ubc\localidades_form.html:33
+#: .\ubc\templates\ubc\paises_form.html:33
+#: .\ubc\templates\ubc\regiones_form.html:33
+#: .\ubc\templates\ubc\sectores_form.html:33
+#: .\ubc\templates\ubc\zonas_form.html:33 .\usr\templates\usr\registro.html:57
+#: .\usr\templates\usr\roles_form.html:58
+msgid "Editar "
+msgstr "Editar"
+
+#: .\clt\templates\clt\clientes_form.html:33
+#: .\ctg\templates\ctg\adicionales_form.html:55
+#: .\ctg\templates\ctg\categorias_form.html:33
+#: .\ctg\templates\ctg\colores_form.html:30
+#: .\ctg\templates\ctg\piedras_form.html:55
+#: .\ctg\templates\ctg\tallas_form.html:33
+#: .\prv\templates\prv\proveedores_form.html:33
+#: .\ubc\templates\ubc\paises_form.html:33
+#: .\ubc\templates\ubc\sectores_form.html:33
+#: .\usr\templates\usr\editar_perfil.html:57
+#: .\usr\templates\usr\editar_usuario.html:57
+#: .\usr\templates\usr\registro.html:57 .\usr\templates\usr\roles_form.html:58
+msgid "Nuevo "
+msgstr "Novo"
+
+#: .\clt\templates\clt\clientes_form.html:33
+msgid "cliente"
+msgstr "cliente"
+
+#: .\clt\templates\clt\clientes_form.html:47
+#: .\clt\templates\clt\clientes_modal.html:16
+#: .\prv\templates\prv\proveedores_form.html:47
+msgid "Identificación"
+msgstr "Identificação"
+
+#: .\clt\templates\clt\clientes_form.html:59
+#: .\clt\templates\clt\clientes_lista.html:63
+#: .\clt\templates\clt\clientes_modal.html:31
+#: .\prv\templates\prv\proveedores_form.html:59
+#: .\prv\templates\prv\proveedores_lista.html:66
+#: .\usr\templates\usr\editar_perfil.html:102
+#: .\usr\templates\usr\editar_usuario.html:131
+#: .\usr\templates\usr\registro.html:111
+#: .\usr\templates\usr\usuarios_lista.html:67
+msgid "Nombres"
+msgstr "Nomes"
+
+#: .\clt\templates\clt\clientes_form.html:65
+#: .\clt\templates\clt\clientes_modal.html:38
+#: .\prv\templates\prv\proveedores_form.html:65
+#: .\usr\templates\usr\editar_perfil.html:109
+#: .\usr\templates\usr\editar_usuario.html:138
+#: .\usr\templates\usr\registro.html:118
+msgid "Apellidos"
+msgstr "Sobrenome"
+
+#: .\clt\templates\clt\clientes_form.html:72
+#: .\clt\templates\clt\clientes_lista.html:64
+#: .\clt\templates\clt\clientes_modal.html:46
+#: .\prv\templates\prv\proveedores_form.html:72
+#: .\prv\templates\prv\proveedores_lista.html:67
+#: .\ubc\templates\ubc\ciudades_form.html:17
+#: .\ubc\templates\ubc\ciudades_form.html:33
+#: .\usr\templates\usr\editar_perfil.html:131
+#: .\usr\templates\usr\editar_usuario.html:160
+#: .\usr\templates\usr\registro.html:140
+msgid "Ciudad"
+msgstr "Cidade"
+
+#: .\clt\templates\clt\clientes_form.html:78
+#: .\clt\templates\clt\clientes_modal.html:53
+#: .\prv\templates\prv\proveedores_form.html:85
+#: .\usr\templates\usr\editar_perfil.html:138
+#: .\usr\templates\usr\editar_usuario.html:175
+#: .\usr\templates\usr\registro.html:155
+msgid "Dirección"
+msgstr "Morada"
+
+#: .\clt\templates\clt\clientes_form.html:84
+#: .\clt\templates\clt\clientes_modal.html:60
+#: .\prv\templates\prv\proveedores_form.html:91
+#: .\usr\templates\usr\editar_perfil.html:123
+#: .\usr\templates\usr\editar_usuario.html:152
+#: .\usr\templates\usr\registro.html:132
+msgid "Teléfono"
+msgstr "Número de telefone"
+
+#: .\clt\templates\clt\clientes_form.html:90
+#: .\clt\templates\clt\clientes_lista.html:65
+#: .\clt\templates\clt\clientes_modal.html:67
+#: .\prv\templates\prv\proveedores_form.html:97
+#: .\usr\templates\usr\editar_perfil.html:116
+#: .\usr\templates\usr\editar_usuario.html:145
+#: .\usr\templates\usr\registro.html:125
+#: .\usr\templates\usr\usuarios_lista.html:68
+msgid "Correo"
+msgstr "Mail"
+
+#: .\clt\templates\clt\clientes_form.html:94
+#: .\ctg\templates\ctg\adicionales_form.html:102
+#: .\ctg\templates\ctg\categorias_form.html:65
+#: .\ctg\templates\ctg\colores_form.html:54
+#: .\ctg\templates\ctg\divisiones_form.html:63
+#: .\ctg\templates\ctg\items_form.html:208
+#: .\ctg\templates\ctg\piedras_form.html:96
+#: .\ctg\templates\ctg\tallas_form.html:63
+#: .\prv\templates\prv\proveedores_form.html:117
+#: .\trn\templates\trn\ordenes_item_crear.html:341
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:275
+#: .\trn\templates\trn\solicitudes_editar_form.html:243
+#: .\trn\templates\trn\solicitudes_form.html:253
+#: .\ubc\templates\ubc\ciudades_form.html:58
+#: .\ubc\templates\ubc\localidades_form.html:58
+#: .\ubc\templates\ubc\paises_form.html:99
+#: .\ubc\templates\ubc\regiones_form.html:51
+#: .\ubc\templates\ubc\sectores_form.html:58
+#: .\ubc\templates\ubc\zonas_form.html:58
+#: .\usr\templates\usr\cambiar_contrasena.html:96
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:75
+#: .\usr\templates\usr\editar_perfil.html:146
+#: .\usr\templates\usr\editar_usuario.html:184
+#: .\usr\templates\usr\registro.html:307
+#: .\usr\templates\usr\roles_form.html:93
+#: .\usr\templates\usr\roles_permisos_form.html:84
+msgid " Guardar"
+msgstr "Salvar"
+
+#: .\clt\templates\clt\clientes_form.html:95
+#: .\ctg\templates\ctg\adicionales_form.html:103
+#: .\ctg\templates\ctg\categorias_form.html:66
+#: .\ctg\templates\ctg\colores_form.html:55
+#: .\ctg\templates\ctg\detalles_adicional_form.html:92
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:104
+#: .\ctg\templates\ctg\detalles_colores_form.html:224
+#: .\ctg\templates\ctg\detalles_form.html:201
+#: .\ctg\templates\ctg\detalles_piedra_form.html:147
+#: .\ctg\templates\ctg\divisiones_form.html:64
+#: .\ctg\templates\ctg\items_form.html:210
+#: .\ctg\templates\ctg\items_form.html:212
+#: .\ctg\templates\ctg\piedras_form.html:97
+#: .\ctg\templates\ctg\tallas_form.html:64
+#: .\prv\templates\prv\proveedores_form.html:118
+#: .\trn\templates\trn\ordenes_item_crear.html:342
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:277
+#: .\trn\templates\trn\solicitudes_editar_form.html:244
+#: .\trn\templates\trn\solicitudes_form.html:254
+#: .\ubc\templates\ubc\ciudades_form.html:59
+#: .\ubc\templates\ubc\localidades_form.html:59
+#: .\ubc\templates\ubc\paises_form.html:100
+#: .\ubc\templates\ubc\regiones_form.html:52
+#: .\ubc\templates\ubc\sectores_form.html:59
+#: .\ubc\templates\ubc\zonas_form.html:59
+#: .\usr\templates\usr\cambiar_contrasena.html:97
+#: .\usr\templates\usr\editar_perfil.html:148
+#: .\usr\templates\usr\editar_usuario.html:186
+#: .\usr\templates\usr\registro.html:309
+#: .\usr\templates\usr\roles_form.html:95
+#: .\usr\templates\usr\roles_permisos_form.html:85
+msgid " Cancelar"
+msgstr "Cancelar"
+
+#: .\clt\templates\clt\clientes_form.html:118
+msgid "Cliente ya existe"
+msgstr "O cliente já existe"
+
+#: .\clt\templates\clt\clientes_lista.html:37
+#: .\ctg\templates\ctg\adicionales_lista.html:37
+#: .\ctg\templates\ctg\categorias_lista.html:40
+#: .\ctg\templates\ctg\colores_lista.html:37
+#: .\ctg\templates\ctg\divisiones_lista.html:40
+#: .\ctg\templates\ctg\productos_lista.html:52
+#: .\ctg\templates\ctg\productos_lista.html:121
+#: .\ctg\templates\ctg\servicios_lista.html:52
+#: .\ctg\templates\ctg\servicios_lista.html:121
+#: .\ctg\templates\ctg\tallas_lista.html:40
+#: .\prv\templates\prv\proveedores_lista.html:40
+#: .\trn\templates\trn\ordenes_lista.html:105
+#: .\trn\templates\trn\ordenes_pagos_lista.html:103
+#: .\trn\templates\trn\solicitudes_lista.html:37
+#: .\ubc\templates\ubc\ciudades_lista.html:40
+#: .\ubc\templates\ubc\localidades_lista.html:40
+#: .\ubc\templates\ubc\paises_lista.html:40
+#: .\ubc\templates\ubc\regiones_lista.html:40
+#: .\ubc\templates\ubc\sectores_lista.html:40
+#: .\ubc\templates\ubc\zonas_lista.html:40
+#: .\usr\templates\usr\roles_lista.html:40
+#: .\usr\templates\usr\usuarios_lista.html:40
+msgid "Listar todas"
+msgstr "Listar tudo"
+
+#: .\clt\templates\clt\clientes_lista.html:58
+#: .\ctg\templates\ctg\colores_lista.html:58
+msgid "No existen clientes registrados"
+msgstr "Não há clientes registrados"
+
+#: .\clt\templates\clt\clientes_modal.html:78
+msgid "Guardar cliente"
+msgstr "Salvar cliente"
+
+#: .\clt\templates\clt\clientes_modal.html:82
+msgid "Confirmar cliente"
+msgstr "Confirmar cliente"
+
+#: .\clt\templates\clt\clientes_modal.html:146
+msgid "Cliente no existe"
+msgstr "O cliente não existe"
+
+#: .\clt\templates\clt\clientes_modal.html:147
+msgid "¿Crear cliente?"
+msgstr "Criar cliente?"
+
+#: .\clt\templates\clt\clientes_modal.html:247
+msgid "Ya existe un cliente con el correo ingresado"
+msgstr "Já existe um cliente com o email inserido"
+
+#: .\clt\templates\clt\clientes_modal.html:251
+msgid "Ya existe un cliente con la identificación ingresada"
+msgstr "Já existe um cliente com o ID inserido"
+
+#: .\ctg\templates\ctg\activar_item_modal.html:6
+msgid "Activar ítem"
+msgstr "Ativar item"
+
+#: .\ctg\templates\ctg\activar_item_modal.html:12
+msgid "Se activará el ítem y estará disponible en el catálogo de la joyería "
+msgstr "O item será ativado e estará disponível no catálogo de jóias"
+
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:7
+msgid "Inactivar adicional"
+msgstr "Desativar adicionais"
+
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:9
+msgid "Activar adicional"
+msgstr "Ativar adicional"
+
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:17
+msgid "Se inactivará el adicional seleccionado "
+msgstr "O adicional selecionado será desativado"
+
+#: .\ctg\templates\ctg\actualizar_adicional_modal.html:19
+msgid "Se activará el adicional seleccionado "
+msgstr "O adicional selecionado será ativado"
+
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:7
+msgid "Inactivar categoría"
+msgstr "Desativar categoria"
+
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:9
+msgid "Activar categoría"
+msgstr "Ativar categoria"
+
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:17
+#: .\ctg\templates\ctg\actualizar_division_modal.html:17
+msgid "Se inactivará la categoría seleccionada "
+msgstr "A categoria selecionada será desativada"
+
+#: .\ctg\templates\ctg\actualizar_categoria_modal.html:19
+msgid "Se activará la categoría seleccionada "
+msgstr "A categoria selecionada será ativada"
+
+#: .\ctg\templates\ctg\actualizar_color_modal.html:7
+msgid "Inactivar color"
+msgstr "Desativar cor"
+
+#: .\ctg\templates\ctg\actualizar_color_modal.html:9
+msgid "Activar color"
+msgstr "Ativar cor"
+
+#: .\ctg\templates\ctg\actualizar_color_modal.html:17
+msgid "Se inactivará el color seleccionado "
+msgstr "A cor selecionada será desativada"
+
+#: .\ctg\templates\ctg\actualizar_color_modal.html:19
+msgid "Se activará el color seleccionado "
+msgstr "A cor selecionada será ativada"
+
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:7
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:7
+msgid "Inactivar detalle"
+msgstr "Desativar detalhes"
+
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:9
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:9
+msgid "Activar detalle"
+msgstr "Ativar detalhes"
+
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:17
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:17
+msgid "Se inactivará el detalle seleccionado "
+msgstr "O detalhe selecionado será inativado"
+
+#: .\ctg\templates\ctg\actualizar_detalle_item_modal.html:19
+#: .\ctg\templates\ctg\actualizar_detalle_piedra_modal.html:19
+msgid "Se activará el detalle seleccionado "
+msgstr "O detalhe selecionado será ativado"
+
+#: .\ctg\templates\ctg\actualizar_division_modal.html:7
+msgid "Inactivar división"
+msgstr "Inativar Divisão"
+
+#: .\ctg\templates\ctg\actualizar_division_modal.html:9
+msgid "Activar división"
+msgstr "Ativar Divisão"
+
+#: .\ctg\templates\ctg\actualizar_division_modal.html:19
+msgid "Se activará la división seleccionada "
+msgstr "A divisão selecionada será ativada"
+
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:7
+msgid "Inactivar piedra"
+msgstr "Inativar pedra"
+
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:9
+msgid "Activar piedra"
+msgstr "Ativar pedra"
+
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:17
+msgid "Se inactivará la piedra seleccionada "
+msgstr "A pedra selecionada será inativada"
+
+#: .\ctg\templates\ctg\actualizar_piedra_modal.html:19
+msgid "Se activará la piedra seleccionada "
+msgstr "A pedra selecionada será ativada"
+
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:7
+msgid "Inactivar talla"
+msgstr "Desativar tamanho"
+
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:9
+msgid "Activar talla"
+msgstr "Ativar tamanho"
+
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:17
+msgid "Se inactivará la talla seleccionada "
+msgstr "O tamanho selecionado será desativado"
+
+#: .\ctg\templates\ctg\actualizar_talla_modal.html:19
+msgid "Se activará la talla seleccionada "
+msgstr "O tamanho selecionado será ativado"
+
+#: .\ctg\templates\ctg\adicional_agregar_modal.html:5
+#: .\trn\templates\trn\agregar_adicional_modal.html:5
+#: .\trn\templates\trn\ordenes_item_crear.html:89
+msgid "Agregar adicional"
+msgstr "Adicione adicionais"
+
+#: .\ctg\templates\ctg\adicional_agregar_modal.html:28
+#: .\ctg\templates\ctg\detalles_adicional_form.html:20
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:20
+#: .\ctg\templates\ctg\detalles_colores_form.html:20
+#: .\ctg\templates\ctg\detalles_colores_form.html:154
+#: .\ctg\templates\ctg\detalles_form.html:20
+#: .\ctg\templates\ctg\detalles_piedra_form.html:20
+#: .\ctg\templates\ctg\piedra_agregar_modal.html:28
+#: .\trn\templates\trn\agregar_adicional_modal.html:53
+#: .\trn\templates\trn\agregar_piedra_modal.html:64
+#: .\trn\templates\trn\solicitudes_form.html:193
+msgid "Agregar"
+msgstr "Adicionar"
+
+#: .\ctg\templates\ctg\adicionales_form.html:34
+#: .\ctg\templates\ctg\adicionales_lista.html:9
+#: .\ctg\templates\ctg\catalogo_fijo.html:13
+#: .\ctg\templates\ctg\catalogo_gramo.html:23
+#: .\ctg\templates\ctg\categorias_form.html:12
+#: .\ctg\templates\ctg\categorias_lista.html:12
+#: .\ctg\templates\ctg\colores_form.html:9
+#: .\ctg\templates\ctg\colores_lista.html:9
+#: .\ctg\templates\ctg\divisiones_form.html:12
+#: .\ctg\templates\ctg\divisiones_lista.html:12
+#: .\ctg\templates\ctg\items_form.html:36
+#: .\ctg\templates\ctg\piedras_form.html:34
+#: .\ctg\templates\ctg\piedras_lista.html:9
+#: .\ctg\templates\ctg\productos_lista.html:12
+#: .\ctg\templates\ctg\servicios_lista.html:12
+#: .\ctg\templates\ctg\tallas_form.html:12
+#: .\ctg\templates\ctg\tallas_lista.html:12 .\templates\base\base.html:325
+#: .\templates\base\base.html:374
+msgid "Catálogo"
+msgstr "Catálogo"
+
+#: .\ctg\templates\ctg\adicionales_form.html:39 .\templates\base\base.html:393
+msgid "Ítems adicionales"
+msgstr "Itens adicionais"
+
+#: .\ctg\templates\ctg\adicionales_form.html:55
+msgid "ítem adicional"
+msgstr "item adicional"
+
+#: .\ctg\templates\ctg\adicionales_form.html:70
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:41
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:41
+#: .\ctg\templates\ctg\detalles_adicional_form.html:53
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:55
+#: .\ctg\templates\ctg\detalles_colores_form.html:87
+#: .\ctg\templates\ctg\detalles_form.html:89
+#: .\ctg\templates\ctg\detalles_piedra_form.html:55
+#: .\ctg\templates\ctg\items_form.html:104
+#: .\ctg\templates\ctg\piedras_form.html:70
+#: .\trn\templates\trn\agregar_adicional_modal.html:17
+#: .\trn\templates\trn\agregar_piedra_modal.html:17
+#: .\trn\templates\trn\aprobacion_pago_modal.html:59
+#: .\trn\templates\trn\detalle_orden_modal.html:49
+#: .\trn\templates\trn\detalle_solicitud_modal.html:88
+#: .\trn\templates\trn\ordenes_item_crear.html:111
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:94
+#: .\trn\templates\trn\solicitudes_editar_form.html:71
+#: .\trn\templates\trn\solicitudes_form.html:71
+#: .\usr\templates\usr\cambiar_contrasena.html:70
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:49
+#: .\usr\templates\usr\editar_perfil.html:81
+#: .\usr\templates\usr\editar_usuario.html:97
+#: .\usr\templates\usr\registro.html:75 .\usr\templates\usr\roles_form.html:76
+msgid "Imagen"
+msgstr "Imagem"
+
+#: .\ctg\templates\ctg\adicionales_form.html:78
+#: .\ctg\templates\ctg\adicionales_lista.html:66
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:56
+#: .\ctg\templates\ctg\detalle_item_modal.html:60
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:56
+#: .\ctg\templates\ctg\detalles_colores_form.html:95
+#: .\ctg\templates\ctg\detalles_form.html:97
+#: .\ctg\templates\ctg\items_form.html:113
+#: .\ctg\templates\ctg\piedras_form.html:78
+#: .\ctg\templates\ctg\piedras_lista.html:61
+#: .\ctg\templates\ctg\productos_lista.html:78
+#: .\ctg\templates\ctg\productos_lista.html:147
+#: .\ctg\templates\ctg\servicios_lista.html:78
+#: .\ctg\templates\ctg\servicios_lista.html:147
+#: .\trn\templates\trn\aprobacion_pago_modal.html:67
+#: .\trn\templates\trn\comprobante_orden.html:87
+#: .\trn\templates\trn\comprobante_orden.html:221
+#: .\trn\templates\trn\correo_cliente.html:46
+#: .\trn\templates\trn\correo_cliente.html:180
+#: .\trn\templates\trn\detalle_orden_modal.html:57
+#: .\trn\templates\trn\detalle_solicitud_modal.html:130
+#: .\trn\templates\trn\ordenes_item_crear.html:158
+msgid "SKU"
+msgstr "SKU"
+
+#: .\ctg\templates\ctg\adicionales_form.html:90
+#: .\ctg\templates\ctg\detalles_adicional_form.html:67
+#: .\ctg\templates\ctg\items_form.html:134
+#: .\trn\templates\trn\aprobacion_pago_modal.html:150
+#: .\trn\templates\trn\detalle_orden_modal.html:234
+msgid "Costo"
+msgstr "Custo"
+
+#: .\ctg\templates\ctg\adicionales_form.html:96
+msgid "Utilidad sobre adicional"
+msgstr "Utilidade sobre adicionais"
+
+#: .\ctg\templates\ctg\adicionales_form.html:125
+#: .\ctg\templates\ctg\items_form.html:237
+#: .\ctg\templates\ctg\piedras_form.html:119
+msgid "SKU ya existe"
+msgstr "O SKU já existe"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:14
+#: .\ctg\templates\ctg\adicionales_lista.html:30
+#: .\templates\base\base.html:390
+#: .\trn\templates\trn\comprobante_orden.html:216
+#: .\trn\templates\trn\correo_cliente.html:175
+#: .\trn\templates\trn\detalle_orden_modal.html:332
+#: .\trn\templates\trn\ordenes_item_crear.html:294
+msgid "Adicionales"
+msgstr "Adicionais"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:61
+msgid "No existen ítems adicionales"
+msgstr "Não há itens adicionais"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:115
+#: .\ctg\templates\ctg\catalogo_fijo.html:142
+#: .\ctg\templates\ctg\catalogo_fijo.html:236
+#: .\ctg\templates\ctg\catalogo_fijo.html:369
+#: .\ctg\templates\ctg\catalogo_fijo.html:380
+#: .\ctg\templates\ctg\catalogo_gramo.html:134
+#: .\ctg\templates\ctg\catalogo_gramo.html:226
+#: .\ctg\templates\ctg\catalogo_gramo.html:359
+#: .\ctg\templates\ctg\catalogo_gramo.html:370
+#: .\ctg\templates\ctg\piedras_lista.html:110
+#: .\dsh\templates\dsh\dashboard_operaciones.html:540
+#: .\dsh\templates\dsh\dashboard_operaciones.html:548
+#: .\dsh\templates\dsh\dashboard_taller.html:540
+#: .\dsh\templates\dsh\dashboard_taller.html:548
+msgid "Ver detalles"
+msgstr "Ver detalhes"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:18
+#: .\ctg\templates\ctg\catalogo_gramo.html:28
+#: .\ctg\templates\ctg\items_form.html:41 .\templates\base\base.html:354
+msgid "Ítems"
+msgstr "Itens"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:20
+#: .\ctg\templates\ctg\productos_lista.html:32
+#: .\ctg\templates\ctg\servicios_lista.html:32 .\templates\base\base.html:381
+msgid "Precio fijo"
+msgstr "Preço fixo"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:33
+#: .\ctg\templates\ctg\catalogo_gramo.html:43
+#: .\ctg\templates\ctg\productos_lista.html:17 .\templates\base\base.html:357
+msgid "Productos"
+msgstr "Produtos"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:38
+#: .\ctg\templates\ctg\catalogo_gramo.html:48
+#: .\ctg\templates\ctg\servicios_lista.html:17 .\templates\base\base.html:361
+msgid "Servicios"
+msgstr "Serviços"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:46
+#: .\ctg\templates\ctg\productos_lista.html:45
+msgid "Productos con precio fijo"
+msgstr "Produtos com preço fixo"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:54
+#: .\ctg\templates\ctg\catalogo_fijo.html:165
+#: .\ctg\templates\ctg\catalogo_gramo.html:64
+#: .\ctg\templates\ctg\catalogo_gramo.html:156
+msgid "Buscar"
+msgstr "Pesquisar"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:91
+#: .\ctg\templates\ctg\catalogo_fijo.html:202
+#: .\ctg\templates\ctg\catalogo_fijo.html:417
+#: .\ctg\templates\ctg\catalogo_fijo.html:427
+#: .\ctg\templates\ctg\catalogo_gramo.html:101
+#: .\ctg\templates\ctg\catalogo_gramo.html:193
+#: .\ctg\templates\ctg\catalogo_gramo.html:407
+#: .\ctg\templates\ctg\catalogo_gramo.html:417
+#: .\ctg\templates\ctg\categorias_form.html:61
+msgid "División"
+msgstr "Divisão"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:101
+#: .\ctg\templates\ctg\catalogo_fijo.html:212
+#: .\ctg\templates\ctg\catalogo_fijo.html:460
+#: .\ctg\templates\ctg\catalogo_fijo.html:470
+#: .\ctg\templates\ctg\catalogo_gramo.html:111
+#: .\ctg\templates\ctg\catalogo_gramo.html:203
+#: .\ctg\templates\ctg\catalogo_gramo.html:450
+#: .\ctg\templates\ctg\catalogo_gramo.html:460
+#: .\ctg\templates\ctg\detalle_item_modal.html:66
+#: .\ctg\templates\ctg\detalles_colores_form.html:101
+#: .\ctg\templates\ctg\detalles_form.html:103
+#: .\ctg\templates\ctg\items_form.html:120
+#: .\ctg\templates\ctg\productos_lista.html:80
+#: .\ctg\templates\ctg\productos_lista.html:149
+#: .\ctg\templates\ctg\servicios_lista.html:80
+#: .\ctg\templates\ctg\servicios_lista.html:149
+msgid "Categoría"
+msgstr "Categoria"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:119
+#: .\ctg\templates\ctg\catalogo_fijo.html:230
+#: .\ctg\templates\ctg\catalogo_fijo.html:369
+#: .\ctg\templates\ctg\catalogo_fijo.html:380
+#: .\ctg\templates\ctg\catalogo_gramo.html:359
+#: .\ctg\templates\ctg\catalogo_gramo.html:370
+msgid "SKU: "
+msgstr "SKU:"
+
+#: .\ctg\templates\ctg\catalogo_fijo.html:157
+#: .\ctg\templates\ctg\servicios_lista.html:45
+msgid "Servicios con precio fijo"
+msgstr "Serviços com preço fixo"
+
+#: .\ctg\templates\ctg\catalogo_gramo.html:30
+#: .\ctg\templates\ctg\productos_lista.html:37
+#: .\ctg\templates\ctg\servicios_lista.html:37 .\templates\base\base.html:377
+msgid "Precio gramo"
+msgstr "Preço em gramas"
+
+#: .\ctg\templates\ctg\catalogo_gramo.html:56
+#: .\ctg\templates\ctg\productos_lista.html:114
+msgid "Productos con precio gramo"
+msgstr "Produtos com preço em gramas"
+
+#: .\ctg\templates\ctg\catalogo_gramo.html:148
+#: .\ctg\templates\ctg\servicios_lista.html:114
+msgid "Servicios con precio gramo"
+msgstr "Serviços com preço em gramas"
+
+#: .\ctg\templates\ctg\categorias_form.html:17
+#: .\ctg\templates\ctg\categorias_lista.html:17
+#: .\ctg\templates\ctg\categorias_lista.html:33 .\templates\base\base.html:337
+msgid "Categorías"
+msgstr "Categorias"
+
+#: .\ctg\templates\ctg\categorias_form.html:33
+msgid "categoría"
+msgstr "categoria"
+
+#: .\ctg\templates\ctg\categorias_form.html:54
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:50
+#: .\ctg\templates\ctg\detalle_editar_modal.html:25
+msgid "Unidad de medida"
+msgstr "Unidade de medida"
+
+#: .\ctg\templates\ctg\categorias_form.html:89
+msgid "Categoría ya existe"
+msgstr "Categoria já existe"
+
+#: .\ctg\templates\ctg\categorias_lista.html:61
+msgid "No existen categorías registradas"
+msgstr "Não há categorias registradas"
+
+#: .\ctg\templates\ctg\colores_form.html:14
+#: .\ctg\templates\ctg\colores_lista.html:14
+#: .\ctg\templates\ctg\colores_lista.html:30
+#: .\ctg\templates\ctg\detalles_colores_form.html:73
+#: .\ctg\templates\ctg\detalles_form.html:75
+#: .\ctg\templates\ctg\items_form.html:89 .\templates\base\base.html:345
+msgid "Colores"
+msgstr "Cores"
+
+#: .\ctg\templates\ctg\colores_form.html:30
+msgid "color"
+msgstr "cor"
+
+#: .\ctg\templates\ctg\colores_form.html:50
+msgid "Costo adicional por gramo"
+msgstr "Custo adicional por grama"
+
+#: .\ctg\templates\ctg\contar_cotizacion_modal.html:5
+msgid "Cotización"
+msgstr "Cotação"
+
+#: .\ctg\templates\ctg\contar_cotizacion_modal.html:16
+msgid "Interno"
+msgstr "Interno"
+
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:28
+msgid "Detalle de adicional"
+msgstr "Detalhes adicionais"
+
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:68
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:108
+#: .\trn\templates\trn\agregar_adicional_modal.html:37
+#: .\trn\templates\trn\agregar_piedra_modal.html:48
+#: .\trn\templates\trn\aprobacion_pago_modal.html:235
+#: .\trn\templates\trn\detalle_orden_modal.html:224
+#: .\trn\templates\trn\detalle_orden_modal.html:344
+#: .\trn\templates\trn\detalle_solicitud_modal.html:218
+#: .\trn\templates\trn\ordenes_item_crear.html:305
+#: .\trn\templates\trn\ordenes_item_crear.html:868
+msgid "Precio"
+msgstr "Preço"
+
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:79
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:73
+msgid "Categorías que aplica"
+msgstr "Categorias que se aplicam"
+
+#: .\ctg\templates\ctg\detalle_adicional_modal.html:101
+#: .\ctg\templates\ctg\detalle_item_modal.html:182
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:136
+msgid "Cerrar"
+msgstr "Fechar"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:5
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:5
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:5
+#: .\ctg\templates\ctg\detalles_form.html:41
+msgid "Agregar detalle"
+msgstr "Adicionar detalhes"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:25
+msgid "Talla mínima"
+msgstr "Tamanho mínimo"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:37
+msgid "Talla máxima"
+msgstr "Tamanho máximo"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:44
+#: .\ctg\templates\ctg\detalle_editar_modal.html:19
+#: .\ctg\templates\ctg\detalle_item_modal.html:148
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:19
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:19
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:107
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:67
+#: .\ctg\templates\ctg\detalles_colores_form.html:192
+#: .\ctg\templates\ctg\detalles_form.html:160
+#: .\ctg\templates\ctg\detalles_piedra_form.html:67
+#: .\trn\templates\trn\agregar_piedra_modal.html:36
+msgid "Medida"
+msgstr "Medida"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:57
+#: .\ctg\templates\ctg\detalle_editar_modal.html:31
+#: .\trn\templates\trn\aprobacion_pago_modal.html:137
+#: .\trn\templates\trn\comprobante_orden.html:136
+#: .\trn\templates\trn\correo_cliente.html:95
+#: .\trn\templates\trn\detalle_orden_modal.html:153
+#: .\trn\templates\trn\detalle_solicitud_modal.html:287
+#: .\trn\templates\trn\detalle_solicitud_modal.html:395
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:224
+#: .\trn\templates\trn\solicitudes_editar_form.html:200
+#: .\trn\templates\trn\solicitudes_form.html:209
+msgid "Peso mínimo"
+msgstr "Peso mínimo"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:63
+#: .\ctg\templates\ctg\detalle_editar_modal.html:37
+#: .\trn\templates\trn\aprobacion_pago_modal.html:143
+#: .\trn\templates\trn\comprobante_orden.html:144
+#: .\trn\templates\trn\correo_cliente.html:103
+#: .\trn\templates\trn\detalle_orden_modal.html:159
+#: .\trn\templates\trn\detalle_solicitud_modal.html:298
+#: .\trn\templates\trn\detalle_solicitud_modal.html:406
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:232
+#: .\trn\templates\trn\solicitudes_editar_form.html:207
+#: .\trn\templates\trn\solicitudes_form.html:216
+msgid "Peso máximo"
+msgstr "Peso máximo"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:69
+#: .\ctg\templates\ctg\detalle_editar_modal.html:43
+#: .\ctg\templates\ctg\items_form.html:148
+#: .\trn\templates\trn\comprobante_orden.html:169
+#: .\trn\templates\trn\correo_cliente.html:128
+#: .\trn\templates\trn\detalle_orden_modal.html:178
+#: .\trn\templates\trn\detalle_solicitud_modal.html:172
+#: .\trn\templates\trn\ordenes_item_crear.html:266
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:176
+#: .\trn\templates\trn\solicitudes_editar_form.html:137
+#: .\trn\templates\trn\solicitudes_form.html:144
+msgid "Cantidad de piedras"
+msgstr "Quantidade de pedras"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:75
+#: .\ctg\templates\ctg\detalle_editar_modal.html:49
+#: .\ctg\templates\ctg\items_form.html:167
+msgid "Costo piedras"
+msgstr "Custo de pedras"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:127
+msgid "Favor completar todos los campos"
+msgstr "Por favor preencha todos os campos"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:133
+msgid "Talla mínima superior a la máxima"
+msgstr "Tamanho mínimo maior que o máximo"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:149
+msgid "Medida no puede ser 0"
+msgstr "A medida não pode ser 0"
+
+#: .\ctg\templates\ctg\detalle_agregar_modal.html:174
+msgid "Ya existen detalles con las medidas ingresadas"
+msgstr "Já existem detalhes com as medidas inseridas"
+
+#: .\ctg\templates\ctg\detalle_editar_modal.html:5
+msgid "Editar detalle"
+msgstr "Editar detalhes"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:29
+msgid "Detalle de ítem"
+msgstr "Detalhe do item"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:79
+#: .\ctg\templates\ctg\detalles_colores_form.html:113
+#: .\ctg\templates\ctg\detalles_form.html:115
+#: .\ctg\templates\ctg\items_form.html:187
+#: .\trn\templates\trn\comprobante_orden.html:153
+#: .\trn\templates\trn\correo_cliente.html:112
+#: .\trn\templates\trn\detalle_orden_modal.html:166
+#: .\trn\templates\trn\detalle_solicitud_modal.html:160
+#: .\trn\templates\trn\ordenes_item_crear.html:239
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:160
+#: .\trn\templates\trn\solicitudes_editar_form.html:125
+#: .\trn\templates\trn\solicitudes_form.html:132
+msgid "Acabado"
+msgstr "Acabamento"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:87
+#: .\ctg\templates\ctg\detalles_colores_form.html:119
+#: .\ctg\templates\ctg\detalles_form.html:121
+#: .\ctg\templates\ctg\items_form.html:181
+#: .\trn\templates\trn\comprobante_orden.html:161
+#: .\trn\templates\trn\correo_cliente.html:120
+#: .\trn\templates\trn\detalle_orden_modal.html:172
+#: .\trn\templates\trn\detalle_solicitud_modal.html:166
+#: .\trn\templates\trn\ordenes_item_crear.html:246
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:168
+#: .\trn\templates\trn\solicitudes_editar_form.html:131
+#: .\trn\templates\trn\solicitudes_form.html:138
+msgid "Parte interna"
+msgstr "Parte interna"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:95
+#: .\ctg\templates\ctg\detalles_colores_form.html:125
+#: .\ctg\templates\ctg\detalles_form.html:127
+#: .\trn\templates\trn\comprobante_orden.html:191
+#: .\trn\templates\trn\correo_cliente.html:150
+#: .\trn\templates\trn\detalle_orden_modal.html:195
+#: .\trn\templates\trn\detalle_orden_modal.html:200
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:256
+#: .\trn\templates\trn\solicitudes_editar_form.html:228
+#: .\trn\templates\trn\solicitudes_form.html:237
+msgid "Tiempo entrega mínimo"
+msgstr "Prazo mínimo de entrega"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:103
+#: .\ctg\templates\ctg\detalles_colores_form.html:131
+#: .\ctg\templates\ctg\detalles_form.html:133
+#: .\trn\templates\trn\comprobante_orden.html:203
+#: .\trn\templates\trn\correo_cliente.html:162
+#: .\trn\templates\trn\detalle_orden_modal.html:210
+#: .\trn\templates\trn\detalle_orden_modal.html:215
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:264
+#: .\trn\templates\trn\solicitudes_editar_form.html:235
+#: .\trn\templates\trn\solicitudes_form.html:244
+msgid "Tiempo entrega máximo"
+msgstr "Prazo máximo de entrega"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:115
+#: .\ctg\templates\ctg\detalles_colores_form.html:74
+#: .\ctg\templates\ctg\detalles_form.html:76
+#: .\ctg\templates\ctg\items_form.html:90
+msgid "Colores disponibles"
+msgstr "Cores disponiveis"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:137
+#: .\ctg\templates\ctg\detalles_colores_form.html:178
+#: .\ctg\templates\ctg\detalles_form.html:146
+#: .\ctg\templates\ctg\detalles_piedra_form.html:101
+#: .\ctg\templates\ctg\tallas_form.html:17
+#: .\ctg\templates\ctg\tallas_lista.html:17
+#: .\ctg\templates\ctg\tallas_lista.html:33 .\templates\base\base.html:341
+msgid "Tallas"
+msgstr "Tamanhos"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:149
+#: .\ctg\templates\ctg\detalles_colores_form.html:193
+#: .\ctg\templates\ctg\detalles_form.html:161
+msgid "Unidad medida"
+msgstr "Unidade de medida"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:150
+#: .\ctg\templates\ctg\detalles_colores_form.html:194
+#: .\ctg\templates\ctg\detalles_form.html:162
+#: .\ctg\templates\ctg\detalles_piedra_form.html:115
+msgid "Peso min."
+msgstr "Peso min."
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:151
+msgid "Peso max"
+msgstr "Peso max"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:152
+#: .\ctg\templates\ctg\detalles_colores_form.html:196
+#: .\ctg\templates\ctg\detalles_form.html:164
+#: .\ctg\templates\ctg\detalles_piedra_form.html:117
+#: .\ctg\templates\ctg\piedras_form.html:39
+#: .\ctg\templates\ctg\piedras_lista.html:14
+#: .\ctg\templates\ctg\piedras_lista.html:30 .\templates\base\base.html:402
+#: .\templates\base\base.html:405
+msgid "Piedras"
+msgstr "Pedras"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:189
+msgid "Cotizar"
+msgstr "Cotação"
+
+#: .\ctg\templates\ctg\detalle_item_modal.html:199
+#: .\ctg\templates\ctg\detalle_item_modal.html:204
+msgid "Generar solicitud"
+msgstr "Gerar solicitação"
+
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:25
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:25
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:68
+#: .\ctg\templates\ctg\detalles_piedra_form.html:68
+msgid "costo"
+msgstr "custo"
+
+#: .\ctg\templates\ctg\detalle_piedra_agregar_modal.html:85
+#: .\ctg\templates\ctg\detalle_piedra_editar_modal.html:92
+msgid "Elemento ya existe"
+msgstr "O item já existe"
+
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:28
+msgid "Detalle de piedra"
+msgstr "Detalhe de pedra"
+
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:95
+msgid "Medidas"
+msgstr "Medidas"
+
+#: .\ctg\templates\ctg\detalle_piedra_modal.html:106
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:13
+#: .\ctg\templates\ctg\detalles_piedra_form.html:13
+#: .\ctg\templates\ctg\piedras_form.html:55
+msgid "Piedra"
+msgstr "Pedra"
+
+#: .\ctg\templates\ctg\detalles_adicional_form.html:13
+msgid "Adicional"
+msgstr "Adicionais"
+
+#: .\ctg\templates\ctg\detalles_adicional_form.html:18
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:18
+#: .\ctg\templates\ctg\detalles_colores_form.html:18
+#: .\ctg\templates\ctg\detalles_colores_form.html:64
+#: .\ctg\templates\ctg\detalles_form.html:18
+#: .\ctg\templates\ctg\detalles_form.html:66
+#: .\ctg\templates\ctg\detalles_piedra_form.html:18
+#: .\ctg\templates\ctg\items_form.html:80
+msgid "Detalles"
+msgstr "Detalhes"
+
+#: .\ctg\templates\ctg\detalles_adicional_form.html:34
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:34
+#: .\ctg\templates\ctg\detalles_piedra_form.html:34
+msgid "Agregar Detalles a "
+msgstr "Adicionar detalhes a"
+
+#: .\ctg\templates\ctg\detalles_adicional_form.html:91
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:103
+#: .\ctg\templates\ctg\detalles_colores_form.html:223
+msgid " Finalizar"
+msgstr "Concluir"
+
+#: .\ctg\templates\ctg\detalles_adicional_form.html:136
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:151
+msgid " Seleccione al menos una categoría"
+msgstr "Selecione pelo menos uma categoria"
+
+#: .\ctg\templates\ctg\detalles_categorias_piedra_form.html:62
+#: .\ctg\templates\ctg\detalles_colores_form.html:187
+#: .\ctg\templates\ctg\detalles_form.html:155
+#: .\ctg\templates\ctg\detalles_piedra_form.html:62
+#: .\ctg\templates\ctg\detalles_piedra_form.html:108
+msgid "No existen detalles"
+msgstr "Não existem detalhes"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:13
+#: .\ctg\templates\ctg\detalles_form.html:13
+#: .\trn\templates\trn\aprobacion_pago_modal.html:107
+#: .\trn\templates\trn\aprobacion_pago_modal.html:114
+#: .\trn\templates\trn\detalle_orden_modal.html:99
+#: .\trn\templates\trn\detalle_orden_modal.html:106
+#: .\trn\templates\trn\detalle_solicitud_modal.html:117
+#: .\trn\templates\trn\solicitudes_editar_form.html:86
+#: .\trn\templates\trn\solicitudes_form.html:93
+msgid "Ítem"
+msgstr "Item"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:34
+#: .\ctg\templates\ctg\detalles_form.html:34
+msgid "Agregar Detalles SKU "
+msgstr "Adicionar detalhes do SKU"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:55
+#: .\ctg\templates\ctg\detalles_form.html:57
+#: .\ctg\templates\ctg\items_form.html:71
+msgid "Información principal"
+msgstr "Informações principais"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:56
+#: .\ctg\templates\ctg\detalles_form.html:58
+#: .\ctg\templates\ctg\items_form.html:72
+msgid "Detalles del producto"
+msgstr "Detalhes do produto"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:65
+#: .\ctg\templates\ctg\detalles_form.html:67
+#: .\ctg\templates\ctg\items_form.html:81
+msgid "Tallas o medidas del producto"
+msgstr "Tamanhos ou medidas do produto"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:195
+#: .\ctg\templates\ctg\detalles_form.html:163
+#: .\ctg\templates\ctg\detalles_piedra_form.html:116
+msgid "Peso max."
+msgstr "Peso max."
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:271
+#: .\ctg\templates\ctg\detalles_form.html:228
+#: .\ctg\templates\ctg\detalles_piedra_form.html:177
+msgid "Agregue al menos un detalle"
+msgstr "Adicione pelo menos um detalhe"
+
+#: .\ctg\templates\ctg\detalles_colores_form.html:275
+msgid " Seleccione al menos un color"
+msgstr "Selecione pelo menos uma cor"
+
+#: .\ctg\templates\ctg\detalles_form.html:200
+msgid " Continuar"
+msgstr "Continuar"
+
+#: .\ctg\templates\ctg\detalles_piedra_form.html:113
+#: .\ctg\templates\ctg\tallas_form.html:47
+#: .\ctg\templates\ctg\tallas_lista.html:66
+#: .\trn\templates\trn\detalle_solicitud_modal.html:142
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:144
+#: .\trn\templates\trn\solicitudes_editar.html:48
+#: .\trn\templates\trn\solicitudes_editar_form.html:106
+#: .\trn\templates\trn\solicitudes_form.html:113
+msgid "Talla"
+msgstr "Tamanho"
+
+#: .\ctg\templates\ctg\detalles_piedra_form.html:114
+#: .\trn\templates\trn\detalle_solicitud_modal.html:148
+#: .\trn\templates\trn\solicitudes_editar_form.html:112
+#: .\trn\templates\trn\solicitudes_form.html:119
+msgid "Longitud"
+msgstr "Comprimento"
+
+#: .\ctg\templates\ctg\detalles_piedra_form.html:146
+msgid "Continuar"
+msgstr "Continuar"
+
+#: .\ctg\templates\ctg\divisiones_form.html:17
+#: .\ctg\templates\ctg\divisiones_lista.html:17
+#: .\ctg\templates\ctg\divisiones_lista.html:33 .\templates\base\base.html:333
+msgid "Divisiones"
+msgstr "Divisões"
+
+#: .\ctg\templates\ctg\divisiones_form.html:33
+#: .\ubc\templates\ubc\ciudades_form.html:33
+#: .\ubc\templates\ubc\localidades_form.html:33
+#: .\ubc\templates\ubc\regiones_form.html:33
+#: .\ubc\templates\ubc\zonas_form.html:33
+msgid "Nueva "
+msgstr "Novo"
+
+#: .\ctg\templates\ctg\divisiones_form.html:33
+msgid "división"
+msgstr "divisão"
+
+#: .\ctg\templates\ctg\divisiones_form.html:54
+msgid " Ej: Fabricación especial"
+msgstr "Ex: Fabricação especial"
+
+#: .\ctg\templates\ctg\divisiones_form.html:54
+msgid " Ej: Joyas de catálogo"
+msgstr "Ex: Catálogo de jóias"
+
+#: .\ctg\templates\ctg\divisiones_form.html:54
+msgid " Ej: Arreglos"
+msgstr "Ex: Arranjos"
+
+#: .\ctg\templates\ctg\divisiones_form.html:54
+msgid " Ej: Limpieza de joyas"
+msgstr "Ex: Limpeza de jóias"
+
+#: .\ctg\templates\ctg\divisiones_form.html:59
+msgid "Tipo catálogo"
+msgstr "Tipo catálogo"
+
+#: .\ctg\templates\ctg\divisiones_form.html:87
+msgid "División ya existe"
+msgstr "Divisão já existe"
+
+#: .\ctg\templates\ctg\divisiones_lista.html:61
+msgid "No existen divisiones registradas"
+msgstr "Não há divisões registradas"
+
+#: .\ctg\templates\ctg\inactivar_item_modal.html:6
+msgid "Inactivar ítem"
+msgstr "Desativar item"
+
+#: .\ctg\templates\ctg\inactivar_item_modal.html:12
+msgid ""
+"Se inactivará el ítem y ya no estará disponible en el catálogo de la joyería"
+" "
+msgstr ""
+"O item será desativado e não estará mais disponível no catálogo de jóias"
+
+#: .\ctg\templates\ctg\items_form.html:106
+msgid "Click arriba para cargar imagen"
+msgstr "Clique acima para carregar a imagem"
+
+#: .\ctg\templates\ctg\items_form.html:139
+#: .\trn\templates\trn\detalle_solicitud_modal.html:306
+#: .\trn\templates\trn\detalle_solicitud_modal.html:310
+#: .\trn\templates\trn\solicitudes_editar_form.html:214
+#: .\trn\templates\trn\solicitudes_form.html:223
+msgid "Valor gramo"
+msgstr "Valor do grama"
+
+#: .\ctg\templates\ctg\items_form.html:144
+msgid "Valor gramo diferenciado"
+msgstr "Valor diferencial em gramas"
+
+#: .\ctg\templates\ctg\items_form.html:159
+msgid "Escala peso"
+msgstr "Escala de peso"
+
+#: .\ctg\templates\ctg\items_form.html:163
+msgid "Peso máximo diferenciado"
+msgstr "Peso máximo diferenciado"
+
+#: .\ctg\templates\ctg\items_form.html:195
+msgid "Entrega mínima (días)"
+msgstr "Entrega mínima (dias)"
+
+#: .\ctg\templates\ctg\items_form.html:201
+msgid "Entrega máxima (días)"
+msgstr "Entrega máxima (dias)"
+
+#: .\ctg\templates\ctg\items_form.html:284
+#: .\trn\templates\trn\solicitudes_form.html:311
+msgid "Archivo debe ser una imagen"
+msgstr "O arquivo deve ser uma imagem"
+
+#: .\ctg\templates\ctg\piedra_agregar_modal.html:5
+#: .\trn\templates\trn\agregar_piedra_modal.html:5
+#: .\trn\templates\trn\ordenes_item_crear.html:84
+msgid "Agregar piedra"
+msgstr "Adicionar pedra"
+
+#: .\ctg\templates\ctg\piedras_form.html:90
+msgid "Utilidad sobre piedra"
+msgstr "Utilidade em pedra"
+
+#: .\ctg\templates\ctg\piedras_lista.html:56
+msgid "No existen piedras"
+msgstr "Não há pedras"
+
+#: .\ctg\templates\ctg\productos_lista.html:73
+#: .\ctg\templates\ctg\productos_lista.html:142
+#: .\ctg\templates\ctg\servicios_lista.html:142
+msgid "No existen productos"
+msgstr "Não existem produtos"
+
+#: .\ctg\templates\ctg\productos_lista.html:81
+#: .\ctg\templates\ctg\productos_lista.html:150
+#: .\ctg\templates\ctg\servicios_lista.html:81
+#: .\ctg\templates\ctg\servicios_lista.html:150
+msgid "Fecha de creación"
+msgstr "Data de criação"
+
+#: .\ctg\templates\ctg\servicios_lista.html:73
+msgid "No existen servicios"
+msgstr "Não há serviços"
+
+#: .\ctg\templates\ctg\tallas_form.html:33
+msgid "talla"
+msgstr "tamanho"
+
+#: .\ctg\templates\ctg\tallas_form.html:53
+msgid "Diámetro"
+msgstr "Diâmetro"
+
+#: .\ctg\templates\ctg\tallas_form.html:59
+msgid "Estándar"
+msgstr "Padrão"
+
+#: .\ctg\templates\ctg\tallas_form.html:88
+msgid "Talla ya existe"
+msgstr "O tamanho já existe"
+
+#: .\ctg\templates\ctg\tallas_lista.html:61
+msgid "No existen tallas registradas"
+msgstr "Não há tamanhos registrados"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:12
+#: .\dsh\templates\dsh\dashboard_operaciones.html:17
+#: .\dsh\templates\dsh\dashboard_taller.html:12
+#: .\dsh\templates\dsh\dashboard_taller.html:17 .\templates\base\base.html:192
+#: .\templates\base\base.html:197
+msgid "Estadísticas"
+msgstr "Estatisticas"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:33
+#: .\dsh\templates\dsh\dashboard_operaciones.html:60
+#: .\dsh\templates\dsh\dashboard_taller.html:33
+#: .\dsh\templates\dsh\dashboard_taller.html:60
+#: .\trn\templates\trn\ordenes_lista.html:80
+#: .\trn\templates\trn\ordenes_lista.html:100
+#: .\trn\templates\trn\ordenes_pagos_lista.html:78
+#: .\trn\templates\trn\ordenes_pagos_lista.html:98
+#: .\trn\templates\trn\solicitudes_lista.html:77
+msgid "Filtrar"
+msgstr "Filtro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:41
+#: .\dsh\templates\dsh\dashboard_taller.html:41
+#: .\trn\templates\trn\ordenes_lista.html:58
+#: .\trn\templates\trn\ordenes_pagos_lista.html:58
+#: .\trn\templates\trn\solicitudes_lista.html:55
+msgid "Lo que va del mes"
+msgstr "O que se passa no mês"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:42
+#: .\dsh\templates\dsh\dashboard_taller.html:42
+#: .\trn\templates\trn\ordenes_lista.html:59
+#: .\trn\templates\trn\ordenes_pagos_lista.html:59
+#: .\trn\templates\trn\solicitudes_lista.html:56
+msgid "El mes anterior"
+msgstr "O mês anterior"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:43
+#: .\dsh\templates\dsh\dashboard_taller.html:43
+#: .\trn\templates\trn\ordenes_lista.html:62
+#: .\trn\templates\trn\ordenes_pagos_lista.html:60
+#: .\trn\templates\trn\solicitudes_lista.html:59
+msgid "Rango de fecha"
+msgstr "Período"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:46
+#: .\dsh\templates\dsh\dashboard_taller.html:46
+#: .\trn\templates\trn\ordenes_lista.html:66
+#: .\trn\templates\trn\ordenes_pagos_lista.html:64
+#: .\trn\templates\trn\solicitudes_lista.html:63
+msgid "Filtro"
+msgstr "Filtro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:53
+#: .\dsh\templates\dsh\dashboard_taller.html:53
+#: .\trn\templates\trn\ordenes_lista.html:73
+#: .\trn\templates\trn\ordenes_lista.html:93
+#: .\trn\templates\trn\ordenes_pagos_lista.html:71
+#: .\trn\templates\trn\ordenes_pagos_lista.html:91
+#: .\trn\templates\trn\solicitudes_lista.html:70
+msgid "Fecha inicio"
+msgstr "Data de início"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:57
+#: .\dsh\templates\dsh\dashboard_taller.html:57
+#: .\trn\templates\trn\ordenes_lista.html:77
+#: .\trn\templates\trn\ordenes_lista.html:97
+#: .\trn\templates\trn\ordenes_pagos_lista.html:75
+#: .\trn\templates\trn\ordenes_pagos_lista.html:95
+#: .\trn\templates\trn\solicitudes_lista.html:74
+msgid "Fecha fin"
+msgstr "Data final"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:76
+#: .\dsh\templates\dsh\dashboard_operaciones.html:250
+#: .\dsh\templates\dsh\dashboard_operaciones.html:301
+#: .\dsh\templates\dsh\dashboard_operaciones.html:324
+#: .\dsh\templates\dsh\dashboard_operaciones.html:461
+#: .\dsh\templates\dsh\dashboard_operaciones.html:531
+#: .\dsh\templates\dsh\dashboard_taller.html:76
+#: .\dsh\templates\dsh\dashboard_taller.html:250
+#: .\dsh\templates\dsh\dashboard_taller.html:301
+#: .\dsh\templates\dsh\dashboard_taller.html:324
+#: .\dsh\templates\dsh\dashboard_taller.html:461
+#: .\dsh\templates\dsh\dashboard_taller.html:531
+msgid "Órdenes por estado"
+msgstr "Ordens por estado"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:93
+msgid "Órdenes internas/externas"
+msgstr "Ordens Internos / Externos"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:109
+#: .\dsh\templates\dsh\dashboard_operaciones.html:426
+#: .\dsh\templates\dsh\dashboard_taller.html:109
+#: .\dsh\templates\dsh\dashboard_taller.html:426
+msgid "Gramos fabricados"
+msgstr "Gramas fabricados"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:122
+#: .\dsh\templates\dsh\dashboard_operaciones.html:561
+#: .\dsh\templates\dsh\dashboard_taller.html:122
+#: .\dsh\templates\dsh\dashboard_taller.html:561
+msgid "Categoría con mas fabricaciones"
+msgstr "Categoria com mais fabricações"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:133
+#: .\dsh\templates\dsh\dashboard_operaciones.html:561
+#: .\dsh\templates\dsh\dashboard_taller.html:133
+#: .\dsh\templates\dsh\dashboard_taller.html:561
+msgid "Color con mas fabricaciones"
+msgstr "Cor com mais manufaturas"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:149
+#: .\dsh\templates\dsh\dashboard_taller.html:149
+msgid "Ranking gramos fabricados"
+msgstr "Ranking gramas fabricados"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:195
+#: .\dsh\templates\dsh\dashboard_taller.html:195
+#: .\trn\templates\trn\ordenes_lista.html:155
+#: .\trn\templates\trn\ordenes_lista.html:231
+#: .\trn\templates\trn\ordenes_pagos_lista.html:153
+#: .\trn\templates\trn\ordenes_pagos_lista.html:238
+#: .\trn\templates\trn\ordenes_pagos_lista.html:252
+#: .\trn\templates\trn\solicitudes_lista.html:178
+msgid "Debe ingresar una fecha correcta"
+msgstr "Você deve inserir uma data correta"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:378
+#: .\dsh\templates\dsh\dashboard_taller.html:378
+msgid "Enero"
+msgstr "Janeiro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:381
+#: .\dsh\templates\dsh\dashboard_taller.html:381
+msgid "Febrero"
+msgstr "Fevereiro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:384
+#: .\dsh\templates\dsh\dashboard_taller.html:384
+msgid "Marzo"
+msgstr "Março"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:387
+#: .\dsh\templates\dsh\dashboard_taller.html:387
+msgid "Abril"
+msgstr "Abril"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:390
+#: .\dsh\templates\dsh\dashboard_taller.html:390
+msgid "Mayo"
+msgstr "Maio"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:393
+#: .\dsh\templates\dsh\dashboard_taller.html:393
+msgid "Junio"
+msgstr "Junho"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:396
+#: .\dsh\templates\dsh\dashboard_taller.html:396
+msgid "Julio"
+msgstr "Julho"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:399
+#: .\dsh\templates\dsh\dashboard_taller.html:399
+msgid "Agosto"
+msgstr "Agosto"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:402
+#: .\dsh\templates\dsh\dashboard_taller.html:402
+msgid "Septiembre"
+msgstr "Setembro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:405
+#: .\dsh\templates\dsh\dashboard_taller.html:405
+msgid "Octubre"
+msgstr "Outubro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:408
+#: .\dsh\templates\dsh\dashboard_taller.html:408
+msgid "Noviembre"
+msgstr "Novembro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:411
+#: .\dsh\templates\dsh\dashboard_taller.html:411
+msgid "Diciembre"
+msgstr "Dezembro"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:414
+#: .\dsh\templates\dsh\dashboard_taller.html:414
+msgid "Mes"
+msgstr "Mês"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:484
+#: .\dsh\templates\dsh\dashboard_taller.html:484
+msgid "Gramos por joyería"
+msgstr "Gramas para jóias"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:540
+#: .\dsh\templates\dsh\dashboard_taller.html:540
+msgid "Producto más cotizado"
+msgstr "Produto mais cotado"
+
+#: .\dsh\templates\dsh\dashboard_operaciones.html:548
+#: .\dsh\templates\dsh\dashboard_taller.html:548
+msgid "Producto más fabricado"
+msgstr "Produto mais fabricado"
+
+#: .\dsh\templates\dsh\dashboard_taller.html:93
+msgid "Solicitudes por estado"
+msgstr "Pedidos por estado"
+
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:7
+msgid "Inactivar proveedor"
+msgstr "Desativar provedor"
+
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:9
+msgid "Activar proveedor"
+msgstr "Ativar provedor"
+
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:17
+msgid "Se inactivará el proveedor seleccionado "
+msgstr "O provedor selecionado será inativado"
+
+#: .\prv\templates\prv\actualizar_proveedor_modal.html:19
+msgid "Se activará el proveedor seleccionado "
+msgstr "O provedor selecionado será ativado"
+
+#: .\prv\templates\prv\proveedores_form.html:33
+msgid "proveedor"
+msgstr "fornecedor"
+
+#: .\prv\templates\prv\proveedores_form.html:141
+msgid "Proveedor ya existe"
+msgstr "O fornecedor já existe"
+
+#: .\prv\templates\prv\proveedores_lista.html:61
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1267
+#: .\trn\templates\trn\tipo_solicitud_modal.html:35
+msgid "No existen proveedores registrados"
+msgstr "Não há fornecedores registrados"
+
+#: .\sindri\settings.py:163 .\templates\base\base.html:90
+#: .\templates\base\base.html:116
+msgid "Español Ecuador"
+msgstr "Espanhol Equador"
+
+#: .\sindri\settings.py:164 .\templates\base\base.html:98
+#: .\templates\base\base.html:113
+msgid "Español Colombia"
+msgstr "Espanhol Colômbia"
+
+#: .\sindri\settings.py:165 .\templates\base\base.html:94
+#: .\templates\base\base.html:119
+msgid "Español Chile"
+msgstr "Espanhol Chile"
+
+#: .\sindri\settings.py:166 .\templates\base\base.html:102
+#: .\templates\base\base.html:122
+msgid "Español Perú"
+msgstr "Espanhol Peru"
+
+#: .\sindri\settings.py:167
+msgid "English USA"
+msgstr "Inglês EUA"
+
+#: .\sindri\settings.py:168
+msgid "Português Brasil"
+msgstr "Português Brasil"
+
+#: .\templates\base\base.html:86
+msgid "Inglés USA"
+msgstr "Inglês EUA"
+
+#: .\templates\base\base.html:106 .\templates\base\base.html:125
+msgid "Portugués Brasil"
+msgstr "Português Brasil"
+
+#: .\templates\base\base.html:134
+msgid "Buscar elemento"
+msgstr "Pesquisar item"
+
+#: .\templates\base\base.html:147
+msgid "Ver todas"
+msgstr "Ver tudo"
+
+#: .\templates\base\base.html:153 .\usr\templates\usr\editar_perfil.html:43
+#: .\usr\templates\usr\editar_usuario.html:43
+msgid "Editar perfil"
+msgstr "Editar Perfil"
+
+#: .\templates\base\base.html:153
+#: .\usr\templates\usr\cambiar_contrasena.html:55
+msgid "Cambiar contraseña"
+msgstr "Alterar senha"
+
+#: .\templates\base\base.html:201 .\templates\base\base.html:330
+#: .\usr\templates\usr\roles_form.html:36
+msgid "Administración"
+msgstr "Administração"
+
+#: .\templates\base\base.html:213 .\templates\base\base.html:224
+#: .\usr\templates\usr\editar_perfil.html:35
+#: .\usr\templates\usr\editar_usuario.html:35
+#: .\usr\templates\usr\registro.html:35
+#: .\usr\templates\usr\usuarios_lista.html:12
+#: .\usr\templates\usr\usuarios_lista.html:17
+#: .\wso\templates\wso\prueba.html:8 .\wso\templates\wso\sala.html:8
+msgid "Usuarios"
+msgstr "Usuários"
+
+#: .\templates\base\base.html:216
+#: .\usr\templates\usr\tipo_usuarios_lista.html:8
+msgid "Tipos de usuarios"
+msgstr "Tipos de usuários"
+
+#: .\templates\base\base.html:220
+msgid "Roles de usuario"
+msgstr "Funções de usuário"
+
+#: .\templates\base\base.html:230 .\ubc\templates\ubc\ciudades_form.html:12
+#: .\ubc\templates\ubc\ciudades_lista.html:12
+#: .\ubc\templates\ubc\localidades_form.html:12
+#: .\ubc\templates\ubc\localidades_lista.html:12
+#: .\ubc\templates\ubc\paises_form.html:12
+#: .\ubc\templates\ubc\paises_lista.html:12
+#: .\ubc\templates\ubc\regiones_form.html:12
+#: .\ubc\templates\ubc\regiones_lista.html:12
+#: .\ubc\templates\ubc\sectores_form.html:12
+#: .\ubc\templates\ubc\sectores_lista.html:12
+#: .\ubc\templates\ubc\zonas_form.html:12
+#: .\ubc\templates\ubc\zonas_lista.html:12
+msgid "Ubicaciones"
+msgstr "Localizações"
+
+#: .\templates\base\base.html:233 .\ubc\templates\ubc\regiones_lista.html:17
+#: .\ubc\templates\ubc\regiones_lista.html:33
+msgid "Regiones"
+msgstr "Regiões"
+
+#: .\templates\base\base.html:237 .\ubc\templates\ubc\paises_lista.html:17
+#: .\ubc\templates\ubc\paises_lista.html:33
+msgid "Paises"
+msgstr "Países"
+
+#: .\templates\base\base.html:241
+#: .\ubc\templates\ubc\localidades_lista.html:17
+#: .\ubc\templates\ubc\localidades_lista.html:33
+msgid "Localidades"
+msgstr "Localizações"
+
+#: .\templates\base\base.html:245 .\ubc\templates\ubc\zonas_lista.html:17
+#: .\ubc\templates\ubc\zonas_lista.html:33
+msgid "Zonas"
+msgstr "Zonas"
+
+#: .\templates\base\base.html:249 .\ubc\templates\ubc\ciudades_lista.html:17
+#: .\ubc\templates\ubc\ciudades_lista.html:33
+msgid "Ciudades"
+msgstr "Cidades"
+
+#: .\templates\base\base.html:253 .\ubc\templates\ubc\sectores_form.html:17
+#: .\ubc\templates\ubc\sectores_lista.html:17
+#: .\ubc\templates\ubc\sectores_lista.html:33
+msgid "Sectores"
+msgstr "Setores"
+
+#: .\templates\base\base.html:273 .\templates\base\base.html:277
+#: .\templates\base\base.html:281
+msgid "Parámetros generales"
+msgstr "Parâmetros gerais"
+
+#: .\templates\base\base.html:289
+msgid "Utilidad sobre talleres"
+msgstr "Utilidade sobre oficinas"
+
+#: .\templates\base\base.html:293
+msgid "Merma talleres"
+msgstr "Merma de Oficinas"
+
+#: .\templates\base\base.html:301
+msgid "Utilidad sobre proveedores"
+msgstr "Utilidade sobre fornecedores"
+
+#: .\templates\base\base.html:306
+msgid "Tiempo límite venta"
+msgstr "prazo de vendas"
+
+#: .\templates\base\base.html:365
+msgid "Todos"
+msgstr "Todos"
+
+#: .\templates\base\base.html:413
+msgid "POS"
+msgstr "POS"
+
+#: .\templates\base\base.html:427
+#: .\trn\templates\trn\ordenes_item_crear.html:55
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:52
+#: .\trn\templates\trn\solicitudes_editar_form.html:35
+#: .\trn\templates\trn\solicitudes_form.html:35
+msgid "Transacciones"
+msgstr "Transações"
+
+#: .\templates\base\base.html:430 .\trn\templates\trn\solicitudes_lista.html:9
+msgid "Solicitudes de trabajo"
+msgstr "Pedidos de trabalho"
+
+#: .\templates\base\base.html:434 .\trn\templates\trn\ordenes_lista.html:12
+#: .\trn\templates\trn\ordenes_pagos_lista.html:12
+msgid "Órdenes de trabajo"
+msgstr "Ordens de trabalho"
+
+#: .\templates\base\base.html:438
+msgid "Aprobación de pagos"
+msgstr "Aprovação de pagamento"
+
+#: .\templates\base\base.html:537
+msgid "Creado por "
+msgstr "Criado por"
+
+#: .\templates\base\base.html:625 .\templates\base\base.html:648
+msgid "Configuración inicial"
+msgstr "Configuração inicial"
+
+#: .\templates\base\base.html:626
+msgid "Debe agregar la configuración inicial a su taller"
+msgstr "Você deve adicionar a configuração inicial ao seu oficina"
+
+#: .\templates\base\base.html:630 .\templates\base\base.html:653
+msgid "Configurar"
+msgstr "Configurar"
+
+#: .\templates\base\base.html:649
+msgid "Debe agregar la configuración inicial a su empresa"
+msgstr "Você deve adicionar a configuração inicial à sua empresa"
+
+#: .\templates\base\base.html:704
+msgid " notificaciones nuevas:"
+msgstr "novas notificações:"
+
+#: .\templates\base\base.html:707
+msgid "sin notificaciones nuevas:"
+msgstr "Nenhuma nova notificação:"
+
+#: .\templates\base\base.html:787
+msgid "Solicitud pendiente de respuesta"
+msgstr "Pedido resposta pendente"
+
+#: .\templates\base\base.html:788
+msgid "Se ha cumplido el plazo para responder la solicitud"
+msgstr "O prazo para responder à pedido foi cumprido"
+
+#: .\templates\base\base.html:792
+msgid "Responder"
+msgstr "Responder"
+
+#: .\templates\base\base.html:800 .\templates\base\base.html:832
+msgid "Posponer"
+msgstr "Adiar"
+
+#: .\templates\base\base.html:817
+msgid "Nueva solicitud"
+msgstr "Novo pedido"
+
+#: .\templates\base\base.html:818
+msgid " ha creado una solicitud"
+msgstr "criou uma pedido"
+
+#: .\templates\base\base.html:819 .\templates\base\base.html:851
+#: .\templates\base\base.html:873 .\templates\base\base.html:895
+#: .\templates\base\base.html:917 .\templates\base\base.html:939
+#: .\templates\base\base.html:961
+msgid "Producto: "
+msgstr "Produto:"
+
+#: .\templates\base\base.html:820 .\templates\base\base.html:918
+msgid "Generada: "
+msgstr "Gerado:"
+
+#: .\templates\base\base.html:824 .\templates\base\base.html:857
+#: .\templates\base\base.html:879 .\templates\base\base.html:901
+#: .\templates\base\base.html:923 .\templates\base\base.html:945
+#: .\templates\base\base.html:967
+msgid "Mostrar"
+msgstr "Mostrar"
+
+#: .\templates\base\base.html:848
+msgid "Cotización lista"
+msgstr "Cotação pronto"
+
+#: .\templates\base\base.html:850
+msgid " ha realizado la cotización"
+msgstr "fez a cotação"
+
+#: .\templates\base\base.html:852
+msgid "Cotizado: "
+msgstr "Citado:"
+
+#: .\templates\base\base.html:870
+msgid "Solicitud en evaluación"
+msgstr "Pedido em avaliação"
+
+#: .\templates\base\base.html:872
+msgid " necesita más tiempo para realizar la cotización"
+msgstr "precisa de mais tempo para fazer a cotação"
+
+#: .\templates\base\base.html:874 .\templates\base\base.html:896
+msgid "Respuesta: "
+msgstr "Resposta:"
+
+#: .\templates\base\base.html:892
+#: .\trn\templates\trn\detalle_solicitud_modal.html:474
+msgid "Solicitud rechazada"
+msgstr "Pedido rejeitado"
+
+#: .\templates\base\base.html:894
+msgid " ha rechazado la solicitud"
+msgstr "rejeitou o pedido"
+
+#: .\templates\base\base.html:914
+msgid "Órden nueva"
+msgstr "Novo ordem"
+
+#: .\templates\base\base.html:916
+msgid " ha generado una nueva órden"
+msgstr "gerou um novo ordem"
+
+#: .\templates\base\base.html:936
+msgid "Producto enviado"
+msgstr "Produto enviado"
+
+#: .\templates\base\base.html:938
+msgid " ha enviado el producto terminado"
+msgstr "enviou o produto acabado"
+
+#: .\templates\base\base.html:940
+msgid "Enviado: "
+msgstr "Enviado:"
+
+#: .\templates\base\base.html:958
+msgid "Límite de venta vencido"
+msgstr "Limite de vendas expirado"
+
+#: .\templates\base\base.html:960
+msgid " se ha cumplido el tiempo límite para la venta del producto"
+msgstr "o prazo para a venda do produto foi cumprido"
+
+#: .\templates\base\base.html:962
+msgid "Vencido: "
+msgstr "Expirou:"
+
+#: .\trn\templates\trn\agregar_adicional_modal.html:31
+#: .\trn\templates\trn\agregar_piedra_modal.html:42
+#: .\trn\templates\trn\aprobacion_pago_modal.html:236
+#: .\trn\templates\trn\comprobante_orden.html:227
+#: .\trn\templates\trn\correo_cliente.html:186
+#: .\trn\templates\trn\detalle_orden_modal.html:345
+#: .\trn\templates\trn\ordenes_item_crear.html:306
+#: .\trn\templates\trn\ordenes_item_crear.html:868
+msgid "Cantidad"
+msgstr "Quantidade"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:44
+#: .\trn\templates\trn\comprobante_orden.html:72
+#: .\trn\templates\trn\correo_cliente.html:26
+#: .\trn\templates\trn\detalle_orden_modal.html:30
+msgid "Detalles de órden # "
+msgstr "Detalhes do ordem #"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:73
+#: .\trn\templates\trn\detalle_solicitud_modal.html:96
+#: .\trn\templates\trn\ordenes_lista.html:198
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+#: .\trn\templates\trn\reporte_lista_ordenes.html:124
+#: .\trn\templates\trn\reporte_lista_ordenes.html:199
+#: .\trn\templates\trn\solicitudes_lista.html:153
+#: .\trn\templates\trn\solicitudes_lista.html:221
+msgid "Solicita"
+msgstr "Solicitado por"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:94
+#: .\trn\templates\trn\detalle_orden_modal.html:86
+#: .\trn\templates\trn\solicitudes_editar_form.html:93
+#: .\trn\templates\trn\solicitudes_form.html:100
+msgid "Origen material"
+msgstr "Origem material"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:122
+#: .\trn\templates\trn\detalle_orden_modal.html:115
+#: .\trn\templates\trn\detalle_orden_modal.html:123
+#: .\trn\templates\trn\detalle_solicitud_modal.html:124
+#: .\trn\templates\trn\reporte_lista_ordenes.html:202
+#: .\trn\templates\trn\solicitudes_editar.html:64
+#: .\trn\templates\trn\solicitudes_editar_form.html:99
+#: .\trn\templates\trn\solicitudes_form.html:106
+#: .\trn\templates\trn\solicitudes_lista.html:153
+#: .\trn\templates\trn\solicitudes_lista.html:221
+msgid "Detalle"
+msgstr "Detalhe"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:130
+#: .\trn\templates\trn\detalle_orden_modal.html:146
+#: .\trn\templates\trn\detalle_solicitud_modal.html:191
+#: .\trn\templates\trn\detalle_solicitud_modal.html:200
+msgid "Peso solicitado"
+msgstr "Peso solicitado"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:157
+#: .\trn\templates\trn\detalle_orden_modal.html:368
+msgid "Documentos"
+msgstr "Documentos"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:168
+#: .\trn\templates\trn\detalle_orden_modal.html:423
+msgid "Comprobante de envío de material"
+msgstr "Prova de entrega de material"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:187
+#: .\trn\templates\trn\detalle_orden_modal.html:442
+msgid "Comprobante de envío de producto"
+msgstr "Prova de envio do produto"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:206
+#: .\trn\templates\trn\detalle_orden_modal.html:461
+#: .\trn\templates\trn\detalle_orden_modal.html:763
+msgid "Factura de venta"
+msgstr "Fatura de vendas"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:225
+msgid "Detalle costos"
+msgstr "Custos detalhados"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:257
+#: .\trn\templates\trn\aprobacion_pago_modal.html:336
+msgid "Aprobar pago"
+msgstr "Aprovar pagamento"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:313
+#: .\trn\templates\trn\ordenes_item_crear.html:871
+msgid "FABRICACIÓN"
+msgstr "FABRICAÇÃO"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:315
+msgid "VALOR ERROR"
+msgstr "VALOR DE ERRO"
+
+#: .\trn\templates\trn\aprobacion_pago_modal.html:337
+msgid "¿Confirmar aprobación de pago?. Esta acción no se puede deshacer"
+msgstr "Confirmar aprovação de pagamento? Esta ação não pode ser desfeita."
+
+#: .\trn\templates\trn\comprobante_orden.html:62
+#: .\trn\templates\trn\reporte_lista_ordenes.html:67
+msgid "Tienda:   "
+msgstr "Loja:"
+
+#: .\trn\templates\trn\comprobante_orden.html:62
+#: .\trn\templates\trn\reporte_lista_ordenes.html:67
+msgid "Dirección:   "
+msgstr "Morada:"
+
+#: .\trn\templates\trn\comprobante_orden.html:62
+#: .\trn\templates\trn\reporte_lista_ordenes.html:67
+msgid "Correo electrónico:   "
+msgstr "Correio eletrônico:"
+
+#: .\trn\templates\trn\comprobante_orden.html:67
+#: .\trn\templates\trn\correo_cliente.html:21
+msgid "Estimado cliente detallamos la orden a continuación:"
+msgstr "Prezado cliente, detalhamos o pedido abaixo:"
+
+#: .\trn\templates\trn\comprobante_orden.html:100
+#: .\trn\templates\trn\comprobante_orden.html:113
+#: .\trn\templates\trn\correo_cliente.html:59
+#: .\trn\templates\trn\correo_cliente.html:72
+#: .\trn\templates\trn\detalle_orden_modal.html:131
+#: .\trn\templates\trn\detalle_orden_modal.html:138
+msgid "Talla/Longitud"
+msgstr "Tamanho / comprimento"
+
+#: .\trn\templates\trn\comprobante_orden.html:127
+#: .\trn\templates\trn\correo_cliente.html:86
+msgid "Peso"
+msgstr "Peso"
+
+#: .\trn\templates\trn\comprobante_orden.html:182
+#: .\trn\templates\trn\correo_cliente.html:141
+#: .\trn\templates\trn\detalle_orden_modal.html:185
+#: .\trn\templates\trn\detalle_solicitud_modal.html:179
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:193
+#: .\trn\templates\trn\solicitudes_editar_form.html:143
+#: .\trn\templates\trn\solicitudes_form.html:150
+msgid "SKU relacionado"
+msgstr "SKU relacionado"
+
+#: .\trn\templates\trn\comprobante_orden.html:195
+#: .\trn\templates\trn\comprobante_orden.html:197
+#: .\trn\templates\trn\comprobante_orden.html:207
+#: .\trn\templates\trn\comprobante_orden.html:209
+#: .\trn\templates\trn\correo_cliente.html:154
+#: .\trn\templates\trn\correo_cliente.html:156
+#: .\trn\templates\trn\correo_cliente.html:166
+#: .\trn\templates\trn\correo_cliente.html:168
+msgid "días"
+msgstr "dias"
+
+#: .\trn\templates\trn\comprobante_orden.html:230
+#: .\trn\templates\trn\correo_cliente.html:189
+msgid "Precio unitario"
+msgstr "Preço unitário"
+
+#: .\trn\templates\trn\comprobante_orden.html:257
+#: .\trn\templates\trn\correo_cliente.html:216
+msgid "Total a pagar"
+msgstr "Total a pagar"
+
+#: .\trn\templates\trn\comprobante_orden.html:270
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:240
+msgid "Precio mínimo"
+msgstr "Preço mínimo"
+
+#: .\trn\templates\trn\comprobante_orden.html:282
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:248
+msgid "Precio máximo"
+msgstr "Preço máximo"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:244
+#: .\trn\templates\trn\solicitudes_editar_form.html:40
+#: .\trn\templates\trn\solicitudes_form.html:40
+msgid "Solicitud"
+msgstr "Pedido"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:256
+msgid "Ingresada"
+msgstr "Introduzido"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:265
+msgid "Mat. enviado"
+msgstr "Mat. enviado"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:276
+msgid "En proceso"
+msgstr "Em processo"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:282
+msgid "Trab. fin"
+msgstr "Trab. fim"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:288
+msgid "Prod. enviado"
+msgstr "Prod. Enviado"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:296
+msgid "Prod. recibido"
+msgstr "Prod. Recebido"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:302
+msgid "Finalizada"
+msgstr "Terminado"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:311
+msgid "Anulada"
+msgstr "Anulado"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:319
+msgid "Devuelta"
+msgstr "De volta"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:404
+#: .\trn\templates\trn\detalle_orden_modal.html:700
+msgid "Factura taller"
+msgstr "Fatura da oficina"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:519
+msgid "Enviar material"
+msgstr "Enviar material"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:532
+msgid "Gramos enviados"
+msgstr "Gramas enviadas"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:549
+#: .\trn\templates\trn\detalle_orden_modal.html:581
+#: .\trn\templates\trn\detalle_orden_modal.html:612
+#: .\trn\templates\trn\detalle_orden_modal.html:649
+#: .\trn\templates\trn\detalle_orden_modal.html:679
+#: .\trn\templates\trn\detalle_orden_modal.html:710
+#: .\trn\templates\trn\detalle_orden_modal.html:742
+#: .\trn\templates\trn\detalle_orden_modal.html:795
+#: .\trn\templates\trn\detalle_orden_modal.html:839
+msgid "Listo"
+msgstr "Pronto"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:559
+#: .\trn\templates\trn\detalle_orden_modal.html:876
+msgid "Recibir material"
+msgstr "Receber material"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:571
+msgid "Gramos recibidos"
+msgstr "Gramas recebidas"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:590
+msgid "Anular órden"
+msgstr "Cancelar ordem"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:602
+#: .\trn\templates\trn\detalle_orden_modal.html:731
+#: .\trn\templates\trn\detalle_orden_modal.html:784
+#: .\trn\templates\trn\detalle_orden_modal.html:828
+#: .\trn\templates\trn\detalle_solicitud_modal.html:466
+#: .\trn\templates\trn\detalle_solicitud_modal.html:484
+#: .\trn\templates\trn\detalle_solicitud_modal.html:503
+msgid "Observación"
+msgstr "Observação"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:621
+#: .\trn\templates\trn\detalle_orden_modal.html:896
+msgid "Finalizar trabajo"
+msgstr "Terminar o trabalho"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:633
+msgid "Peso Final"
+msgstr "Peso final"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:640
+msgid "Costo envío"
+msgstr "Custo de envio"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:657
+#: .\trn\templates\trn\detalle_orden_modal.html:902
+msgid "Enviar producto"
+msgstr "Enviar produto"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:688
+#: .\trn\templates\trn\detalle_orden_modal.html:908
+msgid "Recibir producto"
+msgstr "Receber produto"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:719
+#: .\trn\templates\trn\detalle_orden_modal.html:912
+msgid "Devolver producto"
+msgstr "Devolver o produto"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:804
+msgid "Finalizar sin venta"
+msgstr "Fim sem venda"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:870
+msgid "Entrega de material"
+msgstr "Entrega de material"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:880
+#: .\trn\templates\trn\detalle_orden_modal.html:890
+msgid "Anular Órden"
+msgstr "Cancelar ordem"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:886
+msgid "Iniciar Trabajo"
+msgstr "Iniciar trabalho"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:918
+msgid "Producto vendido"
+msgstr "Produto vendido"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:922
+msgid "Producto no vendido"
+msgstr "Produto não vendido"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1095
+#: .\trn\templates\trn\detalle_orden_modal.html:1108
+#: .\trn\templates\trn\detalle_orden_modal.html:1121
+msgid "Archivo con extensión no válida"
+msgstr "Extensão de arquivo inválida"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1132
+msgid "Ingrese los gramos enviados"
+msgstr "Digite os gramas enviados"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1144
+#: .\trn\templates\trn\detalle_orden_modal.html:1317
+msgid "Por favor cargar un comprobante"
+msgstr "Faça o carregar da prova"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1178
+msgid "Ingrese los gramos recibidos"
+msgstr "Digite os gramas recebidos"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1211
+#: .\trn\templates\trn\detalle_orden_modal.html:1393
+msgid "Ingrese una observación"
+msgstr "Digite uma observação"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1274
+msgid "Ingrese peso final"
+msgstr "Digite o peso final"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1279
+msgid "Ingrese costo de envío"
+msgstr "Digite o custo de envio"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1358
+#: .\trn\templates\trn\detalle_orden_modal.html:1433
+msgid "Por favor cargar una factura"
+msgstr "Faça o carregar de uma fatura"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1441
+#: .\trn\templates\trn\detalle_orden_modal.html:1498
+msgid "Por favor cargar cuenta por pagar"
+msgstr "Faça o carregar da conta a pagar"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1449
+#: .\trn\templates\trn\detalle_orden_modal.html:1506
+msgid "Por favor cargar orden de compra"
+msgstr "Faça o carregar da ordem de compra"
+
+#: .\trn\templates\trn\detalle_orden_modal.html:1491
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1149
+msgid "Por favor ingrese una observación"
+msgstr "Por favor, digite uma observação"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:44
+#: .\trn\templates\trn\detalle_solicitud_modal.html:56
+msgid "Detalles de solicitud # "
+msgstr "Detalhes da solicitação #"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:154
+#: .\trn\templates\trn\ordenes_item_crear.html:193
+#: .\trn\templates\trn\solicitudes_editar_form.html:119
+#: .\trn\templates\trn\solicitudes_form.html:126
+msgid "Color"
+msgstr "Cor"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:251
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1286
+#: .\trn\templates\trn\solicitudes_editar_form.html:172
+#: .\trn\templates\trn\solicitudes_editar_form.html:377
+#: .\trn\templates\trn\solicitudes_form.html:179
+#: .\trn\templates\trn\solicitudes_form.html:462
+msgid "Valor"
+msgstr "Valor"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:272
+#: .\trn\templates\trn\solicitudes_editar_form.html:190
+#: .\trn\templates\trn\solicitudes_form.html:199
+msgid "Datos de fabricación"
+msgstr "Dados de fabricação"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:319
+#: .\trn\templates\trn\detalle_solicitud_modal.html:323
+#: .\trn\templates\trn\solicitudes_editar_form.html:221
+#: .\trn\templates\trn\solicitudes_form.html:230
+msgid "Valor error"
+msgstr "Valor do erro"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:357
+#: .\trn\templates\trn\detalle_solicitud_modal.html:417
+msgid "Entrega mín (días)"
+msgstr "Entrega mín (dias)"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:368
+#: .\trn\templates\trn\detalle_solicitud_modal.html:428
+msgid "Entrega máx (días)"
+msgstr "Entrega máx (dias)"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:375
+msgid "Total rubros"
+msgstr "Total de Rubros"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:443
+#: .\trn\templates\trn\ordenes_item_crear.html:328
+msgid "Descuento ("
+msgstr "Desconto ("
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:456
+msgid "Rechazar solicitud"
+msgstr "Rejeitar pedido"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:493
+msgid "Solicitud cancelada"
+msgstr "Pedido cancelado"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:511
+#: .\trn\templates\trn\detalle_solicitud_modal.html:545
+msgid "Tiempo de respuesta"
+msgstr "Tempo de resposta"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:519
+msgid "Responder en"
+msgstr "Responder em"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:525
+#: .\trn\templates\trn\detalle_solicitud_modal.html:559
+msgid "Días"
+msgstr "Dias"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:531
+#: .\trn\templates\trn\detalle_solicitud_modal.html:565
+msgid "Horas"
+msgstr "Horas"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:537
+#: .\trn\templates\trn\detalle_solicitud_modal.html:571
+msgid "Minutos"
+msgstr "Minutos"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:553
+msgid "El taller responderá en"
+msgstr "O oficina responderá em"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:602
+msgid "Aceptar"
+msgstr "Aceitar"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:606
+msgid "Evaluar"
+msgstr "Avaliar"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:610
+msgid "Rechazar"
+msgstr "Recusar"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:617
+#: .\trn\templates\trn\detalle_solicitud_modal.html:627
+msgid "Generar órden"
+msgstr "Gerar ordem"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:621
+#: .\trn\templates\trn\detalle_solicitud_modal.html:631
+#: .\trn\templates\trn\detalle_solicitud_modal.html:642
+msgid "Cancelar solicitud"
+msgstr "Cancelar pedido"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:638
+msgid "Solicitar a externo"
+msgstr "Pedido para externo"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:954
+#: .\trn\templates\trn\ordenes_item_crear.html:789
+msgid "Descuento debe ser mayor a 0"
+msgstr "O desconto deve ser maior que 0"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:967
+#: .\trn\templates\trn\ordenes_item_crear.html:802
+msgid "Descuento supera porcentaje permitido"
+msgstr "O desconto excede a porcentagem permitida"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:972
+#: .\trn\templates\trn\ordenes_item_crear.html:807
+msgid "Precio debe ser mayor a 0"
+msgstr "O preço deve ser maior que 0"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1075
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1129
+#: .\trn\templates\trn\solicitudes_editar_form.html:320
+#: .\trn\templates\trn\solicitudes_form.html:399
+msgid "Por favor complete los campos"
+msgstr "Por favor preencha os campos"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1090
+#: .\trn\templates\trn\solicitudes_editar_form.html:335
+#: .\trn\templates\trn\solicitudes_form.html:416
+msgid "Uno o más rubros no poseen valor"
+msgstr "Um ou mais rubros não têm valor"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1095
+#: .\trn\templates\trn\solicitudes_editar_form.html:340
+#: .\trn\templates\trn\solicitudes_form.html:421
+msgid "Peso mínimo no puede ser mayor al peso máximo"
+msgstr "O peso mínimo não pode ser maior que o peso máximo"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1100
+#: .\trn\templates\trn\solicitudes_editar_form.html:345
+#: .\trn\templates\trn\solicitudes_form.html:426
+msgid "Tiempo mínimo no puede ser mayor al tiempo máximo"
+msgstr "O tempo mínimo não pode ser maior que o tempo máximo"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1183
+msgid "Seleccione un peso"
+msgstr "Selecione um peso"
+
+#: .\trn\templates\trn\detalle_solicitud_modal.html:1286
+#: .\trn\templates\trn\solicitudes_editar_form.html:377
+#: .\trn\templates\trn\solicitudes_form.html:462
+msgid "Rubro"
+msgstr "Rubro"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:61
+#: .\trn\templates\trn\ordenes_lista.html:17
+#: .\trn\templates\trn\ordenes_pagos_lista.html:17
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:58
+msgid "Órdenes"
+msgstr "Ordens"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:77
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:74
+msgid "Generar"
+msgstr "Gerar"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:77
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:76
+msgid "órden interna"
+msgstr "ordem interna"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:77
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:76
+msgid "órden externa"
+msgstr "ordem externa"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:121
+msgid "Seleccione un cliente"
+msgstr "Selecione um cliente"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:127
+msgid " Buscar"
+msgstr "Pesquisar"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:152
+msgid "Datos extra"
+msgstr "Dados extras"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:195
+#: .\trn\templates\trn\ordenes_item_crear.html:224
+#: .\ubc\templates\ubc\paises_form.html:94
+msgid "Seleccione un origen"
+msgstr "Selecione uma origem"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:209
+msgid "Talla / Longitud"
+msgstr "Tamanho / comprimento"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:211
+msgid "Seleccione una talla"
+msgstr "Selecione um tamanho"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:222
+msgid "Pesos disponibles (gr)"
+msgstr "Pesos disponíveis (gr)"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:232
+msgid "Peso a trabajar"
+msgstr "Peso para trabalhar"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:252
+#: .\trn\templates\trn\ordenes_item_crear.html:258
+msgid " días"
+msgstr "dias"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:253
+msgid "Tiempo entrega mínimo (días)"
+msgstr "Prazo mínimo de entrega (dias)"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:259
+msgid "Tiempo entrega máximo (días)"
+msgstr "Prazo máximo de entrega (dias)"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:287
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:213
+msgid "Detalles de fabricación"
+msgstr "Detalhes de fabricação"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:289
+msgid "Detalles de servicio"
+msgstr "Detalhes do serviço"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:427
+#: .\trn\templates\trn\solicitudes_form.html:278
+msgid "No encontrado"
+msgstr "Nao encontrado"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:476
+#: .\trn\templates\trn\ordenes_item_crear.html:594
+#: .\trn\templates\trn\ordenes_item_crear.html:685
+msgid "Debe escoger un origen de material"
+msgstr "Você deve escolher uma origem de material"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:599
+#: .\trn\templates\trn\ordenes_item_crear.html:690
+#: .\trn\templates\trn\ordenes_item_crear.html:996
+msgid "Debe escoger un color"
+msgstr "Você deve escolher uma cor"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:932
+msgid "IMPUESTOS"
+msgstr "IMPOSTOS"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:986
+msgid "Debe ingresar el cliente"
+msgstr "Você deve inserir o cliente"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:992
+msgid "Debe escoger una talla"
+msgstr "Você deve escolher um tamanho"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:1001
+msgid "Debe escoger un peso"
+msgstr "Você deve escolher um peso"
+
+#: .\trn\templates\trn\ordenes_item_crear.html:1007
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:318
+msgid "Por favor cargar anticipo de fabricación"
+msgstr "Por favor, carregar adiantamento de fabricação"
+
+#: .\trn\templates\trn\ordenes_lista.html:33
+msgid "Listado de Órdenes de trabajo"
+msgstr "Lista de Ordens de trabalho"
+
+#: .\trn\templates\trn\ordenes_lista.html:40
+msgid "Generar reporte"
+msgstr "Gerar relatório"
+
+#: .\trn\templates\trn\ordenes_lista.html:60
+#: .\trn\templates\trn\solicitudes_lista.html:57
+msgid "Últimas 100"
+msgstr "Últimos 100"
+
+#: .\trn\templates\trn\ordenes_lista.html:61
+#: .\trn\templates\trn\solicitudes_lista.html:58
+msgid "Últimas 1000"
+msgstr "Últimos 1000"
+
+#: .\trn\templates\trn\ordenes_lista.html:63
+#: .\trn\templates\trn\ordenes_pagos_lista.html:61
+#: .\trn\templates\trn\solicitudes_lista.html:60
+msgid "Todas"
+msgstr "Todos"
+
+#: .\trn\templates\trn\ordenes_lista.html:187
+#: .\trn\templates\trn\ordenes_pagos_lista.html:185
+msgid "No existen órdenes"
+msgstr "Não há ordens"
+
+#: .\trn\templates\trn\ordenes_lista.html:198
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+#: .\trn\templates\trn\reporte_lista_ordenes.html:123
+#: .\trn\templates\trn\reporte_lista_ordenes.html:198
+#: .\trn\templates\trn\solicitudes_lista.html:153
+#: .\trn\templates\trn\solicitudes_lista.html:221
+msgid "Secuencia"
+msgstr "Sequência"
+
+#: .\trn\templates\trn\ordenes_lista.html:210
+#: .\trn\templates\trn\ordenes_pagos_lista.html:219
+#: .\trn\templates\trn\solicitudes_lista.html:233
+msgid "Registros: "
+msgstr "Registros:"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:33
+msgid "Aprobación de pagos de Órdenes de trabajo"
+msgstr "Aprovação de pagamentos de ordens de trabalho"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:40
+msgid "Exportar"
+msgstr "Exportar"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+msgid "Recepción producto"
+msgstr "Recepção de produtos"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+msgid "Aprobación de pago"
+msgstr "Aprovação de pagamento"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:196
+msgid "Fecha aprobación"
+msgstr "Data de aprovação"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:205
+msgid "APROBADO"
+msgstr "APROVADO"
+
+#: .\trn\templates\trn\ordenes_pagos_lista.html:207
+msgid "PENDIENTE"
+msgstr "PENDENTE"
+
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:152
+msgid "Longitud (cm)"
+msgstr "Comprimento (cm)"
+
+#: .\trn\templates\trn\ordenes_solicitud_crear.html:184
+msgid "Peso solicitado (gr)"
+msgstr "Peso solicitado (gr)"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:74
+msgid "Listado de órdenes de trabajo correspondientes a lo que va del mes"
+msgstr "Lista de ordens de trabalho correspondentes ao mês"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:81
+msgid "Listado de órdenes de trabajo correspondientes al mes anterior"
+msgstr "Lista de ordens de trabalho correspondentes ao mês anterior"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:88
+msgid "Últimas 100 órdenes de trabajo"
+msgstr "Últimas 100 ordens de trabalho"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:95
+msgid "Últimas 1000 órdenes de trabajo"
+msgstr "Últimas 1000 ordens de trabalho"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:102
+msgid "Listado de órdenes de trabajo desde la fecha "
+msgstr "Lista de ordens de trabalho a partir da data"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:102
+msgid " hasta la fecha "
+msgstr "até a data"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:109
+msgid "Todas las órdenes de trabajo"
+msgstr "Todas as ordens de trabalho"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:119
+#: .\trn\templates\trn\reporte_lista_ordenes.html:194
+msgid "Estado: "
+msgstr "Estado:"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:126
+#: .\trn\templates\trn\reporte_lista_ordenes.html:201
+msgid "Origen mat."
+msgstr "Origem mat."
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:127
+msgid "Peso solic."
+msgstr "Peso solic."
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:128
+msgid "Peso final"
+msgstr "Peso final"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:130
+msgid "Fecha fabricación"
+msgstr "Data de fabricação"
+
+#: .\trn\templates\trn\reporte_lista_ordenes.html:185
+msgid "Listado de solicitudes pendientes de respuesta:"
+msgstr "Lista de pedidos com resposta pendente:"
+
+#: .\trn\templates\trn\solicitudes_editar.html:17
+#: .\trn\templates\trn\solicitudes_editar_form.html:56
+#: .\trn\templates\trn\solicitudes_form.html:56
+msgid "Editar"
+msgstr "Editar"
+
+#: .\trn\templates\trn\solicitudes_editar.html:17
+#: .\trn\templates\trn\solicitudes_editar_form.html:56
+#: .\trn\templates\trn\solicitudes_form.html:56
+msgid "solicitud interna"
+msgstr "pedido interno"
+
+#: .\trn\templates\trn\solicitudes_editar.html:17
+#: .\trn\templates\trn\solicitudes_editar_form.html:56
+#: .\trn\templates\trn\solicitudes_form.html:56
+msgid "solicitud externa"
+msgstr "pedido externo"
+
+#: .\trn\templates\trn\solicitudes_editar.html:32
+msgid "Taller:"
+msgstr "Oficina:"
+
+#: .\trn\templates\trn\solicitudes_editar.html:39
+msgid "Proveedor:"
+msgstr "Fornecedor:"
+
+#: .\trn\templates\trn\solicitudes_editar.html:52
+msgid "Imagen:"
+msgstr "Imagem:"
+
+#: .\trn\templates\trn\solicitudes_editar.html:58
+msgid "Longitud:"
+msgstr "Comprimento:"
+
+#: .\trn\templates\trn\solicitudes_editar.html:70
+msgid "Item"
+msgstr "Item"
+
+#: .\trn\templates\trn\solicitudes_editar_form.html:315
+#: .\trn\templates\trn\solicitudes_form.html:364
+msgid "Seleccione un proveedor"
+msgstr "Selecione um provedor"
+
+#: .\trn\templates\trn\solicitudes_form.html:359
+msgid "Por favor cargar una imagen"
+msgstr "Por favor carregar uma imagem"
+
+#: .\trn\templates\trn\solicitudes_form.html:369
+msgid "Por favor ingrese detalle"
+msgstr "Por favor insira detalhes"
+
+#: .\trn\templates\trn\solicitudes_form.html:374
+msgid "Por favor ingrese talla"
+msgstr "Digite o tamanho"
+
+#: .\trn\templates\trn\solicitudes_form.html:379
+msgid "Por favor ingrese color"
+msgstr "Por favor insira cor"
+
+#: .\trn\templates\trn\solicitudes_form.html:384
+msgid "Por favor ingrese acabado"
+msgstr "Digite acabamento"
+
+#: .\trn\templates\trn\solicitudes_form.html:389
+msgid "Por favor ingrese parte interna"
+msgstr "Por favor, insira a parte interna"
+
+#: .\trn\templates\trn\solicitudes_form.html:394
+msgid "Por favor ingrese cantidad de piedras"
+msgstr "Digite a quantidade de pedras"
+
+#: .\trn\templates\trn\solicitudes_lista.html:14
+msgid "Solicitudes"
+msgstr "Pedidos"
+
+#: .\trn\templates\trn\solicitudes_lista.html:30
+msgid "Listado de solicitudes de trabajo"
+msgstr "Lista de pedidos de trabalho"
+
+#: .\trn\templates\trn\solicitudes_lista.html:144
+#: .\trn\templates\trn\solicitudes_lista.html:210
+msgid "No existen solicitudes"
+msgstr "Não há pedidos"
+
+#: .\trn\templates\trn\tipo_solicitud_modal.html:5
+msgid "Tipo de solicitud"
+msgstr "Tipo de pedido"
+
+#: .\trn\templates\trn\tipo_solicitud_modal.html:14
+msgid "Solicitud interna"
+msgstr "Pedido interno"
+
+#: .\trn\templates\trn\tipo_solicitud_modal.html:18
+msgid "Solicitud externa"
+msgstr "Pedido externo"
+
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:7
+msgid "Inactivar ciudad"
+msgstr "Desativar cidade"
+
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:9
+msgid "Activar ciudad"
+msgstr "Ativar cidade"
+
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:17
+msgid "Se inactivará la ciudad seleccionada "
+msgstr "A cidade selecionada será desativada"
+
+#: .\ubc\templates\ubc\actualizar_ciudad_modal.html:19
+msgid "Se activará la ciudad seleccionada "
+msgstr "A cidade selecionada será ativada"
+
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:7
+msgid "Inactivar localidad"
+msgstr "Desativar localização"
+
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:9
+msgid "Activar localidad"
+msgstr "Ativar localização"
+
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:17
+msgid "Se inactivará la localidad seleccionada "
+msgstr "O local selecionado será inativado"
+
+#: .\ubc\templates\ubc\actualizar_localidad_modal.html:19
+msgid "Se activará la localidad seleccionada "
+msgstr "O local selecionado será ativado"
+
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:7
+msgid "Inactivar sector"
+msgstr "Inativar setor"
+
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:9
+msgid "Activar sector"
+msgstr "Ativar setor"
+
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:17
+msgid "Se inactivará el sector seleccionado "
+msgstr "O setor selecionado será inativado"
+
+#: .\ubc\templates\ubc\actualizar_sector_modal.html:19
+msgid "Se activará el sector seleccionado "
+msgstr "O setor selecionado será ativado"
+
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:7
+msgid "Inactivar zona"
+msgstr "Inativar zona"
+
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:9
+msgid "Activar zona"
+msgstr "Ativar zona"
+
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:17
+msgid "Se inactivará la zona seleccionada "
+msgstr "A zona selecionada será desativada"
+
+#: .\ubc\templates\ubc\actualizar_zona_modal.html:19
+msgid "Se activará la zona seleccionada "
+msgstr "A zona selecionada será ativada"
+
+#: .\ubc\templates\ubc\ciudades_form.html:54
+#: .\ubc\templates\ubc\localidades_form.html:17
+#: .\ubc\templates\ubc\localidades_form.html:33
+msgid "Localidad"
+msgstr "Localidade"
+
+#: .\ubc\templates\ubc\ciudades_lista.html:61
+#: .\ubc\templates\ubc\sectores_lista.html:61
+#: .\ubc\templates\ubc\zonas_lista.html:61
+msgid "No existen ciudades"
+msgstr "Não há cidades"
+
+#: .\ubc\templates\ubc\localidades_lista.html:61
+msgid "No existen localidades"
+msgstr "Não existem localizações"
+
+#: .\ubc\templates\ubc\paises_form.html:33
+msgid "Pais"
+msgstr "País"
+
+#: .\ubc\templates\ubc\paises_form.html:54
+#: .\ubc\templates\ubc\regiones_form.html:17
+#: .\ubc\templates\ubc\regiones_form.html:33
+msgid "Región"
+msgstr "Região"
+
+#: .\ubc\templates\ubc\paises_form.html:60
+msgid "Bandera"
+msgstr "Bandeira"
+
+#: .\ubc\templates\ubc\paises_form.html:66
+msgid "Iniciales"
+msgstr "Iniciais"
+
+#: .\ubc\templates\ubc\paises_lista.html:61
+msgid "No existen paises"
+msgstr "Não existem países"
+
+#: .\ubc\templates\ubc\regiones_lista.html:61
+msgid "No existen regiones"
+msgstr "Não existem regiões"
+
+#: .\usr\templates\usr\activar_usuario_modal.html:6
+msgid "Activar usuario"
+msgstr "Ativar Usuário"
+
+#: .\usr\templates\usr\activar_usuario_modal.html:12
+msgid "Está seguro que desea activar este usuario "
+msgstr "Tem certeza de que deseja ativar este usuário?"
+
+#: .\usr\templates\usr\actualizar_rol_modal.html:7
+msgid "Inactivar rol"
+msgstr "Inativar função"
+
+#: .\usr\templates\usr\actualizar_rol_modal.html:9
+msgid "Activar rol"
+msgstr "Ativar função"
+
+#: .\usr\templates\usr\actualizar_rol_modal.html:17
+msgid "Se inactivará el rol seleccionado "
+msgstr "A função selecionada será inativada"
+
+#: .\usr\templates\usr\actualizar_rol_modal.html:19
+msgid "Se activará el rol seleccionado "
+msgstr "A função selecionada será ativada"
+
+#: .\usr\templates\usr\cambiar_contrasena.html:41
+msgid "Cambiar"
+msgstr "Alterar"
+
+#: .\usr\templates\usr\cambiar_contrasena.html:78
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:77
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:161
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:57
+msgid "Contraseña actual"
+msgstr "Senha atual"
+
+#: .\usr\templates\usr\cambiar_contrasena.html:84
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:81
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:63
+msgid "Nueva contraseña"
+msgstr "Nova senha"
+
+#: .\usr\templates\usr\cambiar_contrasena.html:90
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:85
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:69
+msgid "Confirmar nueva contraseña"
+msgstr "Confirme a nova senha"
+
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:69
+#: .\usr\templates\usr\cambiar_contrasena_modal.html:38
+msgid "Cambiar Contraseña"
+msgstr "Alterar senha"
+
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:164
+msgid "Nueva Contraseña 1"
+msgstr "Nova senha 1"
+
+#: .\usr\templates\usr\cambiar_contrasena_inicial.html:167
+msgid "Nueva Contraseña 2"
+msgstr "Nova senha 2"
+
+#: .\usr\templates\usr\editar_perfil.html:57
+#: .\usr\templates\usr\editar_usuario.html:57
+msgid "Editar perfil "
+msgstr "Editar Perfil"
+
+#: .\usr\templates\usr\editar_perfil.html:57
+#: .\usr\templates\usr\editar_usuario.html:57
+#: .\usr\templates\usr\registro.html:57
+msgid "usuario "
+msgstr "usuário"
+
+#: .\usr\templates\usr\editar_usuario.html:75
+#: .\usr\templates\usr\reestablecer_contrasena_modal.html:6
+msgid "Reestablecer contraseña"
+msgstr "Redefinir senha"
+
+#: .\usr\templates\usr\editar_usuario.html:115
+#: .\usr\templates\usr\editar_usuario.html:123
+#: .\usr\templates\usr\registro.html:104
+#: .\usr\templates\usr\usuarios_lista.html:69
+msgid "Rol"
+msgstr "Função"
+
+#: .\usr\templates\usr\inactivar_usuario_modal.html:6
+msgid "Inactivar usuario"
+msgstr "Desativar usuário"
+
+#: .\usr\templates\usr\inactivar_usuario_modal.html:12
+msgid "Está seguro que desea inactivar este usuario "
+msgstr "Tem certeza de que deseja desativar este usuário?"
+
+#: .\usr\templates\usr\reestablecer_contrasena_modal.html:12
+msgid "Se reestablecerá la contraseña del usuario "
+msgstr "A senha do usuário será redefinida"
+
+#: .\usr\templates\usr\registro.html:85
+msgid "Usuario/Joyería"
+msgstr "Usuário / Jóias"
+
+#: .\usr\templates\usr\registro.html:164 .\usr\templates\usr\registro.html:198
+msgid "Nombre de taller"
+msgstr "Nome da oficina"
+
+#: .\usr\templates\usr\registro.html:171
+msgid "Taller externo"
+msgstr "Oficina externo"
+
+#: .\usr\templates\usr\registro.html:180 .\usr\templates\usr\registro.html:263
+msgid "Nombre de empresa"
+msgstr "Nome de empresa"
+
+#: .\usr\templates\usr\registro.html:188
+msgid "Configuraciones generales"
+msgstr "Configurações gerais"
+
+#: .\usr\templates\usr\registro.html:205
+msgid "Valor gramo fabricado"
+msgstr "Valor grama fabricado"
+
+#: .\usr\templates\usr\registro.html:212
+msgid "Tiempo de respuesta (minutos)"
+msgstr "Tempo de resposta (minutos)"
+
+#: .\usr\templates\usr\registro.html:228
+#, python-format
+msgid "Utilidad sobre base (%%)"
+msgstr "Utilidade sobre base (%%)"
+
+#: .\usr\templates\usr\registro.html:335
+msgid "Nombre de usuario ya existe"
+msgstr "O nome de usuário já existe"
+
+#: .\usr\templates\usr\registro.html:338
+msgid "Ya existe un usuario con el correo ingresado"
+msgstr "Já existe um usuário com o email digitado"
+
+#: .\usr\templates\usr\registro.html:344 .\usr\templates\usr\registro.html:351
+#: .\usr\templates\usr\registro.html:358
+msgid "No se permiten espacios en blanco"
+msgstr "Espaços em branco não são permitidos"
+
+#: .\usr\templates\usr\roles_form.html:58
+msgid "rol "
+msgstr "função"
+
+#: .\usr\templates\usr\roles_form.html:85
+msgid "Nombre de rol"
+msgstr "Nome da função"
+
+#: .\usr\templates\usr\roles_form.html:117
+msgid "Ya existe un rol con esa descripción"
+msgstr "Já existe uma função com essa descrição"
+
+#: .\usr\templates\usr\roles_lista.html:67
+msgid "Tipo"
+msgstr "Tipo"
+
+#: .\usr\templates\usr\roles_permisos_form.html:34
+msgid "Permisos: "
+msgstr "Permissões:"
+
+#: .\usr\templates\usr\roles_permisos_form.html:45
+msgid "Permisos"
+msgstr "Permissões"
+
+#: .\usr\templates\usr\roles_permisos_form.html:130
+msgid " Seleccione al menos un permiso"
+msgstr "Selecione pelo menos uma permissão"
+
+#: .\usr\templates\usr\tipo_usuario_form.html:13
+msgid "Nuevo tipo de usuario"
+msgstr "Novo tipo de usuário"
+
+#: .\usr\templates\usr\tipo_usuarios_lista.html:15
+#: .\wso\templates\wso\prueba.html:15 .\wso\templates\wso\sala.html:15
+msgid "Acciones:"
+msgstr "Acções:"
+
+#: .\usr\templates\usr\tipo_usuarios_lista.html:23
+msgid "No hay tipos de usuarios"
+msgstr "Não há tipos de usuários"
+
+#: .\usr\templates\usr\tipo_usuarios_lista.html:27
+msgid "ID"
+msgstr "ID"
+
+#: .\usr\templates\usr\usuarios_lista.html:33
+msgid "Lista de usuarios"
+msgstr "Lista de Usuários"
+
+#: .\usr\templates\usr\usuarios_lista.html:61
+msgid "No existen usuarios"
+msgstr "Não há usuários"
+
+#: .\usr\templates\usr\usuarios_lista.html:66
+msgid "User"
+msgstr "Usuário"
+
+#: .\usr\templates\usr\usuarios_lista.html:70
+msgid "Empresa"
+msgstr "Empresa"
+
+#: .\usr\templates\usr\usuarios_lista.html:87
+msgid "Activo"
+msgstr "Ativo"
+
+#: .\usr\templates\usr\usuarios_lista.html:87
+msgid "Inactivo"
+msgstr "Inativo"

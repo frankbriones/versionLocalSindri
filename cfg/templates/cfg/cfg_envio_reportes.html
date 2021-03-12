@@ -1,0 +1,200 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Reportes" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Envío" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Envío de reporte mensual" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="dia_envio" id="id_dia_envio" class="form-control">
+                                                            
+                                                        </select>
+                                                        <input class="form-control" hidden>
+                                                        <label
+                                                            for="id_dia_envio">{% trans "Día de envío" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="hora_envio" id="id_hora_envio" class="form-control">
+                                                            
+                                                        </select>
+                                                        <input class="form-control" hidden>
+                                                        <label
+                                                            for="id_hora_envio">{% trans "Hora de envío" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <h5>{% trans "Seleccione los usuarios a los que se enviará el reporte:" %}</h5>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <ul class="list-unstyled mb-0">
+                                                        {% for usuario in usuarios %}
+                                                        <li class="d-inline-block mr-2 mb-1"></li>
+                                                            <fieldset>
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" class="checkbox-input" id="id_check{{usuario.id}}" value="{{usuario.id}}">
+                                                                    <label for="id_check{{usuario.id}}">{{ usuario.username }}: {{ usuario.first_name }} {{ usuario.last_name }}</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardarConfiguracion()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        $('.loader').hide();
+        usuarios_registrados = {{ usuarios_registrados|safe }};
+        usuarios_registrados.forEach(usuario => {
+            $('#id_check'+usuario).prop('checked', true);
+        });
+
+        dia = parseInt('{{ dia }}');
+        hora = parseInt('{{ hora }}')
+        
+        var select = document.getElementById('id_dia_envio');
+        for(i=1; i<=28; i++){
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.add(option);
+        }
+        $('#id_dia_envio').val(dia);
+
+        var select = document.getElementById('id_hora_envio');
+        for(i=0; i<=23; i++){
+            var option = document.createElement("option");
+            option.value = i;
+            if(i<10){
+                option.text = '0'+i+':00';
+            } else {
+                option.text = i+':00';
+            }
+            select.add(option);
+        }
+        $('#id_hora_envio').val(hora);
+    });
+
+    function guardarConfiguracion(){
+
+        var usuarios = new Array();
+
+        $('input[type=checkbox]').each(function(){
+            var usuario = $(this);
+
+            check = usuario.prop('checked');
+
+            if(check){
+                usuarios.push(usuario.val());
+            }
+
+        });
+
+        if(usuarios.length === 0){
+            mensaje('{% trans "Agregue al menos un usuario" %}', 'red');
+            return;
+        } else {
+            
+            var token = '{{ csrf_token }}';
+
+            var dia = $('#id_dia_envio').val();
+            var hora = $('#id_hora_envio').val();
+            var id_usuario = '{{ user.id }}';
+
+            var url = "{% url 'cfg:cfg_envio_reportes' 0 %}";
+            var url = url.replace(/0/, id_usuario);
+
+            body = {
+                'dia': dia,
+                'hora': hora,
+                "usuarios[]": JSON.stringify(usuarios),
+            };
+
+            console.log(body)
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: body,
+                beforeSend: function(){
+                    $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response){
+                    console.log('ok');
+                    window.location.replace("{% url 'bases:home' %}");
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+            
+        }
+    }
+</script>
+{% endblock %}

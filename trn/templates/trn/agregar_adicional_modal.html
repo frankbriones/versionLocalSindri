@@ -1,0 +1,168 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-l">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar adicional" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card-content">
+                <div class="card-body card-dashboard">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <img id="id_img_tmp" name="imagentmp" src="{{ adicional.imagen.url }}" class="img-circle center img-fluid pointer" width="100%">
+                                <label for="city-column">{% trans "Imagen" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ adicional.descripcion }}">
+                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input type="number" min="1" id="id_cantidad" class="form-control">
+                                        <label for="first-name-column">{% trans "Cantidad" %}</label>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_costo_adicional" class="form-control" disabled>
+                                        <label for="first-name-column">{% trans "Precio" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" id="btnAgregar" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Agregar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        
+        $('input').css('background-color','#FBFBFB');
+
+        $('#id_cantidad').val(1);
+        calcularPrecioAdicional();
+         
+    });
+
+    $('#id_cantidad').on('keypress', function(){
+        calcularPrecioAdicional();
+    });
+
+    $('#id_cantidad').on('change', function(){
+        calcularPrecioAdicional();
+    });
+
+    function calcularPrecioAdicional(){
+
+        precio_adicional = '{{ adicional.precio_taller }}';
+        precio_adicional = precio_adicional.replace(/,/,'.');
+        precio_adicional = parseFloat(precio_adicional);
+        prct_utilidad_op = '{{ adicional.utilidad_operaciones }}';
+        prct_utilidad_op = prct_utilidad_op.replace(/,/,'.');
+        prct_utilidad_op = parseFloat(prct_utilidad_op);
+
+        cantidad = $('#id_cantidad').val();
+        subtotal_ta = precio_adicional * cantidad;
+        utilidad_adicional = (subtotal_ta * (prct_utilidad_op/100));
+        console.log(utilidad_adicional, 'utilidad')
+        // console.log(total)
+        precio_adicional_op = (precio_adicional * (1 + (prct_utilidad_op/100)))
+        // if (cantidad === ''){
+        //     $('#id_cantidad').val();
+        // }
+        valor_prct_utilidad = (prct_utilidad_op/100);
+        console.log(valor_prct_utilidad)
+        
+        total = parseFloat(precio_adicional_op) * cantidad;
+        total = parseFloat(Math.round(total*100)/100).toFixed(2);
+        utilidad_op = (total - subtotal_ta).toFixed(2);
+        
+        console.log(total)
+        $('#id_costo_adicional').val(total);
+
+    }
+
+    $("#btnAgregar").click(function(e){
+        e.preventDefault();
+
+        var cantidad = $('#id_cantidad').val();
+
+
+        var id_detalle_adicional = 0;
+
+        var token = '{{ csrf_token }}';
+        var id_orden = '{{ id_orden }}';
+        var id_adicional = '{{ adicional.id_adicional }}';
+        var descripcion = '{{ adicional.descripcion }}';
+        var costo = '{{ adicional.costo_taller }}';
+        costo = costo.replace(/,/,'.');
+        costo = parseFloat(costo).toFixed(2);
+
+        var prct_utilidad = '{{ adicional.utilidad_operaciones }}';
+        prct_utilidad = prct_utilidad.replace(/,/,'.');
+        prct_utilidad = parseFloat(prct_utilidad);
+        precio_adicional = parseFloat(precio_adicional).toFixed(2);
+
+        secuencia_ad = localStorage.getItem('secuencia_ad') || '';
+        if (secuencia_ad === ''){
+            secuencia = 1;
+        } else {
+            secuencia_ad = JSON.parse(secuencia_ad);
+            secuencia = parseInt(secuencia_ad.secuencia) + 1;
+        }
+        
+        adicionales_lista = localStorage.getItem('adicionales') || ''
+        if (adicionales_lista === ''){
+            adicionales_lista = []
+        } else {
+            adicionales_lista = JSON.parse(adicionales_lista);
+        }
+
+        adicional = {
+            'secuencia': secuencia,
+            'tipo': 'adicional',
+            'id': id_adicional,
+            'id_detalle': secuencia,
+            'descripcion': descripcion,
+            'cantidad': cantidad,
+            'costo': costo,
+            'prct_utilidad': prct_utilidad,
+            'precio_ta': precio_adicional,
+            'precio_op': precio_adicional_op,
+            'total': total,
+            'utilidad_op': utilidad_adicional,
+            'subtotal_ta': subtotal_ta,
+            
+        }
+        console.log(adicional)
+        adicionales_lista.push(adicional);
+        localStorage.setItem('adicionales', JSON.stringify(adicionales_lista));
+        secuencia_ad = {'secuencia': secuencia};
+        localStorage.setItem('secuencia_ad', JSON.stringify(secuencia_ad));
+        cerrar_modal();
+    });
+
+</script>

@@ -1,0 +1,427 @@
+{% extends 'base/base.html' %} 
+{% load i18n %}
+{% load static %}
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Piedras" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nueva" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "Piedra" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="formPiedras" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if piedra %} src="{{ piedra.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                                        <input onchange="seleccionarImagen()" type="file" name="imagen" id="id_imagen" class="inputimage center pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-12">
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-label-group">
+                                                            {{ form.sku }}
+                                                            <label for="first-name-column">{% trans "SKU" %}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="form-label-group">
+                                                            {{ form.descripcion }}
+                                                            <label for="first-name-column">{% trans "Descripción" %}</label>
+                                                        </div>
+                                                    </div>
+                                                    <h6>{% trans "Detalles:" %}</h6>
+                                                    <br>
+                                                    <div id="id_detalles_lista" class="col-md-12 col-12">
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <button onclick="agregarDetalle()" class="btn round btn-outline-primary mr-1 mb-1" type="button" data-repeater-create>
+                                                            <i class="bx bx-plus"></i><span>{% trans "Agregar detalle" %}</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <h6>{% trans "Categorías relacionadas" %}</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        {% for categoria in categorias_lista %}
+                                                        <li class="d-inline-block mr-2 mb-1"></li>
+                                                            <fieldset>
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" class="checkbox-input" id="id_check{{categoria.id_categoria}}" value="{{categoria.id_categoria}}">
+                                                                    <label for="id_check{{categoria.id_categoria}}">{{ categoria.descripcion }}</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end mt-2">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'ctg:piedras_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block js_page %}
+<script>
+
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        console.log(error);
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "SKU ya existe" %}','red');
+        }
+
+        id_piedra = parseInt('{{ piedra.id_piedra }}');
+        if(Number.isInteger(id_piedra)){
+            $('#id_sku').attr('readonly', true);
+        }
+
+        categorias_item_lista = {{ categorias_piedra_lista|safe }};
+        categorias_item_lista.forEach(categoria => {
+            categoria_item = categoria[0];
+            $('#id_check'+categoria_item).prop('checked', true);
+        });
+        detalles_lista = {{ detalles|safe }};
+        detalles_lista.forEach(detalle => {
+            let div = `
+            <div class="row itemDetalleGuardado" id="${detalle.id_detalle_piedra}">
+                <div class="col-md-3 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.medida}" lang="en-150" class="form-control inputdetalleGuardado" id="id_medida_registrada" readonly>
+                        <label for="id_valor">{% trans "Medida" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.costo_taller}" lang="en-150" class="form-control inputdetalleGuardado" id="id_costo_registrado">
+                        <label for="id_valor">{% trans "Costo" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="form-label-group">
+                        <input type="number" name="valor" value="${detalle.precio_taller}" lang="en-150" class="form-control inputdetalleGuardado" id="id_precio_registrado">
+                        <label for="id_valor">{% trans "Precio" %}</label>
+                    </div>
+                </div>
+            </div>`;
+            $('#id_detalles_lista').append(div);
+            nombrarElementos();
+        })
+    });
+
+    function editarDetalle(id_detalle){
+        url = "{% url 'ctg:detalles_piedra_editar' 0 %}";
+        url = url.replace(/0/, id_detalle);
+        return abrir_modal(url);
+    }
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(){
+
+        var preview = document.querySelector("img[name='imagentmp']");
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+        var elemento = 'id_imagen';
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+        }
+
+    }
+
+    function agregarDetalle(){
+        let div = `
+        <div class="row itemDetalle">
+            <div class="col-md-3 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_medida">
+                    <label for="id_medida">{% trans "Medida" %}</label>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_costo">
+                    <label for="id_costo">{% trans "Costo" %}</label>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <div class="form-label-group">
+                    <input type="number" name="valor" lang="en-150" class="form-control inputdetalle" id="id_precio">
+                    <label for="id_precio">{% trans "Precio" %}</label>
+                </div>
+            </div>
+            <div class="col-md-1 col-2 form-group">
+                <button class="btn btn-icon btn-danger rounded-circle buttondetalle" type="button" data-repeater-delete>
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+        </div>`;
+        $('#id_detalles_lista').append(div);
+        nombrarElementos();
+    }
+
+    function borrardiv(div){
+        $(div).remove();
+        nombrarElementos();
+    }
+
+    function nombrarElementos(){
+        num = 0;
+        $('div.itemDetalle').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'divdetalle'+num);
+            inputs = $(this).find('.inputdetalle');
+            $(inputs[0]).removeAttr('id');
+            $(inputs[0]).attr('id', 'id_medida'+num);
+            $(inputs[1]).removeAttr('id');
+            $(inputs[1]).attr('id', 'id_costo'+num);
+            $(inputs[2]).removeAttr('id');
+            $(inputs[2]).attr('id', 'id_precio'+num);
+            buttons = $(this).find('.buttondetalle');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardiv(divdetalle'+num+')');
+        });
+    }
+
+    function obtenerDetalles(){
+        num = 0;
+        detalles = []
+        $('div.itemDetalle').each(function (){
+            num++;
+            medida = $('#id_medida'+num).val();
+            costo = $('#id_costo'+num).val();
+            precio = $('#id_precio'+num).val();
+            detalle = {
+                'medida': medida,
+                'costo': costo,
+                'precio': precio
+            };
+            detalles.push(detalle);
+        });
+    }
+
+    function obtenerDetallesEditados(){
+        num = 0;
+        detallesEditados = []
+        $('div.itemDetalleGuardado').each(function (){
+            num++;
+            id = $(this).attr('id');
+            inputs = $(this).find('.inputdetalleGuardado');
+            costo = parseFloat($(inputs[1]).val().replace(/,/,'.'));
+            precio = parseFloat($(inputs[2]).val().replace(/,/,'.'));
+            detalle = {
+                'id': id,
+                'costo': costo,
+                'precio': precio
+            };
+            detallesEditados.push(detalle);
+        });
+        console.log(detallesEditados);
+    }
+
+    function guardar(){
+
+        if($('#id_sku').val() === ''){
+            mensaje('{% trans "Ingrese SKU de la piedra" %}', 'orange');
+            return;
+        }
+
+        if($('#id_descripcion').val() === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'orange');
+            return;
+        }
+
+        obtenerDetalles();
+        obtenerDetallesEditados();
+
+        if(!Number.isInteger(id_piedra)){
+            if($('#id_imagen').val() === ''){
+                mensaje('{% trans "Falta cargar una imagen" %}', 'orange');
+                return;
+            }
+
+            if(detalles.length === 0){
+                mensaje('{% trans "Debe agregar al menos un detalle" %}', 'orange');
+                return;
+            }
+        }             
+
+        categorias = new Array();
+
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+
+            check = categoria.prop('checked');
+
+            if(check){
+                categorias.push(categoria.val());
+            }
+
+        });
+
+        if(categorias.length === 0){
+            mensaje('{% trans " Seleccione al menos una categoría" %}', 'orange');
+            return;
+        } else {
+            form = document.getElementById('formPiedras');
+            let data = new FormData(form);
+            data.append('detalles_lista[]', JSON.stringify(detalles));
+            data.append('detalles_editados[]', JSON.stringify(detallesEditados));
+            data.append('categorias_lista[]', JSON.stringify(categorias));
+            let token = '{{ csrf_token }}';
+
+            let url = "{% url 'ctg:piedras_crear' %}";
+
+            if(Number.isInteger(id_piedra)){
+                url = "{% url 'ctg:piedras_editar' 0 %}";
+                url = url.replace(/0/, id_piedra);
+            }
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    window.location.replace("{% url 'ctg:piedras_lista' %}");
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: "{% trans 'sku de Piedra ya existe' %}",
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+                }
+            });
+        }
+    }
+    
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

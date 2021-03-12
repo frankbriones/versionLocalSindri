@@ -1,0 +1,290 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Servicios" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Lista" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="gramo-tab-center" data-toggle="tab" href="#tab_gramo" aria-controls="gramo-center" role="tab" aria-selected="true">
+                            {% trans "Catálogo" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="fijo-tab-center" data-toggle="tab" href="#tab_fijo" aria-controls="fijo-center" role="tab" aria-selected="false">
+                            {% trans "Especiales" %}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="tab_fijo" aria-labelledby="fijo-tab-center" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Servicios especiales" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard" id="divTablaFijo">
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <button id="btnProductosFijo" onclick="cargarItems(1)" class="btn round btn-outline-primary mr-1 mb-1">{% trans "Ver más" %}</button>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="tab-pane active" id="tab_gramo" aria-labelledby="gramo-tab-center" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Servicios de Catálogo" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard" id="divTablaGramos">
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <button id="btnProductosGramos" onclick="cargarItems(2)" class="btn round btn-outline-primary mr-1 mb-1">{% trans "Ver más" %}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    var limite_gramos = 0;
+    var limite_fijo = 0;
+
+    $(document).ready(function() {
+        cargarItems(1);
+        cargarItems(2);
+        $('.loader').hide();
+    });
+
+    function cargarItems(tipo){
+        if(tipo === 1){
+            limite_fijo += 5;
+            url = "{% url 'ctg:servicios_ope_lista_api' 1 0 %}";
+            url = url.replace(/0/, limite_fijo);
+        } else {
+            limite_gramos += 5;
+            url = "{% url 'ctg:servicios_ope_lista_api' 2 0 %}";
+            url = url.replace(/0/, limite_gramos);
+        }
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                console.log(res)
+                if(tipo === 1){
+                    llenarTablaFijo(res.items);
+                } else {
+                    llenarTablaGramos(res.items);
+                }
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+    }
+
+    function llenarTablaGramos(lista){
+        console.log(lista.length)
+        console.log(limite_gramos)
+
+        if(lista.length < limite_gramos){
+            $('#btnProductosGramos').hide();
+        }
+
+        id_tabla_gramos = $('#id_tabla_gramos');
+
+        if(id_tabla_gramos){
+            $('#id_tabla_gramos').remove();
+        }
+
+        if(lista.length === 0){
+            div1 = $('.alert-info');
+            div1.remove();
+            div = '<div class="alert alert-info">{% trans "No existen servicios" %}</div>'
+        } else {
+            div1 = $('.alert-info');
+            div1.remove();
+            div = '<div class="table-responsive" id="id_tabla_gramos"></div>'
+        }
+
+        divTabla = $('#divTablaGramos');
+
+        $('#divTablaGramos').append(div);
+
+        var tabla = '<table class="table" id="tb_gramos"><thead><th>{% trans "SKU" %}</th><th>{% trans "Descripción" %}</th><th>{% trans "Categoría" %}</th><th>{% trans "Taller" %}</th><th>{% trans "Acciones" %}</th></thead><tbody></tbody></table>'
+
+        $('#id_tabla_gramos').append(tabla);
+        
+        lista.forEach(producto => {
+            fecha_creacion = new Date(producto.fecha_creacion)
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+            if(producto.estado_descripcion === 'ACTIVO'){
+                var tr = '<tr><td>'+ producto.sku +'</td><td>'+ producto.descripcion +'</td><td>'+ producto.categoria_descripcion +'</td><td>'+ producto.taller_nombre +'</td><td><a onclick="editar('+ producto.id_item +')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a></td></tr>';
+            } else {
+                var tr = '<tr><td>'+ producto.sku +'</td><td>'+ producto.descripcion +'</td><td>'+ producto.categoria_descripcion +'</td><td>'+ producto.taller_nombre +'</td><td><a onclick="editar('+ producto.id_item +')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a></td></tr>';
+            }
+            $('#tb_gramos').append(tr);
+        });
+
+        formato('tb_gramos');
+    }
+
+    function llenarTablaFijo(lista){
+        if(lista.length < limite_fijo){
+            $('#btnProductosFijo').hide();
+        }
+
+        id_tabla_gramos = $('#id_tabla_fijo');
+
+        if(id_tabla_gramos){
+            $('#id_tabla_fijo').remove();
+        }
+
+        if(lista.length === 0){
+            div1 = $('.alert-info');
+            div1.remove();
+            div = '<div class="alert alert-info">{% trans "No existen servicios" %}</div>';
+        } else {
+            div1 = $('.alert-info');
+            div1.remove();
+            div = '<div class="table-responsive" id="id_tabla_fijo"></div>';
+        }
+
+        divTabla = $('#divTablaFijo');
+
+        $('#divTablaFijo').append(div);
+
+        var tabla = '<table class="table" id="tb_fijo"><thead><th>{% trans "SKU" %}</th><th>{% trans "Descripción" %}</th><th>{% trans "Categoría" %}</th><th>{% trans "Taller" %}</th><th>{% trans "Acciones" %}</th></thead><tbody></tbody></table>'
+
+        $('#id_tabla_fijo').append(tabla);
+        
+        lista.forEach(producto => {
+            fecha_creacion = new Date(producto.fecha_creacion)
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+            if(producto.estado_descripcion === 'ACTIVO'){
+                var tr = '<tr><td>'+ producto.sku +'</td><td>'+ producto.descripcion +'</td><td>'+ producto.categoria_descripcion +'</td><td>'+ producto.taller_nombre +'</td><td><a onclick="editar('+ producto.id_item +')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a></td></tr>';
+            } else {
+                var tr = '<tr><td>'+ producto.sku +'</td><td>'+ producto.descripcion +'</td><td>'+ producto.categoria_descripcion +'</td><td>'+ producto.taller_nombre +'</td><td><a onclick="editar('+ producto.id_item +')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a></td></tr>';
+            }
+            $('#tb_fijo').append(tr);
+        });
+
+        formato('tb_fijo');
+    }
+
+    function editar(id){
+        url = "{% url 'ctg:items_actualizar_precio_ope' 0 %}"
+        url = url.replace(/0/, id);
+        return abrir_modal(url);
+    }
+
+    function formato(tabla){
+        datatable = $('#' + tabla).DataTable();
+        datatable.destroy();
+        
+        $('#' + tabla).DataTable({
+            "responsive": true,
+            "paging": false,
+            "info": false,
+            // "pagingType": "full_numbers",
+            "aaSorting": [[3, "desc"]],
+            "language": {
+                "sProcessing": '{% trans "Procesando..." %}',
+                "sLengthMenu": '{% trans "Mostrar _MENU_ registros" %}',
+                "sZeroRecords": '{% trans "No se encontraron resultados" %}',
+                "sEmptyTable": '{% trans "Ningún dato disponible en esta tabla" %}',
+                "sInfo": '{% trans "Registros del _START_ al _END_ de un total de _TOTAL_ registros" %}',
+                "sInfoEmpty": '{% trans "Registros del 0 al 0 de un total de 0 registros" %}',
+                "sInfoFiltered": '{% trans "(filtrado de un total de _MAX_ registros)" %}',
+                "sInfoPostFix": "",
+                "sSearch": '{% trans "Buscar:" %}',
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": '{% trans "Cargando..." %}',
+                "oPaginate": {
+                    "sFirst": "<span class='bx bx-chevrons-left'></span>",
+                    "sLast": "<span class='bx bx-chevrons-right'></span>",
+                    "sNext": "<span class='bx bx-chevron-right'></span>",
+                    "sPrevious": "<span class='bx bx-chevron-left'></span>"
+                },
+                "oAria": {
+                    "sSortAscending": '{% trans ": Activar para ordenar la columna de manera ascendente" %}',
+                    "sSortDescending": '{% trans ": Activar para ordenar la columna de manera descendente" %}'
+                }
+            }
+        });
+    }
+    
+</script>
+{% endblock %}

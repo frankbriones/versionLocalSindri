@@ -1,0 +1,152 @@
+*******************
+**Views usr**
+*******************
+
+Dentro de la carpeta **usr** tenemos el archivo llamado ``views.py``. Donde se encuentran las vistas de la aplicación usr, se detalla a continuación cada vista.
+
+Vista UsuarioListaView
+=======================
+
+Vista basada en clases, hace el llamado al :ref:`Template usuarios_lista`. Esta vista hereda de :ref:`Vista SinPermisos` para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.view_usuarios`` para acceder a la misma, también hereda de la clase genérica de Django ``generic.ListView`` la cual afecta el :ref:`Modelo Usuarios` obteniendo el listado de los usuarios registrados en el sistema.
+
+Vista Editar
+=============
+
+Vista basada en clases que hace el llamado al :ref:`Template editar_usuario`. Esta vista hereda de :ref:`Vista SinPermisos` para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.change_usuarios`` para acceder a la misma, también hereda de la clase genérica de Django ``generic.UpdateView`` la cual afecta el modelo :ref:`Modelo Usuarios` mediante el uso del formulario :ref:`Formulario EditarUsuarioForm`. Esta vista permite a un usuario administrador actualizar la información de un usuario determinado.
+
+Vista EditarPerfil
+===================
+
+Vista basada en clases que hace el llamado al :ref:`Template editar_perfil`. Esta vista hereda de :ref:`Vista SinPermisos` para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.change_usuarios`` para acceder a la misma, también hereda de la clase genérica de Django ``generic.UpdateView`` la cual afecta el modelo :ref:`Modelo Usuarios` mediante el uso del formulario :ref:`Formulario EditarPerfilForm`. Esta vista permite a un usuario actualizar su propia información.
+
+Vista RegistroUsuario
+=======================
+
+Vista basada en funciones, hace el llamado al :ref:`Template registro`. Esta vista utiliza los decoradores ``@login_required`` y ``@permission_required`` propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.add_usuarios`` respectivamente para acceder a la misma, realiza el proceso crear un usuario, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template, en caso de existir alguna excepción al crear el usuario:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+		"username", "Username del usuario."
+		"first_name", "Nombres del usuario."
+		"last_name", "Apellidos del usuario."
+		"email", "Correo del usuario."
+		"pais", "Id del país al que pertenece el usuario."
+		"img_perfil", "Url de la imagen de perfil del usuario."
+
+Método POST
+------------
+Recibe los siguientes datos en formato JSON para crear un usuario:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+        
+		"usuario-username","Username del usuario nuevo."
+		"usuario-first_name","Nombres del usuario nuevo."
+		"usuario-last_name","Apellidos del usuario nuevo."
+		"usuario-email","Correo del usuario nuevo."
+		"usuario-pais","Id del país al que pertenece el usuario nuevo."
+		"usuario-img_perfil","Url de la imagen de perfil del usuario nuevo."
+
+Se genera una contraseña temporal aleatoria la cual se envía por correo electrónico al nuevo usuario.
+
+Vista InactivarUsuarioModal
+============================
+
+Vista basada en funciones, hace el llamado al :ref:`Template inactivar_usuario_modal`. Esta vista utiliza los decoradores ``@login_required`` y ``@permission_required`` propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.change_usuarios`` respectivamente para acceder a la misma, realiza el proceso de inactivar un usuario, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+	"usuario", "Objeto del usuario que se va a modificar de ser el caso."
+
+Método POST
+------------
+Inactiva el usuario modificando el campo ``is_active`` dandole el valor **False**.
+
+Vista ActivarUsuarioModal
+==========================
+
+Vista basada en funciones, hace el llamado al :ref:`Template activar_usuario_modal`. Esta vista utiliza los decoradores ``@login_required`` y ``@permission_required`` propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.change_usuarios`` respectivamente para acceder a la misma, realiza el proceso de activar un usuario, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+	"usuario", "Objeto del usuario que se va a modificar de ser el caso."
+
+Método POST
+------------
+Activa el usuario modificando el campo ``is_active`` dandole el valor **True**.
+
+Vista ReestablecerContrasenaModal
+==================================
+
+Vista basada en funciones, hace el llamado al :ref:`Template reestablecer_contrasena_modal`. Esta vista utiliza los decoradores ``@login_required`` y ``@permission_required`` propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso ``usr.change_usuarios`` respectivamente para acceder a la misma, permite al usuario administrador reestablecer la contraseña de un usuario determinado, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+	"usuario", "Objeto del usuario al que se va a reestablecer la contraseña."
+
+Método POST
+------------
+Genera una contraseña aleatoria y envía la misma al usuario por correo electrónico.
+
+Vista cambiar_contrasena
+==========================
+
+Vista basada en funciones, hace el llamado al :ref:`Template cambiar_contrasena`. Permite a un usuario modificar su contraseña actual, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+	"form", "Formulario de autenticación de Django ``PasswordChangeForm`` cuenta con todas las reglas de contraseñas para validar si la nueva contraseña a registrar es segura."
+
+Método POST
+------------
+Valida si la contraseña ingresada por el usuario es segura y actualiza la misma.
+
+Vista cambiar_contrasena_modal
+===============================
+
+Vista basada en funciones, hace el llamado al :ref:`Template cambiar_contrasena_inicial`. Permite a un usuario modificar su contraseña actual al ingresar por primera vez al sistema después de ser registrado en el sistema o después del reestablecimiento de su contraseña, cuenta con las siguientes acciones:
+
+Método GET
+-----------
+Envía el siguiente contexto hacia el template:
+
+.. csv-table::
+	:header: "**Dato**","**Descripción**"
+	:widths: 20, 80
+
+	"form", "Formulario de autenticación de Django ``PasswordChangeForm`` cuenta con todas las reglas de contraseñas para validar si la nueva contraseña a registrar es segura."
+
+Método POST
+------------
+Valida si la contraseña ingresada por el usuario es segura y actualiza la misma.

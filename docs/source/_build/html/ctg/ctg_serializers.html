@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Serializadores ctg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Tareas dsh" href="../dsh/dsh_templates.html" />
+    <link rel="prev" title="Forms ctg" href="ctg_forms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Serializadores ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-detallesserializer">Serializador DetallesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-detallepiedraserializer">Serializador DetallePiedraSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-divisionesserializer">Serializador DivisionesSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-categoriasserializer">Serializador CategoriasSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-coloresserializer">Serializador ColoresSerializer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serializador-itemsserializer">Serializador ItemsSerializer</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Serializadores ctg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ctg/ctg_serializers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serializadores-ctg">
+<h1><strong>Serializadores ctg</strong><a class="headerlink" href="#serializadores-ctg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>ctg</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">serializers.py</span></code>. Donde se encuentran los serializadores de la aplicación ctg</p>
+<div class="section" id="serializador-detallesserializer">
+<h2>Serializador DetallesSerializer<a class="headerlink" href="#serializador-detallesserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-detalleitems"><span class="std std-ref">Modelo DetalleItems</span></a>. Este es el serializador utilizado para las consultas de los detalles de ítems registrados en el sistema, posee todos los campos del <a class="reference internal" href="ctg_models.html#modelo-detalleitems"><span class="std std-ref">Modelo DetalleItems</span></a>.</p>
+</div>
+<div class="section" id="serializador-detallepiedraserializer">
+<h2>Serializador DetallePiedraSerializer<a class="headerlink" href="#serializador-detallepiedraserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-detallepiedras"><span class="std std-ref">Modelo DetallePiedras</span></a>. Este es el serializador utilizado para las consultas de los detalles de piedras registrados en el sistema, posee todos los campos del <a class="reference internal" href="ctg_models.html#modelo-detallepiedras"><span class="std std-ref">Modelo DetallePiedras</span></a>.</p>
+</div>
+<div class="section" id="serializador-divisionesserializer">
+<h2>Serializador DivisionesSerializer<a class="headerlink" href="#serializador-divisionesserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-divisiones"><span class="std std-ref">Modelo Divisiones</span></a>. Este es el serializador utilizado para las consultas de las divisiones registradas en el sistema, posee todos los campos del <a class="reference internal" href="ctg_models.html#modelo-divisiones"><span class="std std-ref">Modelo Divisiones</span></a>.</p>
+</div>
+<div class="section" id="serializador-categoriasserializer">
+<h2>Serializador CategoriasSerializer<a class="headerlink" href="#serializador-categoriasserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-categorias"><span class="std std-ref">Modelo Categorias</span></a>. Este es el serializador utilizado para las consultas de las categorías registradas en el sistema, posee todos los campos del <a class="reference internal" href="ctg_models.html#modelo-categorias"><span class="std std-ref">Modelo Categorias</span></a>.</p>
+</div>
+<div class="section" id="serializador-coloresserializer">
+<h2>Serializador ColoresSerializer<a class="headerlink" href="#serializador-coloresserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-colores"><span class="std std-ref">Modelo Colores</span></a>. Este es el serializador utilizado para las consultas de los colores registrados en el sistema, posee todos los campos del <a class="reference internal" href="ctg_models.html#modelo-colores"><span class="std std-ref">Modelo Colores</span></a>.</p>
+</div>
+<div class="section" id="serializador-itemsserializer">
+<h2>Serializador ItemsSerializer<a class="headerlink" href="#serializador-itemsserializer" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Serializador que hereda de <code class="docutils literal notranslate"><span class="pre">serializers.ModelSerializer</span></code> de rest_framework, y que utiliza el <a class="reference internal" href="ctg_models.html#modelo-items"><span class="std std-ref">Modelo Items</span></a>. Este es el serializador utilizado para las consultas de los ítems registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Id del ítem registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sku</p></td>
+<td><p>Identificador único del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>descripcion</p></td>
+<td><p>Descripción del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>imagen</p></td>
+<td><p>Url de la imagen asociada al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller_nombre</p></td>
+<td><p>Nombre del taller al que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>cantdetalles</p></td>
+<td><p>Cantidad de detalles asociados al ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cantcolores</p></td>
+<td><p>Cantidad de colores asociados al ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dsh/dsh_templates.html" class="btn btn-neutral float-right" title="Tareas dsh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ctg_forms.html" class="btn btn-neutral float-left" title="Forms ctg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

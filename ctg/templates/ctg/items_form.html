@@ -1,0 +1,655 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Ítems" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %}{% trans "Editar" %}{% else %}{% trans "Nuevo" %}{% endif %} {% if tipo == 3 %}{% trans " Producto especial " %}{% else %} {% if tipo == 1 %}{% trans " Producto de Catálogo " %}{% else %} {% if tipo == 4 %}{% trans " Servicio especial " %}{% else %}{% trans " Servicio de Catálogo " %}{% endif %} {% endif %} {% endif %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
+                                        <li class="nav-item">
+                                            <span class="fonticon-wrap mr-1">
+                                                <i class="livicon-evo" data-options="name:tag.svg; size: 50px; style:lines; strokeColor:#5F98FF;"></i>
+                                            </span>
+                                            <span class="icon-title">
+                                                <span class="d-block text-primary">{% trans "Información principal" %}</span>
+                                                <small class="text-primary">{% trans "Detalles del producto" %}</small>
+                                            </span>
+                                        </li>
+                                        <li class="nav-item">
+                                            <span class="fonticon-wrap mr-1">
+                                                <i class="livicon-evo" data-options="name:scales.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                                            </span>
+                                            <span class="icon-title">
+                                                <span class="d-block">{% trans "Detalles" %}</span>
+                                                <small class="text-muted">{% trans "Tallas o medidas del producto" %}</small>
+                                            </span>
+                                        </li>
+                                        <li class="nav-item">
+                                            <span class="fonticon-wrap mr-1">
+                                                <i class="livicon-evo" data-options="name:brush.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                                            </span>
+                                            <span class="icon-title">
+                                                <span class="d-block">{% trans "Colores" %}</span>
+                                                <small class="text-muted">{% trans "Colores disponibles" %}</small>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    <br>
+                                    <form id="frmItem" method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <h6>{% trans "Imágenes" %}</h6>
+                                                    <div class="col-md-12 col-12">
+                                                        <div id="id_img_lista" class="row">
+                                                            <div id="elemento_1" class="col-md-6 col-12 col-sm-12 item_img">
+                                                                <img id="id_img_tmp_1" name="imagentmp" src="{% static 'base/img/icons/nofoto2.png' %}"  width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%">
+                                                                <input onchange="seleccionarImagen('id_img_tmp_1','id_imagen_1')" type="file" name="imagen" id="id_imagen_1" class="inputimage center pointer" width="100%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <button id="btnAgregarImagen" type="button" class="btn btn-icon rounded-circle btn-success glow mr-1 mb-1" style="margin-top: 5%; padding: 6px 10px;" onclick="agregarImg()">
+                                                            <i class="bx bxs-image-add fa-2x sr-icons"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.sku }}
+                                                                <label for="city-column">{% trans "SKU" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="categoria" id="id_categoria" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for categoria in categorias %}
+                                                                    <option value="{{ categoria.id_categoria }}" tipo="{{ categoria.precio_taller_obj.tipo.descripcion }}" costo="{{ categoria.costo_taller }}" utilidad="{{ categoria.prct_utilidad_taller }}" precio="{{ categoria.precio_taller }}" grdiferenciado="{{ categoria.valor_gramo_diferenciado }}" escala="{{ categoria.escala_peso }}" pinterna="{{ categoria.parte_interna }}" acabado="{{ categoria.acabado }}" piedras="{{ categoria.costo_piedras }}" tiempos="{{ categoria.tiempos_entrega }}" proveedor="{{ categoria.proveedor }}" extras="{{ categoria.datos_extra }}">{{ categoria.descripcion }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Categoría" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.descripcion }}
+                                                                <label for="city-column">{% trans "Descripción" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_costo" name="costo" data-type='currency'>
+                                                                <label for="id_costo">{% trans "Costo gramo/unidad" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divUtilidad" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_utilidad" name="utilidad" data-type='currency'>
+                                                                <label for="id_utilidad">{% trans "Porcentaje de utilidad" %} (%)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divPrecio" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_precio" name="precio" data-type='currency'>
+                                                                <label for="id_precio">{% trans "Precio gramo/unidad" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divEscala" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="escala_peso" id="id_escala_peso" class="form-control">
+                                                                </select>
+                                                                <input class="form-control" hidden>
+                                                                <label for="email-id-column">{% trans "Escala peso" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divGramoDiferenciado" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.valor_gramo_dif}}
+                                                                <label for="id_ciudad">{% trans "Valor gramo diferenciado" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divPesoDiferenciado" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.peso_max_dif}}
+                                                                <label for="id_peso_max_dif">{% trans "Peso máximo diferenciado" %} (gr)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divCantidadPiedras" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.cantidad_piedras}}
+                                                                <label for="id_ciudad">{% trans "Cantidad de piedras" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divCostoPiedras" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.costo_piedras}}
+                                                                <label for="id_peso_max_dif">{% trans "Costo piedras" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divParteInterna" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.parte_interna}}
+                                                                <label for="id_ciudad">{% trans "Parte interna" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divAcabado" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.acabado}}
+                                                                <label for="email-id-column">{% trans "Acabado" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divTmpEntregaMin" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.tiempo_entrega_min}}
+                                                                <label for="email-id-column">{% trans "Entrega mínima (días)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divTmpEntregaMax" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.tiempo_entrega_max}}
+                                                                <label for="email-id-column">{% trans "Entrega máxima (días)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divProveedor" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="proveedor" id="id_proveedor" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for proveedor in proveedores %}
+                                                                    <option value="{{ proveedor.id }}">{{ proveedor.nombres }} {{ proveedor.apellidos }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Proveedor" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divDatosExtras" class="col-md-6 col-12">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" class="checkbox-input" id="id_datos_extra" name="datos_extra" {% if obj.datos_extra %} checked {% endif %}>
+                                                                <label for="id_datos_extra">{% trans "Datos extras" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="ValidarFormulario()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'ctg:items_lista' tipo %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    var tipo;
+    var solicitud;
+    var diferenciado = 'False';
+    var escala = 'False';
+    var pinterna = 'False';
+    var opAcabado = 'False';
+    var piedras = 'False';
+    var tiempos = 'False';
+    var opProveedor = 'False';
+    var extras = 'False';
+    
+    $(document).ready(function() {
+        tipo = parseInt('{{ tipo }}');
+        solicitud = parseInt('{{ solicitud }}');
+
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "SKU ya existe" %}','red');
+        }
+
+        ocultarElementos();
+
+        var select = document.getElementById('id_escala_peso');
+        for(i=0.1; i<=1; i=i+0.1){
+            i = Math.round(i*100)/100; // redondeo
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.add(option);
+        }
+
+        $('#id_costo').val(0);
+        $('#id_utilidad').val(0);
+        $('#id_precio').val(0);
+    });
+
+    function ocultarElementos(){
+        $('#divPrecio').hide();
+        $('#divUtilidad').hide();
+        $('#divEscala').hide();
+        $('#divGramoDiferenciado').hide();
+        $('#divPesoDiferenciado').hide();
+        $('#divCantidadPiedras').hide();
+        $('#divCostoPiedras').hide();
+        $('#divParteInterna').hide();
+        $('#divAcabado').hide();
+        $('#divTmpEntregaMin').hide();
+        $('#divTmpEntregaMax').hide();
+        $('#divProveedor').hide();
+        $('#divDatosExtras').hide();
+    }
+
+    $('#id_categoria').on('change', function(){
+        tipo_precio = $('option:selected', $(this)).attr('tipo');
+        costo_taller = $('option:selected', $(this)).attr('costo');
+        prct_utilidad = $('option:selected', $(this)).attr('utilidad');
+        precio_taller = $('option:selected', $(this)).attr('precio');
+        diferenciado = $('option:selected', $(this)).attr('grdiferenciado');
+        escala = $('option:selected', $(this)).attr('escala');
+        pinterna = $('option:selected', $(this)).attr('pinterna');
+        opAcabado = $('option:selected', $(this)).attr('acabado');
+        piedras = $('option:selected', $(this)).attr('piedras');
+        tiempos = $('option:selected', $(this)).attr('tiempos');
+        opProveedor = $('option:selected', $(this)).attr('proveedor');
+        extras = $('option:selected', $(this)).attr('extras');
+        $('#id_costo').val(parseFloat(costo_taller.replace(/,/,'.')));
+        $('#id_utilidad').val(parseFloat(prct_utilidad.replace(/,/,'.')));
+        $('#id_precio').val(parseFloat(precio_taller.replace(/,/,'.')));
+        if(tipo_precio === 'GRAMO_FINAL_VARIABLE'){
+            $('#divPrecio').hide();
+            $('#divUtilidad').show();
+        } else {
+            $('#divPrecio').show();
+            $('#divUtilidad').hide();
+        }
+        if(diferenciado === 'True'){
+            $('#divGramoDiferenciado').show();
+            $('#divPesoDiferenciado').show();
+        } else {
+            $('#divGramoDiferenciado').hide();
+            $('#divPesoDiferenciado').hide();
+        }
+        if(escala === 'True'){
+            $('#divEscala').show();
+        } else {
+            $('#divEscala').hide();
+        }
+        if(pinterna === 'True'){
+            $('#divParteInterna').show();
+        } else {
+            $('#divParteInterna').hide();
+        }
+        if(opAcabado === 'True'){
+            $('#divAcabado').show();
+        } else {
+            $('#divAcabado').hide();
+        }
+        if(piedras === 'True'){
+            $('#divCantidadPiedras').show();
+            $('#divCostoPiedras').show();
+        } else {
+            $('#divCantidadPiedras').hide();
+            $('#divCostoPiedras').hide();
+        }
+        if(tiempos === 'True'){
+            $('#divTmpEntregaMin').show();
+            $('#divTmpEntregaMax').show();
+        } else {
+            $('#divTmpEntregaMin').hide();
+            $('#divTmpEntregaMax').hide();
+        }
+        if(opProveedor === 'True'){
+            $('#divProveedor').show();
+        } else {
+            $('#divProveedor').hide();
+        }
+        if(extras === 'True'){
+            $('#divDatosExtras').show();
+        } else {
+            $('#divDatosExtras').hide();
+        }
+    });
+
+    function agregarImg(){
+        var url_img_tmp = "{% static 'base/img/icons/nofoto2.png' %}";
+        var div = '<div id="elemento_" class="col-md-6 col-12 col-sm-12 item_img"><img id="id_img_tmp_" name="imagentmp" src="'+url_img_tmp+'" width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%"><input onchange="seleccionarImagen(elemento_,id_img_tmp_)" type="file" name="imagen" id="id_imagen_" class="inputimage center pointer" width="150px"><button onclick="borrardivImg(elemento_)" class="btn btn-icon btn-danger rounded-circle button_img" type="button" data-repeater-delete style="position: absolute; top: 10px; left: 10px;"><i class="bx bx-x"></i></button></div>';
+        $('#id_img_lista').append(div);
+        nombrarElementosImg();
+    }
+
+    function borrardivImg(div){
+        $(div).remove();
+        nombrarElementosImg();
+    }
+
+    function nombrarElementosImg(){
+        num = 0;
+        $('div.item_img').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'elemento_'+num);
+            imgs = $(this).find('.imgtmp');
+            img = imgs[0];
+            $(img).removeAttr('id');
+            $(img).attr('id', 'id_img_tmp_'+num);
+            inputs = $(this).find('.inputimage');
+            input = inputs[0];
+            $(input).removeAttr('id');
+            $(input).attr('id', 'id_imagen_'+num);
+            $(input).removeAttr('onchange');
+            var img_tmp = "'" + "id_img_tmp_" + num + "'";
+            var img_input = "'" + "id_imagen_" + num + "'";
+            $(input).attr('onchange', 'seleccionarImagen('+img_tmp+','+img_input+')');
+            buttons = $(this).find('.button_img');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardivImg(elemento_'+num+')');
+        });
+        if(num >= 4){
+            $('#btnAgregarImagen').hide();
+        } else {
+            $('#btnAgregarImagen').show();
+        }
+    }
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "";
+        }
+
+    }
+
+    function ValidarFormulario(){
+        contador = 0;
+        $('input.inputimage').each(function (){
+            if($(this).val() === ''){
+                contador += 1;
+            }
+        });
+        if(contador > 0){
+            mensaje('{% trans "Falta al menos una imagen por cargar" %}', 'orange');
+            return false;
+        } else {
+            guardar();
+        }
+    }
+
+    function guardar(){
+
+        var sku = $('#id_sku').val();
+        var categoria = $('#id_categoria').val();
+        var descripcion= $('#id_descripcion').val();
+        var costo_taller = $('#id_costo').val();
+        var prct_utilidad = $('#id_utilidad').val();
+        var precio_taller = $('#id_precio').val();
+        var escala_peso = $('#id_escala_peso').val();
+        var costo_gramo_dif = $('#id_valor_gramo_dif').val();
+        var peso_dif = $('#id_peso_max_dif').val();
+        var cantidad_piedras = $('#id_cantidad_piedras').val();
+        var costo_piedras = $('#id_costo_piedras').val();
+        var parte_interna = $('#id_parte_interna').val();
+        var acabado = $('#id_acabado').val();
+        var tmp_ent_min = $('#id_tiempo_entrega_min').val();
+        var tmp_ent_max = $('#id_tiempo_entrega_max').val();
+        var proveedor = $('#id_proveedor').val();
+        var datos_extra = $('#id_datos_extra').val();
+        if(sku === ''){
+            mensaje('{% trans "Ingrese el SKU del ítem" %}', 'red');
+            return;
+        }
+
+        if(categoria === ''){
+            mensaje('{% trans "Seleccione una categoría" %}', 'red');
+            return;
+        }
+
+        if(descripcion === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'red');
+            return;
+        }
+
+        if(costo_taller === ''){
+            mensaje('{% trans "Ingrese el costo" %}', 'red');
+            return;
+        } else {
+            costo_taller = FormatoDecimal($('#id_costo'));
+        }
+
+        if(escala_peso === '' && escala === 'True'){
+            mensaje('{% trans "Seleccione una escala de peso" %}', 'red');
+            return;
+        }
+
+        if(diferenciado === 'True'){
+            if(costo_gramo_dif === ''){
+                mensaje('{% trans "Ingrese costo gramo diferenciado" %}', 'red');
+                return;
+            }
+
+            if(peso_dif === ''){
+                mensaje('{% trans "Ingrese peso máximo diferenciado" %}', 'red');
+                return;
+            }
+        }
+        
+        if(acabado === '' && opAcabado === 'True'){
+            mensaje('{% trans "Ingrese acabado" %}', 'red');
+            return;
+        }
+
+        if(parte_interna === '' && pinterna === 'True'){
+            mensaje('{% trans "Ingrese parte interna" %}', 'red');
+            return;
+        }
+
+        if(piedras === 'True'){
+            if(cantidad_piedras === ''){
+                mensaje('{% trans "Por favor ingrese cantidad de piedras" %}', 'red');
+                return;
+            }
+
+            if(costo_piedras === ''){
+                mensaje('{% trans "Ingrese costo de piedras" %}', 'red');
+                return;
+            } else {
+                // costo_piedras = FormatoDecimal($('#id_costo_piedras').val());
+            }
+        }
+
+        if(tiempos === 'True'){
+            if(tmp_ent_min === ''){
+                mensaje('{% trans "Ingrese tiempo de entrega mínimo" %}', 'red');
+                return;
+            }
+
+            if(tmp_ent_max === ''){
+                mensaje('{% trans "Ingrese tiempo de entrega máximo" %}', 'red');
+                return;
+            }
+
+            if(parseFloat(tmp_ent_min) > parseFloat(tmp_ent_max)){
+                mensaje('{% trans "Tiempo de entrega mínimo no puede ser mayor al tiempo máximo" %}', 'red');
+                return;
+            }
+        }
+        
+        if(tipo_precio ==='GRAMO_FINAL_VARIABLE'){
+            if(prct_utilidad === ''){
+                mensaje('{% trans "Ingrese porcentaje de utilidad" %}', 'red');
+                return;
+            } else {
+                prct_utilidad = FormatoDecimal($('#id_utilidad'));
+            }
+        } else {
+            if(precio_taller === ''){
+                mensaje('{% trans "Ingrese precio" %}', 'red');
+                return;
+            } else {
+                precio_taller = FormatoDecimal($('#id_precio'));
+            }
+        }
+
+        form = document.getElementById('frmItem');
+        var data = new FormData(form);
+        data.append('costo', costo_taller);
+        data.append('utilidad', prct_utilidad);
+        data.append('precio', precio_taller);
+        // data.append('costo_piedras', costo_piedras);
+        data.append('datos_extras', $('#id_datos_extra').prop('checked'));
+
+        var url = "{% url 'ctg:items_crear' 0 %}";
+        url = url.replace(/0/, tipo);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                console.log(response)
+                redireccion = parseInt(response.redireccion);
+                if(redireccion === 1){
+                    url = "{% url 'ctg:items_lista' 0 %}";
+                    url = url.replace(/0/, tipo);
+                    location.replace(url);
+                }
+                if(redireccion === 2){
+                    url = "{% url 'ctg:detalles_crear' 0 %}";
+                    url = url.replace(/0/, response.id_item);
+                    location.replace(url);
+                }
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+    }
+</script>
+{% endblock %}

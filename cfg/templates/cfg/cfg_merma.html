@@ -1,0 +1,114 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Roles y permisos" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Roles" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "permisos" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Porcentajes de Merma" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <br>
+                                    <div class="table-responsive">
+                                        {% if not talleres_lista %}
+                                        <div class="alert alert-info">{% trans "No existen talleres registrados" %}</div>
+                                        {% else %}
+                                        <div class="table-responsive">
+                                            <table id="id_tabla" class="table table-striped table-hover">
+                                                <thead>
+                                                    <th>{% trans "Nombre" %}</th>
+                                                    <th>{% trans "Porcentaje merma" %}</th>
+                                                    <th class="all">{% trans "Acciones" %}</th>
+                                                </thead>
+                                                <tbody>
+                                                    {% for taller in talleres_lista %}
+                                                    <tr>
+                                                        <td>{{ taller.nombre }}</td>
+                                                        <td>{{ taller.porcentaje_merma }}  %</td>
+                                                        <td>
+                                                            <a href="#" onclick="return abrir_modal('{% url 'cfg:cfg_editar_merma' taller.id %}')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#id_tabla').DataTable({
+            "responsive": true,
+            "paging": false,
+            "info": false,
+            // "pagingType": "full_numbers",
+            "language": {
+                "sProcessing": '{% trans "Procesando..." %}',
+                "sLengthMenu": '{% trans "Mostrar _MENU_ registros" %}',
+                "sZeroRecords": '{% trans "No se encontraron resultados" %}',
+                "sEmptyTable": '{% trans "Ningún dato disponible en esta tabla" %}',
+                "sInfo": '{% trans "Registros del _START_ al _END_ de un total de _TOTAL_ registros" %}',
+                "sInfoEmpty": '{% trans "Registros del 0 al 0 de un total de 0 registros" %}',
+                "sInfoFiltered": '{% trans "(filtrado de un total de _MAX_ registros)" %}',
+                "sInfoPostFix": "",
+                "sSearch": '{% trans "Buscar:" %}',
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": '{% trans "Cargando..." %}',
+                "oPaginate": {
+                    "sFirst": "<span class='bx bx-chevrons-left'></span>",
+                    "sLast": "<span class='bx bx-chevrons-right'></span>",
+                    "sNext": "<span class='bx bx-chevron-right'></span>",
+                    "sPrevious": "<span class='bx bx-chevron-left'></span>"
+                },
+                "oAria": {
+                    "sSortAscending": '{% trans ": Activar para ordenar la columna de manera ascendente" %}',
+                    "sSortDescending": '{% trans ": Activar para ordenar la columna de manera descendente" %}'
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

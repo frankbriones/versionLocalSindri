@@ -1,0 +1,191 @@
+{% extends 'base/base.html' %} {% load i18n %} {% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Colores" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "color" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form id="frmColor" method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.descripcion }}
+                                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="div_costo_ta" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.costo_adicional_ta }}
+                                                        <label for="first-name-column">{% trans "Costo adicional por gramo" %} ( {{ user.pais.simbolo_moneda }} )</label>
+                                                    </div>
+                                                </div>
+                                                <div id="div_precio_ta" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.precio_adicional_ta }}
+                                                        <label for="first-name-column">{% trans "Precio adicional por gramo" %} ( {{ user.pais.simbolo_moneda }} )</label>
+                                                    </div>
+                                                </div>
+                                                <div id="div_precio_op" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.precio_adicional_op }}
+                                                        <label for="first-name-column">{% trans "Precio adicional por gramo" %} ( {{ user.pais.simbolo_moneda }} )</label>
+                                                    </div>
+                                                </div>
+                                                {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' and lista_proveedores %}
+                                                <div class="col-md-12 col-12">
+                                                    <h4 class="card-title">{% trans "Costo adicional por proveedor" %}</h4>
+                                                    {% for item in lista_proveedores %}
+                                                    <div class="row item-proveedor">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input idproveedor="{{ item.proveedor.id }}" type="text" class="form-control proveedor" value="{{ item.proveedor.nombres }} {{ item.proveedor.apellidos }}">
+                                                                <label for="first-name-column">{% trans "Proveedor" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control costo" value="{{ item.costo_adicional }}" data-type='currency'>
+                                                                <label for="first-name-column">{% trans "Precio adicional por gramo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                {% endif %}
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'ctg:colores_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js_page %}
+<script>
+
+    let tipo_usuario;
+
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "Categoría ya existe" %}','red');
+        }
+        console.log('{{user.tipo_usuario.descripcion}}');
+        tipo_usuario = '{{ user.tipo_usuario.descripcion }}';
+        if(tipo_usuario === 'USUARIO TALLER'){
+            $('#div_precio_op').hide();
+        } else {
+            
+            $('#div_costo_ta').hide();
+            $('#div_precio_ta').hide();
+            $('#div_precio_op').show();
+
+        }
+    });
+
+    function obtenerCostosProveedor(){
+        costosProveedor = []
+        $('div.item-proveedor').each(function (){
+            id_proveedor = parseInt($(this).find("input.proveedor").attr('idProveedor'));
+            costo = FormatoDecimal($(this).find("input.costo"));
+            costoProveedor = {'id_proveedor': id_proveedor, 'costo': costo};
+            costosProveedor.push(costoProveedor);
+        });
+    }
+
+    function guardar(){
+        obtenerCostosProveedor();
+        form = document.getElementById('frmColor');
+        var data = new FormData(form);
+        data.append('costosProveedor[]', JSON.stringify(costosProveedor));
+
+        var id_color = '{{ obj.id_color }}';
+        if (id_color){
+            url = "{% url 'ctg:colores_editar' 0 %}";
+            url = url.replace(/0/, id_color);
+        } else {
+            url = "{% url 'ctg:colores_crear' %}";
+        }
+        precio = document.getElementById('#div_precio_op');
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                url = "{% url 'ctg:colores_lista' %}";
+                location.replace(url);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}: {{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

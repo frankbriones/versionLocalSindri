@@ -1,0 +1,222 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Piedra" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Detalles" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Agregar" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Agregar Detalles a " %}{{ piedra.descripcion }}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <button id="btnAgregar" type="button" onclick="return abrir_modal('{% url 'ctg:detalles_piedra_agregar' piedra.id_piedra %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><span class="bx bx-plus"></span></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="frmItems" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if piedra %} src="{{ piedra.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            {% if not detalles %}
+                                                            <div class="alert alert-info">{% trans "No existen detalles" %}</div>
+                                                            {% else %}
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-hover">
+                                                                    <thead>
+                                                                        <th>{% trans "Medida" %}</th>
+                                                                        <th>{% trans "costo" %}</th>
+                                                                        <th class="all">Acciones</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {% for detalle in detalles %}
+                                                                        <tr>
+                                                                            <td>{{ detalle.medida }}</td>
+                                                                            <td>{{ user.pais.simbolo_moneda }} {{ detalle.costo }}</td>
+                                                                            <td>
+                                                                                <a onclick="return abrir_modal('{% url 'ctg:detalles_piedra_editar' detalle.id_detalle_piedra %}')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1"><i class="bx bx-edit"></i></a>
+                                                                                {% if detalle.estado.descripcion == 'ACTIVO' %}
+                                                                                <a onclick="return abrir_modal('{% url 'ctg:detalles_piedra_actualizar' detalle.id_detalle_piedra %}')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1" role="button"><i class="bx bx-x"></i></a>
+                                                                                {% else %}
+                                                                                <a onclick="return abrir_modal('{% url 'ctg:detalles_piedra_actualizar' detalle.id_detalle_piedra %}')" class="btn btn-icon rounded-circle btn-outline-success mr-1 mb-1" role="button"><i class="bx bx-check"></i></a>
+                                                                                {% endif %}
+                                                                            </td>
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa2">
+                                                        <div class="card collapse-header">
+                                                            <div id="heading5" class="card-header" data-toggle="collapse" data-target="#accordion5" aria-expanded="false" aria-controls="accordion5" role="tablist">
+                                                                <span class="collapse-title">
+                                                                    <i class="bx bx-ruler align-middle"></i>
+                                                                    <span class="align-middle">{% trans "Tallas" %}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div id="accordion5" role="tabpanel" data-parent="#accordionWrapa2" aria-labelledby="heading5" class="collapse">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-12">
+                                                                        {% if not detalles %}
+                                                                        <div class="alert alert-info">{% trans "No existen detalles" %}</div>
+                                                                        {% else %}
+                                                                        <div class="table-responsive">
+                                                                            <table class="table table-striped table-hover">
+                                                                                <thead>
+                                                                                    <th>{% trans "Talla" %}</th>
+                                                                                    <th>{% trans "Longitud" %}</th>
+                                                                                    <th>{% trans "Peso min." %}</th>
+                                                                                    <th>{% trans "Peso max." %}</th>
+                                                                                    <th>{% trans "Piedras" %}</th>
+                                                                                    <th class="all">Acciones</th>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    {% for detalle in detalles %}
+                                                                                    <tr>
+                                                                                        <td>{{ detalle.talla }}</td>
+                                                                                        <td>{{ detalle.longitud }}</td>
+                                                                                        <td>{{ detalle.peso_minimo }}</td>
+                                                                                        <td>{{ detalle.peso_maximo }}</td>
+                                                                                        <td>{{ detalle.cantidad_piedras }}</td>
+                                                                                        <td>
+                                                                                            <button type="button" id="btnQuitar" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardarItem()" class="btn btn-primary mr-1 mb-1">{% trans "Continuar" %}</button>
+                                                    <a href="#" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    // llamar el plugin de datatable jQuery
+    $(document).ready(function() {
+        detalles = '{{ num_detalles }}';
+        detalles = parseInt(detalles);
+    });
+
+
+    function guardarItem(){
+
+        var categorias = new Array();
+
+        if(detalles === 0){
+            mensaje('{% trans "Agregue al menos un detalle" %}', 'red');
+            return;
+        } else {
+
+            var url = "{% url 'ctg:detalles_piedra_categorias_agregar' 0 %}";
+            var piedra_id = {{ piedra.id_piedra }};
+            url = url.replace(/0/, piedra_id);
+
+            window.location.replace(url);
+        }
+    }
+
+    function EliminarDetalle(id_detalle){
+
+        var token = '{{ csrf_token }}';
+
+        datos = {
+            'detalle': 'detalle'
+        }
+
+        var datos = JSON.stringify(datos);
+
+        var url = "{% url 'ctg:detalles_piedra_eliminar' 0 %}";
+        url = url.replace(/0/, id_detalle);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                // jsonValue = jQuery.parseJSON( jqXHR.responseText );
+                // console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+
+</script>
+{% endblock %}

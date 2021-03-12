@@ -1,0 +1,450 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+      height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+
+    .img-circle {
+        border-radius: 100%;
+    }
+    
+    .caja {
+        font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+        color: #000000;
+        font-size: 25px;
+        font-weight: 400;
+        text-align: right;
+        ;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 10px;
+        /* border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 35px 0px;  */
+        border: 2px solid #5878ca;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Transacciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i
+                                            class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Órdenes" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nueva" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-divider">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if solicitud %} {% trans "Generar" %} {% else %}
+                                    {% trans "Nueva" %} {% endif %} {% if not solicitud.externa %}
+                                    {% trans "órden interna" %} {% else %} {% trans "órden externa" %} {% endif %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <!-- <form method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body"> -->
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <!-- <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if solicitud %}
+                                                            src="{{ solicitud.imagen.url }}" {% else %}
+                                                            src="{% static 'base/img/icons/nofoto2.png' %}"
+                                                            style="width: 300px;" {% endif %}
+                                                            class="img-circle center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div> -->
+                                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                                        <ol class="carousel-indicators">
+                                                            {% for imagen in imagenes %}
+                                                            <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                                                            {% endfor %}
+                                                        </ol>
+                                                        <div class="carousel-inner" role="listbox">
+                                                            {% for imagen in imagenes %}
+                                                            <div class="carousel-item">
+                                                                <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="text" class="form-control" disabled
+                                                                    value="{{ cliente.nombres }}">
+                                                                <label
+                                                                    for="id_cliente-nombres">{% trans "Cliente" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="text" class="form-control" disabled
+                                                                    value="{{ solicitud.detalle }}">
+                                                                <label
+                                                                    for="country-floating">{% trans "Descripción" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            {% if not solicitud.externa %}
+                                                            <div class="form-label-group">
+                                                                <input type="text" class="form-control" disabled
+                                                                    value="{{ solicitud.taller }}">
+                                                                <label for="id_ciudad">{% trans "Taller" %}</label>
+                                                            </div>
+                                                            {% else %}
+                                                            <div class="form-label-group">
+                                                                <input type="text" class="form-control" disabled
+                                                                    value="{{ solicitud.proveedor }}">
+                                                                <label for="id_ciudad">{% trans "Proveedor" %}</label>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" class="checkbox-input"
+                                                                        id="id_envio">
+                                                                    <label
+                                                                        for="id_envio">{% trans "Envío de material" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.talla }}">
+                                                                <label for="id_ciudad">{% trans "Talla" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.longitud }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Longitud (cm)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.acabado }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Acabado" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.parte_interna }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Parte interna" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.cantidad_piedras }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Cantidad de piedras" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.peso_solicitado }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Peso solicitado (gr)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if solicitud.sku_relacionado %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.sku_relacionado }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "SKU relacionado" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <form method="POST" id="frmCrearOrden" class="form" enctype="multipart/form-data">
+                                                                {% csrf_token %}
+                                                                <div class="form-body">
+                                                                    <div class="form-label-group">
+                                                                        <input id="id_anticipo" type="file" class="form-control">
+                                                                        <label
+                                                                            for="email-id-column">{% trans "Anticipo de fabricación" %}</label>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="divider">
+                                                <div class="divider-text">{% trans "Detalles de fabricación" %}</div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.peso_min }}  gr">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Peso mínimo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.peso_max }}  gr">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Peso máximo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-2 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                {% if user.pais.decimales %} value="{{ user.pais.simbolo_moneda }} {{ solicitud.precio_min }}" {% else %} value="{{ user.pais.simbolo_moneda }} {{ solicitud.precio_min|floatformat:'0' }}" {% endif %}>
+                                                                <label
+                                                                    for="email-id-column">{% trans "Precio mínimo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                {% if user.pais.decimales %} value="{{ user.pais.simbolo_moneda }} {{ solicitud.precio_max }}" {% else %} value="{{ user.pais.simbolo_moneda }} {{ solicitud.precio_max|floatformat:'0' }}" {% endif %}>
+                                                                <label
+                                                                    for="email-id-column">{% trans "Precio máximo" %}</label>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.tiempo_ent_min }}  días">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled
+                                                                    value="{{ solicitud.tiempo_ent_max }}  días">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-end">
+                                                        <input id="id_precio" disabled name="precio" type="text" class="caja">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" id="btnGuardar" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'trn:ordenes_lista' %}"
+                                                        class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        <!-- </div>
+                                    </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    var cargarAnticipo = '{{ user.grupo_empresarial.anticipo_fabricacion }}';
+    $(document).ready(function(){
+        $('.loader').hide();
+        $('input').css('background-color','#FBFBFB');
+        $('div.carousel-item:first').addClass('active');
+        var simbolo_moneda = '{{ user.pais.simbolo_moneda }}';
+        var decimales = '{{ user.pais.decimales }}';
+        precio_solicitud = '{{ solicitud.precio_final_venta }}';
+        // alert(precio_solicitud)
+        precio_solicitud = precio_solicitud.replace(/,/, '.');
+        precio_solicitud = parseFloat(precio_solicitud);
+        $('#id_anticipo').on('change', function(){
+            elemento = 'id_anticipo';
+            validarArchivo(elemento);
+        });
+        if(decimales === 'True'){
+            precio_solicitud = parseFloat(precio_solicitud).toFixed(2);
+        } else {
+            precio_solicitud = Math.round(precio_solicitud);
+        }
+        $('#id_precio').val(simbolo_moneda + ' ' + precio_solicitud);
+        if(cargarAnticipo === 'False'){
+            $('#frmCrearOrden').hide();
+        }
+    });
+
+    function validarArchivo(elemento){
+        var peso_max_img = parseInt('{{ peso_max_arc.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_arc.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo con extensión no válida" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    $('#id_anticipo').on('change', function(){
+        elemento = 'id_anticipo';
+        validarArchivo(elemento);
+    });
+
+    $('#btnGuardar').on('click', function(){
+        if(cargarAnticipo === 'True'){
+            if($('#id_anticipo').val() === ''){
+                mensaje('{% trans "Por favor cargar anticipo de fabricación" %}', 'orange');
+                return;
+            }
+        }
+        guardarOrden();
+    });
+
+    function guardarOrden() {
+
+        $('#btnGuardar').attr('disabled', 'true');
+
+        form = document.getElementById('frmCrearOrden');
+        var datos = new FormData(form);
+        datos.append('anticipo_fabricacion', $('#id_anticipo')[0].files[0]);
+        
+        var env_material = $('#id_envio').prop('checked');
+        datos.append('env_material', env_material);
+
+        // datos = {
+        //     'env_material': env_material
+        // }
+
+        var token = '{{ csrf_token }}';
+        // var datos_orden = JSON.stringify(datos);
+        var identificacion = '{{ cliente.identificacion }}'
+        var id_trn = '{{ solicitud.id_solicitud }}';
+        var url = "{% url 'trn:ordenes_solicitud_crear' 0 1 %}";
+        url = url.replace(/1/, identificacion);
+        url = url.replace(/0/, id_trn);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                // var message = 'notificacion';
+                // wsSocket.send(JSON.stringify({
+                //     'message': message
+                // }));
+                window.location = "{% url 'trn:ordenes_lista' %}";
+            },
+            error: function (jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+
+    }
+
+    $('img.img-fluid').on('click', function(){
+        src = $(this).attr('src');
+        Swal.fire({
+            html:
+                '<img src="'+ src +'" width="100%">',
+            showClass: {
+                popup: 'animated fadein'
+            },
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '<i class="bx bx-check"></i>'
+        });
+    });
+
+</script>
+{% endblock %}

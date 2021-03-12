@@ -1,0 +1,619 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+  .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+  }
+
+  .inputimage {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      /* width: 150px;
+      height: 150px; */
+      margin-bottom: auto;
+      opacity: 0;
+  }
+  .img-circle {
+      border-radius: 100%;
+  }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Transacciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i
+                                            class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Órdenes" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Adicionales" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-divider">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if solicitud %} {% trans "Generar" %} {% else %}
+                                    {% trans "Nueva" %} {% endif %} {% if not solicitud.externa %}
+                                    {% trans "órden interna" %} {% else %} {% trans "órden externa" %} {% endif %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a title='{% trans "Agregar piedra" %}' onclick="return abrir_modal('{% url 'ctg:piedras_modal_lista' orden.id_orden %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-diamond"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a title='{% trans "Agregar adicional" %}' onclick="return abrir_modal('{% url 'ctg:adicionales_modal_lista' orden.id_orden %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-gift"></i>
+                                            </a>
+                                        </li>
+                                        <!-- <li>
+                                            <a title='{% trans "Agregar adicional" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-gift"></i>
+                                            </a>
+                                        </li> -->
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if item %} src="{{ item.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        {% if user.is_superuser or user.tipo_usuario_id == 3 %}
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ orden.cliente }}">
+                                                                <label for="first-name-column">{% trans "Cliente" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if not solicitud.externa %}
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.taller }}">
+                                                                <label for="first-name-column">{% trans "Taller" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.proveedor }}">
+                                                                <label for="first-name-column">{% trans "Proveedor" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled {% if detalleSolicitud %} value="{{ detalleSolicitud.item.sku }}" {% else %} value="{{ detalle.id_item.sku }}" {% endif %}>
+                                                                <label for="first-name-column">{% trans "SKU" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <fieldset>
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" disabled {% if orden.env_material %} checked {% endif %} class="checkbox-input"
+                                                                        id="id_envio">
+                                                                    <label
+                                                                        for="id_envio">{% trans "Envío de material" %}</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.descripcion }}{{ item.detalle }}">
+                                                                <label for="first-name-column">{% trans "Detalle" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if not detalle %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled {% if item.talla %} value="{{ item.talla }}" {% else %} value="{{ item.longitud }} cm" {% endif %}>
+                                                                <label for="first-name-column">{% trans "Talla/Longitud" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled {% if detalle.estandar %} value="{{ detalle.medida }} {{ detalle.estandar }}" {% else %} value="{{ detalle.medida }} {{ detalle.unidad_medida }}" {% endif %}>
+                                                                <label for="first-name-column">{% trans "Talla/Longitud" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        {% if orden.peso_solicitado %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ orden.peso_solicitado }}">
+                                                                <label for="first-name-column">{% trans "Peso" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.peso_min }}">
+                                                                <label for="first-name-column">{% trans "Peso mínimo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.peso_max }}">
+                                                                <label for="first-name-column">{% trans "Peso máximo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.acabado }}">
+                                                                <label for="first-name-column">{% trans "Acabado" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ item.parte_interna }}">
+                                                                <label for="first-name-column">{% trans "Parte interna" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled {% if detalle %} value="{{ detalle.cantidad_piedras }}" {% else %} value="{{ item.cantidad_piedras }}" {% endif %}>
+                                                                <label for="first-name-column">{% trans "Cantidad de piedras" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if solicitud.sku_relacionado %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ solicitud.sku_relacionado }}">
+                                                                <label for="first-name-column">{% trans "SKU relacionado" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {% if item.tiempo_entrega_min %}
+                                                                <input class="form-control" disabled
+                                                                    value="{{ item.tiempo_entrega_min }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                                                                {% else %}
+                                                                <input class="form-control" disabled
+                                                                    value="{{ item.tiempo_ent_min }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {% if item.tiempo_entrega_max %}
+                                                                <input class="form-control" disabled
+                                                                    value="{{ item.tiempo_entrega_max }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                                                                {% else %}
+                                                                <input class="form-control" disabled
+                                                                    value="{{ item.tiempo_ent_max }}">
+                                                                <label
+                                                                    for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="divider" id="id_adicionales">
+                                                <div class="divider-text">{% trans "Adicionales" %}</div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div id="id_tabla_adicionales" class="table-responsive">
+                                                                <!-- <table id="id_lista_adicionales" class="table table-striped table-hover">
+                                                                    <thead>
+                                                                        <th class="all">Acciones</th>
+                                                                        <th>{% trans "Descripción" %}</th>
+                                                                        <th>{% trans "Precio" %}</th>
+                                                                        <th>{% trans "Cantidad" %}</th>
+                                                                        <th></th>
+                                                                    </thead>
+                                                                </table> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="row">
+                                                        {% if orden.precio_con_descuento %}
+                                                        <div class="col-md-9 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" hidden>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input disabled class="form-control" id="id_precio" name="precio" />
+                                                                <label
+                                                                    for="email-id-column">{% trans "Precio" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-6 col-6">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" hidden>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input disabled class="form-control" id="id_precio_min" name="precio" />
+                                                                <label
+                                                                    for="email-id-column">{% trans "Precio mínimo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-6">
+                                                            <div class="form-label-group">
+                                                                <input disabled class="form-control" id="id_precio_max" name="precio" />
+                                                                <label
+                                                                    for="email-id-column">{% trans "Precio máximo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary mr-1 mb-1"
+                                                        onclick="guardarOrden()">{% trans " Guardar" %}</button>
+                                                    <!-- <a href="{% url 'trn:ordenes_lista' %}"
+                                                        class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block control_modal %}
+    <script>
+        function abrir_modal(url)
+        {
+            $("#popup").load(url, function(){
+                $(this).modal({
+                backdrop:'static',
+                keyboard: false
+                });
+                $(this).modal('show');
+            });
+            return false;
+        }
+
+        function cerrar_modal()
+        {
+            $('#popup').modal('hide');
+            console.log('modal cerrado');
+            cargarAdicionales();
+            return false;
+        }
+    </script>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function () {
+
+        $('input').css('background-color','#FBFBFB');
+
+        orden = '{{ orden.id_orden }}';
+        tipo = 0;
+        costo_adicionales = '{{ costo_adicionales }}';
+        costo_adicionales = costo_adicionales.replace(/,/,'.');
+        costo_adicionales = parseFloat(costo_adicionales);
+        precio_adicionales = '{{ precio_adicionales }}';
+        precio_adicionales = precio_adicionales.replace(/,/,'.');
+        precio_adicionales = parseFloat(precio_adicionales);
+        costo_piedras = '{{ costo_piedras }}';
+        costo_piedras = costo_piedras.replace(/,/,'.');
+        costo_piedras = parseFloat(costo_piedras);
+        precio_piedras = '{{ precio_piedras }}';
+        precio_piedras = precio_piedras.replace(/,/,'.');
+        precio_piedras = parseFloat(precio_piedras);
+
+        adicionales_lista = {{ adicionales_lista|safe }};
+        cargarAdicionales();
+
+        // if( adicionales_lista.length === 0 ){
+        //     $('#id_adicionales').hide();
+        //     $('#id_lista_adicionales').hide();
+        // }
+
+
+        // // adicionales_lista.forEach(adicional => {
+        // //     cant = parseFloat(adicional[5]);
+        // //     precio = parseFloat(adicional[4]);
+        // //     subtotal = cant * precio;
+        // //     subtotal = parseFloat(Math.round(subtotal*100)/100).toFixed(2);
+        // //     var tr = '<tr><td><button type="button" id="'+ adicional[0] +'" onclick="EliminarAdicional('+ adicional[0] +')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></button></td><td>'+ adicional[1] +'</td><td>'+ adicional[4] +'</td><td>'+ adicional[5] +'</td><td>'+ subtotal +'</td></tr>'
+        // //     $('#id_lista_adicionales').append(tr);
+        // // });
+
+        // subtotal_adicionales = 0;
+
+        // adicionales_lista.forEach(adicional => {
+        //     cant = parseFloat(adicional.cantidad);
+        //     precio = parseFloat(adicional.precio);
+        //     subtotal = cant * precio;
+        //     subtotal_adicionales += subtotal;
+        //     subtotal = parseFloat(Math.round(subtotal*100)/100).toFixed(2);
+        //     var tr = '<tr><td><button type="button" id="'+ adicional[0] +'" onclick="EliminarAdicional('+ adicional[0] +')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></button></td><td>'+ adicional[1] +'</td><td>'+ adicional.precio +'</td><td>'+ adicional.cantidad +'</td><td>'+ subtotal +'</td></tr>'
+        //     $('#id_lista_adicionales').append(tr);
+        // });
+
+        // precio = '{{ orden.precio_con_descuento }}';
+        
+        // if(precio != 'None'){
+        //     tipo = 1
+        //     precio = precio.replace(/,/,'.');
+        //     precio = parseFloat(precio);
+        //     // precio = precio + precio_adicionales + precio_piedras;
+        //     precio = precio + subtotal_adicionales;
+        //     $('#id_precio').val(precio);
+        // } else {
+        //     tipo = 2;
+        //     precio_min = '{{ item.precio_min }}';
+        //     precio_min = precio_min.replace(/,/,'.');
+        //     precio_min = parseFloat(precio_min);
+        //     precio_min = precio_min + precio_adicionales + precio_piedras;
+        //     $('#id_precio_min').val(precio_min);
+        //     precio_max = '{{ item.precio_max }}';
+        //     precio_max = precio_max.replace(/,/,'.');
+        //     precio_max = parseFloat(precio_max);
+        //     precio_max = precio_max + precio_adicionales + precio_piedras;
+        //     $('#id_precio_max').val(precio_max);
+        // }
+
+    });
+
+    function cargarAdicionales(){
+        adicionales_lista = localStorage.getItem('adicionales') || ''
+        if (adicionales_lista === ''){
+            adicionales_lista = []
+        } else {
+            adicionales_lista = JSON.parse(adicionales_lista);
+            console.log(adicionales_lista)
+        }
+
+        if( adicionales_lista.length === 0 ){
+            $('#id_adicionales').hide();
+            $('#id_tabla_adicionales').hide();
+        } else {
+            $('#id_adicionales').show();
+            $('#id_tabla_adicionales').show();
+        }
+
+
+        // adicionales_lista.forEach(adicional => {
+        //     cant = parseFloat(adicional[5]);
+        //     precio = parseFloat(adicional[4]);
+        //     subtotal = cant * precio;
+        //     subtotal = parseFloat(Math.round(subtotal*100)/100).toFixed(2);
+        //     var tr = '<tr><td><button type="button" id="'+ adicional[0] +'" onclick="EliminarAdicional('+ adicional[0] +')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></button></td><td>'+ adicional[1] +'</td><td>'+ adicional[4] +'</td><td>'+ adicional[5] +'</td><td>'+ subtotal +'</td></tr>'
+        //     $('#id_lista_adicionales').append(tr);
+        // });
+        id_tabla = $('#id_lista_adicionales')
+
+        if(id_tabla){
+            $('#id_lista_adicionales').remove();
+        }
+
+        subtotal_adicionales = 0;
+        costo_piedras = 0;
+        precio_piedras = 0;
+        $('#id_lista_adicionales tr').remove();
+        var tabla = '<table id="id_lista_adicionales" class="table table-striped table-hover"><thead><th class="all">{% trans "Acciones" %}</th><th>{% trans "Descripción" %}</th><th>{% trans "Precio" %}</th><th>{% trans "Cantidad" %}</th><th></th></thead><tbody></tbody></table>';
+        $('#id_tabla_adicionales').append(tabla);
+
+        adicionales_lista.forEach(adicional => {
+            cant = parseFloat(adicional.cantidad);
+            costo = parseFloat(adicional.costo);
+            precio = parseFloat(adicional.precio);
+            tipo = adicional.tipo;
+            if(tipo === 'piedra'){
+                costo_piedra = costo * cant;
+                costo_piedras += costo_piedra;
+                precio_piedra = precio * cant;
+                precio_piedras += precio_piedra;
+                subtotal = precio_piedra;
+            }
+            if(tipo === 'adicional'){
+                costo_adicional = costo * cant;
+                costo_adicionales += costo_adicional;
+                precio_adicional = precio * cant;
+                precio_adicionales += precio_adicional;
+                subtotal = precio_adicional;
+            }            
+            subtotal_adicionales += subtotal;
+            subtotal = parseFloat(Math.round(subtotal*100)/100).toFixed(2);
+            var tr = '<tr><td><button type="button" id="'+ adicional.id +'" onclick="EliminarAdicional('+ adicional.id +')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></button></td><td>'+ adicional.descripcion +'</td><td>'+ adicional.precio +'</td><td>'+ adicional.cantidad +'</td><td>'+ subtotal +'</td></tr>'
+            $('#id_lista_adicionales').append(tr);
+        });
+
+        precio = '{{ orden.precio_con_descuento }}';
+        
+        if(precio != 'None'){
+            tipo = 1
+            precio = precio.replace(/,/,'.');
+            precio = parseFloat(precio);
+            // precio = precio + precio_adicionales + precio_piedras;
+            precio = precio + subtotal_adicionales;
+            $('#id_precio').val(precio);
+        } else {
+            tipo = 2;
+            precio_min = '{{ item.precio_min }}';
+            precio_min = precio_min.replace(/,/,'.');
+            precio_min = parseFloat(precio_min);
+            precio_min = precio_min + precio_adicionales + precio_piedras;
+            $('#id_precio_min').val(precio_min);
+            precio_max = '{{ item.precio_max }}';
+            precio_max = precio_max.replace(/,/,'.');
+            precio_max = parseFloat(precio_max);
+            precio_max = precio_max + precio_adicionales + precio_piedras;
+            $('#id_precio_max').val(precio_max);
+        }
+    }
+
+    function EliminarAdicional(id_adicional, tipo){
+
+        var token = '{{ csrf_token }}';
+
+        datos = {
+            'detalle': id_adicional
+        }
+
+        var datos_orden = JSON.stringify(datos);
+
+        var url = "{% url 'trn:ordenes_eliminar_adicionales' 0 %}";
+        url = url.replace(/0/, id_adicional);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos_orden,
+            success: function(response) {
+            var message = 'notificacion';
+            // chatSocket.send(JSON.stringify({
+            //     'message': message
+            // }));
+                location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    function guardarOrden(){
+
+        var token = '{{ csrf_token }}';
+
+        if(tipo === 1){
+            var url = "{% url 'trn:orden_actualizar_precio' 0 1 %}";
+            url = url.replace(/0/, orden)
+            util_sobre_piedras = precio_piedras - costo_piedras;
+            util_sobre_adicionales = precio_adicionales - costo_adicionales
+
+            datos = {
+                'precio': precio,
+                'costo_adicionales': costo_adicionales,
+                'precio_adicionales': precio_adicionales,
+                'costo_piedras': costo_piedras,
+                'precio_piedras': precio_piedras,
+                'util_sobre_piedras': util_sobre_piedras,
+                'util_sobre_adicionales': util_sobre_adicionales,
+                'adicionales_lista[]': JSON.stringify(adicionales_lista)
+            }
+
+            var datos_orden = JSON.stringify(datos);
+
+        }
+
+        if (tipo === 2){
+            var url = "{% url 'trn:orden_actualizar_precio' 0 2 %}";
+            url = url.replace(/0/, orden);
+            util_sobre_piedras = precio_piedras - costo_piedras;
+            util_sobre_adicionales = precio_adicionales - costo_adicionales
+
+            datos = {
+                'precio_min': precio_min,
+                'precio_max': precio_max,
+                'costo_adicionales': costo_adicionales,
+                'precio_adicionales': precio_adicionales,
+                'costo_piedras': costo_piedras,
+                'precio_piedras': precio_piedras,
+                'util_sobre_piedras': util_sobre_piedras,
+                'util_sobre_adicionales': util_sobre_adicionales
+            }
+
+            var datos_orden = JSON.stringify(datos);
+        }
+
+        console.log(datos_orden);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos_orden,
+            success: function(response) {
+                var message = 'notificacion';
+                // wsSocket.send(JSON.stringify({
+                //     'message': message
+                // }));
+                // location.reload(true);
+                // window.location = "{% url 'trn:ordenes_lista' %}";
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+        
+    }
+
+</script>
+{% endblock %}

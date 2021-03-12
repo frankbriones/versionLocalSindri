@@ -1,0 +1,199 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-l">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar piedra" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card-content">
+                <div class="card-body card-dashboard">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <img id="id_img_tmp" name="imagentmp" src="{{ piedra.imagen.url }}" class="img-circle center img-fluid pointer" width="100%">
+                                <label for="city-column">{% trans "Imagen" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ piedra.sku }}">
+                                        <label for="first-name-column">{% trans "SKU" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ piedra.descripcion }}">
+                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <select name="medida" id="id_medida" class="form-control" onclick="buscarDetallePiedra(this)">
+                                            {% for detalle in detalles_piedra %}
+                                            <option value="{{ detalle.id_detalle_piedra }}">{{ detalle.medida }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="number" id="id_detalle" name="detalle" hidden>
+                                        <label for="id_ciudad">{% trans "Medida" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input type="number" min="1" id="id_cantidad" class="form-control">
+                                        <label for="first-name-column">{% trans "Cantidad" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" id="btnAgregar" name="agregar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Agregar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        
+        $('input').css('background-color','#FBFBFB');
+
+        $('#id_cantidad').val(1);
+
+        buscarDetallePiedra();         
+    });
+
+    $('#id_cantidad').on('keypress', function(){
+        buscarDetallePiedra();
+    });
+
+    $('#id_cantidad').on('change', function(){
+        buscarDetallePiedra();
+    });
+
+    function buscarDetallePiedra(){
+
+        var medidaSelect = $('select#id_medida');
+        var valorSeleccionado = $('option:selected', medidaSelect).val();
+        var medida = valorSeleccionado;
+
+        var url = "{% url 'ctg:detalle_piedra_buscar' 0 %}";
+        url = url.replace(/0/, medida);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(res) {
+                costo_piedra = res.costo_taller;
+                precio_piedra = res.precio_taller;
+                cantidad = $('#id_cantidad').val();
+                $('#id_costo_piedra').val(costo_piedra);
+                $('#id_precio_piedra').val(precio_piedra);
+                prct_utilidad_op = '{{ utilidad_fab_op }}';
+                prct_utilidad_op = prct_utilidad_op.replace(/,/,'.');
+                prct_utilidad_op = parseFloat(prct_utilidad_op);
+                precio_piedra_op = precio_piedra * (1+(prct_utilidad_op/100));
+                // total = precio_piedra * cantidad;
+                // total = parseFloat(Math.round(total*100)/100).toFixed(2);
+                // $('#id_costo_piedra_total').val(total);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existe medida", "red");
+                }
+            }
+        });
+    }
+
+    $("#btnAgregar").click(function(e){
+        e.preventDefault();
+
+        
+        var medidaSelect = $('select#id_medida');
+        var valorSeleccionado = $('option:selected', medidaSelect).val();
+        var id_detalle_piedra = valorSeleccionado;
+
+        var cantidad = $('#id_cantidad').val();
+        if (cantidad === ''){
+            mensaje('{% trans "Ingrese cantida de piedras" %}', 'orange');
+            return;
+        }
+        
+        costo_piedra = $('#id_costo_piedra').val();
+        if (costo_piedra === ''){
+            mensaje('{% trans "Ingrese un costo" %}', 'orange');
+            return;
+        }
+
+        precio_piedra = $('#id_precio_piedra').val();
+        if (precio_piedra === ''){
+            mensaje('{% trans "Ingrese un precio" %}', 'orange');
+            return;
+        }
+
+        if(precio_piedra < costo_piedra){
+            mensaje('{% trans "Costo no debe ser mayor al precio" %}', 'orange');
+            return;
+        }
+
+        cantidad = parseInt(cantidad);
+        costo_piedra = parseFloat(costo_piedra.replace(/,/,'.'));
+        precio_piedra = parseFloat(precio_piedra.replace(/,/,'.'));
+
+        id_piedra = '{{ piedra.id_piedra }}';
+        descripcion = '{{ piedra.descripcion }}';
+        prct_utilidad = '{{ piedra.utilidad_sobre_piedras }}';
+        prct_utilidad = prct_utilidad.replace(/,/,'.');
+        prct_utilidad = parseFloat(prct_utilidad);
+        
+        secuencia_ad = localStorage.getItem('secuencia_ad') || '';
+        if (secuencia_ad === ''){
+            secuencia = 1;
+        } else {
+            secuencia_ad = JSON.parse(secuencia_ad);
+            secuencia = parseInt(secuencia_ad.secuencia) + 1;
+        }
+
+        adicionales_lista = localStorage.getItem('adicionales') || '';
+        if (adicionales_lista === ''){
+            adicionales_lista = []
+        } else {
+            adicionales_lista = JSON.parse(adicionales_lista);
+        }
+        adicional = {
+            'secuencia': secuencia,
+            'idPiedra': id_piedra,
+            'idDetalle': id_detalle_piedra,
+            'descripcion': descripcion,
+            'cantidad': cantidad,
+            'costoUnitarioPiedraTaller': costo_piedra,
+            'prct_utilidad': prct_utilidad,
+            'precioUnitarioPiedraTaller': precio_piedra,
+            'subtotalPiedraTaller': (cantidad * precio_piedra),
+            'precio_op': precio_piedra_op
+        }
+        adicionales_lista.push(adicional);
+        console.log('adicionales agregados de modal')
+        console.log
+        localStorage.setItem('adicionales', JSON.stringify(adicionales_lista));
+        secuencia_ad = {'secuencia': secuencia};
+        localStorage.setItem('secuencia_ad', JSON.stringify(secuencia_ad));
+        cerrar_modal();
+
+    });
+
+</script>

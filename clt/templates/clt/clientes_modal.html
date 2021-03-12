@@ -1,0 +1,303 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Cliente" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-8 col-8">
+                    <div class="form-label-group">
+                        <input type="text" class="form-control" id="id_identificacion" name="identificacion">
+                        <label
+                            for="id_cliente-nombres">{% trans "Identificación" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-4">
+                    <button type="button" onclick="buscarCliente()" id="btnBuscar" name="buscar" class="btn btn-primary ml-1">
+                        <i class="bx bx-search"></i>
+                        <!-- <span class="d-none d-sm-block"><i class="bx bx-search"></i></span> -->
+                    </button>
+                </div>
+            </div>
+            <div class="row" id="id_datos">
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.nombres }}
+                        <label
+                            for="id_cliente-nombres">{% trans "Nombres" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.apellidos }}
+                        <label
+                            for="id_cliente-nombres">{% trans "Apellidos" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.ciudad }}
+                        <input type="text" hidden>
+                        <label
+                            for="id_cliente-nombres">{% trans "Ciudad" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.direccion }}
+                        <label
+                            for="id_cliente-nombres">{% trans "Dirección" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.telefono }}
+                        <label
+                            for="id_cliente-nombres">{% trans "Teléfono" %}</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-label-group">
+                        {{ form.correo }}
+                        <label
+                            for="id_cliente-nombres">{% trans "Correo" %}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" onclick="guardarCliente()" id="btnGuardarCliente" name="guardar" class="btn btn-primary ml-1"><i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Guardar cliente" %}</span>
+            </button>
+            <button type="button" onclick="generarOrden()" id="btnAceptar" disabled name="aceptar" class="btn btn-primary ml-1" data-dismiss="modal">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Confirmar cliente" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    var cliente_seleccionado = null;
+    $(document).ready(function() {
+
+        $('#id_datos').hide();
+        $('#id_nombres').prop('disabled', true);
+        $('#id_apellidos').prop('disabled', true);
+        $('#id_ciudad').prop('disabled', true);
+        $('#id_direccion').prop('disabled', true);
+        $('#id_telefono').prop('disabled', true);
+        $('#id_correo').prop('disabled', true);
+
+        $('#btnGuardarCliente').hide();
+
+        $('#id_identificacion').keypress(function(e) {
+            $('#id_datos').hide();
+            borrarDatos();
+            if (e.keyCode === 13) {
+                buscarCliente();
+                // $('#id_identificacion').prop('disabled', true);
+            }
+        });
+
+    });
+
+    function buscarCliente() {
+
+        var identificacion = $('#id_identificacion').val();
+        var path = "{% url 'clt:clientes_buscar' 1 %}";
+
+        if (identificacion === '') {
+            return false;
+        } else {
+            path = path.replace(/1/, identificacion);
+            $.ajax({
+                type: "GET",
+                url: path,
+                success: function(res) {
+                    cliente_seleccionado = {
+                        'id': res.id_cliente,
+                        'identificacion': res.identificacion,
+                        'nombres': res.nombres,
+                        'apellidos': res.apellidos
+                    }
+                    $('#id_nombres').val(res.nombres);
+                    $('#id_apellidos').val(res.apellidos);
+                    $('#id_ciudad').val(res.ciudad);
+                    $('#id_direccion').val(res.direccion);
+                    $('#id_telefono').val(res.telefono);
+                    $('#id_correo').val(res.correo);
+                    $('#id_datos').show();
+                    $('#btnAceptar').show();
+                    $('#btnAceptar').removeAttr('disabled');
+                },
+                error: function(a, b, c) {
+                    // console.log(a);
+                    if (a.status === 404) {
+                        // mensaje("Cliente no existe", "red");
+                        $.confirm({
+                            title: '{% trans "Cliente no existe" %}',
+                            content: '{% trans "¿Crear cliente?" %}',
+                            theme: 'material',
+                            type: 'green',
+                            buttons: {
+                                confirm: {
+                                    text: '{% trans "Confirmar" %}',
+                                    action: function() {
+                                        borrarDatos();
+                                        habilitarGuardado();
+                                        $('#btnAceptar').hide();
+                                    }
+                                },
+                                cancel: {
+                                    text: '{% trans "Cancelar" %}',
+                                    action: function() {
+                                        $('#id_identificacion').val('');
+                                    }
+                                },
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    function habilitarGuardado() {
+        $('#id_ciudad').select2({
+            width: '100%',
+            language: {
+                noResults: function() {
+                    return '{% trans "No encontrado" %}'
+                }
+            }
+        });
+        $('#id_datos').show();
+        $('#id_nombres').removeAttr('disabled');
+        $('#id_apellidos').removeAttr('disabled');
+        $('#id_ciudad').removeAttr('disabled');
+        $('#id_direccion').removeAttr('disabled');
+        $('#id_telefono').removeAttr('disabled');
+        $('#id_correo').removeAttr('disabled');
+        $('#btnGuardarCliente').show();
+    }
+
+    function borrarDatos() {
+        $('#id_nombres').val('');
+        $('#id_apellidos').val('');
+        $('#id_ciudad').val('');
+        $('#id_direccion').val('');
+        $('#id_telefono').val('');
+        $('#id_correo').val('');
+    }
+
+    function guardarCliente() {
+        var identificacion = $('#id_identificacion').val();
+        var nombres = $('#id_nombres').val();
+        var apellidos = $('#id_apellidos').val();
+        var ciudad = $('#id_ciudad').val();
+        var direccion = $('#id_direccion').val();
+        var telefono = $('#id_telefono').val();
+        var correo = $('#id_correo').val();
+
+        cliente = {
+            'identificacion': identificacion,
+            'nombres': nombres,
+            'apellidos': apellidos,
+            'ciudad': ciudad,
+            'direccion': direccion,
+            'telefono': telefono,
+            'correo': correo
+        }
+
+        var token = '{{ csrf_token }}';
+        var datos = JSON.stringify(cliente);
+        var id_trn = {{ id_trn }};
+        var tipo = {{ tipo }};
+        var url = "{% url 'clt:clientes_modal' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, id_trn);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                
+                if(response.pk){
+                    cliente_seleccionado = {
+                        'id': response.pk,
+                        'identificacion': response.fields.identificacion,
+                        'nombres': response.fields.nombres,
+                        'apellidos': response.fields.apellidos
+                    }
+                    $('#btnAceptar').removeAttr('disabled');
+                    $('#id_nombres').prop('disabled', true);
+                    $('#id_apellidos').prop('disabled', true);
+                    $('#id_ciudad').prop('disabled', true);
+                    $('#id_direccion').prop('disabled', true);
+                    $('#id_telefono').prop('disabled', true);
+                    $('#id_correo').prop('disabled', true);
+                    $('#btnGuardarCliente').hide();
+                    $('#btnAceptar').show();
+                } else {
+                    if(response.includes('Duplicate') && response.includes('correo')){
+                        mensaje('{% trans "Ya existe un cliente con el correo ingresado" %}','red');
+                        return;
+                    }
+                    if(response.includes('Duplicate') && response.includes('identificacion')){
+                        mensaje('{% trans "Ya existe un cliente con la identificación ingresada" %}','red');
+                        return;
+                    }
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    function generarOrden() {
+        var identificacion = $('#id_identificacion').val();
+        var id_trn = {{ id_trn }};
+        var tipo = {{ tipo }};
+        if (tipo === 0){
+            // var url = "{% url 'trn:ordenes_item_crear' 0 1 %}";
+            // url = url.replace(/1/, identificacion);
+            // url = url.replace(/0/, id_trn);
+            // console.log("genera orden " + identificacion);
+            // window.location.replace(url);
+            var cliente = localStorage.getItem('cliente') || '';
+            localStorage.removeItem('cliente');
+            localStorage.setItem('cliente', JSON.stringify(cliente_seleccionado));
+            cerrar_modal();
+        }
+        if (tipo === 1){
+            var url = "{% url 'trn:ordenes_solicitud_crear' 0 1 %}";
+            url = url.replace(/1/, identificacion);
+            url = url.replace(/0/, id_trn);
+            console.log("genera orden " + identificacion);
+            window.location.replace(url);
+        }
+        if (tipo === 2){
+            var url = "{% url 'trn:ordenes_solicitud_crear' 0 1 %}";
+            url = url.replace(/1/, identificacion);
+            url = url.replace(/0/, id_trn);
+            console.log("genera orden " + identificacion);
+            window.location.replace(url);
+        }
+
+    }
+</script>

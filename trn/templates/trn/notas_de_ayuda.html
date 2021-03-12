@@ -1,0 +1,300 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+
+{% block page_content %}
+	<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Notas de Ayuda" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Lista" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">{% trans "Configuracion Notas de Ayuda." %}</h4>
+                            <!-- <a class="heading-elements-toggle">
+                                <i class='bx bx-dots-vertical font-medium-3'></i>
+                            </a> -->
+                        </div>
+                        <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <div class=" table-responsive">
+                                            {% if not lista_activa %}
+                                            <div class="alert alert-info">{% trans "No existen Notas" %}</div>
+                                            {% else %}
+                                            <div class="table">
+                                                <table class="table  table-striped ">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                        <th>{% trans "CAMPO" %} </th>
+                                                        <th width="60%">{% trans "DETALLE" %}</th>
+                                                        <th>{% trans "ACCION" %}</th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                            {% for rol in lista_activa %}
+
+                                                            <tr>
+                                                                <td>{{rol.texto}}</td>
+                                                                <td>{{rol.title}}</td>
+                                                               
+                                                                <td>
+                                                                {% if rol.estado == 0 %}
+                                                                    <a onclick="" class="btn btn-icon rounded-circle  btn-outline-secondary mr-1 mb-1" disabled="disabled" data-toggle="tooltip" data-placement="top"  data-origina-title="Inactivo"><i class="bx bx-edit text-light" ></i></a>  
+                                                                    <a onclick="eliminarNota('{{rol.id_nota}}')" class="btn btn-icon rounded-circle btn-outline-secondary mr-1 mb-1" disabled="disabled" ><i class="bx bx-trash" ></i></a>
+                                                                    
+                                                                {% else %}
+                                                                    <a onclick="detalleNota('{{rol.id_nota}}','{{rol.title}}', '{{rol.texto}}')" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" ><i class="bx bx-edit"></i></a>
+                                                                    {% if rol.pais != '' and rol.grupo != '' %}
+                                                                    <a onclick="eliminarNota('{{rol.id_nota}}')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1" ><i class="bx bx-trash"></i></a>
+                                                                    {% endif %}
+                                                                {% endif %}
+
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            {% endfor %}
+                                                            
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            {% endif %}
+                                           <!--  <div class="col-12 d-flex justify-content-end">
+                                                <button onclick="ValidarFormulario()" class="btn btn-primary mr-1 mb-1">Guardar</button>
+                                                <button onclick="atras()" class="btn btn-light-secondary mr-1 mb-1">Cancelar</button>
+                                            </div>  -->  
+                                         
+                                    </div>
+                                <!-- </form> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="modal fade text-left" id="modal_editar_nota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <input type="hidden" class="id_nota">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title white" id="myModalLabel12">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-12">
+                    <label
+                        for="id_obs">{% trans "Editar TEXTO Tooltip" %}
+                    </label>
+                    <textarea maxlength="200" id="id_detalle" class="form-control" ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                </button>
+                <button type="button" class="btn btn-primary ml-1 editar_nota ">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal eliminar tooltip o notas de ayuda -->
+
+<div class="modal fade text-left" id="modal_eliminar_nota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <input type="hidden" class="id_tooltip_eliminar">
+
+            <input type="hidden" class="id_nota">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title white" id="myModalLabel12">Eliminar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 col-12">
+                    {% trans 'Desea eliminar esta nota' %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                </button>
+                <button type="button" class="btn btn-danger ml-1 eliminar_nota ">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Confirmar" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('.loader').hide();
+            $('#tool_error').hide();
+
+            $('textarea').keypress(function(e){
+                if(e.which === 13){
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+
+        })
+       
+
+        let campo_edit = ''
+
+        function detalleNota(id_nota, texto, campo){
+            campo_edit = campo
+
+            if(texto !== ''){
+                $('#id_detalle').text(texto);
+                $('#modal_editar_nota .id_nota').val(id_nota)
+            }
+            $('#modal_editar_nota').modal('show');
+
+        }
+
+        $('#modal_editar_nota .editar_nota').click(function ()
+        {
+            var id_nota = $('#modal_editar_nota .id_nota').val();
+            var detalle = $('#id_detalle').val();
+            if(detalle === ''){
+                toastr.error("No puede guardar un texto vacio.",'Error');
+                return false
+            }
+            var parametros = {
+                    "id_nota": id_nota,
+                    "detalle": detalle,
+                    "campo": campo_edit
+            };
+
+            editarDetalle(parametros);
+
+        })
+
+        function editarDetalle(parametros){
+            $.ajax({
+            url: "/transacciones/notas-de-ayuda/editar-detalle/ajax/",
+            type: 'GET',
+            data: parametros,
+
+            success: function(data){
+                console.log(data)
+                if(data.estado==1){
+                    toastr.success('Detalle de nota editado', 'Editado');
+                    $('#modal_editar_nota').modal('hide');
+                    url = "{% url 'trn:tooltip' request.user.grupo_empresarial.id_grupo_empresarial %}"
+                    location.replace(url);
+                    $('.loader').hide();
+                }else if(data.estado==2){
+                    $('#modal_eliminarobs').modal('hide');
+                    toastr.error("Detalle no pudo ser editado.",'Error');
+                }else if(data.estado === 0){
+                    toastr.info("Tooltip Registrado",'Listo');
+                    url = "{% url 'trn:tooltip' request.user.grupo_empresarial.id_grupo_empresarial %}"
+                    location.replace(url);
+                    $('.loader').hide();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+
+    })
+    }
+
+    function eliminarNota(tool_id){
+        $('#modal_eliminar_nota').modal('show');
+        $("#modal_eliminar_nota .id_tooltip_eliminar").val(tool_id);
+
+    }
+
+    $("#modal_eliminar_nota .eliminar_nota").click(function ()
+    {
+        var tooltip_id = $("#modal_eliminar_nota .id_tooltip_eliminar").val();
+        var parametros = {
+                "tooltip_id": tooltip_id,
+            };
+        eliminar_tool(parametros);
+    })
+
+
+
+    function eliminar_tool(parametros)
+    {
+        $.ajax({
+            url: '/transacciones/notas-de-ayuda/ajax/eliminar/',
+            type: 'GET',
+            data: parametros,
+
+            success: function(data){
+                console.log(data.estado)
+                if(data.estado==1){
+                    toastr.success('Tooltip Eliminado', 'Dato Eliminado');
+                    // obtener_tiendas()
+                    $('#modal_eliminar_nota').modal('hide');
+                    url = "{% url 'trn:tooltip' request.user.grupo_empresarial.id_grupo_empresarial %}";
+                    location.replace(url)
+                    $('.loader').hide();
+
+
+                    
+                }else if(data.estado==2){
+                    $('#modal_eliminarproveedor').modal('hide');
+                    toastr.error("Tooltip no puede ser eliminado.",'Error');
+                }
+                else{
+                    toastr.error("Tooltip No existe",'Error');
+                }
+            }
+
+        })
+
+    }
+
+    </script>
+
+{% endblock %}

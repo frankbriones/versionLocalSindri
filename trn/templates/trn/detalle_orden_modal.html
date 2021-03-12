@@ -1,0 +1,2214 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+
+</style>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Detalles de órden # " %}{{ orden.secuencia }}</h4>
+            <div class="justify-content-end">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+                {% if user.tipo_usuario_id == 3 %}
+                <a {% if orden.id_orden %} href="{% url 'trn:comprobante_tmp' orden.id_orden %}" {% else %} href="{% url 'trn:comprobante_tmp' 0 %}" {% endif %} target="_blank" type="button" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" aria-label="Close">
+                    <i class="bx bx-printer"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="modal-body">
+            <!-- <form method="POST" class="form" enctype="multipart/form-data"> -->
+                <!-- <div class="form-body"> -->
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            {% if imagenes %}
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    {% for imagen in imagenes %}
+                                    <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    {% for imagen in imagenes %}
+                                    <div class="carousel-item">
+                                        <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="form-label-group">
+                                <img id="id_img_tmp" name="imagentmp" {% if item %} src="{{ item.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                <label for="city-column">{% trans "Imagen" %}</label>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-5 col-12">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled {% if detalleSolicitud %} value="{{ detalleSolicitud.item.sku }}" {% else %} value="{{ detalle.id_item.sku }}" {% endif %}>
+                                        <label for="first-name-column">{% trans "SKU" %}</label>
+                                    </div>
+                                </div>
+                                {% if user.is_superuser or user.tipo_usuario_id == 3 %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ orden.cliente }}">
+                                        <label for="first-name-column">{% trans "Cliente" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if not orden.externa %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.taller }}">
+                                        <label for="first-name-column">{% trans "Taller" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.proveedor }}">
+                                        <label for="first-name-column">{% trans "Proveedor" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if user.tipo_usuario_id == 2 or user.tipo_usuario_id == 1 %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ orden.usuario.username }}">
+                                        <label for="first-name-column">{% trans "Solicita" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ orden.origen_material }}">
+                                        <label for="first-name-column">{% trans "Origen material" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ orden.estado }}">
+                                        <label for="first-name-column">{% trans "Estado" %}</label>
+                                    </div>
+                                </div>
+                                {% if detalleSolicitud %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ detalleSolicitud.item.descripcion }}">
+                                        <label for="first-name-column">{% trans "Ítem" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.descripcion }}">
+                                        <label for="first-name-column">{% trans "Ítem" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if detalleSolicitud %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea name="txt_detalle" class="form-control" id="id_detalle" disabled>{{ item.detalle }}</textarea>
+                                        <!-- <input class="form-control" disabled value="{{ item.detalle }}"> -->
+                                        <label for="first-name-column">{% trans "Detalle" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if orden.datos_extra %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <textarea name="datos_extra" class="form-control" id="id_datos_extra" disabled>{{ orden.datos_extra }}</textarea>
+                                        <label for="first-name-column">{% trans "Detalle" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if not detalle %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        {% if detalleSolicitud.item.unidad_medida.descripcion == 'TALLA' %}
+                                        <input class="form-control" disabled value="{{ item.talla }}">
+                                        <label for="first-name-column">{% trans "Talla" %}</label>
+                                        {% else %}
+                                        <input class="form-control" disabled value="{{ item.longitud }} {{ detalleSolicitud.item.unidad_medida.simbolo }}">
+                                        <label for="first-name-column">{% trans "Longitud" %}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled {% if detalle.estandar %} value="{{ detalle.medida }} {{ detalle.estandar }}" {% else %} value="{{ detalle.medida }} {{ detalle.unidad_medida }}" {% endif %}>
+                                        <label for="first-name-column">{% trans "Talla/Longitud" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if orden.peso_solicitado %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ orden.peso_solicitado }} gr">
+                                        <label for="first-name-column">{% trans "Peso solicitado" %}</label>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.peso_min }} gr">
+                                        <label for="first-name-column">{% trans "Peso mínimo" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.peso_max }} gr">
+                                        <label for="first-name-column">{% trans "Peso máximo" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.acabado }}">
+                                        <label for="first-name-column">{% trans "Acabado" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.parte_interna }}">
+                                        <label for="first-name-column">{% trans "Parte interna" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled {% if detalle %} value="{{ detalle.cantidad_piedras }}" {% else %} value="{{ item.cantidad_piedras }}" {% endif %}>
+                                        <label for="first-name-column">{% trans "Cantidad de piedras" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        {% if item.tiempo_entrega_min %}
+                                        <input class="form-control" disabled
+                                            value="{{ item.tiempo_entrega_min }}  días">
+                                        <label
+                                            for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                                        {% else %}
+                                        <input class="form-control" disabled
+                                            value="{{ item.tiempo_ent_min }}  días">
+                                        <label
+                                            for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        {% if item.tiempo_entrega_max %}
+                                        <input class="form-control" disabled
+                                            value="{{ item.tiempo_entrega_max }}  días">
+                                        <label
+                                            for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                                        {% else %}
+                                        <input class="form-control" disabled
+                                            value="{{ item.tiempo_ent_max }}  días">
+                                        <label
+                                            for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if user.tipo_usuario_id == 3 %}
+                                {% if orden.precio_final_venta %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_precio_final" class="form-control" disabled>
+                                        <label for="first-name-column">{% trans "Precio" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                {% if user.tipo_usuario_id == 2 %}
+                                {% if orden.total_taller %}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled {% if user.pais.decimales %} value="{{ orden.total_taller }}" {% else %} value="{{ orden.total_taller|floatformat:'0' }}" {% endif %}>
+                                        <label for="first-name-column">{% trans "Precio" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                {% if item.secuencia %}
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input class="form-control" disabled value="{{ item.secuencia }}">
+                                        <label
+                                            for="email-id-column">{% trans "Solicitud" %}</label>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 timline-card">
+                            <ul class="widget-timeline">
+                                <li class="timeline-items timeline-icon-success active">
+                                    <div class="row timeline-time"><p class="font-small-1">{{ orden.fecha_creacion|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p class="font-small-2 text-success"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bxs-add-to-queue"></i>
+                                    </span>{% trans "Ingresada" %}</p></h6>
+                                </li>
+                                {% if orden.env_material %}
+                                <li id="li_mat_enviado" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_mat_enviado" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_envio_mat|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title">
+                                        <p id="txt_mat_enviado" class="text-secondary font-small-2">
+                                            <span class="fonticon-wrap mr-1">
+                                            <i class="bx bx-truck"></i>
+                                            </span>{% trans "Mat. enviado" %}
+                                        </p>
+                                    </h6>
+                                </li>
+                                {% endif %}
+                                {% if not orden.estado_id == 18 %}
+                                {% if not orden.externa %}
+                                <li id="li_proceso" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_proceso" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_recibe_mat|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_proceso" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bx-time"></i>
+                                    </span>{% trans "En proceso" %}</p></h6>
+                                </li>
+                                <li id="li_trab_fin" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_trab_fin" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_fin_trabajo|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_trab_finalizado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bxs-purchase-tag"></i>
+                                    </span>{% trans "Trab. fin" %}</p></h6>
+                                </li>
+                                <li id="li_prod_enviado" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_prod_enviado" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_envio_prod|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_prod_enviado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bx-truck"></i>
+                                    </span>{% trans "Prod. enviado" %}</p></h6>
+                                </li>
+                                {% endif %}
+                                {% if not orden.estado_id == 11 %}
+                                <li id="li_prod_recibido" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_prod_recibido" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_recibe_prod|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_prod_recibido" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bxs-package"></i>
+                                    </span>{% trans "Prod. recibido" %}</p></h6>
+                                </li>
+                                <li id="li_finalizado" class="timeline-items timeline-icon-secondary active">
+                                    <div id="fec_finalizado" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_venta|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_finalizado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bxs-cart-alt"></i>
+                                    </span>{% trans "Finalizada" %}</p></h6>
+                                </li>
+                                {% endif %}
+                                {% endif %}
+                                {% if orden.estado_id == 18 %}
+                                <li class="timeline-items timeline-icon-danger active">
+                                    <div class="row timeline-time"><p class="font-small-1">{{ orden.fecha_anulacion|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_anulado" class="font-small-2 text-danger"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bx-trash"></i>
+                                    </span>{% trans "Anulada" %}</p></h6>
+                                </li>
+                                {% endif %}
+                                {% if orden.estado_id == 11 %}
+                                <li class="timeline-items timeline-icon-danger active">
+                                    <div class="row timeline-time"><p class="font-small-1">{{ orden.fecha_modificacion|date:"d/m/y H:i" }}</p></div>
+                                    <h6 class="timeline-title"><p id="txt_devuelto" class="font-small-2 text-danger"><span class="fonticon-wrap mr-1">
+                                            <i class="bx bx-rotate-left"></i>
+                                    </span>{% trans "Devuelta" %}</p></h6>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row" id="id_adicionales">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_ads">
+                                <div class="card collapse-header">
+                                    <div id="heading_ads" class="card-header" data-toggle="collapse" data-target="#accordion_ads" aria-expanded="false" aria-controls="accordion_ads" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-ruler align-middle"></i>
+                                            <span class="align-middle">{% trans "Adicionales" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_ads" role="tabpanel" data-parent="#accordionWrapa_ads" aria-labelledby="heading_ads" class="collapse">
+                                        <!-- <div class="card-content">
+                                            <div class="card-body"> -->
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="table-responsive">
+                                                            <table id="id_lista_adicionales" class="table table-striped table-hover">
+                                                                <thead>
+                                                                    <th>{% trans "Descripción" %}</th>
+                                                                    <th>{% trans "Precio" %}</th>
+                                                                    <th>{% trans "Cantidad" %}</th>
+                                                                    <th></th>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!-- </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if imagenes_orden_terminada %}
+                    <div class="row" id="id_documentos">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                                <div class="card collapse-header">
+                                    <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_doc" aria-expanded="false" aria-controls="accordion_doc" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-ruler align-middle"></i>
+                                            <span class="align-middle">{% trans "Imágenes órden terminada" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_doc" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="swiper-centered-slides swiper-container p-1">
+                                                        <div class="swiper-wrapper">
+                                                            {% for imagen in imagenes_orden_terminada %}
+                                                            <div class="swiper-slide rounded swiper-shadow"> 
+                                                                <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                                                                <!-- <i class="bx bxl-google font-large-1"></i> -->
+                                                                <!-- <div class="swiper-text pt-md-1 pt-sm-50">Getting Started</div> -->
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <!-- Add Arrows -->
+                                                        <div class="swiper-button-next"></div>
+                                                        <div class="swiper-button-prev"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if orden.precio_final_venta %}
+                    <div class="row" id="id_documentos">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                                <div class="card collapse-header">
+                                    <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_costos" aria-expanded="false" aria-controls="accordion_costos" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-ruler align-middle"></i>
+                                            <span class="align-middle">{% trans "Detalle de costos" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_costos" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-6 mt-75">
+                                                        <p class="text-primary"><b>{% trans "Valores taller" %}</b></p>
+                                                        {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                        <p class="text-success"><b>{% trans "Valores joyería" %}</b></p>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="col-md-8 col-6 d-flex justify-content-end mt-75">
+                                                        <div class="invoice-subtotal">
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Materia prima" %}</span>
+                                                                <span id="val_mat_prima_ta" class="text-primary invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Mano de obra" %}</span>
+                                                                <span id="val_man_obra_ta" class="text-primary invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Rubros (fijo)" %}</span>
+                                                                <span id="val_rubros_ta" class="text-primary invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                                <span id="val_impuestos_ta" class="text-primary invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Total taller" %}</span>
+                                                                <span id="val_total_ta" class="text-primary invoice-value"></span>
+                                                            </div>
+                                                            {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                            <hr>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Costo materia prima" %}</span>
+                                                                <span id="val_mat_prima_op" class="text-success invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Utilidad" %}</span>
+                                                                <span id="val_util_op" class="text-success invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Subtotal" %}</span>
+                                                                <span id="val_subtotal_op" class="text-success invoice-value"></span>
+                                                            </div>
+                                                            <div class="invoice-calc d-flex justify-content-between">
+                                                                <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                                <span id="val_impuestos_op" class="text-success invoice-value"></span>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% endif %}
+
+                    {% if orden.comp_envio_op or orden.comp_envio_ta or orden.factura_vta %}
+                    {% if perms.trn.ver_comp_envio_op or perms.trn.ver_comp_envio_ta or perms.trn.ver_factura %}
+                    <div class="row" id="id_documentos">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                                <div class="card collapse-header">
+                                    <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_doc" aria-expanded="false" aria-controls="accordion_doc" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-ruler align-middle"></i>
+                                            <span class="align-middle">{% trans "Documentos" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_doc" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    {% if orden.anticipo_fabricacion %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.anticipo_fabricacion.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Anticipo de fabricación" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_creacion|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.factura_taller %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.factura_taller.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura taller" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_recibe_prod|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.comp_envio_op and perms.trn.ver_comp_envio_op %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.comp_envio_op.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de material" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_envio_mat|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.comp_envio_ta and perms.trn.ver_comp_envio_ta %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.comp_envio_ta.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de producto" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_envio_prod|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.factura_vta and perms.trn.ver_factura %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.factura_vta.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura de venta" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.cta_por_pagar %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.cta_por_pagar.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Cuenta por pagar" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if orden.orden_compra %}
+                                                    <div class="col-md-3 col-6">
+                                                        <a target="_blank" href="{{ orden.orden_compra.url }}">
+                                                            <div class="card border shadow-none mb-1 app-file-info">
+                                                                <div class="card-content">
+                                                                    <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                        <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                                    </div>
+                                                                    <div class="card-body p-50">
+                                                                        <div class="app-file-details">
+                                                                            <div class="app-file-name font-size-small font-weight-bold">{% trans "Órden de compra" %}</div>
+                                                                            <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="divider" id="id_div_frmEnvioMaterial">
+                        <div class="divider-text">{% trans "Enviar material" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmEnvioMaterial" name="EnvioMaterial" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div class="col-md-12 col-12">
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_gramos_enviados" lang="en-150" min="0.00" step="0.01" type="number" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Gramos enviados" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_comp_envio_op" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Comprobante de envío" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                                </button>
+                                                <button type="button" onclick="envioMaterial()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmRecibeMaterial">
+                        <div class="divider-text">{% trans "Recibir material" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmRecibeMaterial" name="RecibeMaterial" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_gramos_recibidos" lang="en-150" min="0.00" step="0.01" type="number" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Gramos recibidos" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="recibeMaterial()" class="btn btn-primary">
+                                            {% trans "Listo" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmAnulaOrden">
+                        <div class="divider-text">{% trans "Anular órden" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmAnulaOrden" name="AnulaOrden" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8 col-12">
+                                    <div class="form-label-group">
+                                        <textarea class="form-control" name="anular_observacion" id="id_anular_observacion" rows="3"></textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="anularOrden()" class="btn btn-primary">
+                                            {% trans "Listo" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmFinalizarTrabajo">
+                        <div class="divider-text">{% trans "Finalizar trabajo" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmFinalizarTrabajo" name="FinalizarTrabajo" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div id="id_img_lista" class="row">
+                                        <div id="elemento_1" class="col-md-3 col-12 col-sm-12 item_img">
+                                            <img id="id_img_tmp_1" name="imagentmp" src="{% static 'base/img/icons/nofoto2.png' %}"  width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%">
+                                            <input onchange="seleccionarImagen('id_img_tmp_1','id_imagen_1')" type="file" name="imagen" id="id_imagen_1" class="inputimage center pointer" width="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-12">
+                                    <button id="btnAgregarImagen" type="button" class="btn btn-icon rounded-circle btn-success glow mr-1 mb-1" style="padding: 6px 10px;" onclick="agregarImg()">
+                                        <i class="bx bxs-image-add fa-2x sr-icons"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_peso_final" step="0.01" type="number" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Peso Final" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button id="btnGuardar" type="button" onclick="ValidarFinalizarTrabajo()" class="btn btn-primary mr-1 mb-1">{% trans " Listo" %}</button>
+                                    <button class="btn btn-light-secondary mr-1 mb-1" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                    </button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmEnvioProducto">
+                        <div class="divider-text">{% trans "Enviar producto" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmEnvioProducto" name="EnvioProducto" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_comp_envio_ta" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Comprobante de envío" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_costo_envio" step="0.01" type="number" class="form-control">
+                                        <label
+                                            id="lbl_costo_envio" for="email-id-column">{% trans "Costo envío" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="enviarProducto()" class="btn btn-primary">
+                                            {% trans "Listo" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmRecibeProducto">
+                        <div class="divider-text">{% trans "Recibir producto" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmRecibeProducto" name="RecibeProducto" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_factura_taller" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Factura taller" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="recibirProducto()" class="btn btn-primary">
+                                            {% trans "Listo" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmCargarDocumentosOp">
+                        <div class="divider-text">{% trans "Cargar documentos" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmCargarDocumentosOp" name="CargarDocumentosOp" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    {% if user.grupo_empresarial.cta_por_pagar %}
+                                    <div class="form-label-group">
+                                        <input id="id_cta_por_pagar" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Cuenta por pagar" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    {% if user.grupo_empresarial.orden_compra %}
+                                    <div class="form-label-group">
+                                        <input id="id_orden_compra" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Órden de compra" %}</label>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="cargarDocumentosOp()" class="btn btn-primary">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Listo" %}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmCargarDocumentosTa">
+                        <div class="divider-text">{% trans "Cargar documentos" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmCargarDocumentosTa" name="CargarDocumentosTa" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-8 col-12">
+                                        <div class="form-label-group">
+                                            <input id="id_factura_taller" type="file" class="form-control">
+                                            <label
+                                                for="factura_taller">{% trans "Factura taller" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-label-group">
+                                            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                            </button>
+                                            <button type="button" onclick="cargarDocumentosTa()" class="btn btn-primary">
+                                                {% trans "Listo" %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmDevolucionProducto">
+                        <div class="divider-text">{% trans "Devolver producto" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmDevolucionProducto" name="DevolucionProducto" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-8 col-12">
+                                    <div class="form-label-group">
+                                        <textarea class="form-control" name="devolver_observacion" id="id_devolver_observacion" rows="3"></textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="devolverProducto()" class="btn btn-primary">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Listo" %}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmVentaOrden">
+                        <div class="divider-text">{% trans "Finalizar órden" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmVentaOrden" name="VentaOrden" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_factura_vta" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Factura de venta" %}</label>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_cta_por_pagar" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Cuenta por pagar" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_orden_compra" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Órden de compra" %}</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-5 col-12">
+                                    <div class="form-label-group">
+                                        <textarea class="form-control" name="obs_venta" id="id_obs_venta" rows="2"></textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="finalizarOrden()" class="btn btn-primary">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Listo" %}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divider" id="id_div_frmFinalizarSinVenta">
+                        <div class="divider-text">{% trans "Finalizar sin venta" %}</div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <form method="POST" id="frmFinalizarSinVenta" name="FinalizarSinVenta" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <!-- <div class="col-md-4 col-12">
+                                    <div class="form-label-group">
+                                        <input id="id_cta_por_pagar" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Cuenta por pagar" %}</label>
+                                    </div>
+                                    <div class="form-label-group">
+                                        <input id="id_orden_compra" type="file" class="form-control">
+                                        <label
+                                            for="email-id-column">{% trans "Órden de compra" %}</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-9 col-12">
+                                    <div class="form-label-group">
+                                        <textarea class="form-control" name="sin_venta_observacion" id="id_sin_venta_observacion" rows="3"></textarea>
+                                        <label
+                                            for="email-id-column">{% trans "Observación" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-label-group">
+                                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                        </button>
+                                        <button type="button" onclick="finalizarSinVenta()" class="btn btn-primary">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{% trans "Listo" %}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+            <button id="btnCancelar" type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            {% if user.id == orden.usuario_id or user.taller_id == orden.taller_id %}
+                {% if orden.estado_id == 12 and user.tipo_usuario_id == 3 %}
+                <button id="btnEntregaMaterial" type="button" onclick="mostrarFormulario('frmEnvioMaterial', 'btnEntregaMaterial', 'btnEntregaMaterial')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Entrega de material" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 13 and user.tipo_usuario_id == 2 %}
+                <button id="btnRecibeMaterial" type="button" onclick="mostrarFormulario('frmRecibeMaterial', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Recibir material" %}</span>
+                </button>
+                <button id="btnAnulaOrden" type="button" onclick="mostrarFormulario('frmAnulaOrden', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Anular Órden" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 20 and user.tipo_usuario_id == 2 %}
+                <button id="btnIniciarTrabajo" type="button" onclick="iniciarTrabajo(14)" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Iniciar Trabajo" %}</span>
+                </button>
+                <button id="btnAnulaOrden" type="button" onclick="mostrarFormulario('frmAnulaOrden', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Anular Órden" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 14 and user.tipo_usuario_id == 2 %}
+                <button id="btnFinalizaTrabajo" type="button" onclick="mostrarFormulario('frmFinalizarTrabajo', 'btnFinalizaTrabajo', 'btnFinalizaTrabajo')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Finalizar trabajo" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 15 and user.tipo_usuario_id == 2 %}
+                <button id="btnEnviaProducto" type="button" onclick="mostrarFormulario('frmEnvioProducto', 'btnEnviaProducto', 'btnEnviaProducto')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Enviar producto" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 16 and user.tipo_usuario_id == 3 %}
+                <button id="btnRecibeProducto" type="button" onclick="recibirProducto()" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Recibir producto" %}</span>
+                </button>
+                <button id="btnDevolverProducto" type="button" onclick="mostrarFormulario('frmDevolucionProducto', 'btnRecibeProducto', 'btnDevolverProducto')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Devolver producto" %}</span>
+                </button>
+                {% endif %}
+                {% if orden.estado_id == 17 and user.tipo_usuario_id == 3 %}
+                {% if user.grupo_empresarial.cta_por_pagar or user.grupo_empresarial.orden_compra %}
+                    {% if user.grupo_empresarial.cta_por_pagar and not orden.cta_por_pagar %}
+                    <button id="btnCargaDocOp" type="button" onclick="mostrarFormulario('frmCargarDocumentosOp', 'btnCargaDocOp', 'btnCargaDocOp')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-receipt d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Cargar documentos" %}</span>
+                    </button>
+                    {% else %}
+                        {% if user.grupo_empresarial.orden_compra and not orden.orden_compra %}
+                        <button id="btnCargaFactPo" type="button" onclick="mostrarFormulario('frmCargarDocumentosOp', 'btnCargaDocOp', 'btnCargaDocOp')" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-receipt d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Cargar documentos" %}</span>
+                        </button>
+                        {% else %}
+                        <button id="btnVentaOrden" type="button" onclick="mostrarFormulario('frmVentaOrden', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-receipt d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Producto vendido" %}</span>
+                        </button>
+                        <button id="btnFinalizaOrden" type="button" onclick="mostrarFormulario('frmFinalizarSinVenta', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-shopping-bag d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Producto no vendido" %}</span>
+                        </button>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                <button id="btnVentaOrden" type="button" onclick="mostrarFormulario('frmVentaOrden', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-receipt d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Producto vendido" %}</span>
+                </button>
+                <button id="btnFinalizaOrden" type="button" onclick="mostrarFormulario('frmFinalizarSinVenta', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-shopping-bag d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Producto no vendido" %}</span>
+                </button>
+                {% endif %}
+                {% endif %}
+                {% if orden.estado_id == 17 and user.tipo_usuario_id == 2 %}
+                {% if orden.usuario.grupo_empresarial.factura_taller and not orden.factura_taller %}
+                <button id="btnCargaFactTa" type="button" onclick="mostrarFormulario('frmCargarDocumentosTa', 'btnCargaFactTa', 'btnCargaFactTa')" name="aceptar" class="btn btn-primary ml-1">
+                    <i class="bx bx-receipt d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cargar factura" %}</span>
+                </button>
+                {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-md-12 col-12">
+                    <div id="carousel-imagenes" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            {% for imagen in imagenes %}
+                            <li data-target="#carousel-imagenes" data-slide-to="0"></li>
+                            {% endfor %}
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            {% for imagen in imagenes %}
+                            <div class="carousel-item">
+                                <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-imagenes" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-imagenes" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<script>
+    var decimales = '{{ user.pais.decimales }}';
+    var simbolo_moneda = '{{ user.pais.simbolo_moneda }}';
+    var precio_base_total_ta = parseFloat('{{ orden.precio_base_total_ta }}'.replace(/,/, '.'));
+    var precio_fabricacion_total_ta = parseFloat('{{ orden.precio_fabricacion_total }}'.replace(/,/, '.'));
+    var total_rubros = parseFloat('{{ orden.costo_total_rubros }}'.replace(/,/, '.'));
+    var impuestos_taller = parseFloat('{{ orden.impuestos_taller }}'.replace(/,/, '.'));
+    var total_taller = parseFloat('{{ orden.total_taller }}'.replace(/,/, '.'));
+    var costo_base_total_op = parseFloat('{{ orden.costo_base_total_op }}'.replace(/,/, '.'));
+    var utilidad_base_op = parseFloat('{{ orden.utilidad_base_op }}'.replace(/,/, '.'));
+    var utilidad_fabricacion_op = parseFloat('{{ orden.utilidad_fabricacion_op }}'.replace(/,/, '.'));
+    var subtotal_solicitud = parseFloat('{{ orden.subtotal_orden }}'.replace(/,/, '.'));
+    var impuestos_solicitud = parseFloat('{{ orden.impuestos_orden }}'.replace(/,/, '.'));
+    // valores extras
+    var total_adicionals=0;
+    var total_piedrass=0;
+
+    $(document).ready(function () {
+        $('.loader').hide();
+
+        $('input').css('background-color','#FBFBFB');
+        $('textarea').css('background-color','#FBFBFB');
+        $('div.carousel-item:first').addClass('active');
+        $('div > div.carousel-item:first', '#carousel-imagenes').addClass('active');
+
+        precio_final = '{{ orden.precio_final_venta }}';
+        precio_final = precio_final.replace(/,/, '.');
+        precio_final = parseFloat(precio_final);
+        costo_envio = '{{ orden.costo_envio }}';
+        costo_envio = costo_envio.replace(/,/, '.');
+        costo_envio = parseFloat(costo_envio);
+        precio_final = precio_final + costo_envio;
+
+        if(decimales === 'True'){
+            precio_final = precio_final.toFixed(2);
+        } else {
+            precio_final = Math.round(precio_final);
+        }
+
+        $('#id_precio_final').val(precio_final);
+
+        llenarDetallesCostos();
+
+        envio_incluido = '{{ orden.usuario.grupo_empresarial.envio_incluido }}';
+        if(envio_incluido === 'True'){
+            $('#lbl_costo_envio').hide();
+            $('#id_costo_envio').hide();
+            $('#id_costo_envio').val(0);
+        }
+
+        adicionales_lista = {{ adicionales_lista|safe }};
+
+        if( adicionales_lista.length === 0 ){
+            $('#id_adicionales').hide();
+            $('#id_lista_adicionales').hide();
+        }
+
+        tipo_usuario = parseInt('{{ user.tipo_usuario_id }}');
+
+        adicionales_lista.forEach(adicional => {
+            cant = parseFloat(adicional[3]);
+            if(tipo_usuario === 2){
+                precio = parseFloat(adicional[2]);
+            } else {
+                precio = parseFloat(adicional[4]);
+            }
+            subtotal = cant * precio;
+            subtotal = parseFloat(Math.round(subtotal*100)/100).toFixed(2);
+            var tr = '<tr><td>'+ adicional[1] +'</td><td>'+ precio +'</td><td>'+ adicional[3] +'</td><td>'+ subtotal +'</td></tr>'
+            $('#id_lista_adicionales').append(tr);
+        });
+
+        $('#frmEnvioMaterial').hide();
+        $('#frmRecibeMaterial').hide();
+        $('#frmAnulaOrden').hide();
+        $('#frmEnvioProducto').hide();
+        $('#frmDevolucionProducto').hide();
+        $('#frmVentaOrden').hide();
+        $('#frmFinalizarTrabajo').hide();
+        $('#frmFinalizarSinVenta').hide()
+        $('#frmRecibeProducto').hide();
+        $('#frmCargarDocumentosTa').hide();
+        $('#frmCargarDocumentosOp').hide();
+        $('#id_div_frmEnvioMaterial').hide();
+        $('#id_div_frmRecibeMaterial').hide();
+        $('#id_div_frmAnulaOrden').hide();
+        $('#id_div_frmFinalizarTrabajo').hide();
+        $('#id_div_frmEnvioProducto').hide();
+        $('#id_div_frmDevolucionProducto').hide();
+        $('#id_div_frmVentaOrden').hide();
+        $('#id_div_frmFinalizarSinVenta').hide();
+        $('#id_div_frmRecibeProducto').hide();
+        $('#id_div_frmCargarDocumentosOp').hide();
+        $('#id_div_frmCargarDocumentosTa').hide();
+
+        $('#fec_mat_enviado').hide();
+        $('#fec_proceso').hide();
+        $('#fec_trab_fin').hide();
+        $('#fec_prod_enviado').hide();
+        $('#fec_prod_recibido').hide();
+        $('#fec_finalizado').hide();
+
+        var estado = {{ orden.estado_id }};
+        if(estado === 13 || estado === 14 || estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // material enviado
+            $('#txt_mat_enviado').removeClass("text-secondary");
+            $('#txt_mat_enviado').addClass("text-success");
+            $('#li_mat_enviado').removeClass("timeline-icon-secondary");
+            $('#li_mat_enviado').addClass("timeline-icon-success");
+            $('#fec_mat_enviado').show();
+        }
+        if(estado === 14 || estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // en proceso
+            $('#txt_proceso').removeClass("text-secondary");
+            $('#txt_proceso').addClass("text-success");
+            $('#li_proceso').removeClass("timeline-icon-secondary");
+            $('#li_proceso').addClass("timeline-icon-success");
+            $('#fec_proceso').show();
+        }
+        if(estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // trab finalizado
+            $('#txt_trab_finalizado').removeClass("text-secondary");
+            $('#txt_trab_finalizado').addClass("text-success");
+            $('#li_trab_fin').removeClass("timeline-icon-secondary");
+            $('#li_trab_fin').addClass("timeline-icon-success");
+            $('#fec_trab_fin').show();
+            
+        }
+        if(estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // prod enviado
+            $('#txt_prod_enviado').removeClass("text-secondary");
+            $('#txt_prod_enviado').addClass("text-success");
+            $('#li_prod_enviado').removeClass("timeline-icon-secondary");
+            $('#li_prod_enviado').addClass("timeline-icon-success");
+            $('#fec_prod_enviado').show();
+            
+        }
+        if(estado === 17 || estado === 19){
+            // prod recibido
+            $('#txt_prod_recibido').removeClass("text-secondary");
+            $('#txt_prod_recibido').addClass("text-success");
+            $('#li_prod_recibido').removeClass("timeline-icon-secondary");
+            $('#li_prod_recibido').addClass("timeline-icon-success");
+            $('#fec_prod_recibido').show();
+            
+        }
+        if(estado === 19){
+            // finalizado
+            $('#txt_finalizado').removeClass("text-secondary");
+            $('#txt_finalizado').addClass("text-success");
+            $('#li_finalizado').removeClass("timeline-icon-secondary");
+            $('#li_finalizado').addClass("timeline-icon-success");
+            $('#fec_finalizado').show();
+            
+        }
+
+    });
+
+    function mostrarFormulario(formulario, boton1, boton2){
+        $('#'+boton1).hide();
+        $('#'+boton2).hide();
+        $('#btnCancelar').hide();
+        $('#frmEnvioMaterial').hide();
+        $('#frmRecibeMaterial').hide();
+        $('#frmAnulaOrden').hide();
+        $('#frmEnvioProducto').hide();
+        $('#frmDevolucionProducto').hide();
+        $('#frmVentaOrden').hide();
+        $('#frmFinalizarTrabajo').hide();
+        $('#frmFinalizarSinVenta').hide();
+        $('#frmRecibeProducto').hide();
+        $('#id_div_frmEnvioMaterial').hide();
+        $('#id_div_frmRecibeMaterial').hide();
+        $('#id_div_frmAnulaOrden').hide();
+        $('#id_div_frmFinalizarTrabajo').hide();
+        $('#id_div_frmEnvioProducto').hide();
+        $('#id_div_frmDevolucionProducto').hide();
+        $('#id_div_frmVentaOrden').hide();
+        $('#id_div_frmFinalizarSinVenta').hide();
+        $('#id_div_frmRecibeProducto').hide();
+        $('#id_div_'+formulario).show();
+        $('#'+formulario).show();
+    }
+
+    function validarArchivo(elemento){
+        var peso_max_img = parseInt('{{ peso_max_arc.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_arc.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo con extensión no válida" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    $('#id_comp_envio_op').on('change', function(){
+        elemento = 'id_comp_envio_op';
+        validarArchivo(elemento);
+    });
+
+    $('#id_comp_envio_ta').on('change', function(){
+        elemento = 'id_comp_envio_ta';
+        validarArchivo(elemento);
+    });
+
+    $('#id_factura_vta').on('change', function(){
+        elemento = 'id_factura_vta';
+        validarArchivo(elemento);
+    });
+
+    $('#id_factura_taller').on('change', function(){
+        elemento = 'id_factura_taller';
+        validarArchivo(elemento);
+    });
+
+    $('#id_cta_por_pagar').on('change', function(){
+        elemento = 'id_cta_por_pagar';
+        validarArchivo(elemento);
+    });
+
+    $('#id_orden_compra').on('change', function(){
+        elemento = 'id_orden_compra';
+        validarArchivo(elemento);
+    });
+
+    function envioMaterial(){
+
+        if($('#id_gramos_enviados').val() === ''){
+            mensaje('{% trans "Ingrese los gramos enviados" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmEnvioMaterial');
+        var data = new FormData(form);
+        data.append('gramos_enviados', $('#id_gramos_enviados').val());
+
+        documentos_obligatorios = '{{ user.pais.documentos_obligatorios }}';
+        
+        if(documentos_obligatorios === 'True'){
+            if($('#id_comp_envio_op').val() === ''){
+                mensaje('{% trans "Por favor cargar un comprobante" %}', 'red');
+                return;
+            }
+        }
+
+        if($('#id_comp_envio_op').val() !== ''){
+            data.append('comp_envio_op', $('#id_comp_envio_op')[0].files[0]);
+        }
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:envio_material' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            console.log('correcto');
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+    }
+
+    function recibeMaterial(){
+
+        if($('#id_gramos_recibidos').val() === ''){
+            mensaje('{% trans "Ingrese los gramos recibidos" %}', 'red');
+            return;
+        }
+
+        var gramos_enviados = '{{ orden.gramos_enviados }}';
+        gramos_enviados = gramos_enviados.replace(/,/, '.');
+        gramos_enviados = parseFloat(gramos_enviados);
+
+        var gramos_recibidos = $('#id_gramos_recibidos').val();
+        gramos_recibidos = gramos_recibidos.replace(/,/, '.');
+        gramos_recibidos = parseFloat(gramos_recibidos);
+        dif_gramos = gramos_recibidos - gramos_enviados;
+        dif_gramos = Math.round(dif_gramos * 100) / 100;
+
+        if(dif_gramos > 0){
+            mensaje = '{% trans "Existe una diferencia de " %}' + '<strong style="color: #5cb85c;">' + dif_gramos + '</strong>' +'{% trans " gramos" %}'; 
+        } else {
+            if(dif_gramos === 0){
+                mensaje = '{% trans "Existe una diferencia de " %}' + '<strong style="color: #0275d8;">' + dif_gramos + '</strong>' +'{% trans " gramos" %}';
+            } else {
+                mensaje = '{% trans "Existe una diferencia de " %}' + '<strong style="color: #d9534f;">' + dif_gramos + '</strong>' +'{% trans " gramos" %}';
+            }
+        }
+
+        $.confirm({
+            title: '{% trans "Comparación de peso de material" %}',
+            content: mensaje,
+            theme: 'material',
+            type: 'orange',
+            buttons: {
+                confirm: {
+                    text: '{% trans "Continuar" %}',
+                    action: function() {
+                        form = document.getElementById('frmRecibeMaterial');
+                        var data = new FormData(form);
+                        data.append('gramos_recibidos', $('#id_gramos_recibidos').val());
+
+                        orden_id = '{{ orden.id_orden }}';
+
+                        var url_modificada = "{% url 'trn:recibe_material' 0 %}";
+                        url = url_modificada.replace(/0/, orden_id);
+
+                        $.ajax({
+                            url: url,
+                            data: data,
+                            type: "POST",
+                            contentType: false,
+                            processData: false,
+                            beforeSend: function(){
+                                $('.loader').show();
+                            },
+                            complete: function(){
+                                $('.loader').hide();
+                            },
+                            success: function(response){
+                                // console.log('correcto');
+                                location.reload(true);
+                            },
+                            error: function(jqXHR, textStatus, errorThrow){
+                                console.log(textStatus, errorThrow);
+                                mensaje(errorThrow, 'red');
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '{% trans "Cancelar" %}',
+                    action: function() {
+                        return;
+                    }
+                },
+            }
+        });
+    }
+
+    function anularOrden(){
+
+        if($('#id_anular_observacion').val() === ''){
+            mensaje('{% trans "Ingrese una observación" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmAnulaOrden');
+        var data = new FormData(form);
+        data.append('obs_recepcion_mat', $('#id_anular_observacion').val());
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:anular_orden' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            console.log('correcto');
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+    }
+
+    function iniciarTrabajo(estado){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+        dato = {
+        'estado': estado
+        }
+        var datos = JSON.stringify(dato);
+
+        var url_modificada = "{% url 'trn:ordenes_detalle' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response) {
+                location.reload(true);
+                window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    function ValidarFinalizarTrabajo(){
+        contador = 0;
+        $('input.inputimage').each(function (){
+            if($(this).val() === ''){
+                contador += 1;
+            }
+        });
+        if(contador > 0){
+            mensaje('{% trans "Falta al menos una imagen por cargar" %}', 'orange');
+            return false;
+        } else {
+            finalizarTrabajo();
+        }
+    }
+
+    function finalizarTrabajo(){
+
+        if($('#id_peso_final').val() === ''){
+            mensaje('{% trans "Ingrese peso final" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmFinalizarTrabajo');
+        var data = new FormData(form);
+        data.append('peso_final', $('#id_peso_final').val());
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:finalizar_trabajo' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+    }
+
+    function enviarProducto(){  
+
+        form = document.getElementById('frmEnvioProducto');
+        var data = new FormData(form);
+
+        documentos_obligatorios = '{{ user.pais.documentos_obligatorios }}';
+        if(documentos_obligatorios === 'True'){
+            if($('#id_comp_envio_ta').val() === ''){
+                mensaje('{% trans "Por favor cargar un comprobante" %}', 'red');
+                return;
+            }
+        }
+
+        if($('#id_comp_envio_ta').val() !== ''){
+            data.append('comp_envio_ta', $('#id_comp_envio_ta')[0].files[0]);
+        }
+
+        if($('#id_costo_envio').val() === ''){
+            mensaje('{% trans "Ingrese costo de envío" %}', 'red');
+            return;
+        }
+
+        data.append('costo_envio', $('#id_costo_envio').val());
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:enviar_producto' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            console.log('correcto');
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+    }
+
+    function recibirProducto(){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+
+        form = document.getElementById('frmRecibeProducto');
+        var data = new FormData(form);
+
+        data.append('estado', 17);
+
+        var url_modificada = "{% url 'trn:recibir_producto' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.confirm({
+            title: '{% trans "Aviso" %}',
+            content: '{% trans "Se notificará al cliente que ya puede retirar su pedido" %}',
+            theme: 'material',
+            type: 'orange',
+            buttons: {
+                confirm: {
+                    text: '{% trans "Continuar" %}',
+                    action: function() {
+                        $.ajax({
+                            headers: {
+                                "X-CSRFToken": token
+                            },
+                            url: url,
+                            type: "POST",
+                            data: data,
+                            contentType: false,
+                            processData: false,
+                            beforeSend: function(){
+                                $('.loader').show();
+                            },
+                            complete: function(){
+                                $('.loader').hide();
+                            },
+                            success: function(response) {
+                                location.reload(true);
+                                window.location = template;
+                            },
+                            error: function(jqXHR, textStatus, errorThrow) {
+                                console.log(textStatus, errorThrow);
+                                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '{% trans "Cancelar" %}',
+                    action: function() {
+                        return;
+                    }
+                },
+            }
+        });
+    }
+
+    function cargarDocumentosTa(){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+        form = document.getElementById('frmCargarDocumentosTa');
+        var data = new FormData(form); 
+        cargarFacturaTaller = '{{ user.grupo_empresarial.factura_taller }}';
+        if(cargarFacturaTaller === 'True'){
+            if($('#id_factura_taller').val() === ''){
+                mensaje('{% trans "Por favor cargar una factura" %}', 'red');
+                return;
+            }
+        }
+
+        if($('#id_factura_taller').val() !== ''){
+            data.append('factura_taller', $('#id_factura_taller')[0].files[0]);
+        }
+
+        var url_modificada = "{% url 'trn:cargar_doc_taller' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: data,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response) {
+                location.reload(true);
+                window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    function cargarDocumentosOp(){
+
+        cargar_cta_por_pagar = '{{ user.grupo_empresarial.cta_por_pagar }}';
+        if(cargar_cta_por_pagar === 'True'){
+            if($('#id_cta_por_pagar').val() === ''){
+                mensaje('{% trans "Por favor cargar cuenta por pagar" %}', 'red');
+                return;
+            }
+        }
+
+        cargar_orden_compra = '{{ user.grupo_empresarial.orden_compra }}';
+        if(cargar_orden_compra === 'True'){
+            if($('#id_orden_compra').val() === ''){
+                mensaje('{% trans "Por favor cargar orden de compra" %}', 'red');
+                return;
+            }
+        }
+
+        form = document.getElementById('frmCargarDocumentosOp');
+        var data = new FormData(form);
+
+        if($('#id_cta_por_pagar').val() !== ''){
+            data.append('cta_por_pagar', $('#id_cta_por_pagar')[0].files[0]);
+        }
+
+        if($('#id_orden_compra').val() !== ''){
+            data.append('orden_compra', $('#id_orden_compra')[0].files[0]);
+        }
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:cargar_doc_ope' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                console.log('correcto');
+                location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    function devolverProducto(){
+
+        if($('#id_devolver_observacion').val() === ''){
+            mensaje('{% trans "Ingrese una observación" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmDevolucionProducto');
+        var data = new FormData(form);
+        data.append('obs_recepcion_prod', $('#id_devolver_observacion').val());
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:devolver_producto' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            console.log('correcto');
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+    }
+
+    function finalizarOrden(){
+
+        form = document.getElementById('frmVentaOrden');
+        var data = new FormData(form);
+
+        orden_id = '{{ orden.id_orden }}';
+
+        documentos_obligatorios = '{{ user.pais.documentos_obligatorios }}';
+        if(documentos_obligatorios === 'True'){
+            if($('#id_factura_vta').val() === ''){
+                mensaje('{% trans "Por favor cargar una factura" %}', 'red');
+                return;
+            }
+        }
+
+        if($('#id_factura_vta').val() !== ''){
+            data.append('factura_vta', $('#id_factura_vta')[0].files[0]);
+        }
+
+        data.append('obs_venta', $('#id_obs_venta').val());
+
+        var url = "{% url 'trn:finalizar_orden' 0 %}";
+        url = url.replace(/0/, orden_id);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                // enviarCorreoCliente();
+                location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    function finalizarSinVenta(){
+
+        if($('#id_sin_venta_observacion').val() === ''){
+            mensaje('{% trans "Por favor ingrese una observación" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmFinalizarSinVenta');
+        var data = new FormData(form);
+        data.append('obs_venta', $('#id_sin_venta_observacion').val());
+
+        orden_id = '{{ orden.id_orden }}';
+
+        var url_modificada = "{% url 'trn:finalizar_sin_venta' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                console.log('correcto');
+                location.reload(true);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    function enviarCorreoCliente(){
+
+        form = document.getElementById('frmVentaOrden');
+        var data = new FormData(form);
+        data.append('factura_vta', $('#id_factura_vta')[0].files[0]);
+        data.append('obs_venta', $('#id_obs_venta').val());
+
+        var url = "{% url 'trn:correo_cliente' %}";
+
+        $.ajax({
+        url: url,
+        data: data,
+        type: "GET",
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+            $('.loader').show();
+        },
+        complete: function(){
+            $('.loader').hide();
+        },
+        success: function(response){
+            console.log('correo enviado');
+            location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrow){
+            console.log(textStatus, errorThrow);
+            mensaje(errorThrow, 'red');
+        }
+        });
+
+    }
+
+    $('img.img-fluid').on('click', function(){
+        // src = $(this).attr('src');
+        // carrusel = $('#carousel-example-generic');
+        // console.log(carrusel);
+        // Swal.fire({
+        //     html:
+        //         carrusel,
+        //     showClass: {
+        //         popup: 'animated fadein'
+        //     },
+        //     confirmButtonColor: '#3085d6',
+        //     confirmButtonText: '<i class="bx bx-check"></i>'
+        // });
+        mostrarModal();
+    });
+
+    function mostrarModal(){
+        $('#exampleModalCenter').modal('show');
+    }
+
+    function ocultarModal(){
+        $('#exampleModalCenter').modal('hide');
+    }
+
+    // Carga de imágenes al finalizar trabajo de fabricación
+    function agregarImg(){
+        var url_img_tmp = "{% static 'base/img/icons/nofoto2.png' %}";
+        var div = '<div id="elemento_" class="col-md-3 col-12 col-sm-12 item_img"><img id="id_img_tmp_" name="imagentmp" src="'+url_img_tmp+'" width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%"><input onchange="seleccionarImagen(elemento_,id_img_tmp_)" type="file" name="imagen" id="id_imagen_" class="inputimage center pointer" width="150px"><button onclick="borrardivImg(elemento_)" class="btn btn-icon btn-danger rounded-circle button_img" type="button" data-repeater-delete style="position: absolute; top: 10px; left: 10px;"><i class="bx bx-x"></i></button></div>';
+        $('#id_img_lista').append(div);
+        nombrarElementosImg();
+    }
+
+    function borrardivImg(div){
+        $(div).remove();
+        nombrarElementosImg();
+    }
+
+    function nombrarElementosImg(){
+        cantidad_img = parseInt('{{ cantidad_max_img.valor }}');
+        num = 0;
+        $('div.item_img').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'elemento_'+num);
+            imgs = $(this).find('.imgtmp');
+            img = imgs[0];
+            $(img).removeAttr('id');
+            $(img).attr('id', 'id_img_tmp_'+num);
+            inputs = $(this).find('.inputimage');
+            input = inputs[0];
+            $(input).removeAttr('id');
+            $(input).attr('id', 'id_imagen_'+num);
+            $(input).removeAttr('onchange');
+            var img_tmp = "'" + "id_img_tmp_" + num + "'";
+            var img_input = "'" + "id_imagen_" + num + "'";
+            $(input).attr('onchange', 'seleccionarImagen('+img_tmp+','+img_input+')');
+            buttons = $(this).find('.button_img');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardivImg(elemento_'+num+')');
+        });
+        if(num >= cantidad_img){
+            $('#btnAgregarImagen').hide();
+        } else {
+            $('#btnAgregarImagen').show();
+        }
+    }
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.attr('src', "{% static 'base/img/icons/nofoto2.png' %}");
+            }
+        } else {
+            preview.attr('src', "{% static 'base/img/icons/nofoto2.png' %}");
+        }
+    }
+
+    function llenarDetallesCostos(){
+        var digitos;
+        if(decimales === 'True'){
+            digitos = 2;
+        } else {
+            digitos = 0;
+        }
+
+        $('#val_mat_prima_ta').text(simbolo_moneda + ' ' + precio_base_total_ta.toFixed(digitos));
+        $('#val_man_obra_ta').text(simbolo_moneda + ' ' + precio_fabricacion_total_ta.toFixed(digitos));
+        $('#val_rubros_ta').text(simbolo_moneda + ' ' + total_rubros.toFixed(digitos));
+        $('#val_impuestos_ta').text(simbolo_moneda + ' ' + impuestos_taller.toFixed(digitos));
+        $('#val_total_ta').text(simbolo_moneda + ' ' + total_taller.toFixed(digitos));
+        $('#val_mat_prima_op').text(simbolo_moneda + ' ' + costo_base_total_op.toFixed(digitos));
+        $('#val_util_op').text(simbolo_moneda + ' ' + (utilidad_base_op + utilidad_fabricacion_op).toFixed(digitos));
+        $('#val_subtotal_op').text(simbolo_moneda + ' ' + subtotal_solicitud.toFixed(digitos));
+        $('#val_impuestos_op').text(simbolo_moneda + ' ' + impuestos_solicitud.toFixed(digitos));
+    }
+
+</script>

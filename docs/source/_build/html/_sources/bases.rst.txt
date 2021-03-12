@@ -1,0 +1,12 @@
+****************
+**Módulo Bases**
+****************
+
+Dentro de la carpeta principal del proyecto 
+llamada **sindri** tenemos el archivo de 
+configuración llamado ``celery.py``. 
+Este archivo contiene la configuración 
+necesaria para el funcionamiento de 
+Celery_ dentro del proyecto
+
+

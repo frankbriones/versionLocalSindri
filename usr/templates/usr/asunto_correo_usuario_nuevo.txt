@@ -1,0 +1,2 @@
+{% load i18n %}
+{% trans "Registro de cuenta en " %}{{ site_name }}

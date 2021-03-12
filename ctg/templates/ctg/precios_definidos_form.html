@@ -1,0 +1,270 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Precios definidos" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "Precio definido" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form id="frmPrecio" method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.descripcion }}
+                                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="tipo" id="id_tipo" class="form-control">
+                                                            <option value="0">{% trans "Seleccionar tipo" %}</option>
+                                                            {% for tipo in tipos %}
+                                                            <option value="{{ tipo.id_tipo }}" descripcion="{{ tipo.descripcion }}">{{ tipo.descripcion }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <input type="text" hidden>
+                                                        <label for="last-name-column">{% trans "Tipo de precio" %}</label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div id="divCosto" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_costo" name="costo" class="form-control required" data-type='currency' value=" " step="0.01" required >
+                                                        <label for="first-name-column">{% trans "Costo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divUtilidad" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_prct_utilidad" name="prct_utilidad" class="form-control" data-type='currency' value=" " step="0.01">
+                                                        <label for="first-name-column">{% trans "Porcentaje de utilidad" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divPrecio" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_precio" name="precio" class="form-control" data-type='currency' value=" ">
+                                                        <label for="first-name-column">{% trans "Precio" %}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'ctg:precios_definidos_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                        </div>
+
+
+                                    
+                                        {#{{form.as_p}}#}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    var costo = '{{ obj.costo }}' !== '' ? '{{ obj.costo }}' : 0;
+    var prct_utilidad = '{{ obj.prct_utilidad }}' !== '' ? '{{ obj.prct_utilidad }}' : 0;
+    var precio = '{{ obj.precio }}' !== '' ? '{{ obj.precio }}' : 0;
+    console.log(precio);
+    console.log(costo);
+    console.log(prct_utilidad);
+    $(document).ready(function(){
+        console.log('{{user.pais.separador_decimal}}')
+        if('{{user.pais.separador_decimal}}' === '.'){
+            costo = costo.replace(/,/, '.');
+            prct_utilidad = prct_utilidad.replace(/,/, '.');
+            precio = precio.replace(/,/, '.');
+        }
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "Precio definido ya existe" %}','red');
+        }
+        ocultarElementos();
+
+        if('{{ obj.id_precio }}' !== ''){
+            tipo_precio_descripcion = '{{ obj.tipo.descripcion }}';
+            tipo_precio = parseInt('{{ obj.tipo_id }}');
+            $('#id_tipo').val(tipo_precio);
+            mostrarElementos(tipo_precio_descripcion);
+            
+            $('#id_costo').val((costo));
+            $('#id_prct_utilidad').val((prct_utilidad));
+            $('#id_precio').val((precio));
+
+            formatCurrency($('#id_costo'));
+            formatCurrency($('#id_prct_utilidad'));  
+            formatCurrency($('#id_precio'));
+
+        }
+
+    });
+
+    function ocultarElementos(){
+        $('#divCosto').hide();
+        $('#divUtilidad').hide();
+        $('#divPrecio').hide();
+    }
+
+    function mostrarElementos(descripcion){
+        tipo_usuario = '{{ user.tipo_usuario.descripcion }}';
+        if(descripcion){
+            if(tipo_usuario === 'USUARIO TALLER'){
+                if(descripcion === 'GRAMO_FINAL_VARIABLE'){
+                    $('#divCosto').show();
+                    $('#divUtilidad').show();
+                    $('#divPrecio').hide();
+                } else {
+                    $('#divCosto').show();
+                    $('#divPrecio').show();
+                    $('#divUtilidad').hide();
+                }
+            }
+            if(tipo_usuario === 'USUARIO OPERACIONES'){
+                if(descripcion === 'GRAMO_FINAL_VARIABLE'){
+                    $('#divCosto').hide();
+                    $('#divUtilidad').show();
+                    $('#divPrecio').hide();
+                } else {
+                    $('#divCosto').hide();
+                    $('#divPrecio').show();
+                    $('#divUtilidad').hide();
+                }
+            }
+        } else {
+            ocultarElementos();
+        }
+    }
+
+    $('#id_tipo').on('change', function(){
+        descripcion = $('option:selected', $(this)).attr('descripcion');
+        mostrarElementos(descripcion);
+    });
+
+    function guardar(){
+
+        if($('#id_descripcion').val() === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'red');
+            return;
+        }
+
+        if($('#id_tipo').val() === '0'){
+            mensaje('{% trans "Seleccione un tipo" %}', 'red');
+            return;
+        }
+
+        costo =  Number.isNaN(FormatoDecimal($('#id_costo'))) ? 0 : FormatoDecimal($('#id_costo'));
+        prct_utilidad = Number.isNaN(FormatoDecimal($('#id_prct_utilidad'))) ? 0 : FormatoDecimal($('#id_prct_utilidad'));
+        precio = Number.isNaN(FormatoDecimal($('#id_precio'))) ? 0 : FormatoDecimal($('#id_precio'));
+
+        form = document.getElementById('frmPrecio');
+        var data = new FormData(form);
+        data.append('costo', costo);
+        data.append('prct_utilidad', prct_utilidad);
+        data.append('precio', precio);
+
+        console.log(costo);
+        console.log(precio);
+        console.log(prct_utilidad);
+
+        var id_precio = '{{ obj.id_precio }}';
+        if(id_precio !== ''){
+            var url = "{% url 'ctg:precios_definidos_editar' 0 %}";
+            url = url.replace(/0/, id_precio);
+        } else {
+            var url = "{% url 'ctg:precios_definidos_crear' %}";
+        }
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            // beforeSend: function(){
+            //     $('.loader').show();
+            // },
+            // complete: function(){
+            //     $('.loader').hide();
+            // },
+            
+            contentType: false,
+            processData: false,
+            success: function(response){
+                url = "{% url 'ctg:precios_definidos_lista' %}";
+                location.replace(url);
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                        },
+                    }
+                });
+            }
+        });
+        }
+
+
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }} {{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+  
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Administración" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i
+                                            class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Roles y permisos" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Roles" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-divider">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "rol " %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if item %}
+                                                            src="{{ item.imagen.url }}" {% else %}
+                                                            src="{% static 'base/img/icons/permission-icon.jpg' %}"
+                                                            style="width: 300px;" {% endif %}
+                                                            class="center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.descripcion }}
+                                                                <label
+                                                                    for="id_rol-form">{% trans "Nombre de rol" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if user.tipo_usuario_id != 2 %}
+                                                        <div class="form-group col-md-12 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    {{ form.zonal }}
+                                                                    <label for="id_zonal">{% trans "Es jefe zonal" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'usr:roles_lista' %}"
+                                                        class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "Ya existe un rol con esa descripción" %}','red');
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Roles y permisos" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Roles" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "permisos" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if rol %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "rol " %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="frmRol" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.descripcion }}
+                                                        <label
+                                                            for="id_rol-form">{% trans "Nombre de rol" %}</label>
+                                                    </div>
+                                                </div>
+                                                {% if user.tipo_usuario_id != 2 %}
+                                                <div class="form-group col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            {{ form.zonal }}
+                                                            <label for="id_zonal">{% trans "Es jefe zonal" %}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <h4 class="card-title">{% trans "Permisos" %}</h4>
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <ul id="treeview">
+                                                <li><i class="fa fa-minus"></i>
+                                                    <label>{% trans "Permisos" %}</label>
+                                                    <ul>
+                                                    {% for modulo in modulos %}
+                                                    <li><i class="fa fa-minus"></i>
+                                                        <label for="0"><input type="checkbox" class="checkbox-input" id="0" value="0">
+                                                        {{ modulo.1 }}</label>
+                                                        <ul>
+                                                        {% for contenido in contenidos %}
+                                                        {% if contenido.1 == modulo.0 %}
+                                                        {% if contenido.0 != 'roles' %}
+                                                        <li><i class="fa fa-minus"></i>
+                                                            <label>
+                                                            <input class="hummingbirdNoParent" id="xnode-0-1-1" data-id="custom-0-1-1" type="checkbox" />
+                                                            {{ contenido.0 }}</label>
+                                                            <ul>
+                                                                {% for permiso in permisos_admin %}
+                                                                {% if permiso.permission.content_type.model == contenido.0 %}
+                                                                <li>
+                                                                    <label>
+                                                                    <input class="checkbox-input checkpermiso" id="id_check{{permiso.permission_id}}" value="{{permiso.permission_id}}" type="checkbox" style="background: #5A8DEE;">
+                                                                    {{ permiso.permission.name }}</label>
+                                                                </li>
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </li>
+                                                        {% endif %}
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="button" onclick="guardarRol()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                            <a href="{% url 'usr:roles_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('.loader').hide();
+        $("#treeview").hummingbird();
+
+        permisos_asignados = '{{ permisos_asignados }}';
+        if (permisos_asignados !== 'None'){
+            permisos_asignados = {{ permisos_asignados|safe }};
+            permisos_asignados.forEach(permiso => {
+                $('#id_check'+permiso).prop('checked', true);
+            });
+        }
+
+        $('ul').css({'list-style': 'none'})
+        $('input[type=checkbox]').css({'background': '#5A8DEE'})
+    });
+
+    function guardarRol(){
+
+        var permisos = new Array();
+
+        $('.checkpermiso').each(function(){
+            var permiso = $(this);
+
+            check = permiso.prop('checked');
+
+            if(check){
+                permisos.push(permiso.val());
+            }
+
+        });
+
+        if($('#id_descripcion').val() === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'red');
+            return;
+        }
+
+        if(permisos.length === 0){
+            mensaje('{% trans " Seleccione al menos un permiso" %}', 'red');
+            return;
+        } else {
+
+            form = document.getElementById('frmRol');
+            let data = new FormData(form);
+            data.append('permisos[]', JSON.stringify(permisos));
+            data.append('zonal', $('#id_zonal').prop('checked'));
+
+            let token = '{{ csrf_token }}';
+            let rol_id = '{{ rol.id_rol }}';
+
+            let url = "{% url 'usr:roles_crear' 0 %}";
+            if(rol_id !== ''){
+                url = url.replace(/0/, rol_id);
+            }
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: false,
+                processData: false,
+                 beforeSend: function(){
+                $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response){
+                    // location.reload(true);
+                    window.location.replace("{% url 'usr:roles_lista' %}");
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+        }
+        
+    }
+
+</script>
+<script src="{% static 'base/js/hummingbird-treeview.js' %}"></script>
+{% endblock %}

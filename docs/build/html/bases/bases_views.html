@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Views Bases &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Templates cfg" href="../cfg/cfg_templates.html" />
+    <link rel="prev" title="URLs Bases" href="bases_urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion bases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Views Bases</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vista-home">Vista Home</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-user-login">Vista user_login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-logout">Vista Logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-sinpermisostemplate">Vista SinPermisosTemplate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-error404template">Vista error404Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-sinpermisos">Vista SinPermisos</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Views Bases</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/bases/bases_views.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="views-bases">
+<h1><strong>Views Bases</strong><a class="headerlink" href="#views-bases" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>bases</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">views.py</span></code>. Donde se encuentran las vistas de la aplicación bases, se detalla a continuación cada vista.</p>
+<div class="section" id="vista-home">
+<h2>Vista Home<a class="headerlink" href="#vista-home" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="bases_templates.html#template-home"><span class="std std-ref">Template home</span></a>. Esta vista hace uso del <code class="docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code> propio de Django para validar si el usuario se encuentra autenticado, de no ser así el sistema lo redirige al LoginRequiredMixin.</p>
+</div>
+<div class="section" id="vista-user-login">
+<h2>Vista user_login<a class="headerlink" href="#vista-user-login" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, se encarga de validar las credenciales introducidas por el usuario desde la pantalla de login, hace uso del <code class="docutils literal notranslate"><span class="pre">EmailBackend</span></code> para la validación, de existir un usuario con las credenciales ingresadas pasa a validar si la clave del usuario es nueva <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">request.user.nueva_clave</span></code> de ser ese el caso lo redirige hacia la pantalla de actualizar contraseña, caso contrario lo redirige a la pantalla home.</p>
+</div>
+<div class="section" id="vista-logout">
+<h2>Vista Logout<a class="headerlink" href="#vista-logout" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="bases_templates.html#template-logout"><span class="std std-ref">Template logout</span></a>, también hace uso del <code class="docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code> para validar si el usuario se encuentra autenticado.</p>
+</div>
+<div class="section" id="vista-sinpermisostemplate">
+<h2>Vista SinPermisosTemplate<a class="headerlink" href="#vista-sinpermisostemplate" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="bases_templates.html#template-sin-premisos"><span class="std std-ref">Template sin_premisos</span></a>, que indicará al usuario que no cuenta con los permisos para visualizar la pantalla a la que intenta acceder.</p>
+</div>
+<div class="section" id="vista-error404template">
+<h2>Vista error404Template<a class="headerlink" href="#vista-error404template" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="bases_templates.html#template-error404"><span class="std std-ref">Template error404</span></a>, que indica al usuario que está intentando acceder a una ruta que no existe o no disponible por el momento.</p>
+</div>
+<div class="section" id="vista-sinpermisos">
+<h2>Vista SinPermisos<a class="headerlink" href="#vista-sinpermisos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, se encarga de validar si el usuario cuenta con los permisos necesarios para acceder a una ruta determinada, para ello hace uso de dos Mixins propios de Django <code class="docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code> y  <code class="docutils literal notranslate"><span class="pre">PermissionRequiredMixin</span></code>, el primero para validar si el usuario se encuentra autenticado y el segundo para consultar si el usuario cuenta con el permiso para ejecutar una vista determinada. Para la validación del permiso en cada vista que herede de la vista SinPermisos se debe especificar cuál es el permiso requerido, en caso de que el usuario no cuente con el permiso indicado será redirigido a la pantalla Sin permisos.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cfg/cfg_templates.html" class="btn btn-neutral float-right" title="Templates cfg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bases_urls.html" class="btn btn-neutral float-left" title="URLs Bases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

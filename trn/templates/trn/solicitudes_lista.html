@@ -1,0 +1,295 @@
+{% extends 'base/base.html' %} {% load i18n %} {% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Solicitudes de trabajo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Solicitudes" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Lista" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Listado de solicitudes de trabajo" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <!-- <li>
+                                            <a data-action="expand" title='{% trans "Listar todas" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-list-ul"></i>
+                                            </a>
+                                        </li> -->
+                                        <li>
+                                            <a onclick="generarReporteExcel()" title='{% trans "Exportar" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-file"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <br>
+                                <div class="row" style="margin-left: 3%;">
+                                    <div class="col-md-3 col-12">
+                                        <div class="form-label-group">
+                                            <select name="filtro" id="id_filtro" class="form-control selectrubro">
+                                                <option value="1">{% trans "Lo que va del mes" %}</option>
+                                                <option value="2">{% trans "El mes anterior" %}</option>
+                                                <option value="3">{% trans "Últimas 100" %}</option>
+                                                <option value="4">{% trans "Últimas 1000" %}</option>
+                                                <option value="5">{% trans "Rango de fecha" %}</option>
+                                                <option value="6">{% trans "Todas" %}</option>
+                                            </select>
+                                            <input type="number" hidden>
+                                            <label for="id_ciudad">{% trans "Filtro" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <ul id="id_fechas" class="list-inline mb-0" style="margin-left: 5%;">
+                                            <li style="text-align: center; vertical-align: middle;">
+                                                <input type="date" id="id_fecha_inicio" class="form-control">
+                                                <small>{% trans "Fecha inicio" %}</small>
+                                            </li>
+                                            <li style="text-align: center; vertical-align: middle;">
+                                                <input type="date" id="id_fecha_fin" class="form-control">
+                                                <small>{% trans "Fecha fin" %}</small>
+                                            </li>
+                                            <li style="margin-left: 10px;">
+                                                <a onclick="obtenerSolicitudesfecha(5)" title='{% trans "Filtrar" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                    <i class="bx bxs-filter-alt"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 col-12">
+                                        <h5 id="id_cantidad" style="text-align: right; margin-right: 10%;"></h5>
+                                    </div>
+                                </div>
+                                <div class="card-body card-dashboard" id="divTabla">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+
+{% endblock %} {% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('#id_fechas').hide();
+        $('#id_fecha_inicio', '#id_fecha_fin').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false
+        });
+        $('#id_filtro').val(3);
+        obtenerSolicitudesfecha(3);
+        // obtenerSolicitudes();
+        formato();
+    });
+
+    $('#id_filtro').on('change', function(){
+
+        opcion = parseInt($(this).val());
+
+        if ( opcion == 5 ){
+            $('#id_fechas').show();
+        } else {
+            $('#id_fechas').hide();
+            obtenerSolicitudesfecha(opcion);
+        }
+
+    });
+
+    async function obtenerSolicitudesfecha(opcion){
+
+        if(opcion === 5){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        var url = "{% url 'trn:solicitudes_api_lista_fecha' 'finicio' 'ffin' 0 %}";
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            success: function(res) {
+                solicitudes = res
+
+                id_tabla_solicitudes = $('#id_tabla_solicitudes')
+
+                if(id_tabla_solicitudes){
+                    $('#id_tabla_solicitudes').remove();
+                }
+
+                if(solicitudes.length === 0){
+                    div1 = $('.alert-info');
+                    div1.remove();
+                    div = '<div class="alert alert-info">{% trans "No existen solicitudes" %}</div>'
+                } else {
+                    div1 = $('.alert-info');
+                    div1.remove();
+                    div = '<div class="table-responsive" id="id_tabla_solicitudes"></div>'
+                }
+
+                divTabla = $('#divTabla');
+
+                $('#divTabla').append(div);
+
+                var tabla = '<table class="table" id="id_tabla"><thead><th>{% trans "Secuencia" %}</th><th>{% trans "Solicita" %}</th><th>{% trans "Detalle" %}</th><th>{% trans "Estado" %}</th><th>{% trans "Fecha creación" %}</th></thead><tbody></tbody></table>'
+
+                $('#id_tabla_solicitudes').append(tabla);
+                // opciones_fecha = { day:'2-digit', month:'2-digit' }
+                
+                solicitudes.forEach(solicitud => {
+                    fecha_creacion = new Date(solicitud.fecha_creacion)
+                    opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                    var tr = '<tr style="cursor:pointer;" onclick="verDetalles('+ solicitud.id_solicitud +')"><td>'+ solicitud.secuencia +'</td><td>'+ solicitud.solicita +'</td><td>'+ solicitud.detalle +'</td><td style="color: ' + solicitud.colorestado + ';"><i class="bx bxs-circle font-small-1 mr-50"></i>'+ solicitud.estado_nombre +'</td><td>'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</td></tr>'
+                    $('#id_tabla').append(tr);
+                });
+
+                $('#id_cantidad').text('{% trans "Registros: " %}' + String(solicitudes.length))
+
+                formato();
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function verDetalles(id){
+        url = "{% url 'trn:solicitudes_detalle' 0 1 %}"
+        url = url.replace(/0/, id);
+        // return abrir_modal(url);
+        window.location.replace(url);
+    }
+
+    wsSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        $('#id_filtro').val(3);
+        obtenerSolicitudesfecha(3);
+        cargarNotificaciones(message);
+    };
+
+
+    function generarReporteExcel(){
+        console.log('bien');
+        opcion = parseInt($('#id_filtro').val());
+
+        if(opcion === 5){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        var url = "{% url 'trn:rep_lista_solicitud_excel' 'finicio' 'ffin' 0 %}";
+
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        window.open(url, '_blank');
+    }
+
+
+
+
+    function formato(){
+        datatable = $('#id_tabla').DataTable();
+        datatable.destroy();
+        
+        datatable = $('#id_tabla').DataTable({
+            "responsive": true,
+            "paging": false,
+            "info": false,
+            // "pagingType": "full_numbers",
+            "aaSorting": [[4, "desc"]],
+            "language": {
+                "sProcessing": '{% trans "Procesando..." %}',
+                "sLengthMenu": '{% trans "Mostrar _MENU_ registros" %}',
+                "sZeroRecords": '{% trans "No se encontraron resultados" %}',
+                "sEmptyTable": '{% trans "Ningún dato disponible en esta tabla" %}',
+                "sInfo": '{% trans "Registros del _START_ al _END_ de un total de _TOTAL_ registros" %}',
+                "sInfoEmpty": '{% trans "Registros del 0 al 0 de un total de 0 registros" %}',
+                "sInfoFiltered": '{% trans "(filtrado de un total de _MAX_ registros)" %}',
+                "sInfoPostFix": "",
+                "sSearch": '{% trans "Buscar:" %}',
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": '{% trans "Cargando..." %}',
+                "oPaginate": {
+                    "sFirst": "<span class='bx bx-chevrons-left'></span>",
+                    "sLast": "<span class='bx bx-chevrons-right'></span>",
+                    "sNext": "<span class='bx bx-chevron-right'></span>",
+                    "sPrevious": "<span class='bx bx-chevron-left'></span>"
+                },
+                "oAria": {
+                    "sSortAscending": '{% trans ": Activar para ordenar la columna de manera ascendente" %}',
+                    "sSortDescending": '{% trans ": Activar para ordenar la columna de manera descendente" %}'
+                }
+            }
+        });
+
+    }
+
+</script>
+{% endblock %}

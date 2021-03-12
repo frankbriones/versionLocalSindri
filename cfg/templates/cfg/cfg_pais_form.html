@@ -1,0 +1,151 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "General" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "País" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Configuración general" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row ">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            {{ form.aut_externo }}
+                                                            <label for="id_aut_externo">{% trans "Autorizar externo" %}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.simbolo_moneda }}
+                                                        <label for="id_simbolo_moneda">{% trans "Símbolo moneda" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            {{ form.decimales }}
+                                                            <label for="id_decimales">{% trans "Cifras decimales" %}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="zona_horaria" id="id_zona_horaria" class="form-control">
+                                                            <option value="0">{% trans "Seleccionar" %}</option>
+                                                            {% for zona in zonas_horarias %}
+                                                            <option value="{{ zona }}">{{ zona }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <input class="form-control" hidden>
+                                                        <label for="email-id-column">{% trans "Zona horaria" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            {{ form.documentos_obligatorios }}
+                                                            <label for="id_documentos_obligatorios">{% trans "Carga de documentos" %}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.separador_miles }}
+                                                        <label for="id_separador_miles">{% trans "Separador de miles" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.separador_decimal }}
+                                                        <label for="id_separador_decimales">{% trans "Separador de decimales" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.prefijo_cel }}
+                                                        <label for="id_prefijo_cel">{% trans "Prefijo celular" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function(){
+        zona_horaria = '{{ user.pais.zona_horaria }}';
+        $('#id_zona_horaria').val(zona_horaria);
+    });
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

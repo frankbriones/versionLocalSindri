@@ -1,0 +1,783 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+  .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+  }
+
+  .inputimage {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      /* width: 150px;
+      height: 150px; */
+      margin-bottom: auto;
+      opacity: 0;
+  }
+  .img-circle {
+      border-radius: 100%;
+  }
+</style>
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/pages/widgets.css' %}">
+<!-- END: Page CSS-->
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Usuarios" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i
+                                            class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Usuario" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-divider">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if usuario %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "usuario " %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        {% if usuario %}
+                                        <li>
+                                            {% if usuario.is_active %}
+                                            <a title='{% trans "Inactivar" %}' onclick="return abrir_modal('{% url 'usr:usuario_inactivar_modal' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-user-x"></i>
+                                            </a>
+                                            {% else %}
+                                            <a title='{% trans "Activar" %}' onclick="return abrir_modal('{% url 'usr:usuario_activar_modal' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-user-check"></i>
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <a title='{% trans "Reestablecer contraseña" %}' onclick="return abrir_modal('{% url 'usr:usuario_reinicia_contrasena' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-key"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="FrmRegistro" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input type="text" name="" id="usuario_idd" value="{% if usuario %}{{usuario.id}}{% else %}0{% endif %}" hidden>
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if item %}
+                                                            src="{{ item.imagen.url }}" {% else %}
+                                                            src="{% static 'base/img/icons/usuario-nuevo.jpg' %}"
+                                                            style="width: 60%;" {% endif %}
+                                                            class="center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.username }}
+                                                                <label
+                                                                    for="id_cliente-nombres">{% trans "Usuario" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if user.is_superuser %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="pais" id="id_pais" class="form-control">
+                                                                    {% for pais in paises %}
+                                                                    <option value="{{ pais.id_pais }}">{{ pais.nombre }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_estandar_tallas">{% trans "País" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="usuario-rol" id="id_usuario-rol" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for rol in roles %}
+                                                                    <option value='{{ rol.id_rol }}' descripcion='{{ rol.descripcion }}' zonal='{{ rol.zonal }}'>{{ rol.descripcion }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_estandar_tallas">{% trans "Rol" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.usuario_telegram }}
+                                                                
+                                                                <label
+                                                                    for="id_cliente-telegram">{% trans "username telegram" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.first_name }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Nombres" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.last_name }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Apellidos" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.email }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Correo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.telefono }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Teléfono" %}</label>
+                                                            </div>
+                                                        </div>
+
+                                                                    
+                                                        <div id="divZona" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="zona" id="id_zona" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for zona in zonas %}
+                                                                     <option 
+                                                                        {% if usuario.zona == zona.id_zona %} 
+                                                                            value="{{ zona.id_zona }}" selected
+                                                                        {% else %}
+                                                                            value="{{ zona.id_zona}}"
+                                                                        {% endif %} 
+                                                                        descripcion='{{ zona.nombre }}' >
+                                                                        {{ zona.nombre}}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                    
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_estandar_tallas">{% trans "Zona" %}</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="divTaller" class="col-md-6 col-12">
+
+                                                            <div class="form-label-group">
+                                                                <select name="taller" id="id_taller" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for taller in talleres %}
+                                                                    <option {% if usuario.taller == taller %} 
+                                                                            value="{{ taller.id_taller }}" selected
+                                                                        {% else %}
+                                                                            value="{{ taller.id_taller}}"
+                                                                        {% endif %} 
+                                                                        descripcion='{{ taller.nombre }}' >
+
+                                                                        {{ taller.nombre }}
+
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_taller">{% trans "Taller" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divGrupoEmpresa" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="grupo_empresarial" id="id_grupo_empresarial" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for grupo in grupos_empresariales %}
+
+                                                                    <option {% if usuario.grupo_empresarial == grupo %} 
+                                                                            value="{{ grupo.id_grupo_empresarial }}" selected 
+                                                                        {% else %}
+                                                                            value="{{ grupo.id_grupo_empresarial}}"
+                                                                        {% endif %} 
+                                                                        descripcion='{{ grupo.nombre }}' >
+                                                                        {{ grupo.nombre }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_grupo_empresarial">{% trans "Grupo empresarial" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="id_lista_tiendas" class="row">
+                                                <div class="col-xl-6 col-md-6 widget-chat-card">
+                                                    <div class="widget-chat widget-chat-messages">
+                                                        <div class="card">
+                                                            <div class="card-header border-bottom p-0">
+                                                                <div class="media m-75">
+                                                                    <input id="id_buscar_disponibles" type="text" class="form-control widget-chat-message mx-75" placeholder='{% trans "Buscar..." %}'>
+                                                                    <a  class="btn btn-outline-success agregartiendas"><i class="bx bx-chevrons-right"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body widget-chat-container widget-chat-scroll border-bottom border-right border-left">
+                                                                <div class="chat-content">
+                                                                    <ul id="id_tiendas_disponibles" class="list-group list-group-flush">
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-md-6 widget-chat-card">
+                                                    <div class="widget-chat widget-chat-messages">
+                                                        <div class="card">
+                                                            <div class="card-header border-bottom p-0">
+                                                                <div class="media m-75">
+                                                                    <input id="id_buscar_agregadas" type="text" class="form-control widget-chat-message mx-75" placeholder='{% trans "Buscar..." %}'>
+                                                                    <a  class="btn btn-outline-danger quitartiendas"><i class="bx bx-chevrons-left"></i></a>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body widget-chat-container widget-chat-scroll2 border-bottom border-right border-left">
+                                                                <div class="chat-content">
+                                                                    <ul id="id_tiendas_agregadas" class="list-group list-group-flush">
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="validarFormulario()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'usr:usuario_lista' %}"
+                                                        class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form id="frmContrasena" method="POST" class="mb-2" hidden>
+                                        {% csrf_token %}
+                                        <div class="form-group mb-2">
+                                            <label class="text-bold-600" for="id_email">{% trans "Correo electrónico" %}</label>
+                                            <input type="text" class="form-control" id="id_email" name="email"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="widgets-advance">
+                
+            </section>
+            <div class="loader">
+                <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js_page %}
+    <script type="text/javascript" src="{% static 'base/assets/js/est_tiendas.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/assets/js/usr_zonas_user.js' %}"></script>
+
+
+<script>
+    let superusuario = '{{ user.is_superuser }}'.toLowerCase() === 'true';
+    let adminTaller = false;
+    let adminOperaciones = false;
+    let usuarioGeneral = false;
+    let jefeZonal = false;
+    let usuarioOperaciones = false;
+    let tiendas_disponibles = []
+    let tiendas_agregadas = []
+    let tmp_disponibles = []
+    let tmp_agregadas = []
+    let id_usuario;
+    
+    $(document).ready(function(){
+        $('.loader').hide();
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        correo = error.includes('CORREO');
+        if(duplicado){
+            mensaje('{% trans "Nombre de usuario ya existe" %}','red');
+        }
+        if(correo){
+            mensaje('{% trans "Ya existe un usuario con el correo ingresado" %}','red');
+        }
+
+        $('#id_usuario-username').keyup(function(e){
+            if(e.keyCode === 32){
+                $(this).val('');
+                mensaje('{% trans "No se permiten espacios en blanco" %}', 'red');
+            }
+        });
+        
+        $('#divTaller').hide();
+        $('#divGrupoEmpresa').hide();
+        $('#divZona').hide();
+        $('#id_lista_tiendas').hide();
+
+        $('#id_usuario-rol').on("change", function(){
+            mostrarElementos();
+        });
+
+        
+
+
+        tiendas_lista = {{ tiendas|safe }};
+        tiendas_disponibles = tiendas_lista;
+        llenarTiendasDisponibles(tiendas_disponibles);
+
+
+        var widget_chat_scroll = new PerfectScrollbar(".widget-chat-scroll", { wheelPropagation: false });
+        var widget_chat_scroll = new PerfectScrollbar(".widget-chat-scroll2", { wheelPropagation: false }); 
+        
+        id_usuario = parseInt('{{ usuario.id }}');
+        if(Number.isInteger(id_usuario)){
+            id_rol = '{{ usuario.rol_id }}';
+            $('#id_usuario-rol').val(id_rol);
+            mostrarElementos();
+            tiendas_asignadas = {{ tiendas_asignadas|safe }};
+            tiendas_asignadas.forEach(tienda => {
+                agregarTienda(tienda.id_tienda)
+            });
+        }
+    });
+
+    function mostrarElementos(){
+        let descripcion = $('option:selected', $('#id_usuario-rol')).attr('descripcion');
+        if(descripcion === 'ADMIN TALLER'){
+            $('#divTaller').show();
+            $('#divZona').hide();
+            $('#divGrupoEmpresa').hide();
+            $('#id_lista_tiendas').hide();
+
+            adminTaller = true;
+            adminOperaciones = false;
+            usuarioGeneral = false;
+
+        }
+        else {
+            if(descripcion === 'ADMIN OPERACIONES'){
+                $('#divTaller').hide();
+                $('#divZona').hide();
+                $('#divGrupoEmpresa').show();
+                adminOperaciones = true;
+                adminTaller = false;
+                usuarioGeneral = false;
+
+            }
+            else{
+                if($('#id_usuario-rol').val() !== '0'){
+                    jefeZonal = $('option:selected', $('#id_usuario-rol')).attr('zonal').toLowerCase() === 'true';
+                    if(jefeZonal){
+                        usuarioGeneral=false;
+                        adminOperaciones=false;
+                        adminTaller=false
+                        $('#divZona').show();
+                        $('#id_lista_tiendas').hide();
+                        $('#divTaller').hide();
+                        $('#divGrupoEmpresa').hide();
+                        
+                    } else {
+                        $('#divZona').hide();
+                        $('#id_lista_tiendas').show();
+                        usuarioGeneral = true;
+                        if('{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                            $('#divTaller').show();
+                            $('#id_lista_tiendas').hide();
+                            usuarioGeneral=false;
+                            jefeZonal=false;
+                        }
+
+
+                    }
+                } else {
+                    $('#divTaller').hide();
+                    $('#divGrupoEmpresa').hide();
+                    $('#divZona').hide();
+                    $('#id_lista_tiendas').hide();
+                }
+            }
+        }
+    }
+    // console.log({{talleres|safe}});
+
+
+    function llenarTiendasDisponibles(tiendas_disponibles){
+        
+        let lista_disponibles = $('#id_tiendas_disponibles');
+
+        lista_disponibles.empty();
+        
+        tiendas_disponibles.forEach(tienda => {
+            
+            let li = '<li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between"><div class="list-left d-flex"><div class="list-content"><div class="row text-left"><label class="">' + tienda.nombre + '</label></div><small class="text-muted d-block text-left">' + tienda.sociedad_nombre + '</small></div></div><div class="readable-mark-icon" data-toggle="tooltip" data-placement="left" title="Mark as read"><button onclick="agregarTienda(' + tienda.id_tienda + ')" type="button" class="btn btn-success glow"><i class="bx bx-chevron-right"></i></button></div></li>';
+            
+            lista_disponibles.append(li);
+        });
+    }
+
+    function llenarTiendasAgregadas(tiendas_disponibles){
+        
+        let lista_agregadas = $('#id_tiendas_agregadas');
+        lista_agregadas.empty();
+        
+        tiendas_disponibles.forEach(tienda => {
+            
+            let li = '<li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between"><div class="list-left d-flex"><div class="list-content"><div class="row text-left"><label class="">' + tienda.nombre + '</label></div><small class="text-muted d-block text-left">' + tienda.sociedad_nombre + '</small></div></div><div class="readable-mark-icon" data-toggle="tooltip" data-placement="left" title="Mark as read"><button type="button" onclick="quitarTienda(' + tienda.id_tienda + ')" class="btn btn-danger glow"><i class="bx bx-chevron-left"></i></button></div></li>';
+            
+            lista_agregadas.append(li);
+        });
+    }
+
+
+    $(document).on('click','.agregartiendas',function() {  
+            agregar_tiendas(tiendas_disponibles);
+
+        })
+
+    function agregar_tiendas(tiendas_disponibles){
+        let lista_disponibles = $('#id_tiendas_disponibles');
+        lista_disponibles.empty();
+        let tiendas_agregadas = $('#id_tiendas_agregadas');
+
+        tiendas_disponibles.forEach(tienda => {
+            let elemento = buscarElemento(tienda.id_tienda, tiendas_disponibles);
+            indice = tiendas_disponibles.indexOf(elemento);
+            agregarTienda(tienda.id_tienda);
+            agregar_tiendas(tiendas_disponibles);       
+        });
+
+
+    }
+
+
+
+    $(document).on('click','.quitartiendas',function() {  
+            quitar_tiendas(tiendas_disponibles);
+
+        })
+
+
+    function quitar_tiendas(tiendas_disponibles){
+        let lista_agregadas = $('#id_tiendas_agregadas');
+        lista_agregadas.empty();
+        let tiendas_disp = $('#id_tiendas_disponibles');
+
+        tiendas_agregadas.forEach(tienda => {
+            let elemento = buscarElemento(tienda.id_tienda, tiendas_agregadas);
+            indice = tiendas_agregadas.indexOf(elemento);
+            quitarTienda(tienda.id_tienda);
+            quitar_tiendas(tiendas_disponibles);       
+        });
+
+
+    }
+
+
+
+    function agregarTienda(id_tienda){
+        let elemento = buscarElemento(id_tienda, tiendas_disponibles);
+        indice = tiendas_disponibles.indexOf(elemento);
+        if ( indice !== -1 ) {
+            tiendas_disponibles.splice( indice, 1 );
+        }
+
+        tiendas_agregadas.push(elemento);
+        llenarTiendasDisponibles(tiendas_disponibles);
+        llenarTiendasAgregadas(tiendas_agregadas);
+        $('#id_buscar_disponibles').val('');
+        $('#id_buscar_agregadas').val('');
+    }
+
+    function quitarTienda(id_tienda){
+        let elemento = buscarElemento(id_tienda, tiendas_agregadas);
+        indice = tiendas_agregadas.indexOf(elemento);
+        if ( indice !== -1 ) {
+            tiendas_agregadas.splice( indice, 1 );
+        }
+        tiendas_disponibles.push(elemento);
+        llenarTiendasDisponibles(tiendas_disponibles);
+        llenarTiendasAgregadas(tiendas_agregadas);
+        $('#id_buscar_disponibles').val('');
+        $('#id_buscar_agregadas').val('');
+    }
+
+    function buscarElemento(id_tienda, lista) {
+        return lista.find(tienda => tienda.id_tienda === id_tienda);
+    }
+
+    $('#id_buscar_disponibles').on('keyup', function(){
+        filtrarDisponibles($(this).val());
+    });
+
+    $('#id_buscar_agregadas').on('keyup', function(){
+        filtrarAgregadas($(this).val());
+    });
+
+    function filtrarDisponibles(nombre) {
+        if(nombre === ''){
+            llenarTiendasDisponibles(tiendas_disponibles);
+        } else {
+            tmp_disponibles = buscarPorNombre(nombre, tiendas_disponibles);
+            llenarTiendasDisponibles(tmp_disponibles);
+        }
+    }
+
+    function filtrarAgregadas(nombre) {
+        if(nombre === ''){
+            llenarTiendasAgregadas(tiendas_agregadas);
+        } else {
+            tmp_disponibles = buscarPorNombre(nombre, tiendas_agregadas);
+            llenarTiendasAgregadas(tmp_disponibles);
+        }
+    }
+
+    function buscarPorNombre(nombre, lista) {
+        return lista_tmp = lista.filter(tienda => (tienda.nombre).toLowerCase().includes(nombre.toLowerCase()));
+    }
+
+    function validarFormulario(){
+        
+        if($('#id_usuario-username').val() === ''){
+            mensaje('{% trans "Ingrese un username" %}', 'red');
+            return;
+        }
+
+        if($('#id_usuario-usuario_telegram').val() === ''){
+            mensaje('{% trans "Ingrese Nombre de Usuario de telegram" %}', 'red');
+            return;
+        }
+
+        if(!superusuario){
+            if($('#id_usuario-rol').val() === ''){
+                mensaje('{% trans "Seleccione un rol" %}', 'red');
+                return;
+            }
+
+        }
+        
+        if($('#id_usuario-first_name').val() === ''){
+            mensaje('{% trans "Ingrese nombres" %}', 'red');
+            return;
+        }
+        if($('#id_usuario-last_name').val() === ''){
+            mensaje('{% trans "Ingrese apellidos" %}', 'red');
+            return;
+        }
+        if($('#id_usuario-email').val() === ''){
+            mensaje('{% trans "Ingrese una dirección de correo electrónico" %}', 'red');
+            return;
+        }
+        if($('#id_usuario-telefono').val() === ''){
+            mensaje('{% trans "Ingrese un número celular" %}', 'red');
+            return;
+        }
+        if(adminTaller){
+            if($('#id_taller').val() === '0'){
+                mensaje('{% trans "Seleccione un taller" %}', 'red');
+                return;
+            }
+        }
+        if(adminOperaciones){
+            if($('#id_grupo_empresarial').val() === '0'){
+                mensaje('{% trans "Seleccione un grupo empresarial" %}', 'red');
+                return;
+            }
+            if($('#id_zona').val() === '0'){
+                mensaje('{% trans "Seleccione una zona para el usuario" %}', 'red');
+                return;
+            }
+        }
+        if(usuarioGeneral){
+            if(tiendas_agregadas.length < 1){
+                mensaje('{% trans "Registre al menos una tienda para el usuario" %}', 'red');
+                return;
+            }
+        }
+        registrar();
+    }
+
+    function registrar(){
+        let token = '{{ csrf_token }}';
+        form = document.getElementById('FrmRegistro');
+        let datos = new FormData(form);
+        datos.append('tiendas_agregadas[]', JSON.stringify(tiendas_agregadas));
+        
+        if(superusuario){
+            datos.append('usuario-rol', '1');
+        } else {
+            datos.append('pais', '{{ user.pais_id }}');
+        }
+
+        let url = "{% url 'usr:usuarios_form' 0 %}";
+
+        if(Number.isInteger(id_usuario)){
+            url = url.replace(/0/, id_usuario);
+        }  
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(res){
+                if(res.status === 200) {
+                    $('.loader').show();
+                }else{
+                    $('.loader').hide();
+                }
+            },
+            success: function(response) {
+                // console.log(response);
+                if(parseInt(response.redireccion) === 1){
+                    GenerarEnlaceContrasena(response.correo);
+                } else {
+                    let url_lista = "{% url 'usr:usuario_lista' %}";
+                    window.location = url_lista;
+                }
+                
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+    }
+
+    function GenerarEnlaceContrasena(correo){
+        let token = '{{ csrf_token }}';
+        $('#id_email').val(correo);
+        form = document.getElementById('frmContrasena');
+        let datos = new FormData(form);
+        datos.append('email', correo);
+
+        let url = "{% url 'usr:contrasena_nuevo_usuario' %}";
+        let url_lista = "{% url 'usr:usuario_lista' %}";
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response) {
+                $.confirm({
+                    title: '{% trans "Información enviada" %}',
+                    content: '{% trans "Se ha enviado la información del nuevo usuario al correo electrónico del mismo." %}',
+                    theme: 'material',
+                    type: 'green',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            action: function() {
+                                window.location = url_lista;
+                            }
+                        },
+                    }
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow);
+            }
+        });
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}: {{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+
+{% endblock %}

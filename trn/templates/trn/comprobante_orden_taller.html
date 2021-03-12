@@ -1,0 +1,288 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="author" content="INNODE">
+    <title>SINDRI</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    
+    <style type="text/css">
+    @page {
+        size: A4;
+        margin: 1cm;
+        @frame footer_frame {
+            -pdf-frame-content: footer_content;
+            left: 25pt; width: 512pt; top: 820pt; height: 20pt;
+        }
+    }
+    .tabla-encabezado {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        border-spacing: 0px 0px 0px 0px;
+        background-color: #ffffff;
+        border-collapse: separate;
+        padding: 5px 0px 0px 0px;
+        /* border: solid #101b2d 0.5px; */
+        border-radius:30px;
+        -moz-border-radius:30px;
+    }
+    .td-titulo{
+        font-size: 16px;
+    }
+    .td-parrafo {
+        text-align: justify;
+        font-size: 14px;
+        padding-top: 8px;
+        line-height: 12px;
+    }
+    .tabla-productos{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        vertical-align: middle;
+        padding: 2px 2px 0px 0px;
+        font-size: 10px;
+    }
+    .p {
+        font-family:courier,arial,helvética;
+        font-size: 15px;
+        text-align: left;
+    }
+    .titulo {
+        color: #5A8DEE;
+        padding-left: 10px;
+        font-weight: 500;
+        font-size: 70px;
+        float: left;
+    }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <table class="tabla-encabezado">
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;">
+                            <img id="id_img_tmp" name="imagentmp" src="{{ orden.usuario.config_gen.logotipo.url }}" style="float: left; max-width: 100px;" width="300px">
+                        </td>
+                        <td class="td-titulo" style="width: 50%;"><h3 style="color: #5A8DEE;">{% trans "Órden: " %}{{ orden.secuencia }}</h3></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="tabla-encabezado">
+                <tbody>
+                    <tr style="background-color: #5A8DEE;  vertical-align: bottom;">
+                        <td style="background-color: #5A8DEE;" colspan="4">
+                            <h1 style="color: #ffffff; text-align: left; font-size:  16px; padding-left: 12px;">{% trans "Datos de solicitante" %}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Tienda" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.tienda.nombre }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Dirección de tienda" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.tienda.direccion_tienda }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Correo electrónico de tienda" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.tienda.email }}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="tabla-encabezado">
+                <tbody>
+                    <tr>
+                        <td style="background-color: #5A8DEE;" colspan="4">
+                            <h1 style="color: #ffffff; text-align: left; font-size:  16px; padding-left: 12px;">{% trans "Detalles de órden de trabajo " %}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <b><p class="td-parrafo" style="text-align: center;">{{ item.descripcion }}{{ item.detalle }}</p></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  colspan="2">
+                            <b><p class="td-parrafo">{% trans "SKU" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if detalleSolicitud %}
+                            <p class="td-parrafo">{{ detalleSolicitud.item.sku }}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ detalle.id_item.sku }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if not detalle %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Talla/Longitud" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if item.talla %}
+                            <p class="td-parrafo">{{ item.talla }}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ item.longitud }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Talla/Longitud" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if detalle.estandar %}
+                            <p class="td-parrafo">{{ detalle.medida }} {{ detalle.estandar }}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ detalle.medida }} {{ detalle.estandar }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Color" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.color }}</p>
+                        </td>
+                    </tr>
+                    {% if orden.peso_solicitado > 0 %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Peso" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.peso_solicitado }} gr</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Unidades" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ orden.unidades_solicitadas }}</p>
+                        </td>
+                    </tr>
+                    {% if item.acabado %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Acabado" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ item.acabado }}</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if item.parte_interna %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Parte interna" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            <p class="td-parrafo">{{ item.parte_interna }}</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Cantidad de piedras" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if detalle %}
+                            <p class="td-parrafo">{{ detalle.cantidad_piedras }}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ item.cantidad_piedras }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Tiempo entrega mínimo" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if item.tiempo_entrega_min %}
+                            <p class="td-parrafo">{{ item.tiempo_entrega_min }} {% trans "días" %}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ item.tiempo_ent_min }}  {% trans "días" %}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Tiempo entrega máximo" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if item.tiempo_entrega_max %}
+                            <p class="td-parrafo">{{ item.tiempo_entrega_max }} {% trans "días" %}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ item.tiempo_ent_max }}  {% trans "días" %}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><p class="td-parrafo">{% trans "Precio total órden" %}</p></b>
+                        </td>
+                        <td colspan="2">
+                            {% if orden.usuario.pais.decimales %}
+                            <p class="td-parrafo">{{ orden.usuario.pais.simbolo_moneda }} {{ orden.total_taller }}</p>
+                            {% else %}
+                            <p class="td-parrafo">{{ orden.usuario.pais.simbolo_moneda }} {{ orden.total_taller|floatformat:"0" }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="tabla-encabezado">
+                <tbody>
+                    <tr>
+                        <td style="background-color: #5A8DEE;">
+                            <h1 style="color: #ffffff; text-align: left; font-size:  16px; padding-left: 12px;">{% trans "Imágenes de producto" %}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            {% for imagen in imagenes %}
+                            <img id="id_img_tmp" width="300px" height="300px" name="imagentmp" src="{{ imagen.imagen.url }}" style="margin-left: auto; margin-right: auto; display: block;">
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">{% trans "Página" %} <pdf:pagenumber>
+        {% trans "de" %} <pdf:pagecount>
+    </div>
+</body>
+</html>

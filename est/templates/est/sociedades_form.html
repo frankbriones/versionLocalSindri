@@ -1,0 +1,245 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Establecimientos" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Sociedades" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% if obj %}{% trans "Nueva" %}{% else %}{% trans "Editar" %}{% endif %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Sociedades" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" id="frmGrupoEmpresarial" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.nombre }}
+                                                                <label for="id_costo_gramo_base">{% trans "Nombre" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="grupo_empresarial" id="id_grupo_empresarial" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for grupo in grupos %}
+                                                                    <option value="{{ grupo.id_grupo_empresarial }}">{{ grupo.nombre }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <label for="id_pais">{% trans "Grupo empresarial" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.costo_gramo_base }}
+                                                                <label for="id_costo_gramo_base">{% trans "Costo Gramo Base" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.precio_gramo_base }}
+                                                                <label for="id_costo_gramo_base">{% trans "Precio Gramo Base" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <a href="{% url 'est:sociedades_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    let idSociedad = '{{ obj.id_sociedad }}';
+
+    $(document).ready(function(){
+        if(idSociedad !== ''){
+            idGrupo = '{{ obj.grupo_empresarial_id }}';
+            $('#id_grupo_empresarial').val(idGrupo);
+        }
+    });
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "";
+        }
+
+    }
+
+    // function guardar(){
+
+    //     form = document.getElementById('frmGrupoEmpresarial');
+    //     var data = new FormData(form);
+    //     form.submit()
+
+
+
+    //     var id_empresa = '{{ obj.id }}';
+    //     var url = "{% url 'cfg:cfg_ope_editar' 0 %}";
+    //     url = url.replace(/0/, id_empresa);
+
+    //     $.ajax({
+    //         url: url,
+    //         data: data,
+    //         type: "POST",
+    //         // beforeSend: function(){
+    //         //     $('.loader').show();
+    //         // },
+    //         // complete: function(){
+    //         //     $('.loader').hide();
+    //         // },
+    //         contentType: false,
+    //         processData: false,
+    //         success: function(response){
+    //             url = "{% url 'bases:home' %}";
+    //             location.replace(url);
+    //         },
+    //         error: function(response) {
+    //             $.confirm({
+    //                 title: '{% trans "Error" %}',
+    //                 content: response.responseJSON.mensaje,
+    //                 theme: 'material',
+    //                 type: 'red',
+    //                 buttons: {
+    //                     confirm: {
+    //                         text: '{% trans "Entendido" %}',
+    //                     },
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

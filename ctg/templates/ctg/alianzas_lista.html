@@ -1,0 +1,290 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+<style>
+
+</style>
+{% block page_content %}
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/pages/app-file-manager.css' %}">
+<!-- END: Page CSS-->
+
+<div class="app-content content">
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <div class="app-file-sidebar sidebar-content d-flex">
+                    <!-- App File sidebar - Left section Starts -->
+                    <div class="app-file-sidebar-left">
+                        <!-- sidebar close icon starts -->
+                        <span class="app-file-sidebar-close"><i class="bx bx-x"></i></span>
+                        <!-- sidebar close icon ends -->
+                        <div class="form-group add-new-file text-center">
+                            <a href="{% url 'ctg:alianzas_crear' %}">
+                                <label for="getFile" class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i class="bx bx-plus"></i>{% trans "Nuevo ítem" %}</label>
+                            </a>
+                        </div>
+                        <div class="app-file-sidebar-content">
+                            {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                            <label class="app-file-label">{% trans "Talleres" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                {% for taller in talleres %}
+                                <div class="checkbox2">
+                                    <input type="checkbox" class="checkbox-input item-taller" id="id_{{ taller.id }}" value="{{ taller.id }}">
+                                    <label for="id_{{ taller.id }}">{{ taller }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <label class="app-file-label mb-75">{% trans "Categorías" %}</label>
+                            
+                            <div class="list-group  my-50">
+                                {% for categoria in categorias %}
+                                <div class="row">
+                                    <div class="col-md-1 text-right"><input type="checkbox" class="checkbox-input item-categoria " id="id_{{ categoria.id_categoria }}" value="{{ categoria.id_categoria }}"/>
+                                        </div>
+                                    <div class="col-10 text-left"><label for="id_{{ categoria.id_categoria }}">{{ categoria }}</label></div>
+                                
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- File Manager app overlay -->
+                    <div class="app-file-overlay"></div>
+                    <div class="app-file-area">
+                        <!-- File App Content Area -->
+                        <!-- App File Header Starts -->
+                        <div class="app-file-header">
+                            <!-- Header search bar starts -->
+                            <div class="app-file-header-search flex-grow-1">
+                                <div class="sidebar-toggle d-block d-lg-none">
+                                    <i class="bx bx-menu"></i>
+                                </div>
+                                <fieldset class="form-group position-relative">
+                                    <input id="id_buscar_pro" type="text" class="form-control border-0 shadow-none" placeholder='{% trans "Buscar por sku o descripción" %}'>
+                                    <div class="form-control-position">
+                                        <button onclick="buscarClave();" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="bx bx-search"></i></button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Header search bar Ends -->
+                            <!-- Header Icons Starts -->
+                            <div class="app-file-header-icons">
+                                <!-- <div class="fonticon-wrap d-inline mx-sm-1 align-middle">
+                                    <i class="livicon-evo cursor-pointer" data-options="name: user.svg; size: 24px; style: lines; strokeColor:#596778; duration:0.85;"></i>
+                                </div>
+                                <div class="fonticon-wrap d-inline mr-sm-50 align-middle">
+                                    <i class="livicon-evo cursor-pointer" data-options="name: trash.svg; size: 24px; style: lines; strokeColor:#596778; duration:0.85;"></i>
+                                </div>
+                                <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle cursor-pointer"></i> -->
+                            </div>
+                            <!-- Header Icons Ends -->
+                        </div>
+                        <!-- App File Header Ends -->
+
+                        <!-- App File Content Starts -->
+                        <div class="app-file-content p-2">
+                            {% if tipo == 1 %}
+                            <h5>{% trans "Productos de catálogo" %}</h5>
+                            {% endif %}
+                            {% if tipo == 2 %}
+                            <h5>{% trans "Servicios de catálogo" %}</h5>
+                            {% endif %}
+                            {% if tipo == 3 %}
+                            <h5>{% trans "Productos especiales" %}</h5>
+                            {% endif %}
+                            {% if tipo == 4 %}
+                            <h5>{% trans "Servicios especiales" %}</h5>
+                            {% endif %}
+
+                            <div id="id_cont_items" class="row align-items-center ">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button id="btnProductos" onclick="aumentarLimite()" class="btn round btn-outline-primary mr-1 mb-1">{% trans "Ver más" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script src="{% static  'base/app-assets/js/scripts/pages/app-file-manager.js' %}"></script>
+<script>
+
+    var divisionesBusqueda = [];
+    var categoriasBusqueda = [];
+    var claveBusqueda = [];
+    var tipo;
+    var limite = 50;
+    var tipo = parseInt('{{ tipo }}');
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('input[type=checkbox2]').each(function(){
+            $(this).attr('checked', false);
+            
+        });
+        $('input[type=checkbox2]').each(function(){
+            $(this).attr('checked', false);
+            
+        });
+        buscarItems(limite);
+        console.log('{{perms}}')
+    });
+
+    $('#id_buscar_pro').on('keyup', function(){
+        if($(this).val() == ''){
+            limite = 50;
+            buscarItems(limite);
+        }
+    });
+
+    $('input[type=checkbox]').on('click', function(){
+        limite = 50;
+        buscarItems(limite);
+    });
+
+    function aumentarLimite(){
+        limite += 50;
+        buscarItems(limite);
+    }
+
+    function buscarClave(){
+        limite = 50;
+        buscarItems(limite);
+    }
+
+    function buscarItems(limite){
+
+        divisionesBusqueda = []
+        categoriasBusqueda = []
+        claveBusqueda = $('#id_buscar_pro').val();
+
+        $('.item-division').each(function(){
+            var division = $(this);
+            check = division.prop('checked');
+            if(check){
+                divisionesBusqueda.push(parseInt(division.val()));
+            }
+        });
+
+        $('.item-categoria').each(function(){
+            var categoria = $(this);
+            check = categoria.prop('checked');
+            if(check){
+                categoriasBusqueda.push(parseInt(categoria.val()));
+            }
+        });      
+
+        url = "{% url 'ctg:alianzas_lista_api' %}";
+        
+        var token = '{{ csrf_token }}';
+
+        var body = {
+            "talleresBusqueda[]": JSON.stringify(divisionesBusqueda),
+            "categoriasBusqueda[]": JSON.stringify(categoriasBusqueda),
+            "claveBusqueda": claveBusqueda,
+            "limite": limite,
+            "tipo": tipo
+        };
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                cargarItems(res);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+    }
+
+    function cargarItems(items){
+
+        if(items.length < limite){
+            $('#btnProductos').hide();
+        }
+
+        $('#id_cont_items').empty();
+
+        if(items.length > 0){
+            items.forEach(item => {
+                fecha_creacion = new Date(item.fecha_creacion)
+                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                if(item.estado_descripcion === 'ACTIVO'){
+                    div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + fecha_creacion.toLocaleString('ja-JP', opciones) + '</small></p></div></div><div class="card-footer text-center"><a onclick="editar('+ item.id_item +')" style="cursor:pointer;" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a><a onclick="inactivarProducto('+ item.id_item +')" style="cursor:pointer;" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1" role="button"><i class="bx bx-x"></i></a></div></div></div>';
+                } else {
+                    div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + fecha_creacion.toLocaleString('ja-JP', opciones) + '</small></p></div></div><div class="card-footer text-center"><a onclick="editar('+ item.id_item +')" style="cursor:pointer;" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a><a onclick="activarProducto('+ item.id_item +')" style="cursor:pointer;" class="btn btn-icon rounded-circle btn-outline-success mr-1 mb-1" role="button"><i class="bx bx-check"></i></a></div></div></div>';
+                }
+                $('#id_cont_items').append(div);
+            });
+        } else {
+            div = '<div class="no-results text-center" style="margin-left: auto; margin-right: auto;"><i class="bx bx-error-circle font-large-2"></i><h5>{% trans "No se encontraron artículos" %}</h5></div>';
+            $('#id_cont_items').append(div);
+        }
+        
+    }
+
+    function verDetalles(id_item){
+        url = "{% url 'ctg:items_detalle' 0 %}";
+        url = url.replace(/0/, id_item);
+        return abrir_modal(url);
+    }
+
+    function editar(id){
+        url = "{% url 'ctg:alianzas_editar' 0 %}"
+        url = url.replace(/0/, id);
+        location.replace(url);
+    }
+
+    function activarProducto(id){
+        url = "{% url 'ctg:item_activar_modal' 0 %}"
+        url = url.replace(/0/, id);
+        return abrir_modal(url);
+    }
+
+    function inactivarProducto(id){
+        url = "{% url 'ctg:item_inactivar_modal' 0 %}"
+        url = url.replace(/0/, id);
+        return abrir_modal(url);
+    }
+    
+</script>
+{% endblock %}

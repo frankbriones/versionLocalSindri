@@ -1,0 +1,161 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/vendors-rtl.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/extensions/dragula.min.css' %}">
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/plugins/extensions/drag-and-drop.css' %}">
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/assets/css/style-rtl.css' %}">
+<!-- END: Custom CSS-->
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "General" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Operaciones" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="sortable-lists">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Talleres disponibles" %}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <p>{% trans "Ordene los talleres por prioridad de arriba hacia abajo" %}</p>
+                                    <ul class="list-group" id="basic-list-group">
+                                        {% for taller in talleres %}
+                                        <li class="list-group-item">
+                                            <div class="media">
+                                                <img src="{% static  'base/img/icons/sindrilogo.png' %}" class="rounded-circle mr-2" alt="img-placeholder" height="50" width="50">
+                                                <div class="media-body">
+                                                    <input class="item-taller" hidden type="number" name="taller" id="id_taller" value="{{ taller.id_taller }}">
+                                                    <h5 class="mt-0">{{ taller.nombre }}</h5>
+                                                    <!-- Chupa chups tiramisu apple pie biscuit sweet roll bonbon macaroon toffee icing. -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <br>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" onclick="Guardar()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                        <a href="{% url 'bases:home' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js_page %}
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/extensions/dragula.min.js' %}"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{% static  'base/app-assets/js/scripts/extensions/drag-drop.js' %}"></script>
+<!-- END: Page JS-->
+<script>
+
+    $(document).ready(function(){
+    });
+
+    function Guardar(){
+        talleresOrden = [];
+        num = 1
+        $('.item-taller').each(function(){
+            taller = {'id': parseInt($(this).val()), 'orden': num};
+            talleresOrden.push(taller);
+            num++;
+        });
+        console.log(talleresOrden);
+
+        var token = '{{ csrf_token }}';
+
+        datos = {
+            'talleresOrden[]': JSON.stringify(talleresOrden)
+        }
+
+        var url = "{% url 'cfg:prioridad_talleres' %}";
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response) {
+                window.location = "{% url 'bases:home' %}";
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+</script>
+{% endblock %}

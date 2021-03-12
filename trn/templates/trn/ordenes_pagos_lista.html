@@ -1,0 +1,441 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/pages/app-file-manager.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.min.css' %}">
+
+<!-- END: Page CSS-->
+
+
+<div class="app-content content">
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <div class="app-file-sidebar sidebar-content d-flex">
+                    <!-- App File sidebar - Left section Starts -->
+                    <div class="app-file-sidebar-left">
+                        <!-- sidebar close icon starts -->
+                        <span class="app-file-sidebar-close"><i class="bx bx-x"></i></span>
+                        <!-- sidebar close icon ends -->
+                        <div class="form-group add-new-file text-center">
+                            <a onclick="generarReporte()">
+                                <label for="getFile" class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i class="bx bx-file"></i>{% trans "Exportar" %}</label>
+                            </a>
+                            <select name="filtro" id="id_filtro" class="form-control selectrubro mt-1">
+                                <option value="1">{% trans "Lo que va del mes" %}</option>
+                                <option value="2">{% trans "El mes anterior" %}</option>
+                                <option value="3">{% trans "Rango de fecha" %}</option>
+                                <option value="4">{% trans "Todas" %}</option>
+                            </select>
+                            <div id="div_fecha_inicio">
+                                <small>{% trans "Fecha inicio" %}</small>
+                                <input type="date" id="id_fecha_inicio" class="form-control">
+                            </div>
+                            <div id="div_fecha_fin">
+                                <small>{% trans "Fecha fin" %}</small>
+                                <input type="date" id="id_fecha_fin" class="form-control">
+                            </div>
+                            <a onclick="obtenerOrdenesfecha(3)" id="btn_filtro">
+                                <label for="getFile" class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i class="bx bxs-filter-alt"></i>{% trans "Filtrar" %}</label>
+                            </a>
+                        </div>
+                        <div class="app-file-sidebar-content">
+                            <label class="app-file-label">{% trans "Estados" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" id="id_pendiente">
+                                    <label for="id_pendiente">{% trans "PENDIENTE" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" id="id_aprobado">
+                                    <label for="id_aprobado">{% trans "APROBADO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" id="id_facturado">
+                                    <label for="id_facturado">{% trans "FACTURADO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" id="id_pagado">
+                                    <label for="id_pagado">{% trans "PAGADO" %}</label>
+                                </div>
+                            </div>
+                            {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                            <label class="app-file-label mb-75">{% trans "Fabricantes" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-fab" id="id_talleres_int">
+                                    <label for="id_talleres_int">{% trans "Talleres internos" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-fab" id="id_talleres_ext">
+                                    <label for="id_talleres_ext">{% trans "Talleres externos" %}</label>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- File Manager app overlay -->
+                    <div class="app-file-overlay"></div>
+                    <div class="app-file-area">
+                        <!-- File App Content Area -->
+                        <!-- App File Header Starts -->
+                        <div class="app-file-header">
+                            <!-- Header search bar starts -->
+                            <div class="app-file-header-search flex-grow-1">
+                                <div class="sidebar-toggle d-block d-lg-none">
+                                    <i class="bx bx-menu"></i>
+                                </div>
+                                <fieldset class="form-group position-relative">
+                                    <input id="id_buscar" type="text" class="form-control border-0 shadow-none" placeholder='{% trans "Buscar por secuencia o tienda" %}'>
+                                    <div class="form-control-position">
+                                        <button onclick="buscarClave();" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="bx bx-search"></i></button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Header search bar Ends -->
+                            <!-- Header Icons Starts -->
+                            <div class="app-file-header-icons">
+                                <!-- <div class="fonticon-wrap d-inline mr-sm-50 align-middle">
+                                    <i class="livicon-evo cursor-pointer" data-options="name: trash.svg; size: 24px; style: lines; strokeColor:#596778; duration:0.85;"></i>
+                                </div> -->
+                                <!-- <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle cursor-pointer"></i> -->
+                            </div>
+                            <!-- Header Icons Ends -->
+                        </div>
+                        <!-- App File Header Ends -->
+
+                        <!-- App File Content Starts -->
+                        <div class="app-file-content p-2">
+                            <span id="id_registros"></span>
+
+                            <!-- <div id="id_cont_items" class="align-items-center "> -->
+                                <!-- <div class="table-responsive"> -->
+                                    <table id="id_tabla" class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans "Secuencia" %}</th>
+                                                <th>{% trans "Solicita" %}</th>
+                                                <th>{% trans "Estado pago" %}</th>
+                                                <th>{% trans "No. Factura" %}</th>
+                                                <th>{% trans "Fecha ult. modificación" %}</th>
+                                                <th>{% trans "Usuario modifica" %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="id_body_table">
+                                        </tbody>
+                                    </table>
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- <div class="row">
+                                <div class="col-12 text-center">
+                                    <button id="btnProductos" onclick="aumentarLimite()" class="btn round btn-outline-primary mr-1 mb-1">{% trans "Ver más" %}</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script src="{% static  'base/app-assets/js/scripts/pages/app-file-manager.js' %}"></script>
+<script>
+
+    let talleresInternos;
+    let talleresExternos;
+    let estadoPendiente;
+    let estadoAprobado;
+    let estadoFacturado;
+    // let estadoRevisado;
+    let estadoPagado;
+    let claveBusqueda;
+    let opcion;
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('#div_fecha_inicio').hide();
+        $('#div_fecha_fin').hide();
+        $('#btn_filtro').hide();
+        $('#id_fecha_inicio', '#id_fecha_fin').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false
+        });
+        $('#id_filtro').val(1);
+        opcion = 1;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    $('#id_filtro').on('change', function(){
+
+        opcion = parseInt($(this).val());
+
+        if ( opcion == 3 ){
+            $('#div_fecha_inicio').show();
+            $('#div_fecha_fin').show();
+            $('#btn_filtro').show();
+        } else {
+            $('#div_fecha_inicio').hide();
+            $('#div_fecha_fin').hide();
+            $('#btn_filtro').hide();
+            obtenerOrdenesfecha(opcion);
+        }
+    });
+
+    $('input[type=checkbox]').on('click', function(){
+        limite = 50;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    $('#id_buscar').keypress(function(e){
+        if(e.which == 13){
+            buscarClave();
+        }
+    });
+
+    $('#id_buscar').on('keyup', function(){
+        if($(this).val() == ''){
+            limite = 50;
+            obtenerOrdenesfecha(opcion);
+        }
+    });
+
+    function buscarClave(){
+        limite = 50;
+        obtenerOrdenesfecha(opcion);
+    }
+
+    function obtenerOrdenesfecha(opcion){
+
+        talleresInternos = $('#id_talleres_int').prop('checked') ? 1 : 0;
+        talleresExternos = $('#id_talleres_ext').prop('checked') ? 1 : 0;
+        estadoPendiente = $('#id_pendiente').prop('checked') ? 1 : 0;
+        estadoAprobado = $('#id_aprobado').prop('checked') ? 1 : 0;
+        estadoFacturado = $('#id_facturado').prop('checked') ? 1 : 0;
+        // estadoRevisado = $('#id_revisado').prop('checked') ? 1 : 0;
+        estadoPagado = $('#id_pagado').prop('checked') ? 1 : 0;
+        claveBusqueda = $('#id_buscar').val();
+
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        datos = {
+            "talleresInternos": talleresInternos,
+            "talleresExternos": talleresExternos,
+            "estadoPendiente": estadoPendiente,
+            "estadoAprobado": estadoAprobado,
+            "estadoFacturado": estadoFacturado,
+            // "estadoRevisado": estadoRevisado,
+            "estadoPagado": estadoPagado,
+            "claveBusqueda": claveBusqueda,
+            "opcion": opcion,
+            "fechaInicio": f_inicio,
+            "fechaFin": f_fin
+        }
+
+        datos = JSON.stringify(datos);
+        
+
+        var token = '{{ csrf_token }}';
+
+        var url = "{% url 'trn:ordenes_pagos_api_lista' %}";
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                ordenes = res;
+                $('#id_body_table').empty();
+                if(ordenes.length > 0){
+                    ordenes.forEach(orden => {
+                        estado_pago = '';
+                        usuario_aprueba = '';
+                        fecha_aprobacion = '';
+                        numFactura = '';
+                        if(orden.orden_pagada){
+                            estado_pago = '{% trans "PAGADO" %}';
+                            fecha_aprobacion = new Date(orden.fecha_pago);
+                            usuario_aprueba = orden.usuario_registra_pago_orden;
+                        } else if(orden.orden_facturada){
+                            estado_pago = '{% trans "FACTURADO" %}';
+                            fecha_aprobacion = new Date(orden.fecha_facturacion);
+                            usuario_aprueba = orden.usuario_registra_facturacion;
+                        } else if(orden.pago_aprobado){
+                            estado_pago = '{% trans "APROBADO" %}';
+                            fecha_aprobacion = new Date(orden.fecha_aprueba_pago);
+                            usuario_aprueba = orden.usuario_aprueba_pago;
+                        } else {
+                            estado_pago = '{% trans "PENDIENTE" %}';
+                        }
+                        if(orden.numero_factura){
+                            numFactura = orden.numero_factura;
+                        }
+                        opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
+                        let tr = `<tr style="cursor:pointer;" onclick="verDetalles(${orden.id_orden})">
+                                    <td>${orden.secuencia}</td>
+                                    <td>${orden.solicita}</td>
+                                    <td>${estado_pago}</td>
+                                    <td>${numFactura}</td>
+                                    <td>${fecha_aprobacion.toLocaleString('ja-JP', opciones)}</td>
+                                    <td>${usuario_aprueba}</td>
+                                </tr>`;
+                        $('#id_body_table').append(tr);
+                    });
+
+                    $('#id_cantidad').text('{% trans "Registros: " %}' + String(ordenes.length))
+                }
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function generarReporte(){
+
+        opcion = parseInt($('#id_filtro').val());
+
+        talleresInternos = $('#id_talleres_int').prop('checked') ? 1 : 0;
+        talleresExternos = $('#id_talleres_ext').prop('checked') ? 1 : 0;
+        estadoPendiente = $('#id_pendiente').prop('checked') ? 1 : 0;
+        estadoAprobado = $('#id_aprobado').prop('checked') ? 1 : 0;
+        estadoFacturado = $('#id_facturado').prop('checked') ? 1 : 0;
+        estadoPagado = $('#id_pagado').prop('checked') ? 1 : 0;
+        claveBusqueda = $('#id_buscar').val();
+
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        datos = {
+            "talleresInternos": talleresInternos,
+            "talleresExternos": talleresExternos,
+            "estadoPendiente": estadoPendiente,
+            "estadoAprobado": estadoAprobado,
+            "estadoFacturado": estadoFacturado,
+            "estadoPagado": estadoPagado,
+            "claveBusqueda": claveBusqueda,
+            "opcion": opcion,
+            "fechaInicio": f_inicio,
+            "fechaFin": f_fin
+        }
+
+        datos = JSON.stringify(datos);
+
+        var token = '{{ csrf_token }}';
+
+        var url = "{% url 'trn:rep_pagos_aprobados' %}";
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            type: "POST",
+            url: url,
+            data: datos,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res, textStatus, jqXHR) {
+                let nombreArchivo = "";
+                let disposition = jqXHR.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    let matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) { 
+                        nombreArchivo = matches[1].replace(/['"]/g, '');
+                    }
+                }
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(res);
+                a.href = url;
+                a.download = nombreArchivo;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function verDetalles(id){
+        // url = "{% url 'trn:ordenes_detalle' 0 %}"
+        url = "{% url 'trn:orden_aprobacion_pago' 0 %}";
+        url = url.replace(/0/, id);
+        return abrir_modal(url);
+        // window.location.replace(url);
+    }
+
+    wsSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        // var message = data['message'];
+        $('#id_filtro').val(1);
+        obtenerOrdenesfecha(1);
+        obtenerNotificaciones(15);
+    };
+</script>
+{% endblock %}

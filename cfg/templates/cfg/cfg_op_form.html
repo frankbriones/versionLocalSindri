@@ -1,0 +1,546 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "General" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Operaciones" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Configuración general" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a onclick="return abrir_modal('{% url 'cfg:calcular_porcentajes' user.grupo_empresarial.id_grupo_empresarial %}')" title='{% trans "Calculadora" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bxs-calculator"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" id="frmConfiguracion" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_tmp_logotipo" name="tmp_logotipo" {% if obj.logotipo %} src="{{ obj.logotipo.url }}" {% else %} src="{% static  'base/img/icons/nofoto2.png' %}"  {% endif %} class="center img-fluid pointer">
+                                                        <input onchange="seleccionarImagen('id_tmp_logotipo','id_logotipo')" type="file" name="logotipo" id="id_logotipo" class="inputimage center pointer" width="100%">
+                                                        <label for="id_logotipo">{% trans "Logotipo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="costo_gramo_base" id="id_costo_gramo_base" data-type='currency'>
+                                                                <label for="id_costo_gramo_base">{% trans "Costo gramo base (" %} {{ user.pais.simbolo_moneda }} )</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="precio_gramo_base" id="id_precio_gramo_base" data-type='currency'>
+                                                                <label for="id_utilidad">{% trans "Precio gramo base " %}({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.utilidad_sobre_taller }}
+                                                                <label for="id_utilidad">{% trans "Utilidad sobre mano de obra (%)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="prct_impuestos" id="id_prct_impuestos" data-type='currency'>
+                                                                <label for="id_utilidad">{% trans "Porcentaje impuestos (%)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.limite_venta }}
+                                                                <label for="id_limite_venta">{% trans "Tiempo límite de venta (días)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="descuento_max" id="id_descuento_max" data-type='currency'>
+                                                                <label for="id_descuento_max">{% trans "Descuento máximo (%)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="origen_material" id="id_origen_material" class="form-control">
+                                                                    {% for origen in origenes %}
+                                                                    <option value="{{ origen.id_origen }}">{{ origen.descripcion }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_estandar_tallas">{% trans "Origen de material" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="tipo_precio_predefinido" id="id_tipo_precio_predefinido" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for tipo in tiposprecios %}
+                                                                    <option value="{{ tipo.id_tipo }}">{{ tipo.descripcion }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <label for="id_gramo_final_catalogo">{% trans "Tipo precio predefinido" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="precio_gramo_final" id="id_precio_gramo_final" data-type='currency'>
+                                                                <label for="id_gramo_final_catalogo">{% trans "Precio gramo final " %}({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if user.pais.aut_externo %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    {{ form.aut_externo }}
+                                                                    <label for="id_aut_externo">{% trans "Autorizar externo" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <img id="id_tmp_logotipo_alt" name="tmp_logotipo_alt" src="{% static  'base/img/icons/pdf.png' %}" class="center img-fluid pointer">
+                                                                <input onchange="seleccionarArchivo('id_tmp_pdf','id_politicas_pdf')" type="file" name="politicas_pdf" id="id_politicas_pdf" class="inputimage center pointer" width="100%">
+                                                                <label for="id_politicas_pdf">{% trans "PDF políticas" %}</label>
+                                                            </div>
+                                                            <div class="form-label-group text-center">
+                                                                <span>{% trans "Seleccionado: " %}</span><p id="id_tmp_pdf"></p>
+                                                            </div>
+                                                            {% if obj.politicas_pdf %}
+                                                            <div class="form-label-group text-center">
+                                                                <a target="_blank" href="{{ obj.politicas_pdf.url }}">{% trans "Ver actual" %}</a>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <img id="id_tmp_logotipo_alt" name="tmp_logotipo_alt" src="{% static  'base/img/icons/doc.png' %}" class="center img-fluid pointer">
+                                                                <input onchange="seleccionarArchivo('id_tmp_doc','id_politicas_doc')" type="file" name="politicas_doc" id="id_politicas_doc" class="inputimage center pointer" width="100%">
+                                                                <label for="id_politicas_doc">{% trans "DOC políticas" %}</label>
+                                                            </div>
+                                                            <div class="form-label-group text-center">
+                                                                <span>{% trans "Seleccionado: " %}</span><p id="id_tmp_doc"></p>
+                                                            </div>
+                                                            {% if obj.politicas_pdf %}
+                                                            <div class="form-label-group text-center">
+                                                                <a target="_blank" href="{{ obj.politicas_doc.url }}">{% trans "Ver actual" %}</a>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12 col-12">
+                                                    <h6>{% trans "Configuración de órden de trabajo" %}</h6>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <table style="border-collapse: collapse; width: 50%; margin-left: auto; margin-right: auto;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="padding-bottom: 5%; text-align: center; font-size: 20px;"><b>{% trans "Acción" %}</b></th>
+                                                                <th style="padding-bottom: 5%; text-align: center; font-size: 20px;"><b>{% trans "Documento adjunto" %}</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="border: none;">
+                                                                <td style="border-right:black solid 3px; text-align: right; padding-right: 5%;"><b>{% trans "Creación de órden" %}</b></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr style="border: none;">
+                                                                <td style="border-right:black solid 3px;"></td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.anticipo_fabricacion }}
+                                                                            <label for="id_anticipo_fabricacion">{% trans "Anticipo de fabricación" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px; text-align: right; padding-right: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.envio_material }}
+                                                                            <label for="id_envio_material">{% trans "Envío de material" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px;">
+                                                                </td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.comprobante_env }}
+                                                                            <label for="id_comprobante_env">{% trans "Comprobante de envío" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px; text-align: right; padding-right: 5%;"><b>{% trans "Producto recibido" %}</b>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px;">
+                                                                </td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.factura_taller }}
+                                                                            <label for="id_factura_taller">{% trans "Factura de taller" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px;">
+                                                                </td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.envio_incluido }}
+                                                                            <label for="id_envio_incluido">{% trans "Costo de envío incluído" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px; text-align: right; padding-right: 5%;">
+                                                                    <b>{% trans "Finalizar órden" %}</b>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px;">
+                                                                </td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.cta_por_pagar }}
+                                                                            <label for="id_cta_por_pagar">{% trans "Cuenta por pagar" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-right:black solid 3px;">
+                                                                </td>
+                                                                <td style="padding-left: 5%;">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            {{ form.orden_compra }}
+                                                                            <label for="id_orden_compra">{% trans "Órden de compra" %}</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <a href="{% url 'bases:home' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    var costo_gramo_base = '{{ obj.costo_gramo_base }}' !== 'None' ? '{{ obj.costo_gramo_base }}'  : 0;
+    var precio_gramo_base = '{{ obj.precio_gramo_base }}' !== 'None' ? '{{ obj.precio_gramo_base }}' : 0;
+    var prct_impuestos = '{{ obj.prct_impuestos }}' !== 'None' ? '{{ obj.prct_impuestos }}' : 0;
+    var prct_descuento = '{{ obj.descuento_max }}' !== 'None' ? '{{ obj.descuento_max }}' : 0;
+    var precio_gramo_final = '{{ obj.precio_gramo_final }}' !== 'None' ? '{{ obj.precio_gramo_final }}' : 0;
+    $(document).ready(function(){
+        if('{{ user.pais.separador_decimal }}' === '.'){
+            costo_gramo_base = costo_gramo_base.replace(/,/, '.');
+            precio_gramo_base = precio_gramo_base.replace(/,/, '.');
+            prct_impuestos = prct_impuestos.replace(/,/, '.');
+            prct_descuento = prct_descuento.replace(/,/, '.');
+            precio_gramo_final = precio_gramo_final.replace(/,/, '.');
+        }
+        $('#id_limite_venta').attr({"min":1});
+        $('#id_costo_gramo_base').val(costo_gramo_base);
+        $('#id_precio_gramo_base').val(precio_gramo_base);
+        $('#id_prct_impuestos').val(prct_impuestos);
+        $('#id_descuento_max').val(prct_descuento);
+        $('#id_precio_gramo_final').val(precio_gramo_final);
+        console.log(parseFloat(costo_gramo_base));
+
+        formatCurrency($('#id_costo_gramo_base'));
+        formatCurrency($('#id_precio_gramo_base'));
+        formatCurrency($('#id_prct_impuestos'));
+        formatCurrency($('#id_descuento_max'));
+        formatCurrency($('#id_precio_gramo_final'));
+
+        origen = parseInt('{{ obj.origen_material }}');
+        $('#id_origen_material').val(origen);
+        tipo_precio_predefinido = parseInt('{{ obj.tipo_precio_predefinido }}');
+        $('#id_tipo_precio_predefinido').val(tipo_precio_predefinido);
+        prct_utilidad_base = parseFloat('{{ obj.utilidad_sobre_taller }}'.replace(/,/,'.'));
+        if(prct_utilidad_base === 0){
+            $('#id_utilidad_sobre_taller').val(0.00);
+        }
+    });
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.attr('src', "{% static 'base/img/icons/nofoto2.png' %}");
+            }
+        } else {
+            preview.attr('src', "{% static 'base/img/icons/nofoto2.png' %}");
+        }
+
+    }
+
+    function validarArchivo(elemento){
+        var peso_max_img = parseInt('{{ peso_max_arc.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_arc.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo con extensión no válida" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarArchivo(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarArchivo(elemento)){
+                reader.readAsDataURL(file);
+                preview.text(file.name);
+            } else {
+                preview.text("");
+            }
+        } else {
+            preview.text("");
+        }
+
+    }
+
+    function guardar(){
+
+        costo_gramo_base = FormatoDecimal($('#id_costo_gramo_base'));
+        precio_gramo_base = FormatoDecimal($('#id_precio_gramo_base'));
+        prct_impuestos = FormatoDecimal($('#id_prct_impuestos'));
+        prct_descuento = FormatoDecimal($('#id_descuento_max'));
+        precio_gramo_final = FormatoDecimal($('#id_precio_gramo_final'));
+
+        if(costo_gramo_base > precio_gramo_base){
+            mensaje('{% trans "Costo gramo base no puede ser superior al precio gramo base" %}', 'red');
+            return;
+        }
+
+        if(precio_gramo_base > precio_gramo_final){
+            mensaje('{% trans "Precio gramo base no debe ser superior al precio gramo final" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmConfiguracion');
+        var data = new FormData(form);
+        data.append('costo_gramo_base', costo_gramo_base);
+        data.append('precio_gramo_base', precio_gramo_base);
+        data.append('prct_impuestos', prct_impuestos);
+        data.append('descuento_max', prct_descuento);
+        data.append('precio_gramo_final', precio_gramo_final);
+        
+        // form.submit()
+
+
+
+        var id_empresa = '{{ obj.id_grupo_empresarial }}';
+        var url = "{% url 'cfg:cfg_ope_editar' 0 %}";
+        url = url.replace(/0/, id_empresa);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            // beforeSend: function(){
+            //     $('.loader').show();
+            // },
+            // complete: function(){
+            //     $('.loader').hide();
+            // },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                url = "{% url 'bases:home' %}";
+                location.replace(url);
+            },
+            error: function(response) {
+                // $.confirm({
+                //     title: '{% trans "Error" %}',
+                //     content: response.responseJSON.mensaje,
+                //     theme: 'material',
+                //     type: 'red',
+                //     buttons: {
+                //         confirm: {
+                //             text: '{% trans "Entendido" %}',
+                //         },
+                //     }
+                // });
+            }
+        });
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Adicional" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Detalles" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Agregar" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Agregar Detalles a " %}{{ adicional.descripcion }}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="frmItems" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if adicional %} src="{{ adicional.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ adicional.descripcion }}">
+                                                                <label for="first-name-column">{% trans "Descripción" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" disabled value="{{ adicional.costo_taller }}">
+                                                                <label for="first-name-column">{% trans "Costo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <a onclick="marcarTodos()" id="id_marcar" class="btn btn-primary " style="color: white;">{% trans "Marcar Todos" %}</a>
+                                                        </div>
+                                                        <div class="col-md-12 col-12 mt-1">
+                                                            <a  id="id_desmarcar" class="btn btn-success " style="color: white;">{% trans "Desmarcar Todos" %}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-12">
+                                                    <div class="row">
+                                                        <ul class="list-unstyled mb-0">
+                                                            {% for categoria in categorias_lista %}
+                                                            <li class="d-inline-block mr-2 mb-1"></li>
+                                                                <fieldset>
+                                                                    <div class="checkbox">
+                                                                        <input type="checkbox" class="checkbox-input" id="id_check{{categoria.id_categoria}}" value="{{categoria.id_categoria}}">
+                                                                        <label for="id_check{{categoria.id_categoria}}">{{ categoria.descripcion }}</label>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardarItem()" class="btn btn-primary mr-1 mb-1">{% trans " Finalizar" %}</button>
+                                                    <a href="{% url 'ctg:adicionales_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#id_desmarcar').hide();
+        $('#id_marcar').hide();
+        categorias_item_lista = {{ categorias_adicional_lista|safe }};
+        categorias_item_lista.forEach(categoria => {
+            categoria_item = categoria[0];
+            $('#id_check'+categoria_item).prop('checked', true);
+        });
+
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+
+            check = categoria.prop('checked');
+
+            if(check === false){
+                $('#id_desmarcar').hide();
+                $('#id_marcar').show();
+
+            }
+
+
+        });
+
+
+
+        
+        
+    });
+
+
+    function guardarItem(){
+
+        var categorias = new Array();
+
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+
+            check = categoria.prop('checked');
+
+            if(check){
+                categorias.push(categoria.val());
+            }
+
+        });
+
+        if(categorias.length === 0){
+            mensaje('{% trans " Seleccione al menos una categoría" %}', 'red');
+            return;
+        } else {
+
+            var token = '{{ csrf_token }}';
+
+            var adicional_id = {{ adicional.id_adicional }};
+
+            var url_modificada = "{% url 'ctg:detalles_adicional_crear' 0 %}";
+            var template = url_modificada.replace(/0/, adicional_id);
+
+            body = {
+                "categorias[]": JSON.stringify(categorias),
+            };
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: template,
+                data: body,
+                success: function(response){
+                    console.log('ok')
+                    window.location.replace("{% url 'ctg:adicionales_lista' %}");           
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+
+        }
+
+
+        
+    }
+
+    function marcarTodos(){
+        categorias_marcar = {{categorias_marcar|safe}}
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+            check = categoria.prop('checked', true);
+            if(check){
+                $('#id_marcar').hide();
+                $('#id_desmarcar').show();
+
+            }
+        });
+
+
+
+    }
+
+    $('#id_desmarcar').on('click', function(){
+        $('input[type=checkbox]').each(function(){
+            var categoria = $(this);
+            check = categoria.prop('checked', false);
+            if(check){
+                $('#id_marcar').show();
+                $('#id_desmarcar').hide();
+                
+            }
+        });
+    })
+
+
+
+</script>
+{% endblock %}

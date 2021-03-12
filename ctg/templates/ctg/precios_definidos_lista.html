@@ -1,0 +1,179 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Precios definidos" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Lista" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Precios definidos" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a title='{% trans "Listar todas" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-list-ul"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'ctg:precios_definidos_crear' %}" title='{% trans "Nueva" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-plus"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <div class="table-responsive">
+                                        {% if not obj %}
+                                        <div class="alert alert-info">{% trans "No existen precios registrados" %}</div>
+                                        {% else %}
+                                        <div class="table-responsive">
+                                            <table id="id_tabla" class="table table-striped table-hover">
+                                                <thead>
+                                                    <th>{% trans "Descripción" %}</th>
+                                                    <th>{% trans "Tipo" %}</th>
+                                                    <th>{% trans "Costo" %}</th>
+                                                    <th>{% trans "Utilidad (%)" %}</th>
+                                                    <th>{% trans "Precio" %}</th>
+                                                    <th>{% trans "Fecha creación" %}</th>
+                                                    <th class="all">{% trans "Acciones" %}</th>
+                                                </thead>
+                                                <tbody>
+                                                    {% for item in obj %}
+                                                    <tr>
+                                                        <td>{{ item.descripcion }}</td>
+                                                        <td>{{ item.tipo }}</td>
+                                                        <td>{{ item.costo }}</td>
+                                                        <td>{{ item.prct_utilidad }}</td>
+                                                        <td>{{ item.precio }}</td>
+                                                        <td>{{ item.fecha_creacion|date:"d/m/Y H:i:s" }}</td>
+                                                        <td>
+                                                            <a href="{% url 'ctg:precios_definidos_editar' item.id_precio %}" class="btn btn-icon rounded-circle btn-outline-warning mr-1 mb-1" role="button"><i class="bx bx-edit"></i></a>
+                                                            {% if item.estado.descripcion == 'ACTIVO' %}
+                                                            <a onclick="return abrir_modal('{% url 'ctg:precios_definidos_actualizar' item.id_precio %}')" class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1" role="button"><i class="bx bx-x"></i></a>
+                                                            {% else %}
+                                                            <a onclick="return abrir_modal('{% url 'ctg:precios_definidos_actualizar' item.id_precio %}')" class="btn btn-icon rounded-circle btn-outline-success mr-1 mb-1" role="button"><i class="bx bx-check"></i></a>
+                                                            {% endif %}
+                                                            <a class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 eliminar_precio " 
+                                                            data-precio={{item.id_precio}} data-descripcion="{{item.descripcion}}" data-target="#modal_eliminarprecio"
+                                                            role="button"><i class="bx bx-trash  font-medium-1"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- modal eliminar -->
+<div class="modal fade text-left" id="modal_eliminarprecio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <input type="hidden" class="id_precio_eliminar">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title white" id="myModalLabel12">Confirmacion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar el registro de Precios.
+                <span class="nombre_precio"></span>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">No</span>
+                </button>
+                <button type="button" class="btn btn-danger ml-1 delete_precio">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">si</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script type="text/javascript" src="{% static 'base/assets/js/ctg_eliminar.js' %}"></script>
+
+<script>
+    // llamar el plugin de datatable jQuery
+    $(document).ready(function() {
+        $('#id_tabla').DataTable({
+            "responsive": true,
+            "paging": false,
+            "info": false,
+            // "pagingType": "full_numbers",
+            "language": {
+                "sProcessing": '{% trans "Procesando..." %}',
+                "sLengthMenu": '{% trans "Mostrar _MENU_ registros" %}',
+                "sZeroRecords": '{% trans "No se encontraron resultados" %}',
+                "sEmptyTable": '{% trans "Ningún dato disponible en esta tabla" %}',
+                "sInfo": '{% trans "Registros del _START_ al _END_ de un total de _TOTAL_ registros" %}',
+                "sInfoEmpty": '{% trans "Registros del 0 al 0 de un total de 0 registros" %}',
+                "sInfoFiltered": '{% trans "(filtrado de un total de _MAX_ registros)" %}',
+                "sInfoPostFix": "",
+                "sSearch": '{% trans "Buscar:" %}',
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": '{% trans "Cargando..." %}',
+                "oPaginate": {
+                    "sFirst": "<span class='bx bx-chevrons-left'></span>",
+                    "sLast": "<span class='bx bx-chevrons-right'></span>",
+                    "sNext": "<span class='bx bx-chevron-right'></span>",
+                    "sPrevious": "<span class='bx bx-chevron-left'></span>"
+                },
+                "oAria": {
+                    "sSortAscending": '{% trans ": Activar para ordenar la columna de manera ascendente" %}',
+                    "sSortDescending": '{% trans ": Activar para ordenar la columna de manera descendente" %}'
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

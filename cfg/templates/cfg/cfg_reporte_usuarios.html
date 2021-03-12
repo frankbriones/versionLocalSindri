@@ -1,0 +1,210 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Reportes" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Conexion Usuarios" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="card-title">{% trans "Configuración reporte de usuarios." %}</h4>
+                                    </div>
+                                    <div class="col-6 " style="text-align: end;">
+                                        <button class="btn btn-primary" onclick="guardarConfiguracion()">
+                                             <i class="bx bx-download"></i> Descargar
+                                        </button>                                   
+                                    </div>
+
+                                </div>
+                                <!-- <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a> -->
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <h5>{% trans "Seleccione el rol de los usuarios que desee gestionar:" %}</h5>
+                                                </div>
+                                                <div class="col-md-12 col-12">
+                                                    <ul class="list-unstyled mb-0">
+                                                        {% for rol in roles %}
+                                                        <li class="d-inline-block mr-2 mb-1"></li>
+                                                            <fieldset>
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" class="checkbox-input" id="id_check{{rol.id_rol}}" value="{{rol.id_rol}}">
+                                                                    <label for="id_check{{rol.id_rol}}">{{ rol.descripcion }}</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <!-- <button type="button" onclick="guardarConfiguracion()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button> -->
+                                                    <button onclick="atras()" class="btn btn-light-secondary mr-1 mb-1">{% trans "Atras" %}</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        $('.loader').hide();
+        roles_asignados = {{ roles_asignados|safe }};
+        // console.log(roles_asignados)
+        roles_asignados.forEach(rol => {
+            $('#id_check'+rol).prop('checked', true);
+        });
+
+
+
+        // dia = parseInt('{{ dia }}');
+        // hora = parseInt('{{ hora }}')
+        
+        // var select = document.getElementById('id_dia_envio');
+        // for(i=1; i<=28; i++){
+        //     var option = document.createElement("option");
+        //     option.value = i;
+        //     option.text = i;
+        //     select.add(option);
+        // }
+        // $('#id_dia_envio').val(dia);
+
+        // var select = document.getElementById('id_hora_envio');
+        // for(i=0; i<=23; i++){
+        //     var option = document.createElement("option");
+        //     option.value = i;
+        //     if(i<10){
+        //         option.text = '0'+i+':00';
+        //     } else {
+        //         option.text = i+':00';
+        //     }
+        //     select.add(option);
+        // }
+        // $('#id_hora_envio').val(hora);
+    });
+
+    function validar(){
+    }
+
+    function guardarConfiguracion(){
+
+        var roles = new Array();
+        // check = document.getElementsByTagName('input[type="checkbox"]')
+        // alert(check)
+
+        $('input[type=checkbox]').each(function(){
+            var rol = $(this);
+            check = rol.prop('checked');
+
+            if(check){
+                roles.push(rol.val());
+            }
+
+        }); 
+
+
+        if(roles.length === 0){
+            toastr.error('Debe seleccionar un rol.', 'Error');
+            return false;
+        }else{
+
+            var token = '{{ csrf_token }}';
+
+            var url = "{% url 'cfg:cfg_reporte_usuarios' %}";
+
+            body = {
+                "roles[]": JSON.stringify(roles),
+            };
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: body,
+                beforeSend: function(){
+                    $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response){
+                    console.log('ok');
+                    // window.location.replace("{% url 'bases:home' %}");
+                    generarReporte();
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+        }
+        function atras(){
+            history.back();
+        }
+
+    function generarReporte(){
+        // opcion = parseInt($('#id_filtro').val());
+        ahora = new Date();
+        opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+        ahora = ahora.toLocaleString('sv-SE', opciones);
+        f_inicio = ahora;
+        f_fin = ahora;
+        opcion = 1
+
+        var url = "{% url 'dsh:reporte_usuarios' 'finicio' 'ffin' 0 %}";
+
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        window.open(url, '_blank');
+    }
+}
+
+
+</script>
+{% endblock %}

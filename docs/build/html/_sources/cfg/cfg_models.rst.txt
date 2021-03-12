@@ -1,0 +1,159 @@
+*******************
+**Modelos cfg**
+*******************
+
+Dentro de la carpeta **bases** tenemos el archivo llamado ``models.py``. Donde se encuentran los modelos de la aplicación bases
+
+Modelo ConfiguracionSistema
+============================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo para configuraciones generales del sistema, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+	"clave","Nombre del atributo a configurar en el sistema."
+	"valor", "Valor que se le asigna a la clave en la configuración."
+	"observacion", "Breve descripción u observación sobre la clave a configurar."
+
+Modelo ConfigGeneral
+=====================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo para configuraciones generales de los usuarios sobre el sistema, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "empresa","Nombre de la empresa."
+        "pais", "Id del pais al que pertenece la configuración."
+        "utilidad_sobre_taller", "Porcentaje de utilidad que se aplicará sobre los costos del taller."
+        "limite_venta","Cantidad en días que representa el tiempo límite para finalizar una orden de trabajo."
+        "costo_gramo_base", "Costo del gramo base de la joyería."
+        "utilidad_sobre_base", "Porcentaje de utilidad que se aplicará sobre el costo de gramo base."
+        "aut_externo", "Indica si tiene permitido generar directamente ordenes con un proveedor externo."
+        "descuento_max", "Pocentaje máximo de descuento permitido para las órdenes de trabajo."
+        "prct_impuestos", "Porcentaje de impuestos que se aplica en las joyerías."
+        "configurado", "Indica si el usuario administrador ha configurado la empresa."
+        "origen_material", "Origen de material que se cargará por defecto al crear una orden o solicitud de trabajo."
+        "anticipo_fabricacion", "Indica si el usuario debe cargar o no el documento anticipo de trabajo."
+        "envio_material", "Indica si se encuantra configurado el envío de material por defecto."
+        "comprobante_env", "Indica si el usuario debe cargar o no el documento comprobante de envío."
+        "envio_incluido", "Indica si el valor de envío de producto está incluído en el precio final de la órden de trabajo."
+        "factura_taller", "Indica si el usuario debe cargar o no el documento factura de taller."
+        "cta_por_pagar", "Indica si el usuario debe cargar o no el documento cuenta por pagar."
+        "orden_compra", "Indica si el usuario debe cargar o no el documento órden de compra."
+        "precio_final_fijo", "Indica si el valor gramo de la joyería se mantiene fijo."
+        "gramo_final_catalogo", "Valor del gramo final para items de catálogo, aplica para precio final fijo."
+        "gramo_final_especial", "Valor del gramo final para fabricaciones especiales, aplica para precio final fijo."
+
+Modelo ConfigUtilidadTaller
+============================
+
+Modelo que hereda de :ref:`ClaseModelo`. Este es el modelo para configuraciones específicas de utilidades sobre los talleres, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "pais","País al que pertenece el taller."
+        "id_usuario_op", "Id del usuario de tipo operaciones."
+        "usuario_op", "Username del usuario de tipo operaciones."
+        "id_taller", "Id del taller sobre el cual se aplicará el porcentaje de utilidad."
+        "taller", "Nombre del taller sobre el cual se aplicará el porcentaje de utilidad."
+        "utilidad", "Porcentaje de utilidad que aplicará la joyería sobre un taller específico."
+
+Modelo ConfigUtilidadProveedor
+===============================
+
+Modelo que hereda de :ref:`ClaseModelo`. Este es el modelo para configuraciones específicas de utilidades sobre los proveedores, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "pais","País al que pertenece el taller."
+        "id_usuario_op", "Id del usuario de tipo operaciones."
+        "usuario_op", "Username del usuario de tipo operaciones."
+        "nombres", "Nombres del proveedor sobre el cual se aplicará el porcentaje de utilidad."
+        "apellidos", "Apellidos del proveedor sobre el cual se aplicará el porcentaje de utilidad."
+        "proveedor", "Id del proveedor sobre el cual se aplicará el porcentaje de utilidad."
+        "utilidad", "Porcentaje de utilidad que aplicará la joyería sobre un proveedor específico."
+
+Modelo OperacionesTallerVista
+==============================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada usuario de tipo operaciones con cada uno de los talleres, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_user","Id del usuario de tipo operaciones."
+        "username", "Username del usuario de tipo operaciones."
+        "id_taller", "Id del taller."
+        "nombre_taller", "Nombre del taller."
+        "pais_id", "Id del país al que pertenecen el usuario de tipo operaciones y el taller."
+
+Modelo ZonasTallerVista
+=========================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada zona con cada uno de los talleres, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_zona","Id de la zona."
+        "nombre", "Nombre de la zona."
+        "id_taller", "Id del taller."
+        "nombre_taller", "Nombre del taller."
+        "pais_id", "Id del país al que pertenecen la zona y el taller."
+
+Modelo SectoresTallerVista
+===========================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada sector con cada uno de los talleres, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_sector","Id del sector."
+        "nombre", "Nombre del sector."
+        "id_taller", "Id del taller."
+        "nombre_taller", "Nombre del taller."
+        "pais_id", "Id del país al que pertenecen el sector y el taller."
+
+Modelo OperacionesProveedorVista
+=================================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada usuario de tipo operaciones con cada uno de los proveedores, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_user","Id del usuario de tipo operaciones."
+        "username", "Username del usuario de tipo operaciones."
+        "id_proveedor", "Id del proveedor."
+        "nombres", "Nombres del proveedor."
+        "apellidos", "Apellidos del proveedor."
+        "pais_id", "Id del país al que pertenecen el usuario de tipo operaciones y el proveedor."
+
+Modelo ZonasProveedorVista
+===========================
+
+Modelo que hereda de ``models.Model`` de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada zona con cada uno de los proveedores, consta de los siguientes campos:
+
+.. csv-table::
+	:header: "**Campo**","**Descripción**"
+	:widths: 20, 80
+        
+        "id_zona","Id de la zona."
+        "nombre", "Nombre de la zona."
+        "id_proveedor", "Id del proveedor."
+        "nombres", "Nombres del proveedor."
+        "apellidos", "Apellidos del proveedor."
+        "pais_id", "Id del país al que pertenecen la zona y el proveedor."

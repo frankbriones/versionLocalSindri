@@ -1,0 +1,236 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+  .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+  }
+
+  .inputimage {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      /* width: 150px;
+      height: 150px; */
+      margin-bottom: auto;
+      opacity: 0;
+  }
+  .img-circle {
+      border-radius: 100%;
+  }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Usuarios" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i
+                                            class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Usuario" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Editar perfil" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-divider">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if usuario %} {% trans "Editar perfil " %} {{ usuario.first_name }} {{ usuario.last_name }} {% else %} {% trans "Nuevo " %} {% trans "usuario " %} {% endif %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            {% if usuario.is_active %}
+                                            <a title='{% trans "Inactivar" %}' onclick="return abrir_modal('{% url 'usr:usuario_inactivar_modal' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-user-x"></i>
+                                            </a>
+                                            {% else %}
+                                            <a title='{% trans "Activar" %}' onclick="return abrir_modal('{% url 'usr:usuario_activar_modal' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-user-check"></i>
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <a title='{% trans "Reestablecer contraseña" %}' onclick="return abrir_modal('{% url 'usr:usuario_reinicia_contrasena' usuario.id %}')" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-key"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_img_tmp" name="imagentmp" {% if usuario.img_perfil %} src="{{ usuario.img_perfil.url }}" {% else %} src="{% static  'base/img/profile/no_perfil.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                                        <input onchange="seleccionarImagen()" type="file" name="usuario-img_perfil" id="id_usuario-img_perfil" class="inputimage center pointer" width="100%">
+                                                        <label for="city-column">{% trans "Imagen" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.username }}
+                                                                <label
+                                                                    for="id_cliente-nombres">{% trans "Usuario" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% if user.rol.descripcion != 'ADMINISTRADOR' %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.rol }}
+                                                                <input type="text" hidden>
+                                                                <label id="lb_rol"
+                                                                    for="email-id-column">{% trans "Rol" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="text" hidden>
+                                                                <label id="lb_rol"
+                                                                    for="email-id-column">{% trans "Rol" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.first_name }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Nombres" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.last_name }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Apellidos" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.email }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Correo" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.usuario.telefono }}
+                                                                <label
+                                                                    for="country-floating">{% trans "Teléfono" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'usr:usuario_lista' %}"
+                                                        class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        correo = error.includes('correo-duplicado');
+        if(correo){
+            mensaje('{% trans "El correo ingresado ya se encuentra registrado" %}','red');
+        }
+
+        //$('#id_usuario-rol').prop('disabled', true);
+        $('#id_usuario-username').prop('readonly', true);
+        // $('#id_usuario-rol').hide()
+        $('#lb_rol').hide();
+        var rol = {{ user.rol_id }};
+
+        if(rol == 2 || rol == 3){
+            //$('#id_usuario-rol').prop('disabled', false);
+            // $('#id_usuario-username').prop('readonly', false);
+            // $('#id_usuario-rol').show()
+            $('#lb_rol').show();
+        }
+    });
+
+    function seleccionarImagen(){
+
+        var preview = document.querySelector("img[name='imagentmp']");
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

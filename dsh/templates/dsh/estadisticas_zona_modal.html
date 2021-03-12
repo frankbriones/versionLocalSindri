@@ -1,0 +1,140 @@
+{% load static %} {% load i18n %}
+
+<div class="col-12">
+    <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+        <div class="modal-content">
+            <!-- <input type="hidden" class="id_obs_eliminar"> -->
+            <div class="modal-header bg-primary">
+                
+                    <div class="col-6">
+                        <h5 class="modal-title white" id="myModalLabel15">{% trans 'Zonas con mas Ordenes' %}</h5>
+                    </div>
+                    <div class="col-6 align_items_end">
+                        <select id="id_select_tiempo" class="form-control">
+                            <option value="0">{% trans 'Seleccionar' %}</option> 
+                            <option value="1">{% trans 'Año en curso' %}</option>
+                            <option value="2">{% trans 'Año anterior' %}</option>
+                            <option value="3">{% trans 'Ultmos 6 meses' %} </option>
+                            <option value="4">{% trans 'Ultimos 3 meses' %}</option>
+
+                        </select>
+                    </div>
+                        
+
+            </div>
+            <div class="modal-body"> 
+                <div id="div_zona_ordenes" class="card-body text-center pb-0">
+    <div class="loader">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Cerrar</span>
+                </button>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.loader').hide();
+        // cargarDatos(1);
+
+    });
+
+    $('#id_select_tiempo').on('change', function(){
+        itemSelececcionado =  $('option:selected', '#id_select_tiempo').val();
+        cargarDatos(itemSelececcionado);
+
+    });
+
+    function cargarDatos(opcion){
+        let f_inicio;
+        let f_fin;
+        if(opcion === 3){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+        }
+        var url = "{% url 'dsh:zonas_ordenes' %}";
+        data = {
+            'opcion': opcion,
+            'f_inicio': f_inicio,
+            'f_fin': f_fin
+        }
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            data: data,
+
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+
+                zonas = JSON.parse(res);
+                graficaZonas(zonas)
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+            
+        });
+        
+    }
+
+    function graficaZonas(zonas){
+        $('#div_zona_ordenes').empty();
+        chart='<div id="id_ciudades" class="mb-1" ></div>';
+        $('#div_zona_ordenes').append(chart);
+        var etiquetas = []
+        var datos = []
+        zonas.forEach(elemento => {
+            etiquetas.push(elemento.zona);
+            datos.push(parseFloat(elemento.contador));
+        })
+        var opciones = {
+            series: [{
+                data: datos
+            }],
+            chart: {
+                height: 'auto',
+                width: '100%',
+                type: 'bar',
+                zoom: {
+                    enabled: false
+                }
+            },
+            labels: etiquetas,
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart = document.getElementById('div_zona_ordenes');
+        var chartJoyerias = new ApexCharts(chart, opciones);
+        chartJoyerias.render();
+
+    }
+</script>

@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modelos ctg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Modelos ctg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ctg/ctg_models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modelos-ctg">
+<h1><strong>Modelos ctg</strong><a class="headerlink" href="#modelos-ctg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>ctg</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">models.py</span></code>. Donde se encuentran los modelos de la aplicación ctg</p>
+<div class="section" id="modelo-tiposcatalogo">
+<h2>Modelo TiposCatalogo<a class="headerlink" href="#modelo-tiposcatalogo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los tipos de catálogo registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_tipo_catalogo</p></td>
+<td><p>Id del tipo de catálogo registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del tipo de catálogo.</p></td>
+</tr>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Id del estado del tipo de catálogo puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-unidadesmedida">
+<h2>Modelo UnidadesMedida<a class="headerlink" href="#modelo-unidadesmedida" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las unidades de medida registradas en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_unidad</p></td>
+<td><p>Id de la unidad de medida registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción de la unidad de medida.</p></td>
+</tr>
+<tr class="row-even"><td><p>simbolo</p></td>
+<td><p>Símbolo asignado a la unidad de medida.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado de la unidad de medida puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-divisiones">
+<h2>Modelo Divisiones<a class="headerlink" href="#modelo-divisiones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las divisiones registradas en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_unidad</p></td>
+<td><p>Id de la unidad de medida registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción de la unidad de medida.</p></td>
+</tr>
+<tr class="row-even"><td><p>simbolo</p></td>
+<td><p>Símbolo asignado a la unidad de medida.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado de la unidad de medida puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-categorias">
+<h2>Modelo Categorias<a class="headerlink" href="#modelo-categorias" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las categorías registradas en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_categoria</p></td>
+<td><p>Id de la categoría registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción de la categoría.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipo_catalogo</p></td>
+<td><p>Id del tipo de catálogo al que pertenece la categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unidad_medida</p></td>
+<td><p>Id de la unidad de medida asociada a la categoría.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece la categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>division</p></td>
+<td><p>Id de la división a la que pertenece la categoría.</p></td>
+</tr>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Id del estado de la categoría puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="manager-manejadoritems">
+<h2>Manager ManejadorItems<a class="headerlink" href="#manager-manejadoritems" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Manager utilizado en el <a class="reference internal" href="#modelo-items"><span class="std std-ref">Modelo Items</span></a>. Este manager permite obtener datos calculados del modelo antes mencionado, consta de los siguientes métodos:</p>
+<div class="section" id="metodo-contar-detalles">
+<h3>Método contar_detalles<a class="headerlink" href="#metodo-contar-detalles" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Retorna la cantidad de detalles relacionados a un ítem, recibe como parámetro el id del ítem <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p>
+</div>
+<div class="section" id="metodo-contar-colores">
+<h3>Método contar_colores<a class="headerlink" href="#metodo-contar-colores" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Retorna la cantidad de registros de colores relacionados a un ítem, recibe como parámetro el id del ítem <code class="docutils literal notranslate"><span class="pre">id_item</span></code>.</p>
+</div>
+</div>
+<div class="section" id="modelo-items">
+<h2>Modelo Items<a class="headerlink" href="#modelo-items" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para clientes que se registrarán en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Id del ítem registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sku</p></td>
+<td><p>Identificador único del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>descripcion</p></td>
+<td><p>Descripción del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo_catalogo</p></td>
+<td><p>Id del tipo de catálogo al que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>categoria</p></td>
+<td><p>Id de la categoría a la que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>imagen</p></td>
+<td><p>Url de la imagen asociada al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>valor_fraccion</p></td>
+<td><p>Valor del gramo de oro asignado al ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_gramo_dif</p></td>
+<td><p>Valor de gramo de oro diferenciado asignado al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_max_dif</p></td>
+<td><p>Peso máximo para valor de gramo diferenciado, a los pesos por encima de este valor se le aplica el valor gramo normal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>escala_peso</p></td>
+<td><p>Escala de peso en la que puede ser fabricado un ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>parte_interna</p></td>
+<td><p>Descripción de la parte interna del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>acabado</p></td>
+<td><p>Descripción del acabado del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_entrega_min</p></td>
+<td><p>Tiempo mínimo en que se puede entregar el ítem fabricado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_entrega_max</p></td>
+<td><p>Tiempo máximo en que se puede entregar el ítem fabricado.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo</p></td>
+<td><p>Costo total de fabricación del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras</p></td>
+<td><p>Costo total de las piedras del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>cantidad_piedras</p></td>
+<td><p>Cantidad de piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del ítem puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Este modelo cuenta con los siguientes métodos:</p>
+<div class="section" id="metodo-comprimirimagen">
+<h3>Método comprimirImagen<a class="headerlink" href="#metodo-comprimirimagen" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Permite reducir el peso de una imagen reduciendo su calidad, recibe como parámetro la imagen asociada al ítem <code class="docutils literal notranslate"><span class="pre">imagen</span></code>.</p>
+</div>
+<div class="section" id="metodo-num-detalles">
+<h3>Método num_detalles<a class="headerlink" href="#metodo-num-detalles" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la cantidad de detalles relacionados a un ítem, utiliza el <a class="reference internal" href="#manager-manejadoritems"><span class="std std-ref">Manager ManejadorItems</span></a>.</p>
+</div>
+<div class="section" id="metodo-num-colores">
+<h3>Método num_colores<a class="headerlink" href="#metodo-num-colores" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la cantidad de registros de colores relacionados a un ítem, utiliza el <a class="reference internal" href="#manager-manejadoritems"><span class="std std-ref">Manager ManejadorItems</span></a>.</p>
+</div>
+</div>
+<div class="section" id="modelo-colores">
+<h2>Modelo Colores<a class="headerlink" href="#modelo-colores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los colores registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_color</p></td>
+<td><p>Id del color registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del color.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el color.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece el color.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_adicional</p></td>
+<td><p>Costo que se agrega por gramo al valor fracción del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del color puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-itemscolores">
+<h2>Modelo ItemsColores<a class="headerlink" href="#modelo-itemscolores" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo que describe una relación de muchos a muchos, aquí están registrados los ítems con los colores en los que está disponible su fabricación, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item_color</p></td>
+<td><p>Id de la relación ítem-color.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Id del color.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-estandartallas">
+<h2>Modelo EstandarTallas<a class="headerlink" href="#modelo-estandartallas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los estándar de tallas registradas en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_estandar</p></td>
+<td><p>Id del estándar registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del estándar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-tallas">
+<h2>Modelo Tallas<a class="headerlink" href="#modelo-tallas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los colores registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_talla</p></td>
+<td><p>Id de la talla registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>diametro</p></td>
+<td><p>Diámetro que mide la joya.</p></td>
+</tr>
+<tr class="row-even"><td><p>talla</p></td>
+<td><p>Número de talla.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estandar</p></td>
+<td><p>Id del estándar asociado a la talla.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece la talla.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del color puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-detalleitems">
+<h2>Modelo DetalleItems<a class="headerlink" href="#modelo-detalleitems" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los detalles de un ítem registrado en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle_item</p></td>
+<td><p>Id del detalle de ítem registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_item</p></td>
+<td><p>Id del ítem al que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>Medida del detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estandar</p></td>
+<td><p>Descripción del estándar de medida asignada al detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>unidad_medida</p></td>
+<td><p>Id de la unidad de medida asignada al detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_minimo</p></td>
+<td><p>Peso mínimo en que se puede fabricar el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_maximo</p></td>
+<td><p>Peso máximo en que se puede fabricar el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras</p></td>
+<td><p>Costo total de las piedras del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>cantidad_piedras</p></td>
+<td><p>Cantidad de piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del ítem puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-adicionales">
+<h2>Modelo Adicionales<a class="headerlink" href="#modelo-adicionales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los adicionales registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_adicional</p></td>
+<td><p>Id del adicional registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sku</p></td>
+<td><p>Identificador único del adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece el adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>imagen</p></td>
+<td><p>Url de la imagen asociada al adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo</p></td>
+<td><p>Costo del adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_sobre_adicionales</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre el costo del adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio</p></td>
+<td><p>Precio del adicional (costo + utilidad).</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del adicional puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-categoriaadicionales">
+<h2>Modelo CategoriaAdicionales<a class="headerlink" href="#modelo-categoriaadicionales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo que describe una relación de muchos a muchos, aquí están registrados los adicionales con las categorías en las que están disponibles, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_categoria_adicional</p></td>
+<td><p>Id de la relación adicional-categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>adicional</p></td>
+<td><p>Id del adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>categoria</p></td>
+<td><p>Id de la categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenecen.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenecen.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-piedras">
+<h2>Modelo Piedras<a class="headerlink" href="#modelo-piedras" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las piedras finas registradas en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_piedra</p></td>
+<td><p>Id de la piedra registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sku</p></td>
+<td><p>Identificador único de la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción de la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>imagen</p></td>
+<td><p>Url de la imagen asociada a la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_sobre_piedras</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre el costo de la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado de la piedra puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-detallepiedras">
+<h2>Modelo DetallePiedras<a class="headerlink" href="#modelo-detallepiedras" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los detalles asociados a una piedra registrada en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle_piedra</p></td>
+<td><p>Id del detalle registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>piedra</p></td>
+<td><p>Id de la piedra a la que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>medida</p></td>
+<td><p>Medida del detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo</p></td>
+<td><p>Costo de la piedra para la medida dada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio</p></td>
+<td><p>Precio de la piedra para la medida dada (costo + utilidad).</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado del detalle puede ser activo o inactivo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-categoriapiedras">
+<h2>Modelo CategoriaPiedras<a class="headerlink" href="#modelo-categoriapiedras" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo que describe una relación de muchos a muchos, aquí están registrados las piedras con las categorías en las que están disponibles, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_categoria_piedra</p></td>
+<td><p>Id de la relación piedra-categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>piedra</p></td>
+<td><p>Id de la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>categoria</p></td>
+<td><p>Id de la categoría.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenecen.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenecen.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-conteocotizaciones">
+<h2>Modelo ConteoCotizaciones<a class="headerlink" href="#modelo-conteocotizaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo para contabilizar las veces que un ítem es cotizado, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_cotizacion</p></td>
+<td><p>Id de la cotización.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_creacion</p></td>
+<td><p>Fecha en que se genera la cotización.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>Id del usuario que genera la cotización.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem cotizado.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>Tipo de cotización que se realiza (1 para cliente, 2 para usuario interno).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

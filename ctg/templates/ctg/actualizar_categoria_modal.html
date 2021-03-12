@@ -1,0 +1,69 @@
+{% load static %} {% load i18n %}
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            {% if categoria.estado.descripcion == 'ACTIVO' %}
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Inactivar categoría" %}</h5>
+            {% else %}
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Activar categoría" %}</h5>
+            {% endif %}
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% if categoria.estado.descripcion == 'ACTIVO' %}
+            {% trans "Se inactivará la categoría seleccionada " %}{{ categoria }}
+            {% else %}
+            {% trans "Se activará la categoría seleccionada " %}{{ categoria }}
+            {% endif %}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans "Cancelar" %}</button>
+            {% if categoria.estado.descripcion == 'ACTIVO' %}
+            <a class="btn btn-primary" onclick="actualizarCategoria()" href="#">{% trans "Inactivar" %}</a>
+            {% else %}
+            <a class="btn btn-primary" onclick="actualizarCategoria()" href="#">{% trans "Activar" %}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function(){
+
+    });
+
+
+    function actualizarCategoria(){
+
+        estado = '{{ categoria.estado }}';
+        id_categoria = {{ categoria.id_categoria }}
+        var token = '{{ csrf_token }}';
+        dato = {
+        'estado': estado
+        }
+        var datos = JSON.stringify(dato);
+
+        var url = "{% url 'ctg:categorias_actualizar' 0 %}";
+        url = url.replace(/0/, id_categoria);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+</script>

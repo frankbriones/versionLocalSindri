@@ -1,0 +1,89 @@
+{% load i18n %}
+{% load static %}
+
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-l">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar Rubro" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                {{ form.descripcion }}
+                                <label for="city-column">{% trans "Descripción" %}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            <button type="button" id="btnGuardar" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Guardar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var token = '{{ csrf_token }}';
+
+        $("#btnGuardar").click(function(e){
+            e.preventDefault();
+
+            var rubro_id = '{{ rubro.id_rubro }}';
+
+            var url = "{% url 'cfg:cfg_rubros_form' 0 %}";
+            
+            if(rubro_id){
+                url = url.replace(/0/, rubro_id);
+            }
+
+            descripcion = $('#id_descripcion').val();
+            
+            if( descripcion === '' ){
+                mensaje('{% trans "Debe ingresar una descripción" %}', 'red');
+                return;
+            }
+
+            var data = {
+                "descripcion": descripcion
+            };
+
+            data = JSON.stringify(data);
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: data,
+                success: function(response){
+                    if(response === 'duplicado'){
+                        mensaje('{% trans "Ya existe un rubro con esa descripción" %}', 'red')
+                    } else {
+                        location.reload(true);
+                        cerrar_modal();
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow,'red');
+                cerrar_modal();
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Views dsh &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="URLs dsh" href="dsh_urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Views dsh</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vista-dashboardadminopeapiview">Vista DashboardAdminOpeAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-get">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-dashboardadmintalapiview">Vista DashboardAdminTalAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-dashboardadminopeview">Vista DashboardAdminOpeView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-dashboardadmintalview">Vista DashboardAdminTalView</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Views dsh</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dsh/dsh_views.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="views-dsh">
+<h1><strong>Views dsh</strong><a class="headerlink" href="#views-dsh" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>dsh</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">views.py</span></code>. Donde se encuentran las vistas de la aplicación dsh, se detalla a continuación cada vista.</p>
+<div class="section" id="vista-dashboardadminopeapiview">
+<h2>Vista DashboardAdminOpeAPIView<a class="headerlink" href="#vista-dashboardadminopeapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener todos los datos que se presentan en el panel de estadísticas para el administrador de operaciones, los datos corresponden a las órdenes generadas por todas las joyerías del país al que pertenece el administrador, cuenta con las siguientes acciones:</p>
+<div class="section" id="metodo-get">
+<h3>Método GET<a class="headerlink" href="#metodo-get" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>totales_por_estado</p></td>
+<td><p>Arreglo que contiene las cantidades de órdenes generadas con su estado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>producto_mas_cotizado</p></td>
+<td><p>Objeto del ítem que ha sido más cotizado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>totales_int_ext</p></td>
+<td><p>Arreglo que contiene las cantidades de órdenes generadas identificando si son internas o externas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramos_fabricados</p></td>
+<td><p>Cantidad total de gramos fabricados en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>producto_mas_fabricado</p></td>
+<td><p>Objeto del ítem que ha sido más fabricado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fabricaciones_por_mes</p></td>
+<td><p>Arreglo que contiene las cantidades de órdenes fabricadas por mes.</p></td>
+</tr>
+<tr class="row-even"><td><p>categoria_mas_fabricada</p></td>
+<td><p>Objeto de la categoría que ha sido más fabricada en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color_mas_fabricado</p></td>
+<td><p>Objeto del color de fabricación más solicitado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>gramos_por_joyeria</p></td>
+<td><p>Arreglo que contiene la cantidad de gramos fabricados por joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_inicio</p></td>
+<td><p>Fecha de inicio del rango de tiempo de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_fin</p></td>
+<td><p>Fecha fin del rango de tiempo de la consulta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-dashboardadmintalapiview">
+<h2>Vista DashboardAdminTalAPIView<a class="headerlink" href="#vista-dashboardadmintalapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener todos los datos que se presentan en el panel de estadísticas para el administrador de taller, los datos corresponden a las órdenes fabricadas por el taller al que pertenece el administrador, cuenta con las siguientes acciones:</p>
+<div class="section" id="id1">
+<h3>Método GET<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>totales_por_estado</p></td>
+<td><p>Arreglo que contiene las cantidades de órdenes generadas con su estado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>producto_mas_cotizado</p></td>
+<td><p>Objeto del ítem que ha sido más cotizado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>solicitudes_por_estado</p></td>
+<td><p>Arreglo que contiene las cantidades de solicitudes generadas con su estado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramos_fabricados</p></td>
+<td><p>Cantidad total de gramos fabricados en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>producto_mas_fabricado</p></td>
+<td><p>Objeto del ítem que ha sido más fabricado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fabricaciones_por_mes</p></td>
+<td><p>Arreglo que contiene las cantidades de órdenes fabricadas por mes.</p></td>
+</tr>
+<tr class="row-even"><td><p>categoria_mas_fabricada</p></td>
+<td><p>Objeto de la categoría que ha sido más fabricada en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color_mas_fabricado</p></td>
+<td><p>Objeto del color de fabricación más solicitado en un periodo de tiempo.</p></td>
+</tr>
+<tr class="row-even"><td><p>gramos_por_joyeria</p></td>
+<td><p>Arreglo que contiene la cantidad de gramos fabricados por joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_inicio</p></td>
+<td><p>Fecha de inicio del rango de tiempo de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_fin</p></td>
+<td><p>Fecha fin del rango de tiempo de la consulta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-dashboardadminopeview">
+<h2>Vista DashboardAdminOpeView<a class="headerlink" href="#vista-dashboardadminopeview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="dsh_templates.html#template-dashboard-operaciones"><span class="std std-ref">Template dashboard_operaciones</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.estadisticas_admin</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.TemplateView</span></code>, esta vista es utilizada para mostrar el panel de estadísticas para el administrador de operaciones.</p>
+</div>
+<div class="section" id="vista-dashboardadmintalview">
+<h2>Vista DashboardAdminTalView<a class="headerlink" href="#vista-dashboardadmintalview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="dsh_templates.html#template-dashboard-taller"><span class="std std-ref">Template dashboard_taller</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.estadisticas_admin</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.TemplateView</span></code>, esta vista es utilizada para mostrar el panel de estadísticas para el administrador del taller.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dsh_urls.html" class="btn btn-neutral float-left" title="URLs dsh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

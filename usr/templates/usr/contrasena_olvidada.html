@@ -1,0 +1,247 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <!-- <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="INNODE"> -->
+    <title>SINDRI</title>
+    <!-- <link rel="apple-touch-icon" href="{% static 'base/app-assets/images/ico/apple-icon-120.png' %}"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static  'base/img/icons/sindrilogo.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/vendors.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/toastr.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/semi-dark-layout.css' %}">
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/pages/authentication.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/assets/css/style.css' %}">
+    <link href="{% static  'base/vendor/jquery_confirm/dist/jquery-confirm.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/spinner.css' %}">
+    <!-- END: Custom CSS-->
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- forgot password start -->
+                <section class="row flexbox-container">
+                    <div class="col-xl-7 col-md-9 col-10  px-0">
+                        <div class="card bg-authentication mb-0">
+                            <div class="row m-0">
+                                <!-- left section-forgot password -->
+                                <div class="col-md-6 col-12 px-0">
+                                    <div class="card disable-rounded-right mb-0 p-2">
+                                        <div class="card-header pb-1">
+                                            <div class="card-title">
+                                                <h4 class="text-center mb-2">{% trans "¿Olvidó su contraseña?" %}</h4>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="text-muted text-center mb-2"><small>{% trans "Ingrese su correo electrónico registrado en el sistema y le enviaremos los pasos a seguir" %}</small></div>
+                                                <form id="frmContrasena" method="POST" class="mb-2">
+                                                    {% csrf_token %}
+                                                    <div class="form-group mb-2">
+                                                        <label class="text-bold-600" for="id_email">{% trans "Correo electrónico" %}</label>
+                                                        <input type="text" class="form-control" id="id_email" name="email" placeholder='{% trans "Correo electrónico" %}'>
+                                                    </div>
+                                                    <button type="button" onclick="enviar()" class="btn btn-primary glow position-relative w-100">{% trans "ENVIAR" %}<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                                </form>
+                                                <div class="text-center mb-2">
+                                                    <p>
+                                                        <small class="text-muted">{% trans "Recordé mi contraseña" %}</small>
+                                                    </p>
+                                                </div>
+                                                <div class="form-group mb-2">
+                                                    <div class="text-center">
+                                                        <a href="{% url 'bases:login' %}" class="card-link btn btn-outline-primary text-nowrap">{% trans "Iniciar sesión" %}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- right section image -->
+                                <div class="col-md-6 d-md-block d-none text-center align-self-center">
+                                    <img class="img-fluid" src="{% static 'base/app-assets/images/pages/forgot-password.png' %}" alt="branding logo" width="300">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="loader">
+                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
+                <!-- forgot password ends -->
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{% static 'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js' %}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'base/app-assets/vendors/js/extensions/toastr.min.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{% static 'base/app-assets/js/scripts/configs/vertical-menu-light.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/core/app-menu.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/core/app.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/components.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/footer.js' %}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{% static 'base/vendor/jquery_confirm/dist/jquery-confirm.min.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/extensions/toastr.js' %}"></script>
+    <!-- END: Page JS-->
+    <script>
+        $(document).ready(function(){
+            $('.loader').hide();
+        });
+
+        function enviar(){
+
+            correo = $('#id_email').val();
+            if(correo === ''){
+                mensaje('{% trans "Ingrese un correo válido" %}', 'red');
+            } else {
+                validarCorreo();
+            }
+
+        }
+
+        function validarCorreo(){
+            correo = $('#id_email').val();
+            url = "{% url 'usr:verificar_correo' %}";
+            var token = '{{ csrf_token }}';
+            var datos = {'correo': correo};
+            var datos = JSON.stringify(datos);
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                url: url,
+                type: "POST",
+                data: datos,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response) {
+                    if(response.existe){
+                        $('.loader').show();
+                        solicitarContrasena();
+                    } else {
+                        mensaje('{% trans "El correo ingresado no está registrado en el sistema" %}', 'red');
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrow) {
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow);
+                }
+            });
+        }
+
+        function solicitarContrasena(){
+            var token = '{{ csrf_token }}';
+            form = document.getElementById('frmContrasena');
+            var datos = new FormData(form);
+
+            var url = "{% url 'bases:password_reset' %}";
+            var url_login = "{% url 'bases:login' %}";
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                url: url,
+                type: "POST",
+                data: datos,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response) {
+                    $.confirm({
+                        title: '{% trans "Información enviada" %}',
+                        content: '{% trans "Se ha enviado un correo electrónico con los pasos para el reestablecimiento de la contraseña" %}',
+                        theme: 'material',
+                        type: 'green',
+                        buttons: {
+                            confirm: {
+                                text: '{% trans "Entendido" %}',
+                                action: function() {
+                                    window.location = url_login;
+                                }
+                            },
+                        }
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrow) {
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow);
+                }
+            });
+        }
+
+        function mensaje(msg, color = 'green') {
+            $.alert({
+                title: '',
+                theme: 'material',
+                type: color,
+                content: msg
+            });
+        }
+
+    </script>
+
+</body>
+<!-- END: Body-->
+</html>

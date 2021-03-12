@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modelos cfg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="URLs cfg" href="cfg_urls.html" />
+    <link rel="prev" title="Templates cfg" href="cfg_templates.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Modelos cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-configuracionsistema">Modelo ConfiguracionSistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-configgeneral">Modelo ConfigGeneral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-configutilidadtaller">Modelo ConfigUtilidadTaller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-configutilidadproveedor">Modelo ConfigUtilidadProveedor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-operacionestallervista">Modelo OperacionesTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-zonastallervista">Modelo ZonasTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-sectorestallervista">Modelo SectoresTallerVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-operacionesproveedorvista">Modelo OperacionesProveedorVista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modelo-zonasproveedorvista">Modelo ZonasProveedorVista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_templates.html"><strong>Templates trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_models.html"><strong>Modelos trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_urls.html"><strong>URLs trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_views.html"><strong>Views trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_forms.html"><strong>Forms trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_serializers.html"><strong>Serializadores trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trn/trn_tasks.html"><strong>Tareas trn</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Modelos cfg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cfg/cfg_models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modelos-cfg">
+<h1><strong>Modelos cfg</strong><a class="headerlink" href="#modelos-cfg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>bases</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">models.py</span></code>. Donde se encuentran los modelos de la aplicación bases</p>
+<div class="section" id="modelo-configuracionsistema">
+<h2>Modelo ConfiguracionSistema<a class="headerlink" href="#modelo-configuracionsistema" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo para configuraciones generales del sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clave</p></td>
+<td><p>Nombre del atributo a configurar en el sistema.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor</p></td>
+<td><p>Valor que se le asigna a la clave en la configuración.</p></td>
+</tr>
+<tr class="row-even"><td><p>observacion</p></td>
+<td><p>Breve descripción u observación sobre la clave a configurar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-configgeneral">
+<h2>Modelo ConfigGeneral<a class="headerlink" href="#modelo-configgeneral" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo para configuraciones generales de los usuarios sobre el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>empresa</p></td>
+<td><p>Nombre de la empresa.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais</p></td>
+<td><p>Id del pais al que pertenece la configuración.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_sobre_taller</p></td>
+<td><p>Porcentaje de utilidad que se aplicará sobre los costos del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>limite_venta</p></td>
+<td><p>Cantidad en días que representa el tiempo límite para finalizar una orden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gramo_base</p></td>
+<td><p>Costo del gramo base de la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_sobre_base</p></td>
+<td><p>Porcentaje de utilidad que se aplicará sobre el costo de gramo base.</p></td>
+</tr>
+<tr class="row-even"><td><p>aut_externo</p></td>
+<td><p>Indica si tiene permitido generar directamente ordenes con un proveedor externo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descuento_max</p></td>
+<td><p>Pocentaje máximo de descuento permitido para las órdenes de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos</p></td>
+<td><p>Porcentaje de impuestos que se aplica en las joyerías.</p></td>
+</tr>
+<tr class="row-odd"><td><p>configurado</p></td>
+<td><p>Indica si el usuario administrador ha configurado la empresa.</p></td>
+</tr>
+<tr class="row-even"><td><p>origen_material</p></td>
+<td><p>Origen de material que se cargará por defecto al crear una orden o solicitud de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>anticipo_fabricacion</p></td>
+<td><p>Indica si el usuario debe cargar o no el documento anticipo de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>envio_material</p></td>
+<td><p>Indica si se encuantra configurado el envío de material por defecto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>comprobante_env</p></td>
+<td><p>Indica si el usuario debe cargar o no el documento comprobante de envío.</p></td>
+</tr>
+<tr class="row-even"><td><p>envio_incluido</p></td>
+<td><p>Indica si el valor de envío de producto está incluído en el precio final de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>factura_taller</p></td>
+<td><p>Indica si el usuario debe cargar o no el documento factura de taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>cta_por_pagar</p></td>
+<td><p>Indica si el usuario debe cargar o no el documento cuenta por pagar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>orden_compra</p></td>
+<td><p>Indica si el usuario debe cargar o no el documento órden de compra.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_final_fijo</p></td>
+<td><p>Indica si el valor gramo de la joyería se mantiene fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramo_final_catalogo</p></td>
+<td><p>Valor del gramo final para items de catálogo, aplica para precio final fijo.</p></td>
+</tr>
+<tr class="row-even"><td><p>gramo_final_especial</p></td>
+<td><p>Valor del gramo final para fabricaciones especiales, aplica para precio final fijo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-configutilidadtaller">
+<h2>Modelo ConfigUtilidadTaller<a class="headerlink" href="#modelo-configutilidadtaller" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para configuraciones específicas de utilidades sobre los talleres, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>País al que pertenece el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_usuario_op</p></td>
+<td><p>Id del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario_op</p></td>
+<td><p>Username del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_taller</p></td>
+<td><p>Id del taller sobre el cual se aplicará el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Nombre del taller sobre el cual se aplicará el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad</p></td>
+<td><p>Porcentaje de utilidad que aplicará la joyería sobre un taller específico.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-configutilidadproveedor">
+<h2>Modelo ConfigUtilidadProveedor<a class="headerlink" href="#modelo-configutilidadproveedor" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para configuraciones específicas de utilidades sobre los proveedores, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>País al que pertenece el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_usuario_op</p></td>
+<td><p>Id del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario_op</p></td>
+<td><p>Username del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombres</p></td>
+<td><p>Nombres del proveedor sobre el cual se aplicará el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-even"><td><p>apellidos</p></td>
+<td><p>Apellidos del proveedor sobre el cual se aplicará el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>proveedor</p></td>
+<td><p>Id del proveedor sobre el cual se aplicará el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad</p></td>
+<td><p>Porcentaje de utilidad que aplicará la joyería sobre un proveedor específico.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-operacionestallervista">
+<h2>Modelo OperacionesTallerVista<a class="headerlink" href="#modelo-operacionestallervista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada usuario de tipo operaciones con cada uno de los talleres, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_user</p></td>
+<td><p>Id del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>Username del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_taller</p></td>
+<td><p>Id del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre_taller</p></td>
+<td><p>Nombre del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais_id</p></td>
+<td><p>Id del país al que pertenecen el usuario de tipo operaciones y el taller.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-zonastallervista">
+<h2>Modelo ZonasTallerVista<a class="headerlink" href="#modelo-zonastallervista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada zona con cada uno de los talleres, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_zona</p></td>
+<td><p>Id de la zona.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre</p></td>
+<td><p>Nombre de la zona.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_taller</p></td>
+<td><p>Id del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre_taller</p></td>
+<td><p>Nombre del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais_id</p></td>
+<td><p>Id del país al que pertenecen la zona y el taller.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-sectorestallervista">
+<h2>Modelo SectoresTallerVista<a class="headerlink" href="#modelo-sectorestallervista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada sector con cada uno de los talleres, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_sector</p></td>
+<td><p>Id del sector.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre</p></td>
+<td><p>Nombre del sector.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_taller</p></td>
+<td><p>Id del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre_taller</p></td>
+<td><p>Nombre del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais_id</p></td>
+<td><p>Id del país al que pertenecen el sector y el taller.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-operacionesproveedorvista">
+<h2>Modelo OperacionesProveedorVista<a class="headerlink" href="#modelo-operacionesproveedorvista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada usuario de tipo operaciones con cada uno de los proveedores, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_user</p></td>
+<td><p>Id del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>Username del usuario de tipo operaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_proveedor</p></td>
+<td><p>Id del proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombres</p></td>
+<td><p>Nombres del proveedor.</p></td>
+</tr>
+<tr class="row-even"><td><p>apellidos</p></td>
+<td><p>Apellidos del proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais_id</p></td>
+<td><p>Id del país al que pertenecen el usuario de tipo operaciones y el proveedor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-zonasproveedorvista">
+<h2>Modelo ZonasProveedorVista<a class="headerlink" href="#modelo-zonasproveedorvista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <code class="docutils literal notranslate"><span class="pre">models.Model</span></code> de Django. Este es el modelo representa una vista de la BD que contiene la relación entre cada zona con cada uno de los proveedores, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_zona</p></td>
+<td><p>Id de la zona.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre</p></td>
+<td><p>Nombre de la zona.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_proveedor</p></td>
+<td><p>Id del proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombres</p></td>
+<td><p>Nombres del proveedor.</p></td>
+</tr>
+<tr class="row-even"><td><p>apellidos</p></td>
+<td><p>Apellidos del proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais_id</p></td>
+<td><p>Id del país al que pertenecen la zona y el proveedor.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cfg_urls.html" class="btn btn-neutral float-right" title="URLs cfg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cfg_templates.html" class="btn btn-neutral float-left" title="Templates cfg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

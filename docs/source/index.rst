@@ -1,0 +1,122 @@
+.. Sindri documentation master file, created by
+   sphinx-quickstart on Thu Jan 30 12:05:47 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Bienvenido a la documentación de Sindri
+========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contenido
+
+   introduccion
+   requerimientos
+   configuracion
+   rutas_principales
+   ruta_sockets
+   configuracion_celery
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Aplicación bases
+
+   bases/bases_templates
+   bases/bases_models
+   bases/bases_urls
+   bases/bases_views
+   
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación cfg
+
+   cfg/cfg_templates
+   cfg/cfg_models
+   cfg/cfg_urls
+   cfg/cfg_views
+   cfg/cfg_forms
+   cfg/cfg_tasks
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación clt
+
+   clt/clt_templates
+   clt/clt_models
+   clt/clt_urls
+   clt/clt_views
+   clt/clt_forms
+   clt/clt_serializers
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación ctg
+
+   ctg/ctg_templates
+   ctg/ctg_models
+   ctg/ctg_urls
+   ctg/ctg_views
+   ctg/ctg_forms
+   ctg/ctg_serializers
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación dsh
+
+   dsh/dsh_templates
+   dsh/dsh_urls
+   dsh/dsh_views
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación ntf
+
+   ntf/ntf_models
+   ntf/ntf_urls
+   ntf/ntf_views
+   ntf/ntf_serializers
+   ntf/ntf_tasks
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación prv
+
+   prv/prv_templates
+   prv/prv_models
+   prv/prv_urls
+   prv/prv_views
+   prv/prv_forms
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación ubc
+
+   ubc/ubc_templates
+   ubc/ubc_models
+   ubc/ubc_urls
+   ubc/ubc_views
+   ubc/ubc_forms
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación trn
+
+   trn/trn_templates
+   trn/trn_models
+   trn/trn_urls
+   trn/trn_views
+   trn/trn_forms
+   trn/trn_serializers
+   trn/trn_tasks
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Aplicación usr
+
+   usr/usr_templates
+   usr/usr_models
+   usr/usr_urls
+   usr/usr_views
+   usr/usr_forms
+   usr/usr_backends
+   usr/usr_tasks

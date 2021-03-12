@@ -1,0 +1,185 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "API" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Mensajes" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Configuraciones API mensajes" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="url_token" class="form-control" id="id_url_token" rows="3">{{ URL_TOKEN.valor }}</textarea>
+                                                        <label for="id_url_token">{% trans "Url para obtener token" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="cliente_api" class="form-control" id="id_cliente_api" rows="3">{{ client_id.valor }}</textarea>
+                                                        <label for="id_cliente_api">{% trans "Cliente API" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="clave_cliente" class="form-control" id="id_clave_cliente" rows="3">{{ client_secret.valor }}</textarea>
+                                                        <label for="id_clave_cliente">{% trans "Clave cliente API" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="url_envio_sms" class="form-control" id="id_url_envio_sms" rows="3">{{ URL_ENVIO_LISTA.valor }}</textarea>
+                                                        <label for="id_url_envio_sms">{% trans "Url envío de mensajes" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <textarea name="contenido_sms" class="form-control" id="id_contenido_sms" rows="3">{{ CONTENIDO_SMS.valor }}</textarea>
+                                                        <label for="id_contenido_sms">{% trans "Contenido de mensaje" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" id="btnGuardar" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <a href="{% url 'bases:home' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function(){
+        var token = '{{ csrf_token }}';
+        $('.loader').hide();
+
+        $("#btnGuardar").click(function(e){
+            e.preventDefault();
+
+            var pais_id = '{{ user.pais_id }}';
+
+            var url = "{% url 'cfg:api_mensajes_actualizar' 0 %}";
+            url = url.replace(/0/, pais_id);
+
+            URL_TOKEN = $('#id_url_token').val();
+            client_id = $('#id_cliente_api').val();
+            client_secret = $('#id_clave_cliente').val();
+            URL_ENVIO_LISTA = $('#id_url_envio_sms').val();
+            CONTENIDO_SMS = $('#id_contenido_sms').val();
+            
+            if( URL_TOKEN === '' ){
+                mensaje('{% trans "Ingrese URL para obtener token" %}', 'red');
+                return;
+            }
+
+            if( client_id === '' ){
+                mensaje('{% trans "Ingrese cliente de API" %}', 'red');
+                return;
+            }
+
+            if( client_secret === '' ){
+                mensaje('{% trans "Ingrese clave de cliente de API" %}', 'red');
+                return;
+            }
+
+            if( URL_ENVIO_LISTA === '' ){
+                mensaje('{% trans "Ingrese URL de envío de mensajes" %}', 'red');
+                return;
+            }
+
+            if( CONTENIDO_SMS === '' ){
+                mensaje('{% trans "Ingrese contenido de mensaje" %}', 'red');
+                return;
+            }
+            
+            var data = {
+                'URL_TOKEN': URL_TOKEN.trim(),
+                'client_id': client_id.trim(),
+                'client_secret': client_secret.trim(),
+                'URL_ENVIO_LISTA': URL_ENVIO_LISTA.trim(),
+                'CONTENIDO_SMS': CONTENIDO_SMS.trim(),
+            };
+
+            data = JSON.stringify(data);
+            console.log(data);
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                type: "POST",
+                url: url,
+                data: data,
+                beforeSend: function(){
+                    $('.loader').show();
+                },
+                complete: function(){
+                    $('.loader').hide();
+                },
+                success: function(response){
+                    window.location = "{% url 'bases:home' %}";
+                },
+                error: function(jqXHR, textStatus, errorThrow){
+                    console.log(textStatus, errorThrow);
+                    mensaje(errorThrow,'red');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

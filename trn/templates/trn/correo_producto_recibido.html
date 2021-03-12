@@ -1,0 +1,232 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>SINDRI</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+</head>
+<body style="background-color:rgb(248, 248, 248)">
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <p style="font-family:courier,arial,helvética; font-size: 15px;">{% trans "Se ha recibido el producto de la siguiente orden de trabajo:" %}</p>
+            <table style="margin-left: auto; margin-right: auto;" width="90%">
+                <tbody>
+                    <tr>
+                        <td style="width: 100%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="4">
+                            <h1 style="font-family:courier,arial,helvética;">{% trans "Detalles de órden # " %}{{ orden.secuencia }}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="4">
+                            <img id="id_img_tmp" width="50%" height="50%" name="imagentmp" src="http://sindri.pro/media/{{ item.imagen }}" style="margin-left: auto; margin-right: auto; display: block;">
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td style="width: 100%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="4">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">http://sindri.pro/media/{{ item.imagen }}</p></b>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td style="width: 100%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="4">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.descripcion }}{{ item.detalle }}</p></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "SKU" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if detalleSolicitud %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ detalleSolicitud.item.sku }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ detalle.id_item.sku }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if not detalle %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Talla/Longitud" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if item.talla %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.talla }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.longitud }} cm</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Talla/Longitud" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if detalle.estandar %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ detalle.medida }} {{ detalle.estandar }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ detalle.medida }} {{ detalle.unidad_medida }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if orden.peso_solicitado %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Peso" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ orden.peso_solicitado }} gr</p>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Peso mínimo" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.peso_min }} gr</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Peso máximo" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.peso_max }} gr</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Acabado" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.acabado }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Parte interna" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.parte_interna }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Cantidad de piedras" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if detalle %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ detalle.cantidad_piedras }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.cantidad_piedras }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if solicitud.sku_relacionado %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "SKU relacionado" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ solicitud.sku_relacionado }}</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Tiempo entrega mínimo" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if item.tiempo_entrega_min %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.tiempo_entrega_min }} {% trans "días" %}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.tiempo_ent_min }}  {% trans "días" %}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Tiempo entrega máximo" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if item.tiempo_entrega_max %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.tiempo_entrega_max }} {% trans "días" %}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ item.tiempo_ent_max }}  {% trans "días" %}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if adicionales_lista %}
+                    <tr>
+                        <td style="width: 100%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="4">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Adicionales" %}</p></b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "SKU" %}</p></b>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Descripción" %}</p></b>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Cantidad" %}</p></b>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Precio unitario" %}</p></b>
+                        </td>
+                    </tr>
+                    {% for adicional in adicionales_lista %}
+                    <tr>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ adicional.0 }}</p>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ adicional.1 }}</p>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ adicional.3 }}</p>
+                        </td>
+                        <td style="width: 25%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;">
+                            {% if usuario.pais.decimales %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ usuario.pais.simbolo_moneda }} {{ adicional.2 }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ usuario.pais.simbolo_moneda }} {{ adicional.2|floatformat:"0" }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    {% if orden.precio_con_descuento %}
+                    <tr>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            <b><p style="font-family:courier,arial,helvética; font-size: 25px;">{% trans "Total a pagar" %}</p></b>
+                        </td>
+                        <td style="width: 50%; text-align: center; vertical-align: middle; color: #475F7B; background-color: #FFFFFF; border: 1px solid #DFE3E7; border-radius: 0.267rem;" colspan="2">
+                            {% if usuario.pais.decimales %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ usuario.pais.simbolo_moneda }} {{ precio_final }}</p>
+                            {% else %}
+                            <p style="font-family:courier,arial,helvética; font-size: 25px;">{{ usuario.pais.simbolo_moneda }} {{ precio_final|floatformat:"0" }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

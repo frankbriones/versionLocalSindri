@@ -1,0 +1,407 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Configuraciones" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "General" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Taller" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Configuración general" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form method="POST" id="frmConfiguracion" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <div class="form-label-group">
+                                                        <img id="id_tmp_logotipo" name="tmp_logotipo" {% if obj.logotipo %} src="{{ obj.logotipo.url }}" {% else %} src="{% static  'base/img/icons/nofoto2.png' %}"  {% endif %} class="center img-fluid pointer">
+                                                        <input onchange="seleccionarImagen('id_tmp_logotipo','id_logotipo')" type="file" name="logotipo" id="id_logotipo" class="inputimage center pointer" width="100%">
+                                                        <label for="id_logotipo">{% trans "Logotipo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="costo_gramo_fabricacion" id="id_costo_gramo_fabricacion" data-type='currency'>
+                                                                <label for="id_costo_gramo_fabricacion">{% trans "Costo unitario mano de obra " %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="precio_gramo_fabricacion" id="id_precio_gramo_fabricacion" data-type='currency'>
+                                                                <label for="id_valor_fraccion">{% trans "Precio unitario mano de obra " %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="costo_gramo_base" id="id_costo_gramo_base" data-type='currency'>
+                                                                <label for="id_valor_fraccion">{% trans "Costo unitario materia prima " %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="precio_gramo_base" id="id_precio_gramo_base" data-type='currency'>
+                                                                <label for="id_valor_fraccion">{% trans "Precio unitario materia prima " %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" name="prct_impuestos" id="id_prct_impuestos" data-type='currency'>
+                                                                <label for="id_prct_impuestos">{% trans "Impuestos (%)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.utilidad_sobre_fabricacion }}
+                                                                <label for="id_valor_fraccion">{% trans "Utilidad sobre fabricación (%)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="tipo_precio_predefinido" id="id_tipo_precio_predefinido" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for tipo in tiposprecios %}
+                                                                    <option value="{{ tipo.id_tipo }}">{{ tipo.descripcion }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <label for="id_gramo_final_catalogo">{% trans "Tipo precio predefinido" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.utilidad_sobre_base }}
+                                                                <label for="id_valor_fraccion">{% trans "Utilidad sobre gramo base (%)" %}</label>
+                                                            </div>
+                                                        </div> -->
+                                                        <!-- <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.utilidad_sobre_piedras }}
+                                                                <label for="id_valor_fraccion">{% trans "Utilidad sobre costo piedras (%)" %}</label>
+                                                            </div>
+                                                        </div> -->
+                                                        <!-- <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.utilidad_sobre_adicionales }}
+                                                                <label for="id_valor_fraccion">{% trans "Utilidad sobre costo adicionales (%)" %}</label>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.tmp_resp_sol }}
+                                                                <label for="id_tmp_resp_sol">{% trans "Tiempo de respuesta a solicitudes (minutos)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="escala_peso" id="id_escala_peso" class="form-control">
+                                                                    
+                                                                </select>
+                                                                <input class="form-control" hidden>
+                                                                <label
+                                                                    for="email-id-column">{% trans "Escala de peso" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="estandar_tallas" id="id_estandar_tallas" class="form-control">
+                                                                    <!-- <option value="0">{% trans "Escoger una opción" %}</option> -->
+                                                                    {% for estandar in estandar_tallas %}
+                                                                    <option value="{{ estandar.id_estandar }}">{{ estandar.descripcion }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label
+                                                                    for="id_estandar_tallas">{% trans "Estándar tallas" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.secuencia_ordenes }}
+                                                                <label for="id_secuencia_ordenes">{% trans "Secuencia actual órdenes" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.secuencia_solicitudes }}
+                                                                <label for="id_secuencia_solicitudes">{% trans "Secuencia actual solicitudes" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    {{ form.recalcular_precio }}
+                                                                    <label for="id_recalcular_precio">{% trans "Recalcular precio (Fin de trabajo)" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    {{ form.cargar_img_fin_trabajo }}
+                                                                    <label for="id_cargar_img_fin_trabajo">{% trans "Cargar imágenes (Fin de trabajo)" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans "Guardar" %}</button>
+                                                    <button type="reset" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    console.log('{{obj.costo_gramo_fabricacion}}')
+
+    var costo_gramo_fabricacion = '{{ obj.costo_gramo_fabricacion }}' !== 'None' ? '{{ obj.costo_gramo_fabricacion }}' : 0;
+    var precio_gramo_fabricacion = '{{ obj.precio_gramo_fabricacion }}' !== 'None' ? '{{ obj.precio_gramo_fabricacion }}' : 0;
+    var costo_gramo_base = '{{ obj.costo_gramo_base }}' !== 'None' ? '{{ obj.costo_gramo_base }}' : 0;
+    var precio_gramo_base = '{{ obj.precio_gramo_base }}' !== 'None' ? '{{ obj.precio_gramo_base }}' : 0;
+    var prct_impuestos = '{{ obj.prct_impuestos }}' !== 'None' ? '{{ obj.prct_impuestos }}' : 0;
+
+    $(document).ready(function(){
+        console.log('{{user.pais.separador_decimal}}')
+        if('{{ user.pais.separador_decimal }}' === '.'){
+            costo_gramo_fabricacion = costo_gramo_fabricacion.replace(/,/, '.');
+            precio_gramo_fabricacion = precio_gramo_fabricacion.replace(/,/, '.');
+            costo_gramo_base = costo_gramo_base.replace(/,/, '.');
+            precio_gramo_base = precio_gramo_base.replace(/,/, '.');
+            prct_impuestos = prct_impuestos.replace(/,/, '.');
+
+        }
+
+
+        error = '{{ mensaje }}';
+        SecuenciaOrdenes = error.includes('secuencia-ordenes');
+        SecuenciaSolicitudes = error.includes('secuencia-solicitudes');
+        if(SecuenciaOrdenes){
+            mensaje('{% trans "La secuencia de las órdenes de trabajo no puede ser menor a la última registrada" %}','red');
+        }
+        if(SecuenciaSolicitudes){
+            mensaje('{% trans "La secuencia de las solicitudes de trabajo no puede ser menor a la última registrada" %}','red');
+        }
+
+        $('#id_costo_gramo_fabricacion').val((costo_gramo_fabricacion));
+        $('#id_precio_gramo_fabricacion').val((precio_gramo_fabricacion));
+        $('#id_costo_gramo_base').val((costo_gramo_base));
+        $('#id_precio_gramo_base').val((precio_gramo_base));
+        $('#id_prct_impuestos').val((prct_impuestos));
+
+        formatCurrency($('#id_costo_gramo_fabricacion'));
+        formatCurrency($('#id_precio_gramo_fabricacion'));
+        formatCurrency($('#id_costo_gramo_base'));
+        formatCurrency($('#id_precio_gramo_base'));
+        formatCurrency($('#id_prct_impuestos'));
+
+        $('#id_utilidad_sobre_fabricacion').attr({"min":0});
+        $('#id_utilidad_sobre_base').attr({"min":0});
+        $('#id_utilidad_sobre_piedras').attr({"min":0, "max":100});
+        $('#id_utilidad_sobre_adicionales').attr({"min":0, "max":100});
+        $('#id_tmp_resp_sol').attr({"min":1});
+        escala_actual = '{{ obj.escala_peso }}';
+        escala_actual = escala_actual.replace(/,/,'.');
+        escala_actual = parseFloat(escala_actual).toFixed(1);
+        var select = document.getElementById('id_escala_peso');
+        for(i=0.1; i<=1; i=i+0.1){
+            i = Math.round(i*100)/100; // redondeo
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.add(option);
+        }
+        $('#id_escala_peso').val(escala_actual);
+        tipo_precio_predefinido = parseInt('{{ obj.tipo_precio_predefinido }}');
+        $('#id_tipo_precio_predefinido').val(tipo_precio_predefinido);
+
+    });
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "";
+        }
+
+    }
+
+    function guardar(){
+
+        costo_gramo_fabricacion = FormatoDecimal($('#id_costo_gramo_fabricacion'));
+        precio_gramo_fabricacion = FormatoDecimal($('#id_precio_gramo_fabricacion'));
+        costo_gramo_base = FormatoDecimal($('#id_costo_gramo_base'));
+        precio_gramo_base = FormatoDecimal($('#id_precio_gramo_base'));
+        prct_impuestos = FormatoDecimal($('#id_prct_impuestos'));
+
+        if(costo_gramo_fabricacion > precio_gramo_fabricacion){
+            mensaje('{% trans "Costo mano de obra no puede ser superior al precio mano de obra" %}', 'red');
+            return;
+        }
+
+        if(costo_gramo_base > precio_gramo_base){
+            mensaje('{% trans "Costo gramo materia prima no debe ser superior al precio gramo materia prima" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmConfiguracion');
+        var data = new FormData(form);
+        data.append('costo_gramo_fabricacion', costo_gramo_fabricacion);
+        data.append('precio_gramo_fabricacion', precio_gramo_fabricacion);
+        data.append('costo_gramo_base', costo_gramo_base);
+        data.append('precio_gramo_base', precio_gramo_base);
+        data.append('prct_impuestos', prct_impuestos);
+        var id_taller = '{{ obj.id_taller }}';
+        var url = "{% url 'cfg:cfg_tal_editar' 0 %}";
+        url = url.replace(/0/, id_taller);
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            // beforeSend: function(){
+            //     $('.loader').show();
+            // },
+            // complete: function(){
+            //     $('.loader').hide();
+            // },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                url = "{% url 'bases:home' %}";
+                location.replace(url);
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                        },
+                    }
+                });
+            }
+        });
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

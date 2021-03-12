@@ -1,0 +1,1355 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/forms/select/select2.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/pages/widgets.css' %}">
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Ítems" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nuevo" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %}{% trans "Editar" %}{% else %}{% trans "Nueva" %}{% endif %}{% trans " Alianza " %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form id="frmItem" method="POST" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-12">
+                                                    <h6>{% trans "Imágenes" %}</h6>
+                                                    <div class="col-md-12 col-12">
+                                                        <div id="id_img_lista" class="row">
+                                                            <div id="elemento_1" class="col-md-6 col-12 col-sm-12 item_img">
+                                                                <img id="id_img_tmp_1" name="imagentmp" src="{% static 'base/img/icons/nofoto2.png' %}"  width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%">
+                                                                <input onchange="seleccionarImagen('id_img_tmp_1','id_imagen_1')" type="file" name="imagen" id="id_imagen_1" class="inputimage center pointer" width="100%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-12">
+                                                        <button id="btnAgregarImagen" type="button" class="btn btn-icon rounded-circle btn-success glow mr-1 mb-1" style="margin-top: 5%; padding: 6px 10px;" onclick="agregarImg()">
+                                                            <i class="bx bxs-image-add fa-2x sr-icons"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.sku }}
+                                                                <label for="city-column">{% trans "SKU" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="categoria" id="id_categoria" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for categoria in categorias %}
+                                                                    <option value="{{ categoria.id_categoria }}" tipo="{{ categoria.precio_taller_obj.tipo.descripcion }}" costo="{{ categoria.costo_taller }}" utilidad="{{ categoria.prct_utilidad_taller }}" precio="{{ categoria.precio_taller }}" grdiferenciado="{{ categoria.valor_gramo_diferenciado }}" escala="{{ categoria.escala_peso }}" pinterna="{{ categoria.parte_interna }}" acabado="{{ categoria.acabado }}" piedras="{{ categoria.costo_piedras }}" tiempos="{{ categoria.tiempos_entrega }}" proveedor="{{ categoria.proveedor }}" extras="{{ categoria.datos_extra }}">{{ categoria.descripcion }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Categoría" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.descripcion }}
+                                                                <label for="city-column">{% trans "Descripción" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_costo" name="costo" data-type='currency'>
+                                                                <label for="id_costo">{% trans "Costo gramo/unidad" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divUtilidad" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_utilidad" name="utilidad" data-type='currency'>
+                                                                <label for="id_utilidad">{% trans "Porcentaje de utilidad" %} (%)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input class="form-control" id="id_precio" name="precio" data-type='currency'>
+                                                                <label for="id_precio">{% trans "Precio gramo/unidad" %} ({{ user.pais.simbolo_moneda }})</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="talla_min_mujer" id="id_talla_min_mujer" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for talla in tallas %}
+                                                                    <option value="{{ talla.id_talla }}">{{ talla.talla }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Talla mínima mujer" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="talla_max_mujer" id="id_talla_max_mujer" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for talla in tallas %}
+                                                                    <option value="{{ talla.id_talla }}">{{ talla.talla }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Talla máxima mujer" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="talla_min_hombre" id="id_talla_min_hombre" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for talla in tallas %}
+                                                                    <option value="{{ talla.id_talla }}">{{ talla.talla }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Talla mínima hombre" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="talla_max_hombre" id="id_talla_max_hombre" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for talla in tallas %}
+                                                                    <option value="{{ talla.id_talla }}">{{ talla.talla }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Talla máxima hombre" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divTmpEntregaMin" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.tiempo_entrega_min}}
+                                                                <label for="email-id-column">{% trans "Entrega mínima (días)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divTmpEntregaMax" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{form.tiempo_entrega_max}}
+                                                                <label for="email-id-column">{% trans "Entrega máxima (días)" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <input type="number" min="1" step="1" class="form-control" id="id_inscripcion_long" name="inscripcion_long">
+                                                                <label for="id_inscripcion_long">{% trans "Longitud inscripción" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divProveedor" class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="proveedor" id="id_proveedor" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for proveedor in proveedores %}
+                                                                    <option value="{{ proveedor.id }}">{{ proveedor.nombres }} {{ proveedor.apellidos }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Proveedor" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div id="divDatosExtras" class="col-md-6 col-12">
+                                                            <div class="checkbox">
+                                                                <input type="checkbox" class="checkbox-input" id="id_datos_extra" name="datos_extra" {% if obj.datos_extra %} checked {% endif %}>
+                                                                <label for="id_datos_extra">{% trans "Datos extras" %}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-12">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h6>{% trans "Colores disponibles" %}</h6>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <select id="id_colores" class="select2 form-control" multiple="multiple">
+                                                                {% for color in colores %}
+                                                                <option value="{{color.id_color}}">{{ color.descripcion }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <br>
+                                                            <h6>{% trans "Acabados disponibles" %}</h6>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <select id="id_acabados" class="select2 form-control" multiple="multiple">
+                                                                {% for acabado in acabados %}
+                                                                <option value="{{acabado.id_acabado}}">{{ acabado.descripcion }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="divider" id="id_divider_rubros">
+                                        <div class="divider-text">{% trans "Piezas" %}</div>
+                                        <br>
+                                    </div>
+                                    <div id="div_piezas" class="col-12">
+                                        <div class="div_detalle" data-repeater-list="group-a">
+                                            <div data-repeater-item>
+                                                <div class="invoice-item border rounded mb-1">
+                                                    <div class="invoice-item-filed row pt-1 px-1">
+                                                        <div class="col-12 d-flex justify-content-end mb-0">
+                                                            <button type="button" class="btn_peso btn round btn-outline-primary mr-1 mb-1">
+                                                                <i class="bx bx-plus"></i><span>{% trans "Peso" %}</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="select_confort col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="confort" id="id_confort" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for parte_interna in partes_internas %}
+                                                                    <option value="{{ parte_interna.id_parte_interna }}">{{ parte_interna.descripcion }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Confort" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="select_anchura col-md-6 col-12 form-group">
+                                                            <div class="form-label-group">
+                                                                <select name="anchura" id="id_anchura" class="form-control">
+                                                                    <option value="">{% trans "Seleccionar" %}</option>
+                                                                    {% for anchura in anchuras %}
+                                                                    <option value="{{ anchura.id_anchura }}">{{ anchura.descripcion }}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" hidden>
+                                                                <label for="last-name-column">{% trans "Anchura" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="div_pesos col-md-12 col-12">
+                                                            <div class="div_peso_elemento col-12 shadow">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <div id="divNombreTaller" class="col-6">
+                                                                            <input name="pieza_peso" class="form-control" placeholder='{% trans "Peso" %}'>
+                                                                        </div>
+                                                                        <a class="heading-elements-toggle">
+                                                                            <i class='bx bx-dots-vertical font-medium-3'></i>
+                                                                        </a>
+                                                                        <div class="heading-elements">
+                                                                            <ul class="list-inline mb-0">
+                                                                                <li>
+                                                                                    <a data-action="collapse">
+                                                                                        <i class="bx bx-chevron-down"></i>
+                                                                                    </a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="btn_agregar_piedra">
+                                                                                        <i class="bx bx-diamond"></i>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-content collapse show">
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="table-responsive">
+                                                                                        <table class="table table-bordered">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>{% trans "SKU" %}</th>
+                                                                                                    <th>{% trans "Piedra" %}</th>
+                                                                                                    <th>{% trans "Puntos" %}</th>
+                                                                                                    <th>{% trans "Cantidad" %}</th>
+                                                                                                    <th>{% trans "Acciones" %}</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col p-0">
+                                            <button onclick="agregarDetalle()" class="btn btn-light-primary btn-sm" data-repeater-create type="button">
+                                                <i class="bx bx-plus"></i>
+                                                <span class="invoice-repeat-btn">{% trans "Agregar detalle" %}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="button" onclick="ValidarFormulario()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                        <a href="{% url 'ctg:alianzas_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listaPiedras" tabindex="-1" role="dialog" aria-labelledby="listaPiedrasModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{% trans "Agregar piedra" %}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div id="div_piedras_lista" class="row align-items-center ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="ocultarModal('#listaPiedras')" class="btn btn-light-secondary">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detallePiedra" tabindex="-1" role="dialog" aria-labelledby="detallePiedraModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{% trans "Agregar piedra" %}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <img id="id_piedra_imagen" name="imagentmp" src="" class="img-circle center img-fluid pointer" width="100%">
+                                    <label for="city-column">{% trans "Imagen" %}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <input id="id_piedra_sku" class="form-control" disabled>
+                                            <label for="first-name-column">{% trans "SKU" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <input id="id_piedra_descripcion" class="form-control" disabled value="{{ piedra.descripcion }}">
+                                            <label for="first-name-column">{% trans "Descripción" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <select id="id_piedra_medidas" class="form-control">
+                                                
+                                            </select>
+                                            <input type="number" id="id_detalle" name="detalle" hidden>
+                                            <label for="id_ciudad">{% trans "Medida" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <input type="number" min="1" id="id_piedra_cantidad" class="form-control">
+                                            <label for="first-name-column">{% trans "Cantidad" %}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="ocultarModal('#detallePiedra')" class="btn btn-light-secondary">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                </button>
+                <button type="button" id="btnAgregarPiedra" name="agregarPiedra" class="btn btn-primary ml-1">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Agregar" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block control_modal %}
+<script>
+    function abrir_modal(url) {
+        $("#popup").load(url, function() {
+            $(this).modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            $(this).modal('show');
+        });
+        return false;
+    }
+
+    function cerrar_modal() {
+        $('#popup').modal('hide');
+        calcularValoresTaller();
+        return false;
+    }
+</script>
+{% endblock %}
+
+{% block js_page %}
+<script src="{% static  'base/app-assets/vendors/js/forms/select/select2.full.min.js' %}"></script>
+<script src="{% static  'base/app-assets/js/scripts/forms/select/form-select2.js' %}"></script>
+<script>
+    var tipo;
+    var solicitud;
+    var diferenciado = 'False';
+    var escala = 'False';
+    var pinterna = 'False';
+    var opAcabado = 'False';
+    var piedras = 'False';
+    var tiempos = 'False';
+    var opProveedor = 'False';
+    var extras = 'False';
+    var cantidad_piedras = 0;
+    
+    $(document).ready(function() {
+        tipo = parseInt('{{ tipo }}');
+        solicitud = parseInt('{{ solicitud }}');
+
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "SKU ya existe" %}','red');
+        }
+
+        ocultarElementos();
+
+        $('#id_costo').val(0);
+        $('#id_utilidad').val(0);
+        $('#id_precio').val(0);
+        nombrarElementosDetalles();
+    });
+
+    function ocultarElementos(){
+        $('#divPrecio').hide();
+        $('#divUtilidad').hide();
+        $('#divEscala').hide();
+        $('#divGramoDiferenciado').hide();
+        $('#divPesoDiferenciado').hide();
+        $('#divCantidadPiedras').hide();
+        $('#divCostoPiedras').hide();
+        $('#divParteInterna').hide();
+        $('#divAcabado').hide();
+        $('#divTmpEntregaMin').hide();
+        $('#divTmpEntregaMax').hide();
+        $('#divProveedor').hide();
+        $('#divDatosExtras').hide();
+    }
+
+    $('#id_categoria').on('change', function(){
+        tipo_precio = $('option:selected', $(this)).attr('tipo');
+        costo_taller = $('option:selected', $(this)).attr('costo');
+        prct_utilidad = $('option:selected', $(this)).attr('utilidad');
+        precio_taller = $('option:selected', $(this)).attr('precio');
+        diferenciado = $('option:selected', $(this)).attr('grdiferenciado');
+        escala = $('option:selected', $(this)).attr('escala');
+        pinterna = $('option:selected', $(this)).attr('pinterna');
+        opAcabado = $('option:selected', $(this)).attr('acabado');
+        piedras = $('option:selected', $(this)).attr('piedras');
+        tiempos = $('option:selected', $(this)).attr('tiempos');
+        opProveedor = $('option:selected', $(this)).attr('proveedor');
+        extras = $('option:selected', $(this)).attr('extras');
+        $('#id_costo').val(parseFloat(costo_taller.replace(/,/,'.')));
+        $('#id_utilidad').val(parseFloat(prct_utilidad.replace(/,/,'.')));
+        $('#id_precio').val(parseFloat(precio_taller.replace(/,/,'.')));
+        if(tipo_precio === 'GRAMO_FINAL_VARIABLE'){
+            $('#divPrecio').hide();
+            $('#divUtilidad').show();
+        } else {
+            $('#divPrecio').show();
+            $('#divUtilidad').hide();
+        }
+        if(diferenciado === 'True'){
+            $('#divGramoDiferenciado').show();
+            $('#divPesoDiferenciado').show();
+        } else {
+            $('#divGramoDiferenciado').hide();
+            $('#divPesoDiferenciado').hide();
+        }
+        if(escala === 'True'){
+            $('#divEscala').show();
+        } else {
+            $('#divEscala').hide();
+        }
+        if(pinterna === 'True'){
+            $('#divParteInterna').show();
+        } else {
+            $('#divParteInterna').hide();
+        }
+        if(opAcabado === 'True'){
+            $('#divAcabado').show();
+        } else {
+            $('#divAcabado').hide();
+        }
+        if(piedras === 'True'){
+            $('#divCantidadPiedras').show();
+            $('#divCostoPiedras').show();
+        } else {
+            $('#divCantidadPiedras').hide();
+            $('#divCostoPiedras').hide();
+        }
+        if(tiempos === 'True'){
+            $('#divTmpEntregaMin').show();
+            $('#divTmpEntregaMax').show();
+        } else {
+            $('#divTmpEntregaMin').hide();
+            $('#divTmpEntregaMax').hide();
+        }
+        if(opProveedor === 'True'){
+            $('#divProveedor').show();
+        } else {
+            $('#divProveedor').hide();
+        }
+        if(extras === 'True'){
+            $('#divDatosExtras').show();
+        } else {
+            $('#divDatosExtras').hide();
+        }
+    });
+
+    function agregarDetalle(){
+        detalleHtml =
+        `
+        <div class="div_detalle" data-repeater-list="group-a">
+            <div data-repeater-item>
+                <div class="invoice-item border rounded mb-1">
+                    <div class="invoice-item-filed row pt-1 px-1">
+                        <div class="col-12 d-flex justify-content-end mb-0">
+                            <button type="button" class="btn_peso btn round btn-outline-primary mr-1 mb-1">
+                                <i class="bx bx-plus"></i><span>{% trans "Peso" %}</span>
+                            </button>
+                            <button type="button" class="btn_borrar_det btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1">
+                                <i class="bx bx-trash"></i>
+                            </button>
+                        </div>
+                        <div class="select_confort col-md-6 col-12 form-group">
+                            <div class="form-label-group">
+                                <select name="confort" id="id_confort" class="form-control">
+                                    <option value="">{% trans "Seleccionar" %}</option>
+                                    {% for parte_interna in partes_internas %}
+                                    <option value="{{ parte_interna.id_parte_interna }}">{{ parte_interna.descripcion }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="text" hidden>
+                                <label for="last-name-column">{% trans "Confort" %}</label>
+                            </div>
+                        </div>
+                        <div class="select_anchura col-md-6 col-12 form-group">
+                            <div class="form-label-group">
+                                <select name="anchura" id="id_anchura" class="form-control">
+                                    <option value="">{% trans "Seleccionar" %}</option>
+                                    {% for anchura in anchuras %}
+                                    <option value="{{ anchura.id_anchura }}">{{ anchura.descripcion }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="text" hidden>
+                                <label for="last-name-column">{% trans "Anchura" %}</label>
+                            </div>
+                        </div>
+                        <div class="div_pesos col-md-12 col-12">
+                            <div class="div_peso_elemento col-12 shadow">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div id="divNombreTaller" class="col-6">
+                                            <input name="pieza_peso" class="form-control" placeholder='{% trans "Peso" %}'>
+                                        </div>
+                                        <a class="heading-elements-toggle">
+                                            <i class='bx bx-dots-vertical font-medium-3'></i>
+                                        </a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li>
+                                                    <a data-action="collapse">
+                                                        <i class="bx bx-chevron-down"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="btn_agregar_piedra">
+                                                        <i class="bx bx-diamond"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-content collapse show">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{% trans "SKU" %}</th>
+                                                                    <th>{% trans "Piedra" %}</th>
+                                                                    <th>{% trans "Puntos" %}</th>
+                                                                    <th>{% trans "Cantidad" %}</th>
+                                                                    <th>{% trans "Acciones" %}</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+        $('#div_piezas').append(detalleHtml);
+        nombrarElementosDetalles();
+    }
+
+    function borrarDivDetalle(div){
+        $(div).remove();
+        nombrarElementosDetalles();
+    }
+
+    function nombrarElementosDetalles(){
+        contadorDetalles = 0;
+        $('div.div_detalle').each(function (){
+            contadorDetalles++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'detalle_'+contadorDetalles);
+            buttonsPeso = $(this).find('.btn_peso');
+            buttonPeso = buttonsPeso[0];
+            $(buttonPeso).removeAttr('id');
+            $(buttonPeso).attr('id', 'boton_peso_'+contadorDetalles);
+            $(buttonPeso).removeAttr('onclick');
+            $(buttonPeso).attr('onclick', 'agregarPeso(div_pesos_'+contadorDetalles+')');
+            buttonsBorrarDet = $(this).find('.btn_borrar_det');
+            buttonBorrarDet = buttonsBorrarDet[0];
+            $(buttonBorrarDet).removeAttr('id');
+            $(buttonBorrarDet).attr('id', 'boton_peso_'+contadorDetalles);
+            $(buttonBorrarDet).removeAttr('onclick');
+            $(buttonBorrarDet).attr('onclick', 'borrarDivDetalle(detalle_'+contadorDetalles+')');
+            selectsConfort = $(this).find('.select_confort');
+            selectConfort = selectsConfort[0];
+            $(selectConfort).removeAttr('id');
+            $(selectConfort).attr('id', 'select_confort_'+contadorDetalles);
+            selectsAnchura = $(this).find('.select_anchura');
+            selectAnchura = selectsAnchura[0];
+            $(selectAnchura).removeAttr('id');
+            $(selectAnchura).attr('id', 'select_anchura_'+contadorDetalles);
+            divsPesos = $(this).find('.div_pesos');
+            divPesos = divsPesos[0];
+            $(divPesos).removeAttr('id');
+            $(divPesos).attr('id', 'div_pesos_'+contadorDetalles);
+            elementosPesos = $(this).find('.div_peso_elemento');
+            if(elementosPesos.length > 0){
+                contadorPesos = 0;
+                $(elementosPesos).each(function (){
+                    contadorPesos++;
+                    $(this).removeAttr('id');
+                    $(this).attr('id', 'peso_'+contadorDetalles+'_'+contadorPesos);
+                    id = 'peso_'+contadorDetalles+'_'+contadorPesos
+                    btnsBorrar = $(this).find('.btn_borrar_peso');
+                    btnBorrar = btnsBorrar[0];
+                    $(btnBorrar).removeAttr('onclick');
+                    $(btnBorrar).attr('onclick', 'borrarDivPeso(peso_'+contadorDetalles+'_'+contadorPesos+')');
+                    tabla = $(this).find('tbody');
+                    $(tabla).removeAttr('id');
+                    $(tabla).attr('id', 'tabla_'+contadorDetalles+'_'+contadorPesos);
+                    filas = $(tabla).find('tr');
+                    contadorFilas = 0;
+                    $(filas).each(function (){
+                        contadorFilas++;
+                        console.log($(this));
+                        $(this).removeAttr('id');
+                        $(this).attr('id', 'tr_tabla_'+contadorDetalles+'_'+contadorPesos+'_'+contadorFilas);
+                        btnsBorrarFila = $(this).find('.btn_borrar_fila');
+                        btnBorrarFila = btnsBorrarFila[0];
+                        $(btnBorrarFila).removeAttr('onclick');
+                        $(btnBorrarFila).attr('onclick', 'borrarPiedra(tr_tabla_'+contadorDetalles+'_'+contadorPesos+'_'+contadorFilas+')');
+                    });
+                    btnsPiedras = $(this).find('.btn_agregar_piedra');
+                    btnPiedras = btnsPiedras[0];
+                    $(btnPiedras).removeAttr('onclick');
+                    $(btnPiedras).attr('onclick', 'mostrarPiedrasLista(tabla_'+contadorDetalles+'_'+contadorPesos+')');
+                });
+            }
+        });
+    }
+
+    function agregarPeso(divPesos){
+        pesoHtml=
+        `
+        <div class="div_peso_elemento col-12 shadow">
+            <div class="card">
+                <div class="card-header">
+                    <div id="divNombreTaller" class="col-6">
+                        <input name="pieza_peso" class="form-control" placeholder='{% trans "Peso" %}'>
+                    </div>
+                    <a class="heading-elements-toggle">
+                        <i class='bx bx-dots-vertical font-medium-3'></i>
+                    </a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li>
+                                <a data-action="collapse">
+                                    <i class="bx bx-chevron-down"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn_agregar_piedra">
+                                    <i class="bx bx-diamond"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn_borrar_peso">
+                                    <i class="bx bx-x"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans "SKU" %}</th>
+                                                <th>{% trans "Piedra" %}</th>
+                                                <th>{% trans "Puntos" %}</th>
+                                                <th>{% trans "Cantidad" %}</th>
+                                                <th>{% trans "Acciones" %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+        $(divPesos).append(pesoHtml);
+        nombrarElementosDetalles();
+        $('a[data-action="collapse"]').on("click", function (e) {
+            e.preventDefault()
+            $(this)
+                .closest(".card")
+                .children(".card-content")
+                .collapse("toggle")
+            // Adding bottom padding on card collapse
+            $(this)
+                .closest(".card")
+                .children(".card-header")
+                .css("padding-bottom", "1.5rem")
+            $(this)
+                .closest(".card")
+                .find('[data-action="collapse"]')
+                .toggleClass("rotate")
+        });
+    }
+
+    function borrarDivPeso(div){
+        $(div).remove();
+        nombrarElementosDetalles();
+    }
+
+    function agregarPiedra(tabla){
+        ocultarModal('#detallePiedra');
+        sku = $('#id_piedra_sku').val();
+        descripcion = $('#id_piedra_descripcion').val();
+        medida = $('#id_piedra_medidas').val();
+        cantidad = $('#id_piedra_cantidad').val();
+        cantidad_piedras += parseInt(cantidad)
+        tr=
+        `
+        <tr>
+            <td>${sku}</td>
+            <td>${descripcion}</td>
+            <td>${medida}</td>
+            <td>${cantidad}</td>
+            <td>
+                <button type="button" class="btn_borrar_fila btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1">
+                    <i class="bx bx-trash"></i>
+                </button>
+            </td>
+        </tr>
+        `;
+        $(tabla).append(tr);
+        nombrarElementosDetalles();
+    }
+
+    function borrarPiedra(fila){
+        $(fila).remove();
+        nombrarElementosDetalles();
+    }
+
+    function agregarImg(){
+        var url_img_tmp = "{% static 'base/img/icons/nofoto2.png' %}";
+        var div = '<div id="elemento_" class="col-md-6 col-12 col-sm-12 item_img"><img id="id_img_tmp_" name="imagentmp" src="'+url_img_tmp+'" width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%"><input onchange="seleccionarImagen(elemento_,id_img_tmp_)" type="file" name="imagen" id="id_imagen_" class="inputimage center pointer" width="150px"><button onclick="borrardivImg(elemento_)" class="btn btn-icon btn-danger rounded-circle button_img" type="button" data-repeater-delete style="position: absolute; top: 10px; left: 10px;"><i class="bx bx-x"></i></button></div>';
+        $('#id_img_lista').append(div);
+        nombrarElementosImg();
+    }
+
+    function borrardivImg(div){
+        $(div).remove();
+        nombrarElementosImg();
+    }
+
+    function nombrarElementosImg(){
+        num = 0;
+        $('div.item_img').each(function (){
+            num++;
+            $(this).removeAttr('id');
+            $(this).attr('id', 'elemento_'+num);
+            imgs = $(this).find('.imgtmp');
+            img = imgs[0];
+            $(img).removeAttr('id');
+            $(img).attr('id', 'id_img_tmp_'+num);
+            inputs = $(this).find('.inputimage');
+            input = inputs[0];
+            $(input).removeAttr('id');
+            $(input).attr('id', 'id_imagen_'+num);
+            $(input).removeAttr('onchange');
+            var img_tmp = "'" + "id_img_tmp_" + num + "'";
+            var img_input = "'" + "id_imagen_" + num + "'";
+            $(input).attr('onchange', 'seleccionarImagen('+img_tmp+','+img_input+')');
+            buttons = $(this).find('.button_img');
+            button = buttons[0];
+            $(button).removeAttr('id');
+            $(button).attr('id', 'boton'+num);
+            $(button).removeAttr('onclick');
+            $(button).attr('onclick', 'borrardivImg(elemento_'+num+')');
+        });
+        if(num >= 4){
+            $('#btnAgregarImagen').hide();
+        } else {
+            $('#btnAgregarImagen').show();
+        }
+    }
+
+    function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(tmp, elemento){
+
+        var preview = $('#'+tmp);
+        var input = $('#'+elemento);
+        var file    = input.prop('files')[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.attr('src', reader.result);
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "";
+        }
+
+    }
+
+    function ValidarFormulario(){
+        contador = 0;
+        $('input.inputimage').each(function (){
+            if($(this).val() === ''){
+                contador += 1;
+            }
+        });
+        
+        if(contador > 0){
+            mensaje('{% trans "Falta al menos una imagen por cargar" %}', 'orange');
+            return false;
+        } else {
+            coloresDisponibles = $('#id_colores').val();
+            acabadosDisponibles = $('#id_acabados').val();
+
+            if (coloresDisponibles.length === 0){
+                mensaje('{% trans "Seleccione al menos un color" %}', 'orange');
+                return false;
+            }
+
+            if (acabadosDisponibles.length === 0){
+                mensaje('{% trans "Seleccione al menos un acabado" %}', 'orange');
+                return false;
+            }
+
+            indice = document.getElementById("id_confort").selectedIndex;
+            if(indice == 0 ||indice == null){
+                toastr.error('Seleccion confort de piezas.', 'Atencion');
+                return false;
+            }
+
+            indice_anchura = document.getElementById("id_anchura").selectedIndex;
+            if(indice_anchura == 0 ||indice_anchura == null){
+                // console.log(indice_anchura)
+                toastr.error('Seleccion anchura de piezas.', 'Atencion');
+                return false;
+            }
+
+
+            peso_pieza = $('div.div_pesos').find('input[name="pieza_peso"]').val()
+            if(peso_pieza == null || peso_pieza == ''){
+                toastr.error('{% trans "Agregue un peso " %}', 'Atencion');
+                return false;
+            }
+
+            piezas = [];
+            contadorDetalles = 0;
+            $('div.div_detalle').each(function (){
+                detalle = {
+                    'id_confort': '',
+                    'id_anchura': '',
+                    'pesos': []
+                }
+                selectsConfort = $(this).find('.select_confort');
+                selectConfort = selectsConfort[0];
+                detalle.id_confort = $(selectConfort).find('select[name="confort"]').val();
+                selectsAnchura = $(this).find('.select_anchura');
+                selectAnchura = selectsAnchura[0];
+                detalle.id_anchura = $(selectAnchura).find('select[name="anchura"]').val();
+                divsPesos = $(this).find('.div_pesos');
+                divPesos = divsPesos[0];
+                elementosPesos = $(this).find('.div_peso_elemento');
+                pesos = [];
+                if(elementosPesos.length > 0){
+                    $(elementosPesos).each(function (){
+                        elementoPeso = {
+                            'peso': '',
+                            'piedras': []
+                        }
+                        elementoPeso.peso = parseFloat($(this).find('input[name="pieza_peso"]').val().replace(/,/, '.'));
+                        tabla = $(this).find('tbody');
+                        filas = $(tabla).find('tr');
+                        piedras = [];
+                        $(filas).each(function (){
+                            contadorFilas++;
+                            elementoPiedra = {
+                                'sku': '',
+                                'medida': '',
+                                'cantidad': ''
+                            }
+                            elementoPiedra.sku = $(this).find('td')[0].innerHTML;
+                            elementoPiedra.medida = $(this).find('td')[2].innerHTML;
+                            elementoPiedra.cantidad = $(this).find('td')[3].innerHTML;
+                            piedras.push(elementoPiedra);
+                        });
+                        elementoPeso.piedras = piedras;
+                        pesos.push(elementoPeso);
+                    });
+                }
+                detalle.pesos = pesos;
+                piezas.push(detalle);
+            });
+            // console.log(piezas);
+            guardar(piezas);
+        }
+    }
+
+    function guardar(piezas){
+        var sku = $('#id_sku').val();
+        var categoria = $('#id_categoria').val();
+        var descripcion= $('#id_descripcion').val();
+        var costo_taller = $('#id_costo').val();
+        var prct_utilidad = $('#id_utilidad').val();
+        var precio_taller = $('#id_precio').val();
+        var tmp_ent_min = $('#id_tiempo_entrega_min').val();
+        var tmp_ent_max = $('#id_tiempo_entrega_max').val();
+        var proveedor = $('#id_proveedor').val();
+        var datos_extra = $('#id_datos_extra').val();
+        var talla_minima_a = $('#id_talla_min_mujer').val();
+        var talla_maxima_a = $('#id_talla_max_mujer').val();
+        var talla_minima_b = $('#id_talla_min_hombre').val();
+        var talla_maxima_b = $('#id_talla_max_hombre').val();
+        var inscripcionLongitud = $('#id_inscripcion_long').val();
+        
+        // if(parseInt(proveedor) ===  0 || proveedor === ''){
+        //     mensaje('{% trans "Seleccione proveedor" %}', 'red');
+        //     return false;
+        // }
+
+        if(sku === ''){
+            mensaje('{% trans "Ingrese el SKU del ítem" %}', 'red');
+            return;
+        }
+
+        if(categoria === ''){
+            mensaje('{% trans "Seleccione una categoría" %}', 'red');
+            return;
+        }
+
+        if(descripcion === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'red');
+            return;
+        }
+
+        if(costo_taller === ''){
+            mensaje('{% trans "Ingrese el costo" %}', 'red');
+            return;
+        } else {
+            costo_taller = FormatoDecimal($('#id_costo'));
+        }
+
+        if(tiempos === 'True'){
+            if(tmp_ent_min === ''){
+                mensaje('{% trans "Ingrese tiempo de entrega mínimo" %}', 'red');
+                return;
+            }
+
+            if(tmp_ent_max === ''){
+                mensaje('{% trans "Ingrese tiempo de entrega máximo" %}', 'red');
+                return;
+            }
+
+            if(parseFloat(tmp_ent_min) > parseFloat(tmp_ent_max)){
+                mensaje('{% trans "Tiempo de entrega mínimo no puede ser mayor al tiempo máximo" %}', 'red');
+                return;
+            }
+        }
+
+        if(talla_minima_a === '' || talla_maxima_a === '' || talla_minima_b === '' || talla_maxima_b === ''){
+            mensaje('{% trans "Seleccione tallas mínimas y máximas" %}', 'red');
+            return;
+        }
+
+        if(inscripcionLongitud === ''){
+            mensaje('{% trans "Ingrese longitud máxima de inscripciones" %}', 'red');
+            return;
+        }
+        
+        if(tipo_precio ==='GRAMO_FINAL_VARIABLE'){
+            if(prct_utilidad === ''){
+                mensaje('{% trans "Ingrese porcentaje de utilidad" %}', 'red');
+                return;
+            } else {
+                prct_utilidad = FormatoDecimal($('#id_utilidad'));
+            }
+        } else {
+            if(precio_taller === ''){
+                mensaje('{% trans "Ingrese precio" %}', 'red');
+                return;
+            } else {
+                precio_taller = FormatoDecimal($('#id_precio'));
+            }
+        }
+
+        if(piezas.length === 0){
+            mensaje('{% trans "Registre al menos una pieza" %}', 'red');
+            return;
+        }
+
+        piezas.forEach(pieza => {
+            if(pieza.id_anchura === '' || pieza.id_confort === ''){
+                mensaje('{% trans "Complete información de las piezas" %}', 'red');
+                return;
+            }
+            pieza.pesos.forEach(peso => {
+                if(peso.peso === '' || isNaN(peso.peso)){
+                    mensaje('{% trans "Complete información de las piezas" %}', 'red');
+                    return;
+                }
+            });
+        });
+
+        form = document.getElementById('frmItem');
+        var data = new FormData(form);
+        data.append('costo', costo_taller);
+        data.append('utilidad', prct_utilidad);
+        data.append('precio', precio_taller);
+        data.append('datos_extras', $('#id_datos_extra').prop('checked'));
+        data.append('coloresDisponibles[]', JSON.stringify(coloresDisponibles));
+        data.append('acabadosDisponibles[]', JSON.stringify(acabadosDisponibles));
+        data.append('piezas[]', JSON.stringify(piezas));
+        data.append('talla_minima_a', talla_minima_a);
+        data.append('talla_maxima_a', talla_maxima_a);
+        data.append('talla_minima_b', talla_minima_b);
+        data.append('talla_maxima_b', talla_maxima_b);
+        data.append('longitud_inscripcion', inscripcionLongitud);
+        data.append('cantidad_piedras', cantidad_piedras);
+
+        var url = "{% url 'ctg:alianzas_crear' %}";
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                console.log(response)
+                url = "{% url 'ctg:alianzas_lista' %}";
+                location.replace(url);
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+    }
+
+    function mostrarPiedrasLista(tabla){
+        idTabla = $(tabla).attr('id');
+        
+        url = "{% url 'ctg:piedras_lista_api' %}";
+        $.ajax({
+            url: url,
+            type: "GET",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                $('#div_piedras_lista').empty();
+                piedras = response;
+                piedras.forEach(piedra => {
+                    div= `<div class="col-12 col-lg-4 col-md-6 mr-auto ml-md-auto">
+                            <div class="card widget-img-top">
+                                <div class="card-content">
+                                    <img class="card-img-top mb-1" width="150px" height="150px" src="${piedra.imagen}" alt="Card image cap" />
+                                    <div class="heading-elements">
+                                        <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p>${piedra.descripcion}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button onclick="mostrarDetallePiedra(${piedra.id_piedra}, ${idTabla})" type="button" onclick="" class="btn btn-primary glow px-4">{% trans "Agregar" %}</button>
+                                </div>
+                            </div>
+                        </div>`;
+                    
+                    $('#div_piedras_lista').append(div);
+                });
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+        mostrarModal('#listaPiedras');
+    }
+
+    function mostrarDetallePiedra(idPiedra, tabla){
+        idTabla = $(tabla).attr('id');
+        ocultarModal('#listaPiedras');
+        url = "{% url 'ctg:piedra_detalle_api' 0 %}";
+        url = url.replace(/0/, idPiedra);
+        $.ajax({
+            url: url,
+            type: "GET",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response){
+                piedra = response.piedra;
+                detalles = response.detalles;
+                $('#id_piedra_imagen').attr('src', piedra.imagen);
+                $('#id_piedra_sku').val(piedra.sku);
+                $('#id_piedra_descripcion').val(piedra.descripcion);
+                selectDetalles = document.getElementById('id_piedra_medidas');
+                selectDetalles.innerHTML = '';
+                // $('#id_piedra_cantidad');
+                detalles.forEach(detalle => {
+                    var option = document.createElement("option");
+                    option.value = detalle.medida;
+                    option.text = detalle.medida;
+                    selectDetalles.add(option);
+                });
+                $('#btnAgregarPiedra').removeAttr('onclick');
+                $('#btnAgregarPiedra').attr('onclick', 'agregarPiedra('+idTabla+')');
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+        mostrarModal('#detallePiedra');
+    }
+
+    function mostrarModal(modal){
+        $(modal).modal('show');
+    }
+
+    function ocultarModal(modal){
+        $(modal).modal('hide');
+    }
+</script>
+{% endblock %}

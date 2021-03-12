@@ -1,0 +1,124 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/vendors.min.css' %}">
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap-extended.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/colors.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/components.css' %}">
+<!-- jQuery confirm-->
+<link href="{% static  'base/vendor/jquery_confirm/dist/jquery-confirm.min.css' %}" rel="stylesheet">
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Cambiar Contraseña" %}</h5>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{% url 'usr:usuario_cambiar_contrasena_modal' %}" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <img id="id_img_tmp" name="imagentmp" {% if user.img_perfil %} src="{{ user.img_perfil.url }}" {% else %} src="{% static  'base/img/profile/no_perfil.png' %}" {% endif %} class="img-circle center img-fluid pointer" width="60%">
+                                <!-- <input onchange="seleccionarImagen()" type="file" name="imagen" id="id_imagen" class="inputimage center pointer" width="100%"> -->
+                                <label for="city-column">{% trans "Imagen" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input type="password" class="form-control" id="id_old_password" name="old_password">
+                                        <label for="first-name-column">{% trans "Contraseña actual" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input type="password" class="form-control" id="id_new_password1" name="new_password1">
+                                        <label for="last-name-column">{% trans "Nueva contraseña" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        <input type="password" class="form-control" id="id_new_password2" name="new_password2">
+                                        <label for="last-name-column">{% trans "Confirmar nueva contraseña" %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="modal-footer">
+        </div> -->
+    </div>
+</div>
+<!-- BEGIN: Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+<!-- jQuery confirm-->
+<script src="{% static 'base/vendor/jquery_confirm/dist/jquery-confirm.min.js' %}"></script>
+<script>
+    function mensaje(msg, color = 'green') {
+        $.alert({
+            title: '',
+            theme: 'material',
+            type: color,
+            content: msg
+        });
+    }
+
+    function cerrar_modal()
+        {
+            $('#popup').modal('hide');
+            return false;
+        }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    cerrar_modal()
+                    console.log('{{ field.name }}{{ error|escape }}')
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                    window.location.replace("{% url 'bases:home' %}")
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                console.log('{{ error|escape }}')
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>

@@ -1,0 +1,58 @@
+*******************
+**Forms usr**
+*******************
+
+Dentro de la carpeta **usr** tenemos el archivo llamado ``forms.py``. Donde se encuentran los formularios de la aplicación usr, se detalla a continuación cada formulario.
+
+Formulario RegistroForm
+========================
+
+Hereda de los formularios de autenticación de Django ``UserCreationForm``, este formulario afecta al :ref:`Modelo Usuarios`. Contiene los siguientes campos:
+
+- username
+- first_name
+- last_name
+- email
+- img_perfil
+
+- pais
+
+Formulario AsignarGrupoForm
+============================
+
+Hereda de los formularios de Django ``forms.ModelForm``, este formulario afecta al :ref:`Modelo UsuariosGrupos`. Es una instancia vacía para asignar un grupo a un usuario.
+
+Formulario UsuarioGrupoForm
+============================
+
+Hereda de ``MultiModelForm``, es la unión de dos formularios :ref:`Formulario RegistroForm` y :ref:`Formulario AsignarGrupoForm`. Es utilizado para el registro de nuevos usuarios.
+
+Formulario EditarForm
+========================
+
+Hereda de los formularios de autenticación de Django ``UserChangeForm``, este formulario afecta al :ref:`Modelo Usuarios`. Contiene los siguientes campos:
+
+- username
+- first_name
+- last_name
+- email
+- img_perfil
+
+- pais
+
+Formulario EditarUsuarioForm
+=============================
+
+Hereda de ``MultiModelForm``, es la unión de dos formularios :ref:`Formulario EditarForm` y :ref:`Formulario AsignarGrupoForm`. Es utilizado para edutar la información de un usuario determinado.
+
+Formulario EditarPerfilForm
+============================
+
+Hereda de los formularios de Django ``forms.ModelForm``, este formulario afecta al :ref:`Modelo Usuarios`. Contiene los siguientes campos:
+
+- username
+- first_name
+- last_name
+- email
+
+- img_perfil

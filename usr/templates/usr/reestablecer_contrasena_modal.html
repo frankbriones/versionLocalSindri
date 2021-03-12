@@ -1,0 +1,109 @@
+{% load static %} {% load i18n %}
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Reestablecer contraseña" %}</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% trans "Se reestablecerá la contraseña del usuario " %}{{ usuario }}
+        </div>
+        <form id="frmContrasena" method="POST" class="mb-2" hidden>
+            {% csrf_token %}
+            <div class="form-group mb-2">
+                <label class="text-bold-600" for="id_email">{% trans "Correo electrónico" %}</label>
+                <input type="text" class="form-control" id="id_email" name="email" value="{{ usuario.email }}"></div>
+        </form>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans "Cancelar" %}</button>
+            <a class="btn btn-primary" onclick="solicitarContrasena()" href="#">{% trans "Confirmar" %}</a>
+        </div>
+    </div>
+    <div class="loader">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.loader').hide();
+    });
+    function reiniciaContrasena(){
+
+        id_usuario = '{{ usuario.id }}';
+        var token = '{{ csrf_token }}';
+        dato = {
+        'id_usuario': id_usuario
+        }
+        var datos = JSON.stringify(dato);
+
+        var url_modificada = "{% url 'usr:usuario_reinicia_contrasena' 0 %}";
+        url = url_modificada.replace(/0/, id_usuario);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+
+    function solicitarContrasena(){
+        var token = '{{ csrf_token }}';
+        form = document.getElementById('frmContrasena');
+        var datos = new FormData(form);
+        datos.append('email', '{{usuario.email}}')
+
+        var url = "{% url 'bases:password_reset' %}";
+        var url_lista = "{% url 'usr:usuario_lista' %}";
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(response) {
+                $.confirm({
+                    title: '{% trans "Información enviada" %}',
+                    content: '{% trans "Se ha enviado un correo electrónico con los pasos para el reestablecimiento de la contraseña" %}',
+                    theme: 'material',
+                    type: 'green',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            action: function() {
+                                window.location = url_lista;
+                            }
+                        },
+                    }
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow);
+            }
+        });
+    }
+</script>

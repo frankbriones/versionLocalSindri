@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{% trans "Usuarios" %}</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">{% trans "Acciones:" %}</div>
+                <a class="dropdown-item" href="{% url 'usr:usuario_registro' %}">{% trans "Nuevo" %}</a>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+        <input id="chat-message-input" type="text" size="100"/><br/>
+        <input id="chat-message-submit" type="button" value="Send"/>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    var roomName = '{{ user.pais.nombre }}';
+    roomName = roomName.toLowerCase();
+
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/websocket/' + roomName + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        document.querySelector('#chat-log').value += (message + '\n');
+        //location.reload(true);
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+
+        messageInputDom.value = '';
+    };
+</script>
+{% endblock %}

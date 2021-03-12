@@ -1,0 +1,184 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>SINDRI</title>
+    <!-- <link rel="apple-touch-icon" href="{% static 'base/app-assets/images/ico/apple-icon-120.png' %}"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static  'base/img/icons/sindrilogo.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/vendors.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/toastr.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/semi-dark-layout.css' %}">
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/pages/authentication.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.css' %}"> -->
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.min.css' %}">  
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/toastr.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/assets/css/style.css' %}">
+    <link href="{% static  'base/vendor/jquery_confirm/dist/jquery-confirm.min.css' %}" rel="stylesheet">
+    <!-- END: Custom CSS-->
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- login page start -->
+                <section id="auth-login" class="row flexbox-container">
+                    <div class="col-xl-8 col-11">
+                        <div class="card bg-authentication mb-0">
+                            <div class="row m-0">
+                                <!-- left section-login -->
+                                <div class="col-md-6 col-12 px-0">
+                                    <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+                                        <div class="card-header pb-1">
+                                            <div class="card-title">
+                                                <img src="{% static  'base/img/icons/sindrilogo.png' %}" alt="" width="30%" style="margin-left: auto; margin-right: auto; display: block;">
+                                                <p style="text-align: center;"><h2 class="brand-text mb-0 text-center" style="font-size: 50px;">SINDRI</h2></p>
+                                                <h4>{% trans "Cambiar Contraseña" %}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <form class="form" method="POST" action="{% url 'usr:usuario_cambiar_contrasena_modal' %}">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600" for="id_old_password">{% trans "Contraseña actual" %}</label>
+                                                        <input type="password" class="form-control" id="id_old_password" name="old_password">
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label class="text-bold-600" for="id_new_password1">{% trans "Nueva contraseña" %}</label>
+                                                        <input type="password" class="form-control" id="id_new_password1" name="new_password1">
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label class="text-bold-600" for="id_new_password2">{% trans "Confirmar nueva contraseña" %}</label>
+                                                        <input type="password" class="form-control" id="id_new_password2" name="new_password2">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary glow w-100 position-relative">{% trans "Guardar" %}<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- right section image -->
+                                <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
+                                    <div class="card-content">
+                                        <img class="img-fluid" src="{% static 'base/app-assets/images/pages/reset-password.png' %}" width="100%" alt="branding logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- login page ends -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{% static 'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js' %}"></script>
+    <script src="{% static 'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js' %}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{% static 'base/app-assets/js/scripts/configs/vertical-menu-light.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/core/app-menu.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/core/app.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/components.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/footer.js' %}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{% static 'base/vendor/jquery_confirm/dist/jquery-confirm.min.js' %}"></script>
+
+
+    <script src="{% static 'base/app-assets/js/scripts/extensions/toastr.js' %}"></script>
+    <script src="{% static 'base/app-assets/vendors/js/extensions/toastr.min.js' %}"></script>
+    <!-- END: Page JS-->
+    
+    <script>
+        function mensaje(msg, color = 'green') {
+            $.alert({
+                title: '',
+                theme: 'material',
+                type: color,
+                content: msg
+            });
+        }
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        campo = '{{ field.name }}';
+                        if( campo === 'old_password' ){
+                            campo = '{% trans "Contraseña actual" %}'
+                        }
+                        if( campo === 'new_password1' ){
+                            campo = '{% trans "Nueva Contraseña 1" %}'
+                        }
+                        if( campo === 'new_password2' ){
+                            campo = '{% trans "Nueva Contraseña 2" %}'
+                        }
+                        toastr.error('{{ error|escape }}', campo, { "timeOut": 5000 });
+                        // mensaje('{{ field.name }}: {{ error|escape }}', 'red');
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+    
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    toastr.error('{{ error|escape }}', { "timeOut": 5000 });
+                    // mensaje('{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </script>
+
+</body>
+<!-- END: Body-->
+</html>

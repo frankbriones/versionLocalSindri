@@ -1,0 +1,268 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SINDRI</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    
+    <style type="text/css">
+    @page {
+        size: A4 landscape;
+        margin: 1cm;
+    }
+    .table {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .table td {
+        padding: 5px;
+        padding-bottom: 5px;
+        vertical-align: bottom;
+        border: 1px solid #DFE3E7;
+        background-color: #FFFFFF;
+        text-align: center;
+        border-radius: 0.267rem;
+    }
+    .table tbody + tbody {
+        border-top: 2px #000;
+    }
+    .p {
+        font-family:courier,arial,helvética;
+        font-size: 15px;
+    }
+    .celda {
+        font-family:courier,arial,helvética;
+        font-size: 11px;
+    }
+    .titulo {
+        color: #5A8DEE;
+        padding-left: 10px;
+        font-weight: 500;
+        font-size: 70px;
+        float: left;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12 col-12">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="4">
+                            <p class="titulo"><img id="id_img_tmp" name="imagentmp" src="{{ sUrl }}/static/base/img/icons/sindrilogo.png" style="float: left;" width="100px">SINDRI</p>
+                        </td>
+                    </tr>
+                    {% if not usuario.rol.admin %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="4">
+                            <p style="font-size: 15px; margin-bottom: 1px;"><b>{% trans "Tienda:   " %}</b>{{ usuario.username }} <br> <b>{% trans "Dirección:   " %}</b>{{ usuario.user_usuariostiendas }} <br> <b>{% trans "Correo electrónico:   " %}</b>{{ usuario.email }} </p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 1 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Listado de órdenes de trabajo correspondientes a lo que va del mes" %}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 2 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Listado de órdenes de trabajo correspondientes al mes anterior" %}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 3 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Últimas 100 órdenes de trabajo" %}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 4 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Últimas 1000 órdenes de trabajo" %}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 5 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Listado de órdenes de trabajo desde la fecha " %}{{ fecha_inicio|date:"d/m/Y" }}{% trans " hasta la fecha " %}{{ fecha_fin|date:"d/m/Y" }}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if opcion == 6 %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <p style="font-size: 15px;"><b>{% trans "Todas las órdenes de trabajo" %}</b></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% regroup ordenes by estado as ordenes_lista %}
+                    <tr>
+                        {% for estado in ordenes_lista %}
+                        <tr>
+                            <tr>
+                                <td colspan="11">
+                                    <b><p class="p">{% trans "Estado: " %}{{ estado.grouper }}</p></b>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b><p class="celda">{% trans "Secuencia" %}</p></b></td>
+                                <td><b><p class="celda" style="width: 20%;">{% trans "Solicita" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Taller" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Origen mat." %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Gramos enviados" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Gramos recibidos" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Peso solic." %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Peso final" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Diferencia gramos" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Fecha creación" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Fecha fabricación" %}</p></b></td>
+                            </tr>
+                            {% for orden in estado.list %}
+                            <tr>
+                                <td style="width: 20%;">
+                                    <p class="celda">{{ orden.secuencia }}</p>
+                                </td>
+                                <td style="width: 20%;">
+                                    <p class="celda">{{ orden.tienda.nombre }}</p>
+                                </td>
+                                <td>
+                                    <p class="celda">{{ orden.taller }}</p>
+                                </td>
+                                <td>
+                                    <p class="celda">{{ orden.origen_material }}</p>
+                                </td>
+                                {% if orden.gramos_enviados %}
+                                <td>
+                                    <p class="celda">{{ orden.gramos_enviados }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                                {% if orden.gramos_recibidos %}
+                                <td>
+                                    <p class="celda">{{ orden.gramos_recibidos }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                                {% if orden.peso_solicitado %}
+                                <td>
+                                    <p class="celda">{{ orden.peso_solicitado }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                                {% if orden.peso_final %}
+                                <td>
+                                    <p class="celda">{{ orden.peso_final }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                                {% if orden.diferencia_gramos %}
+                                <td>
+                                    <p class="celda">{{ orden.diferencia_gramos }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                                <td>
+                                    <p class="celda">{{ orden.fecha_creacion|date:"d/m/Y H:i:s" }}</p>
+                                </td>
+                                {% if orden.fecha_fin_trabajo|date:"d/m/Y H:i:s" != '01/01/1900 00:00:00' %}
+                                <td>
+                                    <p class="celda">{{ orden.fecha_fin_trabajo|date:"d/m/Y H:i:s" }}</p>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <p class="celda"> </p>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tr>
+                    {% if solicitudes %}
+                    <tr>
+                        <td style="text-align: left; border: 0px;" colspan="8">
+                            <br>
+                            <p style="font-size: 15px;"><b>{% trans "Listado de solicitudes pendientes de respuesta:" %}</b></p>
+                        </td>
+                    </tr>
+                    {% regroup solicitudes by estado as solicitudes_lista %}
+                    <tr>
+                        {% for estado in solicitudes_lista %}
+                        <tr>
+                            <tr>
+                                <td colspan="11">
+                                    <b><p class="p">{% trans "Estado: " %}{{ estado.grouper }}</p></b>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b><p class="celda">{% trans "Secuencia" %}</p></b></td>
+                                <td><b><p class="celda" style="width: 20%;">{% trans "Solicita" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Taller" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Origen mat." %}</p></b></td>
+                                <td colspan="6"><b><p class="celda">{% trans "Detalle" %}</p></b></td>
+                                <td><b><p class="celda">{% trans "Fecha creación" %}</p></b></td>
+                            </tr>
+                            {% for solicitud in estado.list %}
+                            <tr>
+                                <td style="width: 20%;">
+                                    <p class="celda">{{ solicitud.secuencia }}</p>
+                                </td>
+                                <td style="width: 20%;">
+                                    <p class="celda">{{ solicitud.usuario }}</p>
+                                </td>
+                                <td>
+                                    <p class="celda">{{ solicitud.taller }}</p>
+                                </td>
+                                <td>
+                                    <p class="celda">{{ solicitud.origen_material }}</p>
+                                </td>
+                                <td colspan="6">
+                                    <p class="celda">{{ solicitud.detalle }}</p>
+                                </td>
+                                <td>
+                                    <p class="celda">{{ solicitud.fecha_creacion|date:"d/m/Y H:i:s" }}</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tr>
+                    {% endif %}
+                    
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

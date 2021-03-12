@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modelos trn &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Modelos trn</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/trn/trn_models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modelos-trn">
+<h1><strong>Modelos trn</strong><a class="headerlink" href="#modelos-trn" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>trn</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">models.py</span></code>. Donde se encuentran los modelos de la aplicación trn</p>
+<div class="section" id="modelo-origenmaterial">
+<h2>Modelo OrigenMaterial<a class="headerlink" href="#modelo-origenmaterial" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para registrar los deiferentes origenes de material en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_origen</p></td>
+<td><p>Id del origen de material registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del origen de material.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-solicitudtrabajo">
+<h2>Modelo SolicitudTrabajo<a class="headerlink" href="#modelo-solicitudtrabajo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las solicitudes de trabajo que se registrarán en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_solicitud</p></td>
+<td><p>Id de la solicitud registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>secuencia</p></td>
+<td><p>Identificador de la solicitud generada.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>Id del usuario que genera la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Id del taller a quien va dirigida la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>proveedor</p></td>
+<td><p>Id del proveedor a quien va dirigida la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>imagen</p></td>
+<td><p>Url de la imagen relacionada a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_min</p></td>
+<td><p>Peso mínimo de fabricación asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_max</p></td>
+<td><p>Peso máximo de fabricación asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>talla</p></td>
+<td><p>Id de la talla solicitada para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Id del colo solicitado para la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>longitud</p></td>
+<td><p>Medida solicitada para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_gramo</p></td>
+<td><p>Costo por gramo de oro asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio</p></td>
+<td><p>Precio calculado de la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>externa</p></td>
+<td><p>Indica si la fabricación la realiza un taller interno o un proveedor externo.</p></td>
+</tr>
+<tr class="row-even"><td><p>acabado</p></td>
+<td><p>Describe el acabado del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>parte_interna</p></td>
+<td><p>Describe la parte interna del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-even"><td><p>cantidad_piedras</p></td>
+<td><p>Cantidad de piedras que posee el producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>origen_material</p></td>
+<td><p>Origen de la materia prima para la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gramo_base_op</p></td>
+<td><p>Costo del gramo de oro estipulado por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gramo_base_ta</p></td>
+<td><p>Costo del gramo de oro estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_base_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_base_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_base_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_base_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_fabrica_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_fabrica_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>sku_relacionado</p></td>
+<td><p>SKU del producto de catálogo relacionado a la fabricación solicitada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_ent_min</p></td>
+<td><p>Tiempo mínimo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_ent_max</p></td>
+<td><p>Tiempo máximo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_respuesta</p></td>
+<td><p>Fecha en que el taller responderá a una solicitud en evaluación.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Descripción de lo solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>observacion_op</p></td>
+<td><p>Observación sobre la solicitud de parte de operaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>observacion_ta</p></td>
+<td><p>Observación sobre la solicitud de parte del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece la promoción.</p></td>
+</tr>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Id del estado de la promoción.</p></td>
+</tr>
+<tr class="row-odd"><td><p>generado_con_ext</p></td>
+<td><p>Indica si la solicitud es generada a partir de una solicitud rechazada por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>solicitud_relacionada</p></td>
+<td><p>Id de la solicitud rechazada por la cual se generó la nueva solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_solicitado</p></td>
+<td><p>Peso del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos</p></td>
+<td><p>Porcentaje de impuestos cobrados por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos</p></td>
+<td><p>Valor de impuestos cobrado por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos cobrados por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos_ta</p></td>
+<td><p>Valor de impuestos cobrado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_taller</p></td>
+<td><p>Suma de todos los costos cobrados por el taller para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>servicio_fabricacion</p></td>
+<td><p>Costo total de la mano de obra para la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_con_descuento</p></td>
+<td><p>Precio de la solicitud luego de aplicar descuento.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_cotizacion</p></td>
+<td><p>Fecha en que la solicitud fue cotizada.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_cotizacion</p></td>
+<td><p>Tiempo en que el taller tardó en cotizar una solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_gramo_final</p></td>
+<td><p>Costo por gramo de oro en caso de manejarse un precio fijo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-detallesolicitud">
+<h2>Modelo DetalleSolicitud<a class="headerlink" href="#modelo-detallesolicitud" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los detalles que pertenecen a una solicitud, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle_solicitud</p></td>
+<td><p>Id del detalle registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>solicitud</p></td>
+<td><p>Id de la solicitud a la que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Id del ítem registrado en el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el detalle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-ordentrabajo">
+<h2>Modelo OrdenTrabajo<a class="headerlink" href="#modelo-ordentrabajo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para las órdenes de trabajo que se registrarán en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>Id de la órden de trabajo registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>secuencia</p></td>
+<td><p>Identificador de la órden generada.</p></td>
+</tr>
+<tr class="row-even"><td><p>cliente</p></td>
+<td><p>Id del cliente de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>usuario</p></td>
+<td><p>Id del usuario que genera la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller a quien va dirigida la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>proveedor</p></td>
+<td><p>Id del proveedor a quien va dirigida la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Id del colo solicitado para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categoria</p></td>
+<td><p>Id de la categoría a la pertenece el ítem de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_solicitado</p></td>
+<td><p>Peso del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_final</p></td>
+<td><p>Peso final del producto fabricado.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_taller</p></td>
+<td><p>Suma de todos los costos cobrados por el taller para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>servicio_fabricacion</p></td>
+<td><p>Costo total de la mano de obra para la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_sistema</p></td>
+<td><p>Precio total de la órden calculado por el sistema.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_con_descuento</p></td>
+<td><p>Precio de la órden luego de aplicar descuento.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_min</p></td>
+<td><p>Precio total mínimo calculado para la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_max</p></td>
+<td><p>Precio total máximo calculado para la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>externa</p></td>
+<td><p>Indica si la fabricación la realiza un taller interno o un proveedor externo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>env_material</p></td>
+<td><p>Indica si la joyería envía materia prima hacia el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>gramos_enviados</p></td>
+<td><p>Cantidad de gramos de oro que envía la joyería hacia el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramos_recibidos</p></td>
+<td><p>Cantidad de gramos de oro que recibe el taller enviados desde la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>comp_envio_ta</p></td>
+<td><p>Url del archivo que corresponde al comprobante de envío del producto desde el taller hacia la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>comp_envio_op</p></td>
+<td><p>Url del archivo que corresponde al comprobante de envío del material desde la joyería hacia el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>factura_vta</p></td>
+<td><p>Url del archivo que corresponde a la factura de venta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>obs_recepcion_prod</p></td>
+<td><p>Observación de la joyería al recibir el producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>obs_venta</p></td>
+<td><p>Observación de la joyería al vender el producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>obs_recepcion_mat</p></td>
+<td><p>Observación del taller al recibir el material.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_recibe_mat</p></td>
+<td><p>Fecha en que el taller recibe la materia prima enviada por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_envio_mat</p></td>
+<td><p>Fecha en que la joyería envía la materia prima hacia el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_anulacion</p></td>
+<td><p>Fecha en que el taller anula la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_fin_trabajo</p></td>
+<td><p>Fecha en que el taller finaliza el trabajo de fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_envio_prod</p></td>
+<td><p>Fecha en que el taller envía el producto hacia la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_recibe_prod</p></td>
+<td><p>Fecha en que la joyería recibe el producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_venta</p></td>
+<td><p>Fecha en que la joyería vende el producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_duracion_orden</p></td>
+<td><p>Tiempo total de duración de una orden desde que se genera hasta que es finalizada.</p></td>
+</tr>
+<tr class="row-even"><td><p>origen_material</p></td>
+<td><p>Origen de la materia prima para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gramo_base_op</p></td>
+<td><p>Costo del gramo de oro estipulado por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gramo_base_ta</p></td>
+<td><p>Costo del gramo de oro estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_base_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_base_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_fabrica_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_fabrica_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_fabrica_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_fabrica_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gramo_fabricado</p></td>
+<td><p>Costo de gramo de fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicional_color_gramo</p></td>
+<td><p>Costo adicional por gramo de fabricación debido al color de la joya.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_piedras</p></td>
+<td><p>Precio de las piedras finas agregadas a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_adicionales</p></td>
+<td><p>Costo de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_adicionales</p></td>
+<td><p>Utilidad aplicada sobre el costo de adicionales.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_adicionales</p></td>
+<td><p>Precio total de adicionales sumada la utilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_venta_final</p></td>
+<td><p>Precio final de la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>estado</p></td>
+<td><p>Id del estado de la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos</p></td>
+<td><p>Porcentaje de impuestos aplicados sobre la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos</p></td>
+<td><p>Valor de impuestos aplicados sobre la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos aplicados sobre la órden de parte del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos_ta</p></td>
+<td><p>Valor de impuestos aplicados sobre la órden de parte del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>pago_aprobado</p></td>
+<td><p>Indica si el pago por la fabricación de la órden fue aprobado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_aprueba_pago</p></td>
+<td><p>Fecha en que se aprueba el pago de la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_piedras_op</p></td>
+<td><p>Precio final de las piedras finas agregadas a la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_adicionales_op</p></td>
+<td><p>Precio final de los adicionales agregados a la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_adicionales_op</p></td>
+<td><p>Utilidad sobre los adicionales obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_piedras_op</p></td>
+<td><p>Utilidad sobre las piedras obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>orden_vendida</p></td>
+<td><p>Indica si la órden fué vendida o no.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_envio</p></td>
+<td><p>Costo de envío del producto desde el taller hacia la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>anticipo_fabricacion</p></td>
+<td><p>Url del archivo que corresponde al comprobante de anticipo para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>factura_taller</p></td>
+<td><p>Url del archivo que corresponde a la factura del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>cta_por_pagar</p></td>
+<td><p>Url del archivo que corresponde a la cuenta por pagar generada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>orden_compra</p></td>
+<td><p>Url del archivo que corresponde a la órden de compra generada.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_gramo_final</p></td>
+<td><p>Costo por gramo de oro en caso de manejarse un precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras_basicas</p></td>
+<td><p>Costo de piedras registrado para el ítem de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>datos_extra</p></td>
+<td><p>Datos adicionales sobre la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>usuario_aprueba_pago</p></td>
+<td><p>Id del usuario que aprueba el pago de la fabricación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-detalleorden">
+<h2>Modelo DetalleOrden<a class="headerlink" href="#modelo-detalleorden" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los detalles que pertenecen a una órden, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle_orden</p></td>
+<td><p>Id del detalle registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>orden</p></td>
+<td><p>Id de la órden a la que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud</p></td>
+<td><p>Id de la solicitud registrada en el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_item</p></td>
+<td><p>Id del ítem registrado en el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_detalle_item</p></td>
+<td><p>Id del detalle de ítem registrado en el detalle de órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_adicional</p></td>
+<td><p>Id del adicional registrado en el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_unitario_adicional</p></td>
+<td><p>Costo unitario de adicional registrado en la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_adicional</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre el adicional.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_sobre_adicional</p></td>
+<td><p>Valor de la utilidad obtenida del adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_adicionales</p></td>
+<td><p>Precio de los adicionales.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_piedra</p></td>
+<td><p>Id de la piedra registrada en el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_detalle_piedra</p></td>
+<td><p>Id del detalle de piedra registrado en el detalle.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_unitario_piedra</p></td>
+<td><p>Costo unitario de la piedras registrada en el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_util_sobre_piedra</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_sobre_piedra</p></td>
+<td><p>Valor de la utilidad obtenida sobre la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_piedras</p></td>
+<td><p>Precio de las piedras.</p></td>
+</tr>
+<tr class="row-even"><td><p>cantidad</p></td>
+<td><p>Cantidad de elementos agregados por detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_piedras_op</p></td>
+<td><p>Total a cobra por la joyería por concepto de piedras finas.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_adicionales_op</p></td>
+<td><p>Total a cobrar por la joyería por concepto de adicionales.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_adicionales_op</p></td>
+<td><p>Valor de utilidad sobre adicionales obtenido por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_piedras_op</p></td>
+<td><p>Valor de utilidad sobre piedras finas obtenido por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pais</p></td>
+<td><p>Id del país al que pertenece el detalle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-rubrosasociados">
+<h2>Modelo RubrosAsociados<a class="headerlink" href="#modelo-rubrosasociados" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los rubros asociados registrados en el sistema, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_rubro</p></td>
+<td><p>Id del rubro registrado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripcion</p></td>
+<td><p>Descripción del rubro.</p></td>
+</tr>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Id del estado del rubro en el sistema.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modelo-solicitudrubros">
+<h2>Modelo SolicitudRubros<a class="headerlink" href="#modelo-solicitudrubros" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Modelo que hereda de <a class="reference internal" href="../bases/bases_models.html#clasemodelo"><span class="std std-ref">ClaseModelo</span></a>. Este es el modelo para los rubros asociados a una solicitud de trabajo, consta de los siguientes campos:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Campo</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_solicitud_rubro</p></td>
+<td><p>Id de la relación rubro-solicitud registrada.</p></td>
+</tr>
+<tr class="row-odd"><td><p>solicitud</p></td>
+<td><p>Id de la solicitud a la que pertenece el rubro.</p></td>
+</tr>
+<tr class="row-even"><td><p>rubro</p></td>
+<td><p>Id del rubro asociado a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor</p></td>
+<td><p>Valor asignado al rubro.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

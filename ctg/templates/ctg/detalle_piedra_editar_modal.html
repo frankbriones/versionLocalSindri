@@ -1,0 +1,65 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar detalle" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" class="form" action="{% url 'ctg:detalles_piedra_editar' obj.id_detalle_piedra %}">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.medida }}
+                                <input type="text" hidden>
+                                <label for="id_nombre">{% trans "Medida" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.costo_taller }}
+                                <label for="city-column">{% trans "costo" %} ({{ user.pais.simbolo_moneda }})</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.precio_taller }}
+                                <label for="city-column">{% trans "Precio" %} ({{ user.pais.simbolo_moneda }})</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                        </button>
+                        <button type="submit" id="btnGuardar" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Guardar" %}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    $('#id_medida').prop('readonly', true);
+
+});
+
+</script>

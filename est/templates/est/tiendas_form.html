@@ -1,0 +1,401 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Establecimientos" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Tiendas" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% if tienda %}{% trans "Editar" %}{% else %}{% trans "Nueva" %}{% endif %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Tiendas" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        {% if tienda %}
+
+                                        <li>
+                                            <a class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 eliminar_tienda" 
+                                                             data-tienda={{tienda.id_tienda}} data-descripcion="{{tienda.nombre}}" data-target="#modal_eliminartienda"
+                                                              role="button"><i class="bx bx-trash  font-medium-1"></i></a>
+                                        </li>
+                                        {% else %}
+                                        {% endif %}
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <br>
+                                    <form method="POST" id="frmGrupoEmpresarial" class="form" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.codigo }}
+                                                                <label for="id_costo_gramo_base">{% trans "Código" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.nombre }}
+                                                                <label for="id_costo_gramo_base">{% trans "Nombre" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="sociedad" id="id_sociedad" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for sociedad in sociedades %}
+                                                                    {% if tienda.sociedad.id_sociedad == sociedad.id_sociedad %}
+                                                                        <option value="{{ sociedad.id_sociedad }}" selected>{{ sociedad.nombre }}</option>
+                                                                    {% else %}
+                                                                        <option value="{{ sociedad.id_sociedad }}">{{ sociedad.nombre }}</option>
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <div id="sociedad_error" class="invalid-feedback">
+                                                                    {% trans "Seleccione una Sociedad" %}
+                                                                </div>
+                                                                <label for="id_sociedad">{% trans "Sociedad" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="zona" id="id_zona" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for zona in zonas %}
+                                                                    {% if tienda.zona.id_zona == zona.id_zona%}
+                                                                    <option value="{{ zona.id_zona }}" selected>{{ zona.nombre }}</option>
+                                                                    {% else %}
+                                                                    <option value="{{ zona.id_zona }}" >{{ zona.nombre }}</option>
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <div id="zona_error" class="invalid-feedback">
+                                                                    {% trans "Seleccione una Zona" %}
+                                                                </div>
+                                                                <label for="id_zona">{% trans "Zona" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="ciudad" id="id_ciudad" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for ciudad in ciudades %}
+                                                                     {% if tienda.ciudad.id_ciudad == ciudad.id_ciudad%}
+                                                                    <option value="{{ ciudad.id_ciudad }}" selected>{{ ciudad.nombre }}</option>
+                                                                    {% else %}
+                                                                    <option value="{{ ciudad.id_ciudad }}">{{ ciudad.nombre }}</option>
+                                                                    {% endif %}
+                                                                    
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <div id="ciudad_error" class="invalid-feedback">
+                                                                    {% trans "Seleccione una Ciudad" %}
+                                                                </div>
+                                                                <label for="id_ciudad">{% trans "Ciudad" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                <select name="sector" id="id_sector" class="form-control">
+                                                                    <option value="0">{% trans "Seleccionar" %}</option>
+                                                                    {% for sector in sectores %}
+                                                                    {% if tienda.sector.id_sector == sector.id_sector %}
+                                                                     <option value="{{ sector.id_sector }}" selected>{{ sector.nombre }}</option>
+                                                                    {% else %}
+                                                                     <option value="{{ sector.id_sector }}">{{ sector.nombre }}</option>
+                                                                    {% endif %}
+                                                                   
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <input type="text" name="" id="" hidden>
+                                                                <div id="sector_error" class="invalid-feedback">
+                                                                    {% trans "Seleccione un Sector" %}
+                                                                </div>
+                                                                <label for="id_sector">{% trans "Sector" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.direccion_tienda }}
+                                                                <label for="id_direccion_tienda">{% trans "Direccion Tienda" %}</label>
+                                                                <div id="direccion_error" class="invalid-feedback">
+                                                                    {% trans "Ingrese Direccion" %}
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.email }}
+                                                                <label for="id_email">{% trans "Email" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-label-group">
+                                                                {{ form.telefono }}
+                                                                <label for="id_telefono">{% trans "Telefono" %}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    {{ form.matriz }}
+                                                                    <label for="id_matriz">{% trans "Es matriz" %}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button onclick="validarFormulario()" class="btn btn-primary mr-1 mb-1 ">{% trans "Guardar" %}</button>
+                                        <a href="{% url 'est:tiendas_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans "Cancelar" %}</a>
+                                    </div>
+                                    <div class="modal fade text-left" id="modal_eliminartienda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel12" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                            <div class="modal-content">
+                                                                <input type="hidden" class="id_tienda_eliminar">
+                                                                <div class="modal-header bg-danger">
+                                                                    <h5 class="modal-title white" id="myModalLabel12">confirmacion</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <i class="bx bx-x"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Desea eliminar la Tienda 
+                                                                    <span class="nombre_tienda"></span>?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                                        <span class="d-none d-sm-block">No</span>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger ml-1 delete_tienda">
+                                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                                        <span class="d-none d-sm-block">si</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                        </div> 
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+
+<script type="text/javascript" src="{% static 'base/assets/js/est_tiendas.js' %}"></script>
+
+<script>
+    let idTienda = '{{tienda.id_tienda }}';
+    console.log(idTienda)
+    parseFloat(idTienda);
+    parseInt(idTienda);
+    $(document).ready(function(){
+
+        if(idTienda !== ''){
+            idSociedad = '{{ tienda.sociedad_id }}';
+            $('#id_sociedad').val(idSociedad);
+            idZona = '{{ tienda.zona_id }}';
+            $('#id_zona').val(idZona);
+            idCiudad = '{{ tienda.ciudad_id }}';
+            $('#id_ciudad').val(idCiudad);
+            idSector = '{{ tienda.sector_id }}';
+            $('#id_sector').val(idSector);
+        }
+    });
+
+    function validarFormulario(){
+        
+        if($('#id_sociedad').val() === null){
+            mensaje('{% trans "Ingrese sociedad" %}', 'red');
+            $('#sociedad_error').show();
+            return;
+        }
+        if($('#id_zona').val() === null){
+            mensaje('{% trans "Ingrese Zona" %}', 'red');
+            $('#zona_error').show();
+            return;
+        }
+
+        if($('#id_ciudad').val() === null){
+            mensaje('{% trans "Ingrese Ciudad" %}', 'red');
+            $('#ciudad_error').show();
+            return;
+        }
+
+        if($('#id_sector').val() === null){
+            mensaje('{% trans "Ingrese Sector" %}', 'red');
+            $('#sector_error').show();
+            return;
+        }
+        if($('#id_telefono').val() === null){
+            mensaje('{% trans "Ingrese Telefono" %}', 'red');
+            $('#telefono_error').show();
+            return;
+        }
+        if($('#id_direccion_tienda').val() === null){
+            mensaje('{% trans "Ingrese una Direccion" %}', 'red');
+            $('#direccion_error').show();
+            return;
+        }
+        if($('#id_email').val() === null){
+            mensaje('{% trans "Ingrese Correo valido." %}', 'red');
+            $('#email_error').show();
+            return;
+        }
+
+        registro();
+
+    }
+    
+    function registro(){
+        
+        let token = '{{ csrf_token }}';
+        form = document.getElementById('frmGrupoEmpresarial');
+        let datos = new FormData(form);
+        let url = ""
+        if(idTienda === ''){
+            url = "{% url 'est:tiendas_crear'%}";
+        }else{
+            url = "{% url 'est:tiendas_editar' 0 %}";
+            url = url.replace(/0/, idTienda);
+        }
+        console.log(url)
+        
+        
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(res){
+                if(res.status === 200) {
+                    $('.loader').show();
+                }else{
+                    $('.loader').hide();
+                }
+            },
+            success: function(response) {
+                let url_lista = "{% url 'est:tiendas_lista' %}";
+                window.location = url_lista;
+            },
+            error: function(response) {
+                $.confirm({
+                    title: '{% trans "Error" %}',
+                    content: response.responseJSON.mensaje,
+                    theme: 'material',
+                    type: 'red',
+                    buttons: {
+                        confirm: {
+                            text: '{% trans "Entendido" %}',
+                            // action: function() {
+                            //     window.location = url_lista;
+                            // }
+                        },
+                    }
+                });
+            }
+        });
+
+
+    }
+    
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }} {{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

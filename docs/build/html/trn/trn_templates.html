@@ -1,0 +1,1128 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Templates trn &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Modelos trn" href="trn_models.html" />
+    <link rel="prev" title="Forms ubc" href="../ubc/ubc_forms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Templates trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#template-agregar-adicional-modal">Template agregar_adicional_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularprecioadicional">Función calcularPrecioAdicional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-agregar">Función agregar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-agregar-piedra-modal">Template agregar_piedra_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-buscardetallepiedra">Función buscarDetallePiedra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Función agregar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-aprobacion-pago-modal">Template aprobacion_pago_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-aprobarpago">Función aprobarPago</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-comprobante-orden">Template comprobante_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-correo-cliente">Template correo_cliente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-correo-producto-recibido">Template correo_producto_recibido</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-detalle-orden-modal">Template detalle_orden_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-mostrarformulario">Función mostrarFormulario</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-validararchivo">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-enviomaterial">Función envioMaterial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-recibematerial">Función recibeMaterial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-anularorden">Función anularOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-iniciartrabajo">Función iniciarTrabajo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-finalizartrabajo">Función finalizarTrabajo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-enviarproducto">Función enviarProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-recibirproducto">Función recibirProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargardocumentosta">Función cargarDocumentosTa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargardocumentosop">Función cargarDocumentosOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-devolverproducto">Función devolverProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-finalizarorden">Función finalizarOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-finalizarsinventa">Función finalizarSinVenta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Función finalizarSinVenta</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-detalle-solicitud-modal">Template detalle_solicitud_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularprecio">Función calcularPrecio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularpreciogramofijo">Función calcularPrecioGramoFijo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calculardescuento">Función CalcularDescuento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-mostrarrubros">Función mostrarRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-ocultarrubros">Función ocultarRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-evaluar">Función evaluar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-rechazar">Función rechazar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-aceptar">Función aceptar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-respondersolicitud">Función responderSolicitud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-generarorden">Función generarOrden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-solicitarexterno">Función SolicitarExterno</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-agregarrubro">Función agregarRubro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-borrardiv">Función borrardiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-nombrarelementos">Función nombrarElementos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-obtenerrubros">Función obtenerRubros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularvalorestaller">Función calcularValoresTaller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-ordenes-item-crear">Template ordenes_item_crear</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-buscardetalle">Función buscarDetalle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Función calcularPrecio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Función calcularPrecioGramoFijo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Función CalcularDescuento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargaradicionales">Función cargarAdicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-borraradicional">Función borrarAdicional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-buscarelemento">Función buscarElemento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-borraradicionales">Función borrarAdicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-guardarorden">Función guardarOrden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-ordenes-lista">Template ordenes_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-obtenerordenesfecha">Función obtenerOrdenesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-generarreporte">Función generarReporte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-verdetalles">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-formato">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-ordenes-pagos-lista">Template ordenes_pagos_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Función obtenerOrdenesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Función generarReporte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-ordenes-solicitud-crear">Template ordenes_solicitud_crear</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Función validarArchivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Función guardarOrden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-reporte-lista-ordenes">Template reporte_lista_ordenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-solicitudes-editar-form">Template solicitudes_editar_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-validarimagen">Función validarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-seleccionarimagen">Función seleccionarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-guardar">Función guardar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-solicitudes-form">Template solicitudes_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Función validarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Función seleccionarImagen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Función guardar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Función agregarRubro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Función borrardiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Función nombrarElementos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Función obtenerRubros</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-solicitudes-lista">Template solicitudes_lista</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-obtenersolicitudesfecha">Función obtenerSolicitudesfecha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Función verDetalles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Función formato</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-tipo-solicitud-modal">Template tipo_solicitud_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Función solicitarExterno</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn_models.html"><strong>Modelos trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_urls.html"><strong>URLs trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_views.html"><strong>Views trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_forms.html"><strong>Forms trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_serializers.html"><strong>Serializadores trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_tasks.html"><strong>Tareas trn</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Templates trn</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/trn/trn_templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="templates-trn">
+<h1><strong>Templates trn</strong><a class="headerlink" href="#templates-trn" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>trn</strong> tenemos otra carpeta llamada <strong>templates</strong>. Donde se encuentran los templates de la aplicación trn correspondiente a la gestión de transacciones y promociones.</p>
+<div class="section" id="template-agregar-adicional-modal">
+<h2>Template agregar_adicional_modal<a class="headerlink" href="#template-agregar-adicional-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea agregar un adicional a una órden de trabajo, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-calcularprecioadicional">
+<h3>Función calcularPrecioAdicional<a class="headerlink" href="#funcion-calcularprecioadicional" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza el cálculo del precio final del adicional según la cantidad ingresada por el usuario y agregándole la utilidad para la joyería.</p>
+</div>
+<div class="section" id="funcion-agregar">
+<h3>Función agregar<a class="headerlink" href="#funcion-agregar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Agrega la información del adicional al arreglo de adicionales creado en el Localstorage.</p>
+</div>
+</div>
+<div class="section" id="template-agregar-piedra-modal">
+<h2>Template agregar_piedra_modal<a class="headerlink" href="#template-agregar-piedra-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea agregar una piedra a una órden de trabajo, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-buscardetallepiedra">
+<h3>Función buscarDetallePiedra<a class="headerlink" href="#funcion-buscardetallepiedra" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los datos del detalle de la piedra según la medida seleccionada, también realiza el cálculo del precio final de la piedra según la cantidad ingresada por el usuario y agregándole la utilidad para la joyería.</p>
+</div>
+<div class="section" id="id1">
+<h3>Función agregar<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Agrega la información de la piedra al arreglo de adicionales creado en el Localstorage.</p>
+</div>
+</div>
+<div class="section" id="template-aprobacion-pago-modal">
+<h2>Template aprobacion_pago_modal<a class="headerlink" href="#template-aprobacion-pago-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea aprobar el pago de una órden de trabajo, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-aprobarpago">
+<h3>Función aprobarPago<a class="headerlink" href="#funcion-aprobarpago" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-orden-aprobacion-pago"><span class="std std-ref">url orden_aprobacion_pago</span></a> enviando como parámetro el id de la órden para la cual se aprueba el pago.</p>
+</div>
+</div>
+<div class="section" id="template-comprobante-orden">
+<h2>Template comprobante_orden<a class="headerlink" href="#template-comprobante-orden" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del comprobante de una órden que se utiliza para generar un PDF que se podrá imprimir posteriormente.</p>
+</div>
+<div class="section" id="template-correo-cliente">
+<h2>Template correo_cliente<a class="headerlink" href="#template-correo-cliente" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del correo que se envía al cliente una vez generada la órden de trabajo.</p>
+</div>
+<div class="section" id="template-correo-producto-recibido">
+<h2>Template correo_producto_recibido<a class="headerlink" href="#template-correo-producto-recibido" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del correo que se envía al jefe zonal y al cliente una vez recibido el producto de la órden de trabajo por parte de la joyería.</p>
+</div>
+<div class="section" id="template-detalle-orden-modal">
+<h2>Template detalle_orden_modal<a class="headerlink" href="#template-detalle-orden-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea consultar una órden para ver sus detalles, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-mostrarformulario">
+<h3>Función mostrarFormulario<a class="headerlink" href="#funcion-mostrarformulario" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Oculta o muestra formularios y botones en el modal según los parámetros que reciba la función.</p>
+</div>
+<div class="section" id="funcion-validararchivo">
+<h3>Función validarArchivo<a class="headerlink" href="#funcion-validararchivo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si el archivo que se está cargando tiene una extensión de las permitidas en el sistema y si no excede del peso máximo permitido.</p>
+</div>
+<div class="section" id="funcion-enviomaterial">
+<h3>Función envioMaterial<a class="headerlink" href="#funcion-enviomaterial" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-envio-material"><span class="std std-ref">url envio_material</span></a> enviando un formulario que contiene el archivo de comprobante de envío de material.</p>
+</div>
+<div class="section" id="funcion-recibematerial">
+<h3>Función recibeMaterial<a class="headerlink" href="#funcion-recibematerial" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-recibe-material"><span class="std std-ref">url recibe_material</span></a> enviando un formulario que contiene los gramos de oro recibidos por el taller.</p>
+</div>
+<div class="section" id="funcion-anularorden">
+<h3>Función anularOrden<a class="headerlink" href="#funcion-anularorden" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-anular-orden"><span class="std std-ref">url anular_orden</span></a> enviando un formulario que contiene la observación para la anulación de la órden.</p>
+</div>
+<div class="section" id="funcion-iniciartrabajo">
+<h3>Función iniciarTrabajo<a class="headerlink" href="#funcion-iniciartrabajo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-ordenes-detalle"><span class="std std-ref">url ordenes_detalle</span></a> enviando como parámetro el id de la órden.</p>
+</div>
+<div class="section" id="funcion-finalizartrabajo">
+<h3>Función finalizarTrabajo<a class="headerlink" href="#funcion-finalizartrabajo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-ordenes-detalle"><span class="std std-ref">url ordenes_detalle</span></a> enviando un formulario que contiene el peso final del producto.</p>
+</div>
+<div class="section" id="funcion-enviarproducto">
+<h3>Función enviarProducto<a class="headerlink" href="#funcion-enviarproducto" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-enviar-producto"><span class="std std-ref">url enviar_producto</span></a> enviando un formulario que contiene el archivo de comprobante de envío de producto y el costo del envío.</p>
+</div>
+<div class="section" id="funcion-recibirproducto">
+<h3>Función recibirProducto<a class="headerlink" href="#funcion-recibirproducto" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-recibir-producto"><span class="std std-ref">url recibir_producto</span></a> enviando como parámetro el id de la órden y el estado al que debe ser actualizada.</p>
+</div>
+<div class="section" id="funcion-cargardocumentosta">
+<h3>Función cargarDocumentosTa<a class="headerlink" href="#funcion-cargardocumentosta" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-cargar-doc-taller"><span class="std std-ref">url cargar_doc_taller</span></a> enviando un formulario que contiene los archivos de los documentos pendientes por cargar por parte del taller.</p>
+</div>
+<div class="section" id="funcion-cargardocumentosop">
+<h3>Función cargarDocumentosOp<a class="headerlink" href="#funcion-cargardocumentosop" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-cargar-doc-ope"><span class="std std-ref">url cargar_doc_ope</span></a> enviando un formulario que contiene los archivos de los documentos pendientes por cargar por parte de la joyería.</p>
+</div>
+<div class="section" id="funcion-devolverproducto">
+<h3>Función devolverProducto<a class="headerlink" href="#funcion-devolverproducto" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-devolver-producto"><span class="std std-ref">url devolver_producto</span></a> enviando como parámetro el id de la órden y el estado al que debe ser actualizada.</p>
+</div>
+<div class="section" id="funcion-finalizarorden">
+<h3>Función finalizarOrden<a class="headerlink" href="#funcion-finalizarorden" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-finalizar-orden"><span class="std std-ref">url finalizar_orden</span></a> enviando un formulario que contiene la factura de venta y una observación de ser el caso.</p>
+</div>
+<div class="section" id="funcion-finalizarsinventa">
+<h3>Función finalizarSinVenta<a class="headerlink" href="#funcion-finalizarsinventa" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-finalizar-sin-venta"><span class="std std-ref">url finalizar_sin_venta</span></a> enviando un formulario que contiene una observación sobre la finalización de la órden.</p>
+</div>
+<div class="section" id="id2">
+<h3>Función finalizarSinVenta<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-correo-cliente"><span class="std std-ref">url correo_cliente</span></a> enviando un formulario que contiene el archivo de factura de venta y la observación de ser el caso.</p>
+</div>
+</div>
+<div class="section" id="template-detalle-solicitud-modal">
+<h2>Template detalle_solicitud_modal<a class="headerlink" href="#template-detalle-solicitud-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea consultar una solicitud de trabajo para ver sus detalles, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-calcularprecio">
+<h3>Función calcularPrecio<a class="headerlink" href="#funcion-calcularprecio" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula todos los valores correspondientes a la solicitud según el peso que recibe por parámetro hasta mostrar al usuario el precio final de la solicitud.</p>
+</div>
+<div class="section" id="funcion-calcularpreciogramofijo">
+<h3>Función calcularPrecioGramoFijo<a class="headerlink" href="#funcion-calcularpreciogramofijo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula todos los valores correspondientes a la solicitud según el peso que recibe por parámetro hasta mostrar al usuario el precio final de la solicitud basado en un precio gramo final fijo.</p>
+</div>
+<div class="section" id="funcion-calculardescuento">
+<h3>Función CalcularDescuento<a class="headerlink" href="#funcion-calculardescuento" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula el nuevo precio de la solicitud luego de aplicar el descuento ingresado por el usuario, valida también que el descuento no exceda el máximo permitido.</p>
+</div>
+<div class="section" id="funcion-mostrarrubros">
+<h3>Función mostrarRubros<a class="headerlink" href="#funcion-mostrarrubros" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra el listado de rubros asociados a la solicitud.</p>
+</div>
+<div class="section" id="funcion-ocultarrubros">
+<h3>Función ocultarRubros<a class="headerlink" href="#funcion-ocultarrubros" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Oculta el listado de rubros asociados a la solicitud.</p>
+</div>
+<div class="section" id="funcion-evaluar">
+<h3>Función evaluar<a class="headerlink" href="#funcion-evaluar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra el formulario para evaluación de solicitud.</p>
+</div>
+<div class="section" id="funcion-rechazar">
+<h3>Función rechazar<a class="headerlink" href="#funcion-rechazar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra el formulario para rechazo de solicitud.</p>
+</div>
+<div class="section" id="funcion-aceptar">
+<h3>Función aceptar<a class="headerlink" href="#funcion-aceptar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra el formulario para cotización de solicitud.</p>
+</div>
+<div class="section" id="funcion-respondersolicitud">
+<h3>Función responderSolicitud<a class="headerlink" href="#funcion-respondersolicitud" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-solicitudes-detalle"><span class="std std-ref">url solicitudes_detalle</span></a> enviando como parámetro el id de la solicitud a responder, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rubros_lista[]</p></td>
+<td><p>Arreglo que contiene los rubros asignados a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_min</p></td>
+<td><p>Peso mínimo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_max</p></td>
+<td><p>Peso máximo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_gramo</p></td>
+<td><p>Costo por gramo de oro asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_ent_min</p></td>
+<td><p>Tiempo mínimo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_ent_max</p></td>
+<td><p>Tiempo máximo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos cobrados por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_dias</p></td>
+<td><p>Cantidad de días necesarios para la evaluación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_horas</p></td>
+<td><p>Cantidad de horas necesarias para la evaluación.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_minutos</p></td>
+<td><p>Cantidad de minutos necesarios para la evaluación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>observacion_ta</p></td>
+<td><p>Observación del por qué se rechaza la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="funcion-generarorden">
+<h3>Función generarOrden<a class="headerlink" href="#funcion-generarorden" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-generar-orden-solicitud"><span class="std std-ref">url generar_orden_solicitud</span></a> enviando como parámetro el id de la solicitud para generar una órden a partir de esta, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>peso_solicitado</p></td>
+<td><p>Peso del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio</p></td>
+<td><p>Precio de la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gr_base_op</p></td>
+<td><p>Costo del gramo de oro estipulado por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gr_base_ta</p></td>
+<td><p>Costo del gramo de oro estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_base_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_base_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_base_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_base_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>servicio_fabricacion</p></td>
+<td><p>Costo total de la mano de obra para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_taller</p></td>
+<td><p>Suma de todos los costos cobrados por el taller para la fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_fabrica_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_fabrica_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos</p></td>
+<td><p>Porcentaje de impuestos aplicados sobre la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos</p></td>
+<td><p>Valor de impuestos aplicados sobre la órden de parte de la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos aplicados sobre la órden de parte del taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>impuestos_ta</p></td>
+<td><p>Valor de impuestos aplicados sobre la órden de parte del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_gramo_final</p></td>
+<td><p>Costo por gramo de oro en caso de manejarse un precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_con_descuento</p></td>
+<td><p>Precio de la órden luego de aplicar descuento.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="funcion-solicitarexterno">
+<h3>Función SolicitarExterno<a class="headerlink" href="#funcion-solicitarexterno" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-solicitar-externo"><span class="std std-ref">url solicitar_externo</span></a> enviando como parámetro el id de la solicitud para generar una solicitud a externo a partir de esta.</p>
+</div>
+<div class="section" id="funcion-agregarrubro">
+<h3>Función agregarRubro<a class="headerlink" href="#funcion-agregarrubro" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea el elemento HTML para agregar un rubro a la solicitud de trabajo.</p>
+</div>
+<div class="section" id="funcion-borrardiv">
+<h3>Función borrardiv<a class="headerlink" href="#funcion-borrardiv" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina el elemento HTML enviado por parámetro.</p>
+</div>
+<div class="section" id="funcion-nombrarelementos">
+<h3>Función nombrarElementos<a class="headerlink" href="#funcion-nombrarelementos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Asigna un id a los elementos HTML creados.</p>
+</div>
+<div class="section" id="funcion-obtenerrubros">
+<h3>Función obtenerRubros<a class="headerlink" href="#funcion-obtenerrubros" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera un arreglo con los rubros agregados a la solicitud de trabajo.</p>
+</div>
+<div class="section" id="funcion-calcularvalorestaller">
+<h3>Función calcularValoresTaller<a class="headerlink" href="#funcion-calcularvalorestaller" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula los costos a pagar al taller por el trabajo de fabricación.</p>
+</div>
+</div>
+<div class="section" id="template-ordenes-item-crear">
+<h2>Template ordenes_item_crear<a class="headerlink" href="#template-ordenes-item-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que le permite al usuario generar una órden de trabajo a partir de un ítem de catálogo, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-buscardetalle">
+<h3>Función buscarDetalle<a class="headerlink" href="#funcion-buscardetalle" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="../ctg/ctg_urls.html#url-detalle-buscar"><span class="std std-ref">url detalle_buscar</span></a> enviando como parámetro el id del detalle de ítem y el id del ítem para obtener la información del detalle.</p>
+</div>
+<div class="section" id="id3">
+<h3>Función calcularPrecio<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula todos los valores correspondientes a la órden según el peso seleccionado por el usuario hasta mostrar al usuario el precio final de la órden.</p>
+</div>
+<div class="section" id="id4">
+<h3>Función calcularPrecioGramoFijo<a class="headerlink" href="#id4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula todos los valores correspondientes a la órden según el peso seleccionado por el usuario hasta mostrar al usuario el precio final de la órden basado en un precio gramo final fijo.</p>
+</div>
+<div class="section" id="id5">
+<h3>Función CalcularDescuento<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Calcula el nuevo precio de la órden luego de aplicar el descuento ingresado por el usuario, valida también que el descuento no exceda el máximo permitido.</p>
+</div>
+<div class="section" id="funcion-cargaradicionales">
+<h3>Función cargarAdicionales<a class="headerlink" href="#funcion-cargaradicionales" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Agrega a la órden los adicionales que se encuentran en un arreglo guardado en el LocalStorage, calcula el nuevo precio de la órden sumados los costos de estos adicionales.</p>
+</div>
+<div class="section" id="funcion-borraradicional">
+<h3>Función borrarAdicional<a class="headerlink" href="#funcion-borraradicional" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Quita un adicional de la órden y recalcula el precio final.</p>
+</div>
+<div class="section" id="funcion-buscarelemento">
+<h3>Función buscarElemento<a class="headerlink" href="#funcion-buscarelemento" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Identifica el elemento del adicional a eliminar.</p>
+</div>
+<div class="section" id="funcion-borraradicionales">
+<h3>Función borrarAdicionales<a class="headerlink" href="#funcion-borraradicionales" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina todos los adicionales guardados.</p>
+</div>
+<div class="section" id="id6">
+<h3>Función validarArchivo<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si el archivo que se está cargando tiene una extensión de las permitidas en el sistema y si no excede del peso máximo permitido.</p>
+</div>
+<div class="section" id="funcion-guardarorden">
+<h3>Función guardarOrden<a class="headerlink" href="#funcion-guardarorden" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-ordenes-item-crear"><span class="std std-ref">url ordenes_item_crear</span></a> enviando como parámetro el id del ítem y la identificación del cliente, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adicionales_lista[]</p></td>
+<td><p>Arreglo que contiene los id’s de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo_transaccion</p></td>
+<td><p>Tipo de transacción a realizar.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_detalle_item</p></td>
+<td><p>Id del detalle de ítem seleccionado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_color</p></td>
+<td><p>Id del color seleccionado.</p></td>
+</tr>
+<tr class="row-even"><td><p>env_material</p></td>
+<td><p>Indica si la joyería envía o no materia prima hacia el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo</p></td>
+<td><p>Costo total del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio</p></td>
+<td><p>Precio de la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_sistema</p></td>
+<td><p>Precio de la órden calculado por el sistema.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicional_color_gramo</p></td>
+<td><p>Costo adicional por gramo de fabricación debido al color de la joya.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_solicitado</p></td>
+<td><p>Peso del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_base_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_base_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>servicio_fab</p></td>
+<td><p>Costo total de la mano de obra para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_fab_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_fab_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_fab_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gr_base_op</p></td>
+<td><p>Costo del gramo de oro estipulado por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gr_base_ta</p></td>
+<td><p>Costo del gramo de oro estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gramo_fabricado</p></td>
+<td><p>Costo de gramo de fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_adicionales</p></td>
+<td><p>Costo de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_adicionales</p></td>
+<td><p>Precio total de adicionales sumada la utilidad para el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_adicionales_op</p></td>
+<td><p>Precio total de adicionales sumada la utilidad para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras</p></td>
+<td><p>Costo de piedras agregadas a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_piedras</p></td>
+<td><p>Precio total de piedras sumada la utilidad para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_piedras_op</p></td>
+<td><p>Precio total de piedras sumada la utilidad para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_piedras</p></td>
+<td><p>Utilidad sobre las piedras obtenida por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_piedras_op</p></td>
+<td><p>Utilidad sobre las piedras obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_adicionales</p></td>
+<td><p>Utilidad sobre los adicionales obtenida por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_adicionales_op</p></td>
+<td><p>Utilidad sobre los adicionales obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>origen_material</p></td>
+<td><p>Origen de la materia prima para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuesto</p></td>
+<td><p>Porcentaje de impuestos cobrados por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>impuestos_orden</p></td>
+<td><p>Valor de impuestos cobrado por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos cobrados por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>impuestos_ta</p></td>
+<td><p>Valor de impuestos cobrado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_total_adicionales</p></td>
+<td><p>Precio total de adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_gramo_final</p></td>
+<td><p>Costo por gramo de oro en caso de manejarse un precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras_basicas</p></td>
+<td><p>Costo de piedras registrado para el ítem de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>datos_extra</p></td>
+<td><p>Datos adicionales sobre la fabricación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-ordenes-lista">
+<h2>Template ordenes_lista<a class="headerlink" href="#template-ordenes-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar las órdenes de un usuario o taller determinado. Las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-obtenerordenesfecha">
+<h3>Función obtenerOrdenesfecha<a class="headerlink" href="#funcion-obtenerordenesfecha" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="trn_urls.html#url-ordenes-api-lista-fecha"><span class="std std-ref">url ordenes_api_lista_fecha</span></a> enviando como parámetro una fecha de inicio y una de fin para obtener las órdenes que fueron generadas dentro de dicho rango de fechas, además un parámetro opcion para identificar el tipo de consulta que se realiza.</p>
+</div>
+<div class="section" id="funcion-generarreporte">
+<h3>Función generarReporte<a class="headerlink" href="#funcion-generarreporte" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige hacia la <a class="reference internal" href="trn_urls.html#url-rep-ordenes-admin-op"><span class="std std-ref">url rep_ordenes_admin_op</span></a> o <a class="reference internal" href="trn_urls.html#url-rep-ordenes"><span class="std std-ref">url rep_ordenes</span></a> dependiendo el tipo de usuario que realiza la consulta enviando como parámetro una fecha de inicio y una de fin para obtener las órdenes que fueron generadas dentro de dicho rango de fechas, además un parámetro opcion para identificar el tipo de consulta que se realiza, esto para obtener un reporte en una hoja de cálculo con la información de las órdenes correspondientes al rango de fechas dado.</p>
+</div>
+<div class="section" id="funcion-verdetalles">
+<h3>Función verDetalles<a class="headerlink" href="#funcion-verdetalles" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige al <a class="reference internal" href="trn_urls.html#url-ordenes-detalle"><span class="std std-ref">url ordenes_detalle</span></a> enviando como parámetro el id de la órden de la cual se requieren los detalles.</p>
+</div>
+<div class="section" id="funcion-formato">
+<h3>Función formato<a class="headerlink" href="#funcion-formato" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Da formato a la Tabla que se genera con el listado de órdenes consultadas.</p>
+</div>
+</div>
+<div class="section" id="template-ordenes-pagos-lista">
+<h2>Template ordenes_pagos_lista<a class="headerlink" href="#template-ordenes-pagos-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar los pagos aprobados de las órdenes de un usuario o taller determinado. Las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id7">
+<h3>Función obtenerOrdenesfecha<a class="headerlink" href="#id7" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="trn_urls.html#url-ordenes-pagos-api-lista"><span class="std std-ref">url ordenes_pagos_api_lista</span></a> enviando como parámetro una fecha de inicio y una de fin para obtener las órdenes que fueron generadas dentro de dicho rango de fechas, además un parámetro opcion para identificar el tipo de consulta que se realiza.</p>
+</div>
+<div class="section" id="id8">
+<h3>Función generarReporte<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige hacia la <a class="reference internal" href="trn_urls.html#url-rep-pagos-aprobados"><span class="std std-ref">url rep_pagos_aprobados</span></a> enviando como parámetro una fecha de inicio y una de fin para obtener las órdenes que fueron generadas dentro de dicho rango de fechas, además un parámetro opcion para identificar el tipo de consulta que se realiza, esto para obtener un reporte en una hoja de cálculo con la información de las órdenes y su estado de pago correspondientes al rango de fechas dado.</p>
+</div>
+<div class="section" id="id9">
+<h3>Función verDetalles<a class="headerlink" href="#id9" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige al <a class="reference internal" href="trn_urls.html#url-orden-aprobacion-pago"><span class="std std-ref">url orden_aprobacion_pago</span></a> enviando como parámetro el id de la órden de la cual se requieren los detalles.</p>
+</div>
+<div class="section" id="id10">
+<h3>Función formato<a class="headerlink" href="#id10" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Da formato a la Tabla que se genera con el listado de órdenes consultadas.</p>
+</div>
+</div>
+<div class="section" id="template-ordenes-solicitud-crear">
+<h2>Template ordenes_solicitud_crear<a class="headerlink" href="#template-ordenes-solicitud-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que le permite al usuario generar una órden de trabajo a partir de una solicitud, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id11">
+<h3>Función validarArchivo<a class="headerlink" href="#id11" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si el archivo que se está cargando tiene una extensión de las permitidas en el sistema y si no excede del peso máximo permitido.</p>
+</div>
+<div class="section" id="id12">
+<h3>Función guardarOrden<a class="headerlink" href="#id12" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-ordenes-solicitud-crear"><span class="std std-ref">url ordenes_solicitud_crear</span></a> enviando como parámetro el id de la solicitud y la identificación del cliente, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>env_material</p></td>
+<td><p>Indica si la joyería envía o no materia prima hacia el taller.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-reporte-lista-ordenes">
+<h2>Template reporte_lista_ordenes<a class="headerlink" href="#template-reporte-lista-ordenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template utilizado para generar el reporte de órdenes con su respectiva información detallada.</p>
+</div>
+<div class="section" id="template-solicitudes-editar-form">
+<h2>Template solicitudes_editar_form<a class="headerlink" href="#template-solicitudes-editar-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite al usuario modificar los valores de una solicitud generada con anterioridad, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-validarimagen">
+<h3>Función validarImagen<a class="headerlink" href="#funcion-validarimagen" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si la imagen que se está cargando tiene una extensión de las permitidas en el sistema y si no excede del peso máximo permitido.</p>
+</div>
+<div class="section" id="funcion-seleccionarimagen">
+<h3>Función seleccionarImagen<a class="headerlink" href="#funcion-seleccionarimagen" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea una vista previa de la imagen cargada en caso de que la imágen cargada sea válida.</p>
+</div>
+<div class="section" id="funcion-guardar">
+<h3>Función guardar<a class="headerlink" href="#funcion-guardar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-solicitudes-editar"><span class="std std-ref">url solicitudes_editar</span></a> enviando como parámetro el id de la solicitud para guardar los valores asignados a la transacción, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rubros_lista[]</p></td>
+<td><p>Arreglo que contiene los rubros asignados a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_min</p></td>
+<td><p>Peso mínimo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_max</p></td>
+<td><p>Peso máximo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_gramo</p></td>
+<td><p>Costo por gramo de oro asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_ent_min</p></td>
+<td><p>Tiempo mínimo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_ent_max</p></td>
+<td><p>Tiempo máximo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_proveedor</p></td>
+<td><p>Id del proveedor a quien va dirigida la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-solicitudes-form">
+<h2>Template solicitudes_form<a class="headerlink" href="#template-solicitudes-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite al crear una solicitud de trabajo, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id13">
+<h3>Función validarImagen<a class="headerlink" href="#id13" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Valida si la imagen que se está cargando tiene una extensión de las permitidas en el sistema y si no excede del peso máximo permitido.</p>
+</div>
+<div class="section" id="id14">
+<h3>Función seleccionarImagen<a class="headerlink" href="#id14" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea una vista previa de la imagen cargada en caso de que la imágen cargada sea válida.</p>
+</div>
+<div class="section" id="id15">
+<h3>Función guardar<a class="headerlink" href="#id15" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="trn_urls.html#url-solicitudes-crear"><span class="std std-ref">url solicitudes_crear</span></a> enviando como parámetro el id del ítem asociado a la solicitud y el tipo de transacción si es interna o externa, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rubros_lista[]</p></td>
+<td><p>Arreglo que contiene los rubros asignados a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-peso_min</p></td>
+<td><p>Peso mínimo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-peso_max</p></td>
+<td><p>Peso máximo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-valor_gramo</p></td>
+<td><p>Costo por gramo de oro asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-tiempo_ent_min</p></td>
+<td><p>Tiempo mínimo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-tiempo_ent_max</p></td>
+<td><p>Tiempo máximo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-proveedor</p></td>
+<td><p>Id del proveedor a quien va dirigida la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-talla</p></td>
+<td><p>Id de la talla seleccionada en la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-color</p></td>
+<td><p>Id del color seleccionado en la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-acabado</p></td>
+<td><p>Acabado de la joya.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_solicitud-parte_interna</p></td>
+<td><p>Descripción de la parte interna de la joya.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_solicitud-cantidad_piedras</p></td>
+<td><p>Cantidad de piedras de la joya.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id16">
+<h3>Función agregarRubro<a class="headerlink" href="#id16" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea el elemento HTML para agregar un rubro a la solicitud de trabajo.</p>
+</div>
+<div class="section" id="id17">
+<h3>Función borrardiv<a class="headerlink" href="#id17" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina el elemento HTML enviado por parámetro.</p>
+</div>
+<div class="section" id="id18">
+<h3>Función nombrarElementos<a class="headerlink" href="#id18" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Asigna un id a los elementos HTML creados.</p>
+</div>
+<div class="section" id="id19">
+<h3>Función obtenerRubros<a class="headerlink" href="#id19" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera un arreglo con los rubros agregados a la solicitud de trabajo.</p>
+</div>
+</div>
+<div class="section" id="template-solicitudes-lista">
+<h2>Template solicitudes_lista<a class="headerlink" href="#template-solicitudes-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para consultar las solicitudes de un usuario o taller determinado. Las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-obtenersolicitudesfecha">
+<h3>Función obtenerSolicitudesfecha<a class="headerlink" href="#funcion-obtenersolicitudesfecha" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="trn_urls.html#url-solicitudes-api-lista-fecha"><span class="std std-ref">url solicitudes_api_lista_fecha</span></a> enviando como parámetro una fecha de inicio y una de fin para obtener las solicitudes que fueron generadas dentro de dicho rango de fechas, además un parámetro opcion para identificar el tipo de consulta que se realiza.</p>
+</div>
+<div class="section" id="id20">
+<h3>Función verDetalles<a class="headerlink" href="#id20" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige al <a class="reference internal" href="trn_urls.html#url-solicitudes-detalle"><span class="std std-ref">url solicitudes_detalle</span></a> enviando como parámetro el id de la solicitud de la cual se requieren los detalles.</p>
+</div>
+<div class="section" id="id21">
+<h3>Función formato<a class="headerlink" href="#id21" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Da formato a la Tabla que se genera con el listado de órdenes consultadas.</p>
+</div>
+</div>
+<div class="section" id="template-tipo-solicitud-modal">
+<h2>Template tipo_solicitud_modal<a class="headerlink" href="#template-tipo-solicitud-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite al usuario elegir el tipo de solicitud a realizar, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id22">
+<h3>Función solicitarExterno<a class="headerlink" href="#id22" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Redirige a la <a class="reference internal" href="trn_urls.html#url-solicitudes-crear"><span class="std std-ref">url solicitudes_crear</span></a> enviando como parámetro el id del ítem asociado a la solicitud y como tipo de solicitud el 2 que corresponde a solicitudes externas.</p>
+<p>Para solicitudes internas se redirige al usuario a la <a class="reference internal" href="trn_urls.html#url-solicitudes-crear"><span class="std std-ref">url solicitudes_crear</span></a> enviando como parámetro el id del ítem asociado a la solicitud y como tipo de solicitud el 1 que corresponde a solicitudes internas.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trn_models.html" class="btn btn-neutral float-right" title="Modelos trn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ubc/ubc_forms.html" class="btn btn-neutral float-left" title="Forms ubc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

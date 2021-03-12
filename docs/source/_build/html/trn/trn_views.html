@@ -1,0 +1,1593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Views trn &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Forms trn" href="trn_forms.html" />
+    <link rel="prev" title="URLs trn" href="trn_urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="trn_templates.html"><strong>Templates trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_models.html"><strong>Modelos trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_urls.html"><strong>URLs trn</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Views trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitudeslistaview">Vista SolicitudesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitudeslistaapiview">Vista SolicitudesListaAPIView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitudeslistafechaapiview">Vista SolicitudesListaFechaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-get">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-tiposolicitudview">Vista TipoSolicitudView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitudescrearview">Vista SolicitudesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitudeseditarview">Vista SolicitudesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicituddetalleview">Vista SolicitudDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-generarordensolicitudview">Vista GenerarOrdenSolicitudView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-solicitaraexternoview">Vista SolicitarAExternoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordeneslistaview">Vista OrdenesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordeneslistaapiview">Vista OrdenesListaAPIView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordeneslistafechaapiview">Vista OrdenesListaFechaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordenespagoslistaview">Vista OrdenesPagosListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordenespagoslistaapiview">Vista OrdenesPagosListaAPIView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-tipoordenview">Vista TipoOrdenView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-crearordensolicitudview">Vista CrearOrdenSolicitudView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-crearordenitemview">Vista CrearOrdenItemView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-ordendetalleview">Vista OrdenDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-correotemplateview">Vista CorreoTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-correozonaltemplateview">Vista CorreoZonalTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-comprobantetemplateview">Vista ComprobanteTemplateView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-reporteordeneslistaview">Vista ReporteOrdenesListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-reporteordenesadminopview">Vista ReporteOrdenesAdminOpView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-agregarpiedraview">Vista AgregarPiedraView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-agregaradicionalview">Vista AgregarAdicionalView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-aprobacionpagomodalview">Vista AprobacionPagoModalView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-enviomaterialview">Vista EnvioMaterialView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-recibirmaterialview">Vista RecibirMaterialView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-anularordenview">Vista AnularOrdenView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-finalizartrabajoview">Vista FinalizarTrabajoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-enviarproductoview">Vista EnviarProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-recibirproductoview">Vista RecibirProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-cargardocumentostaller">Vista CargarDocumentosTaller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-cargardocumentosoperaciones">Vista CargarDocumentosOperaciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-devolverproductoview">Vista DevolverProductoView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-finalizarordenview">Vista FinalizarOrdenView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-finalizarsinventaview">Vista FinalizarSinVentaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-enviarcorreoview">Vista EnviarCorreoView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-reporteordenespagos">Vista ReporteOrdenesPagos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn_forms.html"><strong>Forms trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_serializers.html"><strong>Serializadores trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_tasks.html"><strong>Tareas trn</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Views trn</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/trn/trn_views.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="views-trn">
+<h1><strong>Views trn</strong><a class="headerlink" href="#views-trn" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>trn</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">views.py</span></code>. Donde se encuentran las vistas de la aplicación trn, se detalla a continuación cada vista.</p>
+<div class="section" id="vista-solicitudeslistaview">
+<h2>Vista SolicitudesListaView<a class="headerlink" href="#vista-solicitudeslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="trn_templates.html#template-solicitudes-lista"><span class="std std-ref">Template solicitudes_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.view_solicitudtrabajo</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="trn_models.html#modelo-solicitudtrabajo"><span class="std std-ref">Modelo SolicitudTrabajo</span></a> obteniendo el listado de las solicitudes de trabajo registradas filtrando por usuario o por taller.</p>
+</div>
+<div class="section" id="vista-solicitudeslistaapiview">
+<h2>Vista SolicitudesListaAPIView<a class="headerlink" href="#vista-solicitudeslistaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para consultar las solicitudes registradas filtrando por usuario o por taller.</p>
+</div>
+<div class="section" id="vista-solicitudeslistafechaapiview">
+<h2>Vista SolicitudesListaFechaAPIView<a class="headerlink" href="#vista-solicitudeslistafechaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para consultar las solicitudes registradas filtrando por usuario o por taller determinado en un rango de fechas, cuenta con las siguientes acciones:</p>
+<div class="section" id="metodo-get">
+<h3>Método GET<a class="headerlink" href="#metodo-get" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>Fecha de inicio del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>Fecha fin del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>Tipo de consulta que realiza el usuario.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las opciones de consulta son las siguientes:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opción 1</p></td>
+<td><p>Devuelve todas las solicitudes correspondientes al mes actual para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 2</p></td>
+<td><p>Devuelve todas las solicitudes correspondientes al mes anterior para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 3</p></td>
+<td><p>Devuelve las últimas 100 solicitudes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 4</p></td>
+<td><p>Devuelve las últimas 1000 solicitudes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 5</p></td>
+<td><p>Devuelve todas las solicitudes generadas entre la fecha inicio y la fecha fin para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 6</p></td>
+<td><p>Devuelve todas las solicitudes registradas para un usuario o taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-tiposolicitudview">
+<h2>Vista TipoSolicitudView<a class="headerlink" href="#vista-tiposolicitudview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="trn_templates.html#template-tipo-solicitud-modal"><span class="std std-ref">Template tipo_solicitud_modal</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.view_solicitudtrabajo</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.TemplateView</span></code> envía al template la información del ítem y del proveedor para generar la solicitud.</p>
+</div>
+<div class="section" id="vista-solicitudescrearview">
+<h2>Vista SolicitudesCrearView<a class="headerlink" href="#vista-solicitudescrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="trn_templates.html#template-solicitudes-form"><span class="std std-ref">Template solicitudes_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.add_solicitudtrabajo</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="trn_models.html#modelo-solicitudtrabajo"><span class="std std-ref">Modelo SolicitudTrabajo</span></a> mediante el uso del formulario <a class="reference internal" href="trn_forms.html#formulario-solicituddetalleform"><span class="std std-ref">Formulario SolicitudDetalleForm</span></a>. Esta vista crea un nuevo registro de solicitud de trabajo para un país determinado registrando también los detalles de la misma y los rubros asociados agregados por el usuario.</p>
+</div>
+<div class="section" id="vista-solicitudeseditarview">
+<h2>Vista SolicitudesEditarView<a class="headerlink" href="#vista-solicitudeseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="trn_templates.html#template-solicitudes-editar-form"><span class="std std-ref">Template solicitudes_editar_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_solicitudtrabajo</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="trn_models.html#modelo-solicitudtrabajo"><span class="std std-ref">Modelo SolicitudTrabajo</span></a> mediante el uso del formulario <a class="reference internal" href="trn_forms.html#formulario-solicitudeditarform"><span class="std std-ref">Formulario SolicitudEditarForm</span></a>. Esta vista actualiza los valores de una solicitud determinada.</p>
+</div>
+<div class="section" id="vista-solicituddetalleview">
+<h2>Vista SolicitudDetalleView<a class="headerlink" href="#vista-solicituddetalleview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-detalle-solicitud-modal"><span class="std std-ref">Template detalle_solicitud_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_solicitudtrabajo</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id1">
+<h3>Método GET<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una transacción recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>solicitud</p></td>
+<td><p>Objeto de la solicitud que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la solicitud</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad sobre la fabricación configurado para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>configuracion_op</p></td>
+<td><p>Parámetros configurados para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>configuracion_ta</p></td>
+<td><p>Parámetros configurados para el taller o proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rubros</p></td>
+<td><p>Lista de rubros registrados en el sistema para el taller o proveedor.</p></td>
+</tr>
+<tr class="row-even"><td><p>rubros_asociados</p></td>
+<td><p>Rubros asociados a la solicitud de trabajo consultada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="metodo-post">
+<h3>Método POST<a class="headerlink" href="#metodo-post" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra una respuesta para la solicitud de trabajo por parte del taller 1 para cotización, 2 para evaluación y 3 para rechazo. Recibe los siguientes datos en formato JSON:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rubros_lista[]</p></td>
+<td><p>Arreglo que contiene los rubros asignados a la solicitud.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_min</p></td>
+<td><p>Peso mínimo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_max</p></td>
+<td><p>Peso máximo de fabricación para el producto estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_gramo</p></td>
+<td><p>Costo por gramo de oro asignado a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>valor_error</p></td>
+<td><p>Costo que se puede adicionar o restar del precio calculado para la fabricación, dependiendo del peso final del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_ent_min</p></td>
+<td><p>Tiempo mínimo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_ent_max</p></td>
+<td><p>Tiempo máximo necesario para la entrega del producto.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_rubros</p></td>
+<td><p>Costo total de los rubros asociados a la solicitud.</p></td>
+</tr>
+<tr class="row-even"><td><p>prct_util_sobre_fabrica_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos cobrados por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_dias</p></td>
+<td><p>Cantidad de días necesarios para la evaluación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tiempo_horas</p></td>
+<td><p>Cantidad de horas necesarias para la evaluación.</p></td>
+</tr>
+<tr class="row-even"><td><p>tiempo_minutos</p></td>
+<td><p>Cantidad de minutos necesarios para la evaluación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>observacion_ta</p></td>
+<td><p>Observación del por qué se rechaza la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-generarordensolicitudview">
+<h2>Vista GenerarOrdenSolicitudView<a class="headerlink" href="#vista-generarordensolicitudview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para actualizar los datos de una solicitud de trabajo de la cual se generará una orden basados en el peso de fabricación seleccionado por el usuario, cuenta con las siguientes acciones:</p>
+<div class="section" id="id2">
+<h3>Método POST<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>Id de la solicitud de la cual se generará una órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-solicitaraexternoview">
+<h2>Vista SolicitarAExternoView<a class="headerlink" href="#vista-solicitaraexternoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para generar una solicitud externa a partir de una solicitud rechazada por el taller, cuenta con las siguientes acciones:</p>
+<div class="section" id="id3">
+<h3>Método GET<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>Id de la solicitud de la cual se generará una solicitud externa.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-ordeneslistaview">
+<h2>Vista OrdenesListaView<a class="headerlink" href="#vista-ordeneslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="trn_templates.html#template-ordenes-lista"><span class="std std-ref">Template ordenes_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.view_ordentrabajo</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="trn_models.html#modelo-ordentrabajo"><span class="std std-ref">Modelo OrdenTrabajo</span></a> obteniendo el listado de las órdenes de trabajo registradas filtrando por un usuario o taller determinado.</p>
+</div>
+<div class="section" id="vista-ordeneslistaapiview">
+<h2>Vista OrdenesListaAPIView<a class="headerlink" href="#vista-ordeneslistaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para consultar las órdenes registradas filtrando por usuario o por taller.</p>
+</div>
+<div class="section" id="vista-ordeneslistafechaapiview">
+<h2>Vista OrdenesListaFechaAPIView<a class="headerlink" href="#vista-ordeneslistafechaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para consultar las órdenes registradas filtrando por usuario o por taller determinado en un rango de fechas, cuenta con las siguientes acciones:</p>
+<div class="section" id="id4">
+<h3>Método GET<a class="headerlink" href="#id4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>Fecha de inicio del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>Fecha fin del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>Tipo de consulta que realiza el usuario.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las opciones de consulta son las siguientes:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opción 1</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes actual para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 2</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes anterior para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 3</p></td>
+<td><p>Devuelve las últimas 100 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 4</p></td>
+<td><p>Devuelve las últimas 1000 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 5</p></td>
+<td><p>Devuelve todas las órdenes generadas entre la fecha inicio y la fecha fin para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 6</p></td>
+<td><p>Devuelve todas las órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-ordenespagoslistaview">
+<h2>Vista OrdenesPagosListaView<a class="headerlink" href="#vista-ordenespagoslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="trn_templates.html#template-ordenes-pagos-lista"><span class="std std-ref">Template ordenes_pagos_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.view_ordentrabajo</span></code> para acceder a la misma.</p>
+</div>
+<div class="section" id="vista-ordenespagoslistaapiview">
+<h2>Vista OrdenesPagosListaAPIView<a class="headerlink" href="#vista-ordenespagoslistaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para consultar los pagos de órdenes registrados filtrando por usuario o por taller determinado en un rango de fechas, cuenta con las siguientes acciones:</p>
+<div class="section" id="id5">
+<h3>Método GET<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>Fecha de inicio del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>Fecha fin del rango de fecha para la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>Tipo de consulta que realiza el usuario.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las opciones de consulta son las siguientes:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opción 1</p></td>
+<td><p>Devuelve todos los pagos correspondientes al mes actual para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 2</p></td>
+<td><p>Devuelve todos los pagos correspondientes al mes anterior para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 3</p></td>
+<td><p>Devuelve todos los pagos generados entre la fecha inicio y la fecha fin para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 4</p></td>
+<td><p>Devuelve todos los pagos registrados para un usuario o taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-tipoordenview">
+<h2>Vista TipoOrdenView<a class="headerlink" href="#vista-tipoordenview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta vista hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.TemplateView</span></code>, se utiliza para deplegar el modal de los tipos de órdenes.</p>
+</div>
+<div class="section" id="vista-crearordensolicitudview">
+<h2>Vista CrearOrdenSolicitudView<a class="headerlink" href="#vista-crearordensolicitudview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-ordenes-solicitud-crear"><span class="std std-ref">Template ordenes_solicitud_crear</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.add_ordentrabajo</span></code> respectivamente para acceder a la misma. Esta vista es utilizada para generar una órden de trabajo a partir de una solicitud, cuenta con las siguientes acciones:</p>
+<div class="section" id="id6">
+<h3>Método GET<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una transacción recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>solicitud</p></td>
+<td><p>Objeto de la solicitud de la cual se generará la orden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cliente</p></td>
+<td><p>Objeto del cliente por el cual se realiza la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h3>Método POST<a class="headerlink" href="#id7" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra una órden de trabajo con los datos de la solicitud y del cliente. Recibe los siguientes datos en formato JSON:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>env_material</p></td>
+<td><p>Indica si la joyería envía o no materia prima hacia el taller.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-crearordenitemview">
+<h2>Vista CrearOrdenItemView<a class="headerlink" href="#vista-crearordenitemview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-ordenes-item-crear"><span class="std std-ref">Template ordenes_item_crear</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.add_ordentrabajo</span></code> respectivamente para acceder a la misma. Esta vista es utilizada para generar una órden de trabajo a partir de un ítem de catálogo, cuenta con las siguientes acciones:</p>
+<div class="section" id="id8">
+<h3>Método GET<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una transacción recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Objeto del ítem del cual se generará la orden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cliente</p></td>
+<td><p>Objeto del cliente por el cual se realiza la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalles</p></td>
+<td><p>Listado de los detalles que pertenecen al ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>colores</p></td>
+<td><p>Listado de colores en los que está disponible el ítem para su fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad sobre la fabricación configurado para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>configuracion_op</p></td>
+<td><p>Parámetros configurados para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>configuracion_ta</p></td>
+<td><p>Parámetros configurados para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>origen_material</p></td>
+<td><p>Listado de los orígenes de material disponibles.</p></td>
+</tr>
+<tr class="row-even"><td><p>origen_pre</p></td>
+<td><p>Id del orígen de material preestablecido en el sistema.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id9">
+<h3>Método POST<a class="headerlink" href="#id9" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra una órden de trabajo con los datos del ítem y del cliente. Recibe los siguientes datos en formato JSON:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adicionales_lista[]</p></td>
+<td><p>Arreglo que contiene los id’s de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo_transaccion</p></td>
+<td><p>Tipo de transacción a realizar.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_detalle_item</p></td>
+<td><p>Id del detalle de ítem seleccionado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_color</p></td>
+<td><p>Id del color seleccionado.</p></td>
+</tr>
+<tr class="row-even"><td><p>env_material</p></td>
+<td><p>Indica si la joyería envía o no materia prima hacia el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo</p></td>
+<td><p>Costo total del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio</p></td>
+<td><p>Precio de la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_sistema</p></td>
+<td><p>Precio de la órden calculado por el sistema.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicional_color_gramo</p></td>
+<td><p>Costo adicional por gramo de fabricación debido al color de la joya.</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_solicitado</p></td>
+<td><p>Peso del producto solicitado por el cliente.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_base_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_base_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la materia prima impuesto por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_base_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la materia prima suministrada por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>servicio_fab</p></td>
+<td><p>Costo total de la mano de obra para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_fab_ta</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_fab_ta</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad aplicado sobre la fabricación impuesto por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_fab_op</p></td>
+<td><p>Valor de utilidad obtenido sobre la fabricación para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gr_base_op</p></td>
+<td><p>Costo del gramo de oro estipulado por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_gr_base_ta</p></td>
+<td><p>Costo del gramo de oro estipulado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_gramo_fabricado</p></td>
+<td><p>Costo de gramo de fabricación.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_adicionales</p></td>
+<td><p>Costo de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_adicionales</p></td>
+<td><p>Precio total de adicionales sumada la utilidad para el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_adicionales_op</p></td>
+<td><p>Precio total de adicionales sumada la utilidad para la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras</p></td>
+<td><p>Costo de piedras agregadas a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_piedras</p></td>
+<td><p>Precio total de piedras sumada la utilidad para el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_piedras_op</p></td>
+<td><p>Precio total de piedras sumada la utilidad para la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_piedras</p></td>
+<td><p>Utilidad sobre las piedras obtenida por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_piedras_op</p></td>
+<td><p>Utilidad sobre las piedras obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>util_sobre_adicionales</p></td>
+<td><p>Utilidad sobre los adicionales obtenida por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util_sobre_adicionales_op</p></td>
+<td><p>Utilidad sobre los adicionales obtenida por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>origen_material</p></td>
+<td><p>Origen de la materia prima para la fabricación.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuesto</p></td>
+<td><p>Porcentaje de impuestos cobrados por la joyería.</p></td>
+</tr>
+<tr class="row-even"><td><p>impuestos_orden</p></td>
+<td><p>Valor de impuestos cobrado por la joyería.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prct_impuestos_ta</p></td>
+<td><p>Porcentaje de impuestos cobrados por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>impuestos_ta</p></td>
+<td><p>Valor de impuestos cobrado por el taller.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_total_adicionales</p></td>
+<td><p>Precio total de adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_gramo_final</p></td>
+<td><p>Costo por gramo de oro en caso de manejarse un precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_piedras_basicas</p></td>
+<td><p>Costo de piedras registrado para el ítem de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>datos_extra</p></td>
+<td><p>Datos adicionales sobre la fabricación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-ordendetalleview">
+<h2>Vista OrdenDetalleView<a class="headerlink" href="#vista-ordendetalleview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-detalle-orden-modal"><span class="std std-ref">Template detalle_orden_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_ordentrabajo</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id10">
+<h3>Método GET<a class="headerlink" href="#id10" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una transacción recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>orden</p></td>
+<td><p>Objeto de la órden que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Detalle del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalleSolicitud</p></td>
+<td><p>Detalle de la solicitud asociada a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>sintalla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>adicionales_lista</p></td>
+<td><p>Lista de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_max_arc</p></td>
+<td><p>Peso máximo para un archivo cargado por el usuario.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext_perm_arc</p></td>
+<td><p>Extensiones permitidas para los archivos cargados por el usuario.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h3>Método POST<a class="headerlink" href="#id11" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado para la órden que se consulta. Recibe los siguientes datos en formato JSON:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Estado al que debe pasar la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-correotemplateview">
+<h2>Vista CorreoTemplateView<a class="headerlink" href="#vista-correotemplateview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-correo-cliente"><span class="std std-ref">Template correo_cliente</span></a>. Esta vista envía información de una órden de trabajo a un template para luego ser enviado mediante correo electrónico al cliente, cuenta con las siguientes acciones:</p>
+<div class="section" id="id12">
+<h3>Método GET<a class="headerlink" href="#id12" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una órden recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>orden</p></td>
+<td><p>Objeto de la órden que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Detalle del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalleSolicitud</p></td>
+<td><p>Detalle de la solicitud asociada a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>sintalla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_adicionales</p></td>
+<td><p>Costo total de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicionales_lista</p></td>
+<td><p>Lista de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sUrl</p></td>
+<td><p>Path del directorio raíz de los archivos del proyecto.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_final</p></td>
+<td><p>Precio final de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>usuario</p></td>
+<td><p>Usuario que realiza la petición.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-correozonaltemplateview">
+<h2>Vista CorreoZonalTemplateView<a class="headerlink" href="#vista-correozonaltemplateview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-correo-producto-recibido"><span class="std std-ref">Template correo_producto_recibido</span></a>. Esta vista envía información de una órden de trabajo a un template para luego ser enviado mediante correo electrónico al jefe zonal, cuenta con las siguientes acciones:</p>
+<div class="section" id="id13">
+<h3>Método GET<a class="headerlink" href="#id13" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una órden recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>orden</p></td>
+<td><p>Objeto de la órden que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Detalle del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalleSolicitud</p></td>
+<td><p>Detalle de la solicitud asociada a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>sintalla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_adicionales</p></td>
+<td><p>Costo total de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicionales_lista</p></td>
+<td><p>Lista de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sUrl</p></td>
+<td><p>Path del directorio raíz de los archivos del proyecto.</p></td>
+</tr>
+<tr class="row-even"><td><p>precio_final</p></td>
+<td><p>Precio final de la órden de trabajo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>usuario</p></td>
+<td><p>Usuario que realiza la petición.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-comprobantetemplateview">
+<h2>Vista ComprobanteTemplateView<a class="headerlink" href="#vista-comprobantetemplateview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-comprobante-orden"><span class="std std-ref">Template comprobante_orden</span></a>. Esta vista envía información de una órden de trabajo a un template para luego ser impresa a modo de comprobante, cuenta con las siguientes acciones:</p>
+<div class="section" id="id14">
+<h3>Método GET<a class="headerlink" href="#id14" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene los detalles de una órden recibiendo su id como parámetro. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>orden</p></td>
+<td><p>Objeto de la órden que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Detalle del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalleSolicitud</p></td>
+<td><p>Detalle de la solicitud asociada a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>sintalla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo_adicionales</p></td>
+<td><p>Costo total de los adicionales agregados a la órden de trabajo.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicionales_lista</p></td>
+<td><p>Lista de los adicionales agregados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sUrl</p></td>
+<td><p>Path del directorio raíz de los archivos del proyecto.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>Usuario que realiza la petición.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-reporteordeneslistaview">
+<h2>Vista ReporteOrdenesListaView<a class="headerlink" href="#vista-reporteordeneslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-reporte-lista-ordenes"><span class="std std-ref">Template reporte_lista_ordenes</span></a>. Esta vista envía información a un template para luego generar un reporte con el listado de órdenes de trabajo consultadas y sus detalles para una joyería o taller determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id15">
+<h3>Método GET<a class="headerlink" href="#id15" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la información de las órdens recibiendo como parámetros la fecha inicio y fin de la consulta y la Opción de consulta. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ordenes</p></td>
+<td><p>Listado de órdenes de trabajo consultadas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Taller que realiza la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>Usuario que realiza la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_inicio</p></td>
+<td><p>Fecha de inicio del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_fin</p></td>
+<td><p>Fecha de fin del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>opcion</p></td>
+<td><p>Opción de consulta de usuario.</p></td>
+</tr>
+<tr class="row-even"><td><p>solicitudes</p></td>
+<td><p>Listado de solicitudes que no han recibido respuesta al momento de generar el reporte.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sUrl</p></td>
+<td><p>Path del directorio raíz de los archivos del proyecto.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las opciones de consulta son las siguientes:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opción 1</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes actual para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 2</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes anterior para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 3</p></td>
+<td><p>Devuelve las últimas 100 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 4</p></td>
+<td><p>Devuelve las últimas 1000 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 5</p></td>
+<td><p>Devuelve todas las órdenes generadas entre la fecha inicio y la fecha fin para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 6</p></td>
+<td><p>Devuelve todas las órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-reporteordenesadminopview">
+<h2>Vista ReporteOrdenesAdminOpView<a class="headerlink" href="#vista-reporteordenesadminopview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-reporte-lista-ordenes"><span class="std std-ref">Template reporte_lista_ordenes</span></a>. Esta vista envía información a un template para luego generar un reporte con el listado de órdenes de trabajo consultadas y sus detalles para el administrador de operaciones, cuenta con las siguientes acciones:</p>
+<div class="section" id="id16">
+<h3>Método GET<a class="headerlink" href="#id16" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la información de las órdens recibiendo como parámetros la fecha inicio y fin de la consulta y la Opción de consulta. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ordenes</p></td>
+<td><p>Listado de órdenes de trabajo consultadas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Taller que realiza la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>Usuario que realiza la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha_inicio</p></td>
+<td><p>Fecha de inicio del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>fecha_fin</p></td>
+<td><p>Fecha de fin del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>opcion</p></td>
+<td><p>Opción de consulta de usuario.</p></td>
+</tr>
+<tr class="row-even"><td><p>solicitudes</p></td>
+<td><p>Listado de solicitudes que no han recibido respuesta al momento de generar el reporte.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sUrl</p></td>
+<td><p>Path del directorio raíz de los archivos del proyecto.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Las opciones de consulta son las siguientes:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Opción 1</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes actual para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 2</p></td>
+<td><p>Devuelve todas las órdenes correspondientes al mes anterior para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 3</p></td>
+<td><p>Devuelve las últimas 100 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 4</p></td>
+<td><p>Devuelve las últimas 1000 órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-even"><td><p>Opción 5</p></td>
+<td><p>Devuelve todas las órdenes generadas entre la fecha inicio y la fecha fin para un usuario o taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opción 6</p></td>
+<td><p>Devuelve todas las órdenes registradas para un usuario o taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-agregarpiedraview">
+<h2>Vista AgregarPiedraView<a class="headerlink" href="#vista-agregarpiedraview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-agregar-piedra-modal"><span class="std std-ref">Template agregar_piedra_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_ordentrabajo</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id17">
+<h3>Método GET<a class="headerlink" href="#id17" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la información de una piedra para que el usuario pueda agregarla a la órden de trabajo. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalles_piedra</p></td>
+<td><p>Listado de detalles que pertenecen a la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>Id de la órden que se está generando.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad sobre la piedra configurado para la joyería.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-agregaradicionalview">
+<h2>Vista AgregarAdicionalView<a class="headerlink" href="#vista-agregaradicionalview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-agregar-adicional-modal"><span class="std std-ref">Template agregar_adicional_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_ordentrabajo</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id18">
+<h3>Método GET<a class="headerlink" href="#id18" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la información de un adicional para que el usuario pueda agregarlo a la órden de trabajo. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adicional</p></td>
+<td><p>Objeto del adicional que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_orden</p></td>
+<td><p>Id de la órden que se está generando.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad_fab_op</p></td>
+<td><p>Porcentaje de utilidad sobre el adicional configurado para la joyería.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-aprobacionpagomodalview">
+<h2>Vista AprobacionPagoModalView<a class="headerlink" href="#vista-aprobacionpagomodalview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="trn_templates.html#template-aprobacion-pago-modal"><span class="std std-ref">Template aprobacion_pago_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">trn.change_ordentrabajo</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id19">
+<h3>Método GET<a class="headerlink" href="#id19" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Obtiene la información de una órden de trabajo para la aprobación de su pago. Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>orden</p></td>
+<td><p>Objeto de la órden que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Id del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Detalle del ítem asociado a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalleSolicitud</p></td>
+<td><p>Detalle de la solicitud asociada a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>sintalla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>total_costos_asociados</p></td>
+<td><p>Total de los costos asociados a la órden.</p></td>
+</tr>
+<tr class="row-even"><td><p>costos_lista</p></td>
+<td><p>Lista de los costos asociados a la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>valor_error</p></td>
+<td><p>Valor error estipulado por el taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario_aprueba</p></td>
+<td><p>Usuario que aprueba el pago de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id20">
+<h3>Método POST<a class="headerlink" href="#id20" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra la aprobación del pago de la órden consultada con su respectiva fecha de aprobación.</p>
+</div>
+</div>
+<div class="section" id="vista-enviomaterialview">
+<h2>Vista EnvioMaterialView<a class="headerlink" href="#vista-enviomaterialview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar el envío de materia prima desde la joyería hacia el taller, cuenta con las siguientes acciones:</p>
+<div class="section" id="id21">
+<h3>Método POST<a class="headerlink" href="#id21" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-enviomaterialserializer"><span class="std std-ref">Serializador EnvioMaterialSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-recibirmaterialview">
+<h2>Vista RecibirMaterialView<a class="headerlink" href="#vista-recibirmaterialview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la recepción de materia prima por parte del taller, cuenta con las siguientes acciones:</p>
+<div class="section" id="id22">
+<h3>Método POST<a class="headerlink" href="#id22" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-recibirmaterialserializer"><span class="std std-ref">Serializador RecibirMaterialSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-anularordenview">
+<h2>Vista AnularOrdenView<a class="headerlink" href="#vista-anularordenview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la anulación de una órden de trabajo por parte del taller, cuenta con las siguientes acciones:</p>
+<div class="section" id="id23">
+<h3>Método POST<a class="headerlink" href="#id23" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-anularordenserializer"><span class="std std-ref">Serializador AnularOrdenSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-finalizartrabajoview">
+<h2>Vista FinalizarTrabajoView<a class="headerlink" href="#vista-finalizartrabajoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la finalización del trabajo de fabricación por parte del taller, también modifica los valores de la órden de ser necesario, cuenta con las siguientes acciones:</p>
+<div class="section" id="id24">
+<h3>Método POST<a class="headerlink" href="#id24" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-finalizartrabajoserializer"><span class="std std-ref">Serializador FinalizarTrabajoSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-enviarproductoview">
+<h2>Vista EnviarProductoView<a class="headerlink" href="#vista-enviarproductoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar el envío del producto desde el taller hacia la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id25">
+<h3>Método POST<a class="headerlink" href="#id25" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-enviarproductoserializer"><span class="std std-ref">Serializador EnviarProductoSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-recibirproductoview">
+<h2>Vista RecibirProductoView<a class="headerlink" href="#vista-recibirproductoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la recepción del producto por parte de la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id26">
+<h3>Método POST<a class="headerlink" href="#id26" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-recibirproductoserializer"><span class="std std-ref">Serializador RecibirProductoSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-cargardocumentostaller">
+<h2>Vista CargarDocumentosTaller<a class="headerlink" href="#vista-cargardocumentostaller" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la carga de documentos pendientes por parte del taller, cuenta con las siguientes acciones:</p>
+<div class="section" id="id27">
+<h3>Método POST<a class="headerlink" href="#id27" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-cargardoctallerserializer"><span class="std std-ref">Serializador CargarDocTallerSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-cargardocumentosoperaciones">
+<h2>Vista CargarDocumentosOperaciones<a class="headerlink" href="#vista-cargardocumentosoperaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la carga de documentos pendientes por parte de la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id28">
+<h3>Método POST<a class="headerlink" href="#id28" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-cargardocopserializer"><span class="std std-ref">Serializador CargarDocOpSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-devolverproductoview">
+<h2>Vista DevolverProductoView<a class="headerlink" href="#vista-devolverproductoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la devolución del producto por parte de la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id29">
+<h3>Método POST<a class="headerlink" href="#id29" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-enviarproductoserializer"><span class="std std-ref">Serializador EnviarProductoSerializer</span></a>. Además genera una nueva órden de trabajo con los mismos datos de la órden consultada para la devolución.</p>
+</div>
+</div>
+<div class="section" id="vista-finalizarordenview">
+<h2>Vista FinalizarOrdenView<a class="headerlink" href="#vista-finalizarordenview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la finalización de la órden con venta por parte de la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id30">
+<h3>Método POST<a class="headerlink" href="#id30" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-finalizarordenserializer"><span class="std std-ref">Serializador FinalizarOrdenSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-finalizarsinventaview">
+<h2>Vista FinalizarSinVentaView<a class="headerlink" href="#vista-finalizarsinventaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para registrar la finalización de la órden sin venta por parte de la joyería, cuenta con las siguientes acciones:</p>
+<div class="section" id="id31">
+<h3>Método POST<a class="headerlink" href="#id31" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Registra un cambio de estado en la órden de trabajo hace uso del <a class="reference internal" href="trn_serializers.html#serializador-finalizarsinventaserializer"><span class="std std-ref">Serializador FinalizarSinVentaSerializer</span></a>.</p>
+</div>
+</div>
+<div class="section" id="vista-enviarcorreoview">
+<h2>Vista EnviarCorreoView<a class="headerlink" href="#vista-enviarcorreoview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para realizar un envío de correo al cliente.</p>
+</div>
+<div class="section" id="vista-reporteordenespagos">
+<h2>Vista ReporteOrdenesPagos<a class="headerlink" href="#vista-reporteordenespagos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, permite la generación de un reporte que contiene la información de los pagos aprobados para las órdenes de trabajo generadas en un rango de fechas determinado.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trn_forms.html" class="btn btn-neutral float-right" title="Forms trn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trn_urls.html" class="btn btn-neutral float-left" title="URLs trn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

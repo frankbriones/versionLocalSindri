@@ -1,0 +1,1893 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+
+    .caja {
+        font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+        color: #000000;
+        font-size: 25px;
+        font-weight: 400;
+        text-align: right;
+        ;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 10px;
+        /* border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 35px 0px;  */
+        border: 2px solid #5878ca;
+    }
+</style>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/vendors.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/vendors/css/editors/quill/quill.snow.css' %}">
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/bootstrap-extended.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/colors.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/components.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/themes/dark-layout.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/themes/semi-dark-layout.css' %}">
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/pages/app-email.css' %}">
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/assets/css/style.css' %}">
+<!-- END: Custom CSS-->
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/swiper.min.css' %}">
+<!-- END: Vendor CSS-->
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/swiper.css' %}">
+<!-- END: Page CSS-->
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <div class="sidebar-content email-app-sidebar d-flex">
+                    <!-- sidebar close icon -->
+                    <span class="sidebar-close-icon">
+                        <i class="bx bx-x"></i>
+                    </span>
+                    <!-- sidebar close icon -->
+                    <div class="email-app-menu">
+                        <div class="form-group form-group-compose">
+                            <label for="id_ciudad">{% trans "Filtro" %}</label>
+                            <select name="filtro" id="id_filtro" class="form-control selectrubro">
+                                <option value="1">{% trans "Lo que va del mes" %}</option>
+                                <option value="2">{% trans "El mes anterior" %}</option>
+                                <option value="3">{% trans "Últimas 100" %}</option>
+                                <option value="4">{% trans "Últimas 1000" %}</option>
+                                <option value="5">{% trans "Rango de fecha" %}</option>
+                                <option value="6">{% trans "Todas" %}</option>
+                            </select>
+                            <div id="div_fecha_inicio">
+                                <small>{% trans "Fecha inicio" %}</small>
+                                <input type="date" id="id_fecha_inicio" class="form-control">
+                            </div>
+                            <div id="div_fecha_fin">
+                                <small>{% trans "Fecha fin" %}</small>
+                                <input type="date" id="id_fecha_fin" class="form-control">
+                            </div>
+                            <a onclick="obtenerOrdenesfecha(5)" id="btn_filtro">
+                                <label for="getFile" class="btn btn-primary btn-block glow my-2 add-file-btn text-capitalize"><i class="bx bxs-filter-alt"></i>{% trans "Filtrar" %}</label>
+                            </a>
+                        </div>
+                        <div class="sidebar-menu-list">
+                            <label class="app-file-label">{% trans "Estados" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="12" id="id_ingresada">
+                                    <label for="id_ingresada">{% trans "INGRESADA" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="13" id="id_mat_enviado">
+                                    <label for="id_mat_enviado">{% trans "MAT. ENVIADO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="14" id="id_en_proceso">
+                                    <label for="id_en_proceso">{% trans "EN PROCESO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="15" id="id_trabajo_fin">
+                                    <label for="id_trabajo_fin">{% trans "TRAB. FINALIZADO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="16" id="id_prod_enviado">
+                                    <label for="id_prod_enviado">{% trans "PROD. ENVIADO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="17" id="id_prod_recibido">
+                                    <label for="id_prod_recibido">{% trans "PROD. RECIBIDO" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="19" id="id_finalizada">
+                                    <label for="id_finalizada">{% trans "FINALIZADA" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="18" id="id_cancelada_taller">
+                                    <label for="id_cancelada_taller">{% trans "CANCELADA TALLER" %}</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-input item-estado" value="11" id="id_devuelta">
+                                    <label for="id_devuelta">{% trans "DEVUELTA" %}</label>
+                                </div>
+                            </div>
+
+                            <!-- sidebar label start -->
+                            <!-- <label class="sidebar-label">Labels</label>
+                            <div class="list-group list-group-labels ">
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Product
+                                    <span class="bullet bullet-success bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Work
+                                    <span class="bullet bullet-primary bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Misc
+                                    <span class="bullet bullet-warning bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Family
+                                    <span class="bullet bullet-danger bullet-sm"></span>
+                                </a>
+                                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    Design
+                                    <span class="bullet bullet-info bullet-sm"></span>
+                                </a>
+                            </div> -->
+                            <!-- sidebar label end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- email app overlay -->
+                    <div class="app-content-overlay"></div>
+                    <div class="email-app-area">
+                        <!-- Email list Area -->
+                        <div class="email-app-list-wrapper">
+                            <div class="email-app-list">
+                                <div class="email-action">
+                                    <!-- action left start here -->
+                                    <div class="action-left d-flex align-items-center">
+                                        <!-- delete unread dropdown -->
+                                        <ul class="list-inline m-0 d-flex">
+                                            <li class="list-inline-item mail-delete">
+                                                <button onclick="generarReporteExcel()" title='{% trans "Exportar a Excel" %}' type="button" class="btn btn-icon action-icon">
+                                                    <span class="fonticon-wrap">
+                                                        <i class="bx bx-file"></i>
+                                                    </span>
+                                                </button>
+                                            </li>
+                                            <li class="list-inline-item mail-unread">
+                                                <button onclick="generarReporte()" title='{% trans "Generar reporte pdf" %}' type="button" class="btn btn-icon action-icon">
+                                                    <span class="fonticon-wrap d-inline mr-25">
+                                                        <i class="bx bx-printer"></i>
+                                                    </span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- action left end here -->
+
+                                    <!-- action right start here -->
+                                    <div class="action-right d-flex flex-grow-1 align-items-center justify-content-around">
+                                        <!-- search bar  -->
+                                        <div class="email-fixed-search flex-grow-1">
+                                            <div class="sidebar-toggle d-block d-lg-none">
+                                                <i class="bx bx-menu"></i>
+                                            </div>
+                                            <fieldset class="form-group position-relative has-icon-left m-0">
+                                                <input type="text" class="form-control" id="id_buscar" placeholder='{% trans "Buscar por secuencia o tienda" %}'>
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-search"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <!-- pagination and page count -->
+                                        <span class="d-none d-sm-block">1-10 of 653</span>
+                                    </div>
+                                </div>
+                                <!-- / action right -->
+
+                                <!-- email user list start -->
+                                <div class="email-user-list list-group">
+                                    <div id="id_cont_items" class="align-items-center ">
+                                        <div class="table-responsive">
+                                            <table id="id_tabla" class="table table-hover mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{% trans "Secuencia" %}</th>
+                                                        <th>{% trans "Solicita" %}</th>
+                                                        <th>{% trans "Estado" %}</th>
+                                                        <th>{% trans "Fecha creación" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="id_body_table">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Email list Area -->
+
+                        <!-- Detailed Email View -->
+                        <div class="email-app-details">
+                            <!-- email detail view header -->
+                            <div class="email-detail-header">
+                                <div class="email-header-left d-flex align-items-center mb-1">
+                                    <span class="atras mr-50" onclick="ocultarDetalles()">
+                                        <span class="fonticon-wrap d-inline">
+                                            <i class="livicon-evo" data-options="name: chevron-left.svg; size: 32px; style: lines; strokeColor:#475f7b; eventOn:grandparent; duration:0.85;">
+                                            </i>
+                                        </span>
+                                    </span>
+                                    <h5 class="email-detail-title font-weight-normal mb-0" id="id_secuencia_orden">
+                                        <span class="badge badge-light-danger badge-pill ml-1" id="id_estado_orden"></span>
+                                    </h5>
+                                </div>
+                                <div class="email-header-right mb-1 ml-2 pl-1">
+                                    <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <button onclick="generarComprobante()" class="btn btn-icon action-icon">
+                                                <span class="fonticon-wrap">
+                                                    <i class="bx bx-printer"></i>
+                                                </span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- email detail view header end-->
+                            <div class="email-scroll-area" id="div_detalle_orden">
+                                
+                            </div>
+                        </div>
+                        <!--/ Detailed Email View -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+<!-- BEGIN: Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+<!-- BEGIN Vendor JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{% static  'base/app-assets/vendors/js/editors/quill/quill.min.js' %}"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="{% static  'base/app-assets/js/scripts/pages/app-email.js' %}"></script>
+<!-- END: Page JS-->
+
+<!-- BEGIN: Page Vendor JS-->
+<script src="{% static 'base/app-assets/vendors/js/extensions/swiper.min.js' %}"></script>
+<!-- END: Page Vendor JS-->
+<!-- BEGIN: Page JS-->
+<script src="{% static 'base/app-assets/js/scripts/extensions/swiper.js' %}"></script>
+<!-- END: Page JS-->
+{% endblock %}
+{% block js_page %}
+<script>
+    let opcion;
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('#id_fechas').hide();
+        $('#div_fecha_inicio').hide();
+        $('#div_fecha_fin').hide();
+        $('#btn_filtro').hide();
+        $('#id_fecha_inicio', '#id_fecha_fin').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false
+        });
+        $('#id_filtro').val(3);
+        opcion = 3;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    $('#id_filtro').on('change', function(){
+
+        opcion = parseInt($(this).val());
+
+        if ( opcion == 5 ){
+            $('#div_fecha_inicio').show();
+            $('#div_fecha_fin').show();
+            $('#btn_filtro').show();
+        } else {
+            $('#div_fecha_inicio').hide();
+            $('#div_fecha_fin').hide();
+            $('#btn_filtro').hide();
+            obtenerOrdenesfecha(opcion);
+        }
+
+    });
+
+    $('input[type=checkbox]').on('click', function(){
+        limite = 50;
+        obtenerOrdenesfecha(opcion);
+    });
+
+    async function obtenerOrdenesfecha(opcion){
+
+        estadosBusqueda = []
+        claveBusqueda = $('#id_buscar').val();
+
+        $('.item-estado').each(function(){
+            var estado = $(this);
+            check = estado.prop('checked');
+            if(check){
+                estadosBusqueda.push(parseInt(estado.val()));
+            }
+        });
+
+        if(opcion === 5){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        var url = "{% url 'trn:ordenes_api_lista_fecha' 'finicio' 'ffin' 0 %}";
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        var token = '{{ csrf_token }}';
+
+        var body = {
+            "estadosBusqueda[]": JSON.stringify(estadosBusqueda),
+            "claveBusqueda": claveBusqueda,
+            "opcion": opcion,
+            "fechaInicio": f_inicio,
+            "fechaFin": f_fin
+        };
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            async: true,
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                ordenes = res
+                $('#id_body_table').empty();
+                
+                ordenes.forEach(orden => {
+                    fecha_creacion = new Date(orden.fecha_creacion)
+                    opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                    var tr = 
+                    `<tr onclick="verDetalleOrden(${orden.id_orden})" style="cursor:pointer;">
+                        <td>${orden.secuencia}</td>
+                        <td>${orden.solicita}</td>
+                        <td style="color: ${orden.colorestado};">
+                            <i class="bx bxs-circle font-small-1 mr-50"></i>${orden.estado_nombre}
+                        </td>
+                        <td>${fecha_creacion.toLocaleString('ja-JP', opciones)}</td>
+                    </tr>`
+                    $('#id_body_table').append(tr);
+                });
+
+                $('#id_cantidad').text('{% trans "Registros: " %}' + String(ordenes.length))
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+    function generarReporte(){
+
+        opcion = parseInt($('#id_filtro').val());
+        tipo_usuario = parseInt('{{ user.tipo_usuario_id }}');
+        admin = (('{{ user.rol.admin }}').toLowerCase() === 'true');
+
+        if(opcion === 5){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        if((tipo_usuario === 1 || tipo_usuario === 3) && admin){
+            var url = "{% url 'trn:rep_ordenes_admin_op' 'finicio' 'ffin' 0 %}";
+        } else {
+            var url = "{% url 'trn:rep_ordenes' 'finicio' 'ffin' 0 %}";
+        }
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        window.open(url, '_blank');
+    }
+
+    function verDetalles(id){
+        url = "{% url 'trn:ordenes_detalle' 0 %}"
+        url = url.replace(/0/, id);
+        // return abrir_modal(url);
+        window.location.replace(url);
+    }
+
+    wsSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        $('#id_filtro').val(3);
+        obtenerOrdenesfecha(3);
+        cargarNotificaciones(message);
+    };
+
+    function generarReporteExcel(){
+
+        opcion = parseInt($('#id_filtro').val());
+
+        if(opcion === 5){
+            f_inicio = $('#id_fecha_inicio').val();
+            f_fin = $('#id_fecha_fin').val();
+
+            if(f_inicio === '' || f_fin === ''){
+                mensaje('{% trans "Debe ingresar una fecha correcta" %}', 'orange');
+                return;
+            }
+        } else {
+            ahora = new Date();
+            opciones = {year: 'numeric', month: '2-digit', day: '2-digit'};
+            ahora = ahora.toLocaleString('sv-SE', opciones);
+            f_inicio = ahora;
+            f_fin = ahora;
+        }
+
+        var url = "{% url 'trn:rep_lista_ordenes_excel' 'finicio' 'ffin' 0 %}";
+
+        url = url.replace(/0/, opcion);
+        url = url.replace(/finicio/, f_inicio);
+        url = url.replace(/ffin/, f_fin);
+
+        window.open(url, '_blank');
+    }
+
+    function verDetalleOrden(id_orden){
+        var url = "{% url 'trn:orden_detalle_api' 0 %}";
+        url = url.replace(/0/, id_orden);
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: url,
+            success: function(res) {
+                crearHtmlDetalleOrden(res);
+            },
+            error: function(a, b, c) {
+                console.log(a);
+            }
+        });
+    }
+
+
+    function crearHtmlDetalleOrden(detalles){
+        
+        orden = detalles.orden;
+        item = detalles.item;
+        itemImagenes = detalles.imagenes;
+        $('#id_secuencia_orden').html(
+            orden.secuencia + 
+            `<div class="chip mr-1 ml-1">
+                <div class="chip-body">
+                    <span style="color: ${orden.colorestado};" class="chip-text">${orden.estado_nombre}</span>
+                </div>
+            </div>`
+        );
+        
+        $('#div_detalle_orden').empty();
+        filaDetalleOrden = 
+        `<div class="row">
+            <div class="col-12" id="fila_detalle_orden">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body py-1 mt-1">
+                            <div class="row" id="id_detalles">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        
+        //////////////////////////// imagenes de item de orden /////////////////////////////////////////
+
+        $('#div_detalle_orden').append(filaDetalleOrden);
+        divImagenesItem =
+        `
+        <div class="col-md-4 col-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators" id="indicador_imagenes">
+                </ol>
+                <div class="carousel-inner" role="listbox" id="lista_item_imagenes">
+                </div>
+                <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        `;
+
+        $('#id_detalles').append(divImagenesItem);
+
+        itemImagenes.forEach(imagen => {
+            $('#indicador_imagenes').append(
+                `<li data-target="#carousel-example-generic" data-slide-to="0"></li>`
+            );
+        });
+
+        itemImagenes.forEach(imagen => {
+            $('#lista_item_imagenes').append(
+                `<div class="carousel-item">
+                    <img width="100%" class="img-fluid" src="${ imagen.imagen }" alt="First slide">
+                </div>`
+            );
+        });
+
+        $('div.carousel-item:first').addClass('active');
+        $('div > div.carousel-item:first', '#carousel-imagenes').addClass('active');
+
+        /////////////////////////////////////////////////////////// datos generales de orden ////////////////////////////
+
+        sku = detalles.sku;
+        fabricante = detalles.fabricante;
+        itemDescripcion = detalles.item_descripcion;
+        itemDetalles = detalles.item_detalles;
+        itemMedida = detalles.item_medida;
+        cantidadPiedras = detalles.cantidad_piedras;
+        tiempoEntregaMin = detalles.tiempo_entrega_min;
+        tiempoEntregaMax = detalles.tiempo_entrega_max;
+        precio = orden.precio_final_venta;
+        precioRecalculado = orden.precio_recalculado;
+
+        divDatosOrden =
+        `
+            <div class="col-md-5 col-12">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ sku }">
+                            <label for="first-name-column">{% trans "SKU" %}</label>
+                        </div>
+                    </div>
+                    {% if user.is_superuser or user.tipo_usuario_id == 3 %}
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.cliente_nombre }">
+                            <label for="first-name-column">{% trans "Cliente" %}</label>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ fabricante }">
+                            <label for="first-name-column">{% trans "Fabricante" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.solicita }">
+                            <label for="first-name-column">{% trans "Solicita" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.origen_descripcion }">
+                            <label for="first-name-column">{% trans "Origen material" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ itemDescripcion }">
+                            <label for="first-name-column">{% trans "Ítem" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <textarea name="txt_detalle" class="form-control" id="id_item_detalles" disabled>${ itemDetalles }</textarea>
+                            <label for="first-name-column">{% trans "Detalle" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.peso_solicitado } gr">
+                            <label for="first-name-column">{% trans "Peso solicitado" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="{{ user.pais.simbolo_moneda}} ${ precio }">
+                            <label for="first-name-column">{% trans "Precio" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.peso_final } gr">
+                            <label for="first-name-column">{% trans "Peso final" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_precio_recalculado" class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="{{ user.pais.simbolo_moneda}} ${ precioRecalculado }">
+                            <label for="first-name-column">{% trans "Precio recalculado" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ itemMedida }">
+                            <label for="first-name-column">{% trans "Talla/Longitud" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_gramos_enviados" class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.gramos_enviados } gr">
+                            <label for="first-name-column">{% trans "Gramos enviados joyería" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_gramos_recibidos" class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ orden.gramos_recibidos } gr">
+                            <label for="first-name-column">{% trans "Gramos recibidos taller" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_detalle_acabado" class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ item.acabado }">
+                            <label for="first-name-column">{% trans "Acabado" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_detalle_interna" class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ item.parte_interna }">
+                            <label for="first-name-column">{% trans "Parte interna" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ cantidadPiedras }">
+                            <label for="first-name-column">{% trans "Cantidad de piedras" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled
+                                value="${ tiempoEntregaMin }  {% trans " días" %}">
+                            <label for="email-id-column">{% trans "Tiempo entrega mínimo" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled
+                                value="${ tiempoEntregaMax }  {% trans " días" %}">
+                            <label for="email-id-column">{% trans "Tiempo entrega máximo" %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <input class="form-control" disabled value="${ item.secuencia }">
+                            <label
+                                for="email-id-column">{% trans "Solicitud" %}</label>
+                        </div>
+                    </div>
+                    <div id="div_obs_devolucion" class="col-md-12 col-12">
+                        <div class="form-label-group">
+                            <textarea class="form-control" disabled rows="2">${ orden.obs_recepcion_prod }</textarea>
+                            <label
+                                for="email-id-column">{% trans "Observación de devolución" %}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        $('#id_detalles').append(divDatosOrden);
+
+        if(!orden.gramos_enviados){
+            $('#div_gramos_enviados').remove();
+        }
+
+        if(!orden.gramos_recibidos){
+            $('#div_gramos_recibidos').remove();
+        }
+
+        if(!item.acabado){
+            $('#div_detalle_acabado').remove();
+        }
+
+        if(!item.parte_interna){
+            $('#div_detalle_interna').remove();
+        }
+
+        if(!orden.obs_recepcion_prod){
+            $('#div_obs_devolucion').remove();
+        }
+
+        if(!precioRecalculado){
+            $('#div_precio_recalculado').remove();
+        }
+
+        ///////////////////////////////////////////////////// timeline estados de orden//////////////////////////////
+
+        opcionesFecha = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}
+
+        divEstados =
+        `
+            <div class="col-md-3 col-12 timline-card">
+                <ul class="widget-timeline">
+                    <li class="timeline-items timeline-icon-success active">
+                        <div class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_creacion).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p class="font-small-2 text-success"><span class="fonticon-wrap mr-1">
+                                <i class="bx bxs-add-to-queue"></i>
+                        </span>{% trans "Ingresada" %}</p></h6>
+                    </li>
+                    <li id="li_mat_enviado" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_mat_enviado" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_envio_mat).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title">
+                            <p id="txt_mat_enviado" class="text-secondary font-small-2">
+                                <span class="fonticon-wrap mr-1">
+                                <i class="bx bx-truck"></i>
+                                </span>{% trans "Mat. enviado" %}
+                            </p>
+                        </h6>
+                    </li>
+                    <li id="li_proceso" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_proceso" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_recibe_mat).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_proceso" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                <i class="bx bx-time"></i>
+                        </span>{% trans "En proceso" %}</p></h6>
+                    </li>
+                    <li id="li_trab_fin" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_trab_fin" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_fin_trabajo).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_trab_finalizado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                <i class="bx bxs-purchase-tag"></i>
+                        </span>{% trans "Trab. fin" %}</p></h6>
+                    </li>
+                    <li id="li_prod_enviado" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_prod_enviado" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_envio_prod).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_prod_enviado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                <i class="bx bx-truck"></i>
+                        </span>{% trans "Prod. enviado" %}</p></h6>
+                    </li>
+                    <li id="li_prod_recibido" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_prod_recibido" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_recibe_prod).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_prod_recibido" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                <i class="bx bxs-package"></i>
+                        </span>{% trans "Prod. recibido" %}</p></h6>
+                    </li>
+                    <li id="li_finalizado" class="timeline-items timeline-icon-secondary active">
+                        <div id="fec_finalizado" class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_venta).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_finalizado" class="font-small-2 text-secondary"><span class="fonticon-wrap mr-1">
+                                <i class="bx bxs-cart-alt"></i>
+                        </span>{% trans "Finalizada" %}</p></h6>
+                    </li>
+                    <li id="li_anulada" class="timeline-items timeline-icon-danger active">
+                        <div class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_anulacion).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_anulado" class="font-small-2 text-danger"><span class="fonticon-wrap mr-1">
+                                <i class="bx bx-trash"></i>
+                        </span>{% trans "Anulada" %}</p></h6>
+                    </li>
+                    <li id="li_devuelta" class="timeline-items timeline-icon-danger active">
+                        <div class="row timeline-time"><p class="font-small-1">${ new Date(orden.fecha_modificacion).toLocaleString('ja-JP', opcionesFecha) }</p></div>
+                        <h6 class="timeline-title"><p id="txt_devuelto" class="font-small-2 text-danger"><span class="fonticon-wrap mr-1">
+                                <i class="bx bx-rotate-left"></i>
+                        </span>{% trans "Devuelta" %}</p></h6>
+                    </li>
+                </ul>
+            </div>
+        `;
+
+        $('#id_detalles').append(divEstados);
+
+        var estado = orden.estado;
+        if(estado === 18){
+            $('#li_proceso').remove();
+            $('#li_trab_fin').remove();
+            $('#li_prod_enviado').remove();
+            $('#li_prod_recibido').remove();
+            $('#li_finalizado').remove();
+            $('#li_devuelta').remove();
+        } else {
+            if(estado === 11){
+                $('#li_prod_recibido').remove();
+                $('#li_finalizado').remove();
+                $('#li_anulada').remove();
+            } else {
+                $('#li_devuelta').remove();
+                $('#li_anulada').remove();
+            }
+        }
+
+        if(!orden.env_material){
+            $('#li_mat_enviado').remove();
+        }        
+
+        if(estado === 13 || estado === 14 || estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // material enviado
+            $('#txt_mat_enviado').removeClass("text-secondary");
+            $('#txt_mat_enviado').addClass("text-success");
+            $('#li_mat_enviado').removeClass("timeline-icon-secondary");
+            $('#li_mat_enviado').addClass("timeline-icon-success");
+            $('#fec_mat_enviado').show();
+        }
+        if(estado === 14 || estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // en proceso
+            $('#txt_proceso').removeClass("text-secondary");
+            $('#txt_proceso').addClass("text-success");
+            $('#li_proceso').removeClass("timeline-icon-secondary");
+            $('#li_proceso').addClass("timeline-icon-success");
+            $('#fec_proceso').show();
+        }
+        if(estado === 15 || estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // trab finalizado
+            $('#txt_trab_finalizado').removeClass("text-secondary");
+            $('#txt_trab_finalizado').addClass("text-success");
+            $('#li_trab_fin').removeClass("timeline-icon-secondary");
+            $('#li_trab_fin').addClass("timeline-icon-success");
+            $('#fec_trab_fin').show();
+            
+        }
+        if(estado === 16 || estado === 17 || estado === 19 || estado === 18 || estado === 11){
+            // prod enviado
+            $('#txt_prod_enviado').removeClass("text-secondary");
+            $('#txt_prod_enviado').addClass("text-success");
+            $('#li_prod_enviado').removeClass("timeline-icon-secondary");
+            $('#li_prod_enviado').addClass("timeline-icon-success");
+            $('#fec_prod_enviado').show();
+            
+        }
+        if(estado === 17 || estado === 19){
+            // prod recibido
+            $('#txt_prod_recibido').removeClass("text-secondary");
+            $('#txt_prod_recibido').addClass("text-success");
+            $('#li_prod_recibido').removeClass("timeline-icon-secondary");
+            $('#li_prod_recibido').addClass("timeline-icon-success");
+            $('#fec_prod_recibido').show();
+            
+        }
+        if(estado === 19){
+            // finalizado
+            $('#txt_finalizado').removeClass("text-secondary");
+            $('#txt_finalizado').addClass("text-success");
+            $('#li_finalizado').removeClass("timeline-icon-secondary");
+            $('#li_finalizado').addClass("timeline-icon-success");
+            $('#fec_finalizado').show();
+            
+        }
+
+        ///////////////////////////////////////// imagenes de producto terminado///////////////////////////////
+
+        ordenImagenesTerminada = detalles.imagenes_orden_terminada;
+        if(ordenImagenesTerminada.length > 0){
+            divImagenesTerminada =
+            `
+            <div class="col-12">
+                <h6 class="card-title">{% trans "Imágenes trabajo finalizado" %}</h6>
+                <div class="swiper-centered-slides swiper-container p-1">
+                    <div class="swiper-wrapper" id="id_imagenes_terminada">
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            `;
+
+            $('#fila_detalle_orden').append(divImagenesTerminada);
+
+            ordenImagenesTerminada.forEach(imagen => {
+                $('#id_imagenes_terminada').append(
+                    `<div class="swiper-slide rounded swiper-shadow"> 
+                        <img class="img-fluid" src="${ imagen.imagen }" alt="First slide" style="max-width: 150px;">
+                    </div>`
+                );
+            });
+            var mySwiperOpt1 = new Swiper('.swiper-centered-slides', {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        }
+
+        /////////////////////////  Mostrar documentos de orden ///////////////////////////////////
+
+        divOrdenDocumentos =
+        `
+            <div class="col-md-12 col-12">
+                <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                    <div class="card collapse-header">
+                        <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_doc" aria-expanded="false" aria-controls="accordion_doc" role="tablist">
+                            <span class="collapse-title">
+                                <i class="bx bx-file align-middle"></i>
+                                <span class="align-middle">{% trans "Documentos" %}</span>
+                            </span>
+                        </div>
+                        <div id="accordion_doc" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row" id="id_documentos">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('#fila_detalle_orden').append(divOrdenDocumentos);
+
+        if(orden.anticipo_fabricacion){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.anticipo_fabricacion }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Anticipo de fabricación" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_creacion).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        }
+
+        if(orden.factura_taller){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.factura_taller }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura taller" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_recibe_prod).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        }
+
+        if(orden.comp_envio_op){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.comp_envio_op }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de material" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_envio_mat).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        }
+
+        if(orden.comp_envio_ta){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.comp_envio_ta }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de producto" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_envio_prod).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' and not orden.pago_aprobado %}
+                <button onclick="mostrarFormulario('frmEnvioProducto', 'btnEnviaProducto', 'btnEnviaProducto')" class="btn btn-icon btn-warning rounded-circle button_img" type="button" data-repeater-delete style="position: absolute; top: 10px; right: 10px;"><i class="bx bx-edit"></i></button>
+                {% endif %}
+            </div>
+            `
+            );
+        }
+
+        if(orden.factura_vta){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.factura_vta }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura de venta" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_venta).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        }
+
+        if(orden.cta_por_pagar){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.cta_por_pagar }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Cuenta por pagar" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_venta).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        }
+
+        if(orden.orden_compra){
+            $('#id_documentos').append(
+            `
+            <div class="col-md-3 col-6">
+                <a target="_blank" href="${ orden.orden_compra }">
+                    <div class="card border shadow-none mb-1 app-file-info">
+                        <div class="card-content">
+                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                            </div>
+                            <div class="card-body p-50">
+                                <div class="app-file-details">
+                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Órden de compra" %}</div>
+                                    <div class="app-file-type font-size-small text-muted">${ new Date(orden.fecha_venta).toLocaleString('ja-JP', opcionesFecha) }</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `
+            );
+        };
+
+        /////////////////////////////////////// rubros asociados a la orden //////////////////////////////////////////
+
+        divRubros =
+        `
+            <div class="col-md-12 col-12">
+                <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                    <div class="card collapse-header">
+                        <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_rubros" aria-expanded="false" aria-controls="accordion_rubros" role="tablist">
+                            <span class="collapse-title">
+                                <i class="bx bx-dollar-circle align-middle"></i>
+                                <span class="align-middle">{% trans "Rubros asociados" %}</span>
+                            </span>
+                        </div>
+                        <div id="accordion_rubros" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="table-responsive">
+                                                <table id="id_lista_adicionales" class="table table-striped table-hover">
+                                                    <thead>
+                                                        <th>{% trans "Descripción" %}</th>
+                                                        <th>{% trans "Precio" %}</th>
+                                                    </thead>
+                                                    <tbody id="tb_rubros_asociados">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        rubrosAsociados = detalles.rubros_asociados;
+        if(rubrosAsociados.length > 0){
+            $('#fila_detalle_orden').append(divRubros);
+            rubrosAsociados.forEach(rubro => {
+                $('#tb_rubros_asociados').append(
+                    `
+                    <tr>
+                        <td>${ rubro.rubro }</td>
+                        <td>${ rubro.valor }</td>
+                    </tr>
+                    `
+                )
+            });
+        };
+
+        divDetalleCostos =
+        `
+            <div class="col-md-12 col-12">
+                <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                    <div class="card collapse-header">
+                        <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_costos" aria-expanded="false" aria-controls="accordion_costos" role="tablist">
+                            <span class="collapse-title">
+                                <i class="bx bx-dollar-circle align-middle"></i>
+                                <span class="align-middle">{% trans "Detalle de costos" %}</span>
+                            </span>
+                        </div>
+                        <div id="accordion_costos" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 col-6 mt-75">
+                                            <p class="text-primary"><b>{% trans "Valores taller" %}</b></p>
+                                            {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                            <p class="text-success"><b>{% trans "Valores joyería" %}</b></p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-8 col-6 d-flex justify-content-end mt-75">
+                                            <div class="invoice-subtotal">
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Materia prima" %}</span>
+                                                    <span id="val_mat_prima_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Mano de obra" %}</span>
+                                                    <span id="val_man_obra_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Rubros (fijo)" %}</span>
+                                                    <span id="val_rubros_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Adicional Color" %}</span>
+                                                    <span id="val_color_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Subtotal taller" %}</span>
+                                                    <span id="val_subtotal_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                    <span id="val_impuestos_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Total taller" %}</span>
+                                                    <span id="val_total_ta" class="text-primary invoice-value"></span>
+                                                </div>
+                                                {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                <hr>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Costo materia prima" %}</span>
+                                                    <span id="val_mat_prima_op" class="text-success invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Utilidad" %}</span>
+                                                    <span id="val_util_op" class="text-success invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Adicional Color" %}</span>
+                                                    <span id="val_color_op" class="text-success invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Subtotal" %}</span>
+                                                    <span id="val_subtotal_op" class="text-success invoice-value"></span>
+                                                </div>
+                                                <div class="invoice-calc d-flex justify-content-between">
+                                                    <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                    <span id="val_impuestos_op" class="text-success invoice-value"></span>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('#fila_detalle_orden').append(divDetalleCostos);
+
+        divPrecioFinal =
+        `
+            <div class="col-12 d-flex justify-content-end">
+                <input id="id_precio" disabled name="precio" type="text" class="caja">
+            </div>
+        `;
+
+        $('#fila_detalle_orden').append(divPrecioFinal);
+
+        divFormularios =
+        `
+            <div class="col-12" id="id_div_frmEnvioMaterial">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Enviar material" %}</h5>
+                                <br>
+                                <form method="POST" id="frmEnvioMaterial" name="EnvioMaterial" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_gramos_enviados" lang="en-150" min="0.00" step="0.01" type="number" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Gramos enviados" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_comp_envio_op" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Comprobante de envío" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="envioMaterial()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmRecibeMaterial">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Recibir material" %}</h5>
+                                <br>
+                                <form method="POST" id="frmRecibeMaterial" name="RecibeMaterial" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_gramos_recibidos" lang="en-150" min="0.00" step="0.01" type="number" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Gramos recibidos" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                                </a>
+                                                <button type="button" onclick="recibeMaterial()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmAnulaOrden">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Anular órden" %}</h5>
+                                <br>
+                                <form method="POST" id="frmAnulaOrden" name="AnulaOrden" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-label-group">
+                                                <textarea class="form-control" name="anular_observacion" id="id_anular_observacion" rows="3"></textarea>
+                                                <label
+                                                    for="email-id-column">{% trans "Observación" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                    <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                                </a>
+                                                <button type="button" onclick="anularOrden()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmFinalizarTrabajo">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Finalizar trabajo" %}</h5>
+                                <br>
+                                <form method="POST" id="frmFinalizarTrabajo" name="FinalizarTrabajo" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        {% if user.taller.cargar_img_fin_trabajo %}
+                                        <div class="col-md-12 col-12">
+                                            <div id="id_img_lista" class="row">
+                                                <div id="elemento_1" class="col-md-3 col-12 col-sm-12 item_img">
+                                                    <img id="id_img_tmp_1" name="imagentmp" src="{% static 'base/img/icons/nofoto2.png' %}"  width="150px" height="150px" class="imgtmp center img-fluid pointer" width="100%">
+                                                    <input onchange="seleccionarImagen('id_img_tmp_1','id_imagen_1')" type="file" name="imagen" id="id_imagen_1" class="inputimage center pointer" width="100%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12">
+                                            <p id="id_peso_max_peticion"></p>
+                                        </div>
+                                        {% endif %}
+                                        <div class="col-md-8 col-12">
+                                            {% if user.taller.cargar_img_fin_trabajo %}
+                                            <button id="btnAgregarImagen" type="button" class="btn btn-icon rounded-circle btn-success glow mr-1 mb-1" style="padding: 6px 10px;" onclick="agregarImg()">
+                                                <i class="bx bxs-image-add fa-2x sr-icons"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_peso_final" step="0.01" type="number" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Peso Final" %}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary mr-1 mb-1">
+                                                {% trans "Cancelar" %}
+                                            </a>
+                                            <button id="btnGuardar" type="button" onclick="ValidarFinalizarTrabajo()" class="btn btn-primary mr-1 mb-1">{% trans " Listo" %}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmEnvioProducto">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Enviar producto" %}</h5>
+                                <br>
+                                <form method="POST" id="frmEnvioProducto" name="EnvioProducto" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_comp_envio_ta" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Comprobante de envío" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_costo_envio" step="0.01" type="number" class="form-control">
+                                                <label
+                                                    id="lbl_costo_envio" for="email-id-column">{% trans "Costo envío" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="enviarProducto()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmRecibeProducto">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Recibir producto" %}</h5>
+                                <br>
+                                <form method="POST" id="frmRecibeProducto" name="RecibeProducto" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmCargarDocumentosOp">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Cargar documentos" %}</h5>
+                                <br>
+                                <form method="POST" id="frmCargarDocumentosOp" name="CargarDocumentosOp" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            {% if user.config_gen.cta_por_pagar %}
+                                            <div class="form-label-group">
+                                                <input id="id_cta_por_pagar" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Cuenta por pagar" %}</label>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            {% if user.config_gen.orden_compra %}
+                                            <div class="form-label-group">
+                                                <input id="id_orden_compra" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Órden de compra" %}</label>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="cargarDocumentosOp()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmCargarDocumentosTa">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Cargar documentos" %}</h5>
+                                <br>
+                                <form method="POST" id="frmCargarDocumentosTa" name="CargarDocumentosTa" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_factura_taller" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Factura taller" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="cargarDocumentosTa()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmDevolucionProducto">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Devolver producto" %}</h5>
+                                <br>
+                                <form method="POST" id="frmDevolucionProducto" name="DevolucionProducto" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-label-group">
+                                                <textarea class="form-control" name="devolver_observacion" id="id_devolver_observacion" rows="3"></textarea>
+                                                <label
+                                                    for="email-id-column">{% trans "Observación" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="devolverProducto()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmVentaOrden">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Finalizar órden" %}</h5>
+                                <br>
+                                <form method="POST" id="frmVentaOrden" name="VentaOrden" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-label-group">
+                                                <input id="id_factura_vta" type="file" class="form-control">
+                                                <label
+                                                    for="email-id-column">{% trans "Factura de venta" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-label-group">
+                                                <textarea class="form-control" name="obs_venta" id="id_obs_venta" rows="2"></textarea>
+                                                <label
+                                                    for="email-id-column">{% trans "Observación" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="finalizarOrden()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" id="id_div_frmFinalizarSinVenta">
+                <div class="row px-2 mb-4">
+                    <div class="col-12 px-0">
+                        <div class="card shadow-none border rounded">
+                            <div class="card-body quill-wrapper">
+                                <h5>{% trans "Finalizar sin venta" %}</h5>
+                                <br>
+                                <form method="POST" id="frmFinalizarSinVenta" name="FinalizarSinVenta" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-label-group">
+                                                <textarea class="form-control" name="sin_venta_observacion" id="id_sin_venta_observacion" rows="3"></textarea>
+                                                <label
+                                                    for="email-id-column">{% trans "Observación" %}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-label-group">
+                                                <a href="{% url 'trn:ordenes_lista' %}" class="btn btn-light-secondary">
+                                                    {% trans "Cancelar" %}
+                                                </a>
+                                                <button type="button" onclick="finalizarSinVenta()" class="btn btn-primary">
+                                                    {% trans "Listo" %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('#fila_detalle_orden').append(divFormularios);
+
+        divAccionesUsuario =
+        ` 
+            <div class="col-12 d-flex justify-content-end mb-1" id="id_accion_usuario">
+                <a href="{% url 'trn:ordenes_lista' %}" id="btnCancelar" type="button" class="btn btn-light-secondary">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">{% trans "Atrás" %}</span>
+                </a>
+            </div>
+        `;
+
+        $('#fila_detalle_orden').append(divAccionesUsuario);
+
+        if(parseInt('{{ user.id }}') === orden.usuario || parseInt('{{ user.taller_id }}') === orden.taller){
+            let botonAccionUsuario = ``;
+            if(orden.estado === 12 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO OPERACIONES'){
+                botonAccionUsuario =
+                `
+                    <button id="btnEntregaMaterial" type="button" onclick="mostrarFormulario('frmEnvioMaterial', 'btnEntregaMaterial', 'btnEntregaMaterial')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Entrega de material" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 13 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                botonAccionUsuario =
+                `
+                    <button id="btnRecibeMaterial" type="button" onclick="mostrarFormulario('frmRecibeMaterial', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Recibir material" %}</span>
+                    </button>
+                    <button id="btnAnulaOrden" type="button" onclick="mostrarFormulario('frmAnulaOrden', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Anular Órden" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 20 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                botonAccionUsuario =
+                `
+                    <button id="btnIniciarTrabajo" type="button" onclick="iniciarTrabajo(14)" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Iniciar Trabajo" %}</span>
+                    </button>
+                    <button id="btnAnulaOrden" type="button" onclick="mostrarFormulario('frmAnulaOrden', 'btnRecibeMaterial', 'btnAnulaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Anular Órden" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 14 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                botonAccionUsuario =
+                `
+                    <button id="btnFinalizaTrabajo" type="button" onclick="mostrarFormulario('frmFinalizarTrabajo', 'btnFinalizaTrabajo', 'btnFinalizaTrabajo')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Finalizar trabajo" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 15 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                botonAccionUsuario =
+                `
+                    <button id="btnEnviaProducto" type="button" onclick="mostrarFormulario('frmEnvioProducto', 'btnEnviaProducto', 'btnEnviaProducto')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Enviar producto" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 16 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO OPERACIONES'){
+                botonAccionUsuario =
+                `
+                    <button id="btnRecibeProducto" type="button" onclick="recibirProducto()" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Recibir producto" %}</span>
+                    </button>
+                    <button id="btnDevolverProducto" type="button" onclick="mostrarFormulario('frmDevolucionProducto', 'btnRecibeProducto', 'btnDevolverProducto')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Devolver producto" %}</span>
+                    </button>
+                `
+            }
+            if(orden.estado === 17 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO OPERACIONES'){
+                botonAccionUsuario = ``;
+                if(('{{ user.config_gen.cta_por_pagar }}'.toLowerCase() === 'true' && !orden.cta_por_pagar) || ('{{ user.config_gen.orden_compra }}'.toLowerCase() === 'true' && !orden.orden_compra)){
+                    botonAccionUsuario += 
+                    `
+                        <button id="btnCargaDocOp" type="button" onclick="mostrarFormulario('frmCargarDocumentosOp', 'btnCargaDocOp', 'btnCargaDocOp')" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-receipt d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Cargar documentos" %}</span>
+                        </button>
+                    `
+                }
+                botonAccionUsuario +=
+                `
+                    <button id="btnVentaOrden" type="button" onclick="mostrarFormulario('frmVentaOrden', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-receipt d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Producto vendido" %}</span>
+                    </button>
+                    <button id="btnFinalizaOrden" type="button" onclick="mostrarFormulario('frmFinalizarSinVenta', 'btnVentaOrden', 'btnFinalizaOrden')" name="aceptar" class="btn btn-primary ml-1">
+                        <i class="bx bx-shopping-bag d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">{% trans "Producto no vendido" %}</span>
+                    </button>
+                `;
+            }
+            if(orden.estado === 17 && '{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER'){
+                if('{{ orden.usuario.config_gen.factura_taller }}'.toLowerCase() === 'true' && !orden.factura_taller){
+                    botonAccionUsuario += 
+                        `<button id="btnCargaFactTa" type="button" onclick="mostrarFormulario('frmCargarDocumentosTa', 'btnCargaFactTa', 'btnCargaFactTa')" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-receipt d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Cargar factura" %}</span>
+                        </button>
+                    `
+                }
+            }
+            $('#id_accion_usuario').append(botonAccionUsuario);
+        }
+        
+        $('#frmEnvioMaterial').hide();
+        $('#frmRecibeMaterial').hide();
+        $('#frmAnulaOrden').hide();
+        $('#frmEnvioProducto').hide();
+        $('#frmDevolucionProducto').hide();
+        $('#frmVentaOrden').hide();
+        $('#frmFinalizarTrabajo').hide();
+        $('#frmFinalizarSinVenta').hide()
+        $('#frmRecibeProducto').hide();
+        $('#frmCargarDocumentosTa').hide();
+        $('#frmCargarDocumentosOp').hide();
+        $('#id_div_frmEnvioMaterial').hide();
+        $('#id_div_frmRecibeMaterial').hide();
+        $('#id_div_frmAnulaOrden').hide();
+        $('#id_div_frmFinalizarTrabajo').hide();
+        $('#id_div_frmEnvioProducto').hide();
+        $('#id_div_frmDevolucionProducto').hide();
+        $('#id_div_frmVentaOrden').hide();
+        $('#id_div_frmFinalizarSinVenta').hide();
+        $('#id_div_frmRecibeProducto').hide();
+        $('#id_div_frmCargarDocumentosOp').hide();
+        $('#id_div_frmCargarDocumentosTa').hide();
+
+        $('#fec_mat_enviado').hide();
+        $('#fec_proceso').hide();
+        $('#fec_trab_fin').hide();
+        $('#fec_prod_enviado').hide();
+        $('#fec_prod_recibido').hide();
+        $('#fec_finalizado').hide();
+
+        email_app_details = $(".email-app-details");
+        email_app_details.toggleClass('show');
+    }
+
+    function ocultarDetalles(){
+        email_app_details = $(".email-app-details");
+        email_app_details.removeClass('show');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,1801 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Views ctg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Forms ctg" href="ctg_forms.html" />
+    <link rel="prev" title="URLs ctg" href="ctg_urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Views ctg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vista-divisioneslistaview">Vista DivisionesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-divisionescrearview">Vista DivisionesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-divisioneseditarview">Vista DivisionesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizardivisionmodal">Vista ActualizarDivisionModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-get">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-post">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-busquedadivisionesapiview">Vista BusquedaDivisionesApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-categoriaslistaview">Vista CategoriasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-categoriascrearview">Vista CategoriasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-categoriaseditarview">Vista CategoriasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizarcategoriamodal">Vista ActualizarCategoriaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-busquedacategoriasapiview">Vista BusquedaCategoriasApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-tallaslistaview">Vista TallasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-tallascrearview">Vista TallasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-tallaseditarview">Vista TallasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizartallamodal">Vista ActualizarTallaModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-coloreslistaview">Vista ColoresListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-colorescrearview">Vista ColoresCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-coloreseditarview">Vista ColoresEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizarcolormodal">Vista ActualizarColorModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-adicionaleslistaview">Vista AdicionalesListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-adicionalesmodallistaview">Vista AdicionalesModalListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-adicionalescrearview">Vista AdicionalesCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detalleadicionalcrearview">Vista DetalleAdicionalCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-adicionaleseditarview">Vista AdicionalesEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizaradicionalmodal">Vista ActualizarAdicionalModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-adicionaldetalleview">Vista adicionalDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-piedraslistaview">Vista PiedrasListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-piedrasmodallistaview">Vista PiedrasModalListaView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-piedrascrearview">Vista PiedrasCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-piedraseditarview">Vista PiedrasEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallepiedracrearview">Vista DetallePiedraCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallepiedracategoriasview">Vista DetallePiedraCategoriasView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallepiedraagregarview">Vista DetallePiedraAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallepiedraeditarview">Vista DetallePiedraEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-piedradetalleview">Vista PiedraDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizardetallepiedramodal">Vista ActualizarDetallePiedraModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallepiedraeliminarview">Vista DetallePiedraEliminarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizarpiedramodal">Vista ActualizarPiedraModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-productoslistaview">Vista ProductosListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-servicioslistaview">Vista ServiciosListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-gramolistaview">Vista GramoListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-busquedaitemsapiview">Vista BusquedaItemsApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemstodosapiview">Vista ItemsTodosApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemsportallerapiview">Vista ItemsPorTallerApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemspordivisionapiview">Vista ItemsPorDivisionApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemsporcategoriaapiview">Vista ItemsPorCategoriaApiView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-fijolistaview">Vista FijoListaView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemscrearview">Vista ItemsCrearView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemseditarview">Vista ItemsEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallecrearview">Vista DetalleCrearView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detalleeditarview">Vista DetalleEditarView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detalleeliminarview">Vista DetalleEliminarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-actualizardetalleitemmodal">Vista ActualizarDetalleItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detallecoloresagregarview">Vista DetalleColoresAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-detalleagregarview">Vista DetalleAgregarView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id40">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-itemdetalleview">Vista ItemDetalleView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id42">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-inactivaritemmodal">Vista InactivarItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id43">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-activaritemmodal">Vista ActivarItemModal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id45">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-contarcotizacion">Vista ContarCotizacion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id47">Método GET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id48">Método POST</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-busquedadetalle">Vista BusquedaDetalle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Método GET</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vista-busquedadetallepiedra">Vista BusquedaDetallePiedra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id50">Método GET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Views ctg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ctg/ctg_views.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="views-ctg">
+<h1><strong>Views ctg</strong><a class="headerlink" href="#views-ctg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>ctg</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">views.py</span></code>. Donde se encuentran las vistas de la aplicación ctg, se detalla a continuación cada vista.</p>
+<div class="section" id="vista-divisioneslistaview">
+<h2>Vista DivisionesListaView<a class="headerlink" href="#vista-divisioneslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-divisiones-lista"><span class="std std-ref">Template divisiones_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_divisiones</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-divisiones"><span class="std std-ref">Modelo Divisiones</span></a> obteniendo el listado de las divisiones filtrando por taller.</p>
+</div>
+<div class="section" id="vista-divisionescrearview">
+<h2>Vista DivisionesCrearView<a class="headerlink" href="#vista-divisionescrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-divisiones-form"><span class="std std-ref">Template divisiones_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_divisiones</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-divisiones"><span class="std std-ref">Modelo Divisiones</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-divisionform"><span class="std std-ref">Formulario DivisionForm</span></a>. Esta vista crea un nuevo registro de división para un taller determinado.</p>
+</div>
+<div class="section" id="vista-divisioneseditarview">
+<h2>Vista DivisionesEditarView<a class="headerlink" href="#vista-divisioneseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-divisiones-form"><span class="std std-ref">Template divisiones_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_divisiones</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-divisiones"><span class="std std-ref">Modelo Divisiones</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-divisionform"><span class="std std-ref">Formulario DivisionForm</span></a>. Esta vista actualiza los valores de una división determinada.</p>
+</div>
+<div class="section" id="vista-actualizardivisionmodal">
+<h2>Vista ActualizarDivisionModal<a class="headerlink" href="#vista-actualizardivisionmodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-division-modal"><span class="std std-ref">Template actualizar_division_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_divisiones</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar una división, cuenta con las siguientes acciones:</p>
+<div class="section" id="metodo-get">
+<h3>Método GET<a class="headerlink" href="#metodo-get" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>division</p></td>
+<td><p>Objeto de la división que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="metodo-post">
+<h3>Método POST<a class="headerlink" href="#metodo-post" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar una división:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-busquedadivisionesapiview">
+<h2>Vista BusquedaDivisionesApiView<a class="headerlink" href="#vista-busquedadivisionesapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de las divisiones de un taller determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id1">
+<h3>Método GET<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>taller</p></td>
+<td><p>Id del taller del cual se requieren las divisiones.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenecen las divisiones que se requieren.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-divisionesserializer"><span class="std std-ref">Serializador DivisionesSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-categoriaslistaview">
+<h2>Vista CategoriasListaView<a class="headerlink" href="#vista-categoriaslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-categorias-lista"><span class="std std-ref">Template categorias_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_categorias</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-categorias"><span class="std std-ref">Modelo Categorias</span></a> obteniendo el listado de las categorías filtrando por taller.</p>
+</div>
+<div class="section" id="vista-categoriascrearview">
+<h2>Vista CategoriasCrearView<a class="headerlink" href="#vista-categoriascrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-categorias-form"><span class="std std-ref">Template categorias_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_categorias</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-categorias"><span class="std std-ref">Modelo Categorias</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-categoriaform"><span class="std std-ref">Formulario CategoriaForm</span></a>. Esta vista crea un nuevo registro de categoría para un taller determinado.</p>
+</div>
+<div class="section" id="vista-categoriaseditarview">
+<h2>Vista CategoriasEditarView<a class="headerlink" href="#vista-categoriaseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-categorias-form"><span class="std std-ref">Template categorias_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_categorias</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-categorias"><span class="std std-ref">Modelo Categorias</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-categoriaform"><span class="std std-ref">Formulario CategoriaForm</span></a>. Esta vista actualiza los valores de una categoría determinada.</p>
+</div>
+<div class="section" id="vista-actualizarcategoriamodal">
+<h2>Vista ActualizarCategoriaModal<a class="headerlink" href="#vista-actualizarcategoriamodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-categoria-modal"><span class="std std-ref">Template actualizar_categoria_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_categorias</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar una categoría, cuenta con las siguientes acciones:</p>
+<div class="section" id="id2">
+<h3>Método GET<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categoria</p></td>
+<td><p>Objeto de la categoría que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h3>Método POST<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar una categoría:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-busquedacategoriasapiview">
+<h2>Vista BusquedaCategoriasApiView<a class="headerlink" href="#vista-busquedacategoriasapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de las categorías de un taller determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id4">
+<h3>Método GET<a class="headerlink" href="#id4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>division</p></td>
+<td><p>Id de la división de la cual se requieren las categorías.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenecen las categorías que se requieren.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-categoriasserializer"><span class="std std-ref">Serializador CategoriasSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-tallaslistaview">
+<h2>Vista TallasListaView<a class="headerlink" href="#vista-tallaslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-tallas-lista"><span class="std std-ref">Template tallas_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_tallas</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-tallas"><span class="std std-ref">Modelo Tallas</span></a> obteniendo el listado de las tallas filtrando por taller.</p>
+</div>
+<div class="section" id="vista-tallascrearview">
+<h2>Vista TallasCrearView<a class="headerlink" href="#vista-tallascrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-tallas-form"><span class="std std-ref">Template tallas_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_tallas</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-tallas"><span class="std std-ref">Modelo Tallas</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-tallasform"><span class="std std-ref">Formulario TallasForm</span></a>. Esta vista crea un nuevo registro de talla para un taller determinado.</p>
+</div>
+<div class="section" id="vista-tallaseditarview">
+<h2>Vista TallasEditarView<a class="headerlink" href="#vista-tallaseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-tallas-form"><span class="std std-ref">Template tallas_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_tallas</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-tallas"><span class="std std-ref">Modelo Tallas</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-tallasform"><span class="std std-ref">Formulario TallasForm</span></a>. Esta vista actualiza los valores de una talla determinada.</p>
+</div>
+<div class="section" id="vista-actualizartallamodal">
+<h2>Vista ActualizarTallaModal<a class="headerlink" href="#vista-actualizartallamodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-talla-modal"><span class="std std-ref">Template actualizar_talla_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_tallas</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar una talla, cuenta con las siguientes acciones:</p>
+<div class="section" id="id5">
+<h3>Método GET<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>talla</p></td>
+<td><p>Objeto de la talla que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h3>Método POST<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar una talla:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-coloreslistaview">
+<h2>Vista ColoresListaView<a class="headerlink" href="#vista-coloreslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-colores-lista"><span class="std std-ref">Template colores_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_colores</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-colores"><span class="std std-ref">Modelo Colores</span></a> obteniendo el listado de los colores filtrando por taller.</p>
+</div>
+<div class="section" id="vista-colorescrearview">
+<h2>Vista ColoresCrearView<a class="headerlink" href="#vista-colorescrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-colores-form"><span class="std std-ref">Template colores_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_colores</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-colores"><span class="std std-ref">Modelo Colores</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-coloresform"><span class="std std-ref">Formulario ColoresForm</span></a>. Esta vista crea un nuevo registro de color para un taller determinado.</p>
+</div>
+<div class="section" id="vista-coloreseditarview">
+<h2>Vista ColoresEditarView<a class="headerlink" href="#vista-coloreseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-colores-form"><span class="std std-ref">Template colores_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_colores</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-colores"><span class="std std-ref">Modelo Colores</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-coloresform"><span class="std std-ref">Formulario ColoresForm</span></a>. Esta vista actualiza los valores de un color determinado.</p>
+</div>
+<div class="section" id="vista-actualizarcolormodal">
+<h2>Vista ActualizarColorModal<a class="headerlink" href="#vista-actualizarcolormodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-color-modal"><span class="std std-ref">Template actualizar_color_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_colores</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar un color, cuenta con las siguientes acciones:</p>
+<div class="section" id="id7">
+<h3>Método GET<a class="headerlink" href="#id7" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Objeto del color que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h3>Método POST<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar un color:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-adicionaleslistaview">
+<h2>Vista AdicionalesListaView<a class="headerlink" href="#vista-adicionaleslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-adicionales-lista"><span class="std std-ref">Template adicionales_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_adicionales</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-adicionales"><span class="std std-ref">Modelo Adicionales</span></a> obteniendo el listado de los adicionales filtrando por taller.</p>
+</div>
+<div class="section" id="vista-adicionalesmodallistaview">
+<h2>Vista AdicionalesModalListaView<a class="headerlink" href="#vista-adicionalesmodallistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-adicional-agregar-modal"><span class="std std-ref">Template adicional_agregar_modal</span></a>. Esta vista hereda de <a class="reference internal" href="#vista-adicionaleslistaview"><span class="std std-ref">Vista AdicionalesListaView</span></a>, con esta vista se obteniene el listado de los adicionales pertenecientes a una categoría y un taller específico.</p>
+</div>
+<div class="section" id="vista-adicionalescrearview">
+<h2>Vista AdicionalesCrearView<a class="headerlink" href="#vista-adicionalescrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-adicionales-form"><span class="std std-ref">Template adicionales_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_adicionales</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-adicionales"><span class="std std-ref">Modelo Adicionales</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-adicionalesform"><span class="std std-ref">Formulario AdicionalesForm</span></a>. Esta vista crea un nuevo registro de adicional para un taller determinado.</p>
+</div>
+<div class="section" id="vista-detalleadicionalcrearview">
+<h2>Vista DetalleAdicionalCrearView<a class="headerlink" href="#vista-detalleadicionalcrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-adicional-form"><span class="std std-ref">Template detalles_adicional_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_adicionales</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar las categorías en que estará disponible un adicional determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id9">
+<h3>Método GET<a class="headerlink" href="#id9" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias_lista</p></td>
+<td><p>Listado de categorías que pertenecen a un taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-adicionalesform"><span class="std std-ref">Formulario AdicionalesForm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>adicional</p></td>
+<td><p>Objeto del adicional al cual se le resgistran las categorías en que estará disponible.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categorias_adicional_lista</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías registradas para el adicional.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h3>Método POST<a class="headerlink" href="#id10" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para registrar las categorías en que estará disponible un adicional:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias[]</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías que se registran para el adicional.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-adicionaleseditarview">
+<h2>Vista AdicionalesEditarView<a class="headerlink" href="#vista-adicionaleseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-adicionales-form"><span class="std std-ref">Template adicionales_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_adicionales</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-adicionales"><span class="std std-ref">Modelo Adicionales</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-adicionalesform"><span class="std std-ref">Formulario AdicionalesForm</span></a>. Esta vista actualiza los valores de un adicional determinado.</p>
+</div>
+<div class="section" id="vista-actualizaradicionalmodal">
+<h2>Vista ActualizarAdicionalModal<a class="headerlink" href="#vista-actualizaradicionalmodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-adicional-modal"><span class="std std-ref">Template actualizar_adicional_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_adicionales</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar un adicional, cuenta con las siguientes acciones:</p>
+<div class="section" id="id11">
+<h3>Método GET<a class="headerlink" href="#id11" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adicional</p></td>
+<td><p>Objeto del adicional que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id12">
+<h3>Método POST<a class="headerlink" href="#id12" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar un adicional:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-adicionaldetalleview">
+<h2>Vista adicionalDetalleView<a class="headerlink" href="#vista-adicionaldetalleview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-adicional-modal"><span class="std std-ref">Template detalle_adicional_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_adicionales</span></code> respectivamente para acceder a la misma, obtiene la informaciónde un adicional en específico, cuenta con las siguientes acciones:</p>
+<div class="section" id="id13">
+<h3>Método GET<a class="headerlink" href="#id13" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adicional</p></td>
+<td><p>Objeto del adicional que se va a modificar de ser el caso.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categorias</p></td>
+<td><p>Listado de categorías en la que está disponible el adicional.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-piedraslistaview">
+<h2>Vista PiedrasListaView<a class="headerlink" href="#vista-piedraslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-piedras-lista"><span class="std std-ref">Template piedras_lista</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_piedras</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.ListView</span></code> la cual afecta el <a class="reference internal" href="ctg_models.html#modelo-piedras"><span class="std std-ref">Modelo Piedras</span></a> obteniendo el listado de las piedras filtrando por taller.</p>
+</div>
+<div class="section" id="vista-piedrasmodallistaview">
+<h2>Vista PiedrasModalListaView<a class="headerlink" href="#vista-piedrasmodallistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-piedra-agregar-modal"><span class="std std-ref">Template piedra_agregar_modal</span></a>. Esta vista hereda de <a class="reference internal" href="#vista-piedraslistaview"><span class="std std-ref">Vista PiedrasListaView</span></a>, con esta vista se obteniene el listado de las piedras pertenecientes a una categoría y un taller específico.</p>
+</div>
+<div class="section" id="vista-piedrascrearview">
+<h2>Vista PiedrasCrearView<a class="headerlink" href="#vista-piedrascrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-piedras-form"><span class="std std-ref">Template piedras_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_piedras</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-piedras"><span class="std std-ref">Modelo Piedras</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-piedrasform"><span class="std std-ref">Formulario PiedrasForm</span></a>. Esta vista crea un nuevo registro de piedra para un taller determinado.</p>
+</div>
+<div class="section" id="vista-piedraseditarview">
+<h2>Vista PiedrasEditarView<a class="headerlink" href="#vista-piedraseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-piedras-form"><span class="std std-ref">Template piedras_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-piedras"><span class="std std-ref">Modelo Piedras</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-piedrasform"><span class="std std-ref">Formulario PiedrasForm</span></a>. Esta vista actualiza los valores de una piedra determinada.</p>
+</div>
+<div class="section" id="vista-detallepiedracrearview">
+<h2>Vista DetallePiedraCrearView<a class="headerlink" href="#vista-detallepiedracrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-piedra-form"><span class="std std-ref">Template detalles_piedra_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_piedras</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id14">
+<h3>Método GET<a class="headerlink" href="#id14" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias_lista</p></td>
+<td><p>Listado de categorías que pertenecen a un taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-piedrasform"><span class="std std-ref">Formulario PiedrasForm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen a la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra que se está consultando.</p></td>
+</tr>
+<tr class="row-even"><td><p>num_detalles</p></td>
+<td><p>Cantidad de detalles que posee la piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detallepiedracategoriasview">
+<h2>Vista DetallePiedraCategoriasView<a class="headerlink" href="#vista-detallepiedracategoriasview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-categorias-piedra-form"><span class="std std-ref">Template detalles_categorias_piedra_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar las categorías en que estará disponible una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id15">
+<h3>Método GET<a class="headerlink" href="#id15" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias_lista</p></td>
+<td><p>Listado de categorías que pertenecen a un taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-piedrasform"><span class="std std-ref">Formulario PiedrasForm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen a la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra a la cual se le resgistran las categorías en que estará disponible.</p></td>
+</tr>
+<tr class="row-even"><td><p>num_detalles</p></td>
+<td><p>Cantidad de detalles que posee la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categorias_piedra_lista</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías registradas para la piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id16">
+<h3>Método POST<a class="headerlink" href="#id16" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para registrar las categorías en que estará disponible un adicional:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>categorias[]</p></td>
+<td><p>Arreglo que contiene los id’s de las categorías que se registran para la piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detallepiedraagregarview">
+<h2>Vista DetallePiedraAgregarView<a class="headerlink" href="#vista-detallepiedraagregarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-piedra-agregar-modal"><span class="std std-ref">Template detalle_piedra_agregar_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_piedras</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar un detalle para una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id17">
+<h3>Método GET<a class="headerlink" href="#id17" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-detallespiedraform"><span class="std std-ref">Formulario DetallesPiedraForm</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra a la cual se le registrarán los detalles.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h3>Método POST<a class="headerlink" href="#id18" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para registrar un nuevo detalle para una piedra determinada:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>Medida del detalle para la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>costo</p></td>
+<td><p>Costo del detalle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detallepiedraeditarview">
+<h2>Vista DetallePiedraEditarView<a class="headerlink" href="#vista-detallepiedraeditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-piedra-editar-modal"><span class="std std-ref">Template detalle_piedra_editar_modal</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-detallepiedras"><span class="std std-ref">Modelo DetallePiedras</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-detallespiedraform"><span class="std std-ref">Formulario DetallesPiedraForm</span></a>. Esta vista actualiza los valores de un detalle perteneciente a una piedra determinada.</p>
+</div>
+<div class="section" id="vista-piedradetalleview">
+<h2>Vista PiedraDetalleView<a class="headerlink" href="#vista-piedradetalleview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-piedra-modal"><span class="std std-ref">Template detalle_piedra_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_piedras</span></code> respectivamente para acceder a la misma, obtiene la información y detalles de una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id19">
+<h3>Método GET<a class="headerlink" href="#id19" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen a la piedra.</p></td>
+</tr>
+<tr class="row-even"><td><p>categorias</p></td>
+<td><p>Listado de categorías en que está disponible la piedra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-actualizardetallepiedramodal">
+<h2>Vista ActualizarDetallePiedraModal<a class="headerlink" href="#vista-actualizardetallepiedramodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-detalle-piedra-modal"><span class="std std-ref">Template actualizar_detalle_piedra_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar un detalle de una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id20">
+<h3>Método GET<a class="headerlink" href="#id20" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Objeto del detalle que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id21">
+<h3>Método POST<a class="headerlink" href="#id21" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar un detalle de piedra:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detallepiedraeliminarview">
+<h2>Vista DetallePiedraEliminarView<a class="headerlink" href="#vista-detallepiedraeliminarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-piedra-form"><span class="std std-ref">Template detalles_piedra_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id22">
+<h3>Método POST<a class="headerlink" href="#id22" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina de la base de datos un detalle perteneciente a una piedra en específico, recibe como parámetro el id del detalle a eliminar.</p>
+</div>
+</div>
+<div class="section" id="vista-actualizarpiedramodal">
+<h2>Vista ActualizarPiedraModal<a class="headerlink" href="#vista-actualizarpiedramodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-piedra-modal"><span class="std std-ref">Template actualizar_piedra_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_piedras</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id23">
+<h3>Método GET<a class="headerlink" href="#id23" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>piedra</p></td>
+<td><p>Objeto de la piedra que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id24">
+<h3>Método POST<a class="headerlink" href="#id24" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar una piedra:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-productoslistaview">
+<h2>Vista ProductosListaView<a class="headerlink" href="#vista-productoslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-productos-lista"><span class="std std-ref">Template productos_lista</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, obtiene un listado de ítems de tipo productos con precio fijo y productos con precio gramo, cuenta con las siguientes acciones:</p>
+<div class="section" id="id25">
+<h3>Método GET<a class="headerlink" href="#id25" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>precio_fijo</p></td>
+<td><p>Listado de ítems de tipo producto con precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_gramo</p></td>
+<td><p>Listado de ítems de tipo producto con precio gramo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-servicioslistaview">
+<h2>Vista ServiciosListaView<a class="headerlink" href="#vista-servicioslistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-servicios-lista"><span class="std std-ref">Template servicios_lista</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, obtiene un listado de ítems de tipo servicio con precio fijo y servicio con precio gramo, cuenta con las siguientes acciones:</p>
+<div class="section" id="id26">
+<h3>Método GET<a class="headerlink" href="#id26" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>precio_fijo</p></td>
+<td><p>Listado de ítems de tipo servicio con precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>precio_gramo</p></td>
+<td><p>Listado de ítems de tipo servicio con precio gramo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-gramolistaview">
+<h2>Vista GramoListaView<a class="headerlink" href="#vista-gramolistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-catalogo-gramo"><span class="std std-ref">Template catalogo_gramo</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, obtiene un listado de ítems de tipo producto con precio gramo y servicio con precio gramo, cuenta con las siguientes acciones:</p>
+<div class="section" id="id27">
+<h3>Método GET<a class="headerlink" href="#id27" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>productos</p></td>
+<td><p>Listado de ítems de tipo producto con precio gramo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>servicios</p></td>
+<td><p>Listado de ítems de tipo servicio con precio gramo.</p></td>
+</tr>
+<tr class="row-even"><td><p>talleres</p></td>
+<td><p>Listado de talleres pertenecientes al país del usuario que consulta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-busquedaitemsapiview">
+<h2>Vista BusquedaItemsApiView<a class="headerlink" href="#vista-busquedaitemsapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la informacion de un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id28">
+<h3>Método GET<a class="headerlink" href="#id28" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clave</p></td>
+<td><p>Texto de búsqueda ingresado por el usuario que debe coincidir con la descripción del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenece el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-itemsserializer"><span class="std std-ref">Serializador ItemsSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-itemstodosapiview">
+<h2>Vista ItemsTodosApiView<a class="headerlink" href="#vista-itemstodosapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de todos los ítems pertenecientes a un tipo de catálogo específico, cuenta con las siguientes acciones:</p>
+<div class="section" id="id29">
+<h3>Método GET<a class="headerlink" href="#id29" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenece los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-itemsserializer"><span class="std std-ref">Serializador ItemsSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-itemsportallerapiview">
+<h2>Vista ItemsPorTallerApiView<a class="headerlink" href="#vista-itemsportallerapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de todos los ítems pertenecientes a un taller específico, cuenta con las siguientes acciones:</p>
+<div class="section" id="id30">
+<h3>Método GET<a class="headerlink" href="#id30" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenece los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Id del taller al que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-itemsserializer"><span class="std std-ref">Serializador ItemsSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-itemspordivisionapiview">
+<h2>Vista ItemsPorDivisionApiView<a class="headerlink" href="#vista-itemspordivisionapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de todos los ítems pertenecientes a una división específica, cuenta con las siguientes acciones:</p>
+<div class="section" id="id31">
+<h3>Método GET<a class="headerlink" href="#id31" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenece los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>division</p></td>
+<td><p>Id de la división a la que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-itemsserializer"><span class="std std-ref">Serializador ItemsSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-itemsporcategoriaapiview">
+<h2>Vista ItemsPorCategoriaApiView<a class="headerlink" href="#vista-itemsporcategoriaapiview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la información de todos los ítems pertenecientes a una categoría específica, cuenta con las siguientes acciones:</p>
+<div class="section" id="id32">
+<h3>Método GET<a class="headerlink" href="#id32" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>El tipo de catálogo al que pertenece los ítems.</p></td>
+</tr>
+<tr class="row-odd"><td><p>categoria</p></td>
+<td><p>Id de la categoría a la que pertenecen los ítems.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-itemsserializer"><span class="std std-ref">Serializador ItemsSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-fijolistaview">
+<h2>Vista FijoListaView<a class="headerlink" href="#vista-fijolistaview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-catalogo-fijo"><span class="std std-ref">Template catalogo_fijo</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, obtiene un listado de ítems de tipo producto con precio fijo y servicio con precio fijo, cuenta con las siguientes acciones:</p>
+<div class="section" id="id33">
+<h3>Método GET<a class="headerlink" href="#id33" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>productos</p></td>
+<td><p>Listado de ítems de tipo producto con precio fijo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>servicios</p></td>
+<td><p>Listado de ítems de tipo servicio con precio fijo.</p></td>
+</tr>
+<tr class="row-even"><td><p>talleres</p></td>
+<td><p>Listado de talleres pertenecientes al país del usuario que consulta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-itemscrearview">
+<h2>Vista ItemsCrearView<a class="headerlink" href="#vista-itemscrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-items-form"><span class="std std-ref">Template items_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_items</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.CreateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-items"><span class="std std-ref">Modelo Items</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-itemsform"><span class="std std-ref">Formulario ItemsForm</span></a>. Esta vista crea un nuevo registro de ítem para un taller determinado.</p>
+</div>
+<div class="section" id="vista-itemseditarview">
+<h2>Vista ItemsEditarView<a class="headerlink" href="#vista-itemseditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-items-form"><span class="std std-ref">Template items_form</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_items</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-items"><span class="std std-ref">Modelo Items</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-itemsform"><span class="std std-ref">Formulario ItemsForm</span></a>. Esta vista actualiza los valores de un ítem determinado.</p>
+</div>
+<div class="section" id="vista-detallecrearview">
+<h2>Vista DetalleCrearView<a class="headerlink" href="#vista-detallecrearview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-form"><span class="std std-ref">Template detalles_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_items</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id34">
+<h3>Método GET<a class="headerlink" href="#id34" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>colores_lista</p></td>
+<td><p>Listado de colores que pertenecen a un taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-itemsform"><span class="std std-ref">Formulario ItemsForm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen al ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Objeto del ítem que se está consultando.</p></td>
+</tr>
+<tr class="row-even"><td><p>num_detalles</p></td>
+<td><p>Cantidad de detalles que posee el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detalleeditarview">
+<h2>Vista DetalleEditarView<a class="headerlink" href="#vista-detalleeditarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en clases que hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-editar-modal"><span class="std std-ref">Template detalle_editar_modal</span></a>. Esta vista hereda de <span class="xref std std-ref">Vista SinPermisos</span> para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_items</span></code> para acceder a la misma, también hereda de la clase genérica de Django <code class="docutils literal notranslate"><span class="pre">generic.UpdateView</span></code> la cual afecta el modelo <a class="reference internal" href="ctg_models.html#modelo-detalleitems"><span class="std std-ref">Modelo DetalleItems</span></a> mediante el uso del formulario <a class="reference internal" href="ctg_forms.html#formulario-detallesform"><span class="std std-ref">Formulario DetallesForm</span></a>. Esta vista actualiza los valores de un detalle perteneciente a un ítem determinado.</p>
+</div>
+<div class="section" id="vista-detalleeliminarview">
+<h2>Vista DetalleEliminarView<a class="headerlink" href="#vista-detalleeliminarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-form"><span class="std std-ref">Template detalles_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_items</span></code> respectivamente para acceder a la misma, cuenta con las siguientes acciones:</p>
+<div class="section" id="id35">
+<h3>Método POST<a class="headerlink" href="#id35" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Elimina de la base de datos un detalle perteneciente a un ítem en específico, recibe como parámetro el id del detalle a eliminar.</p>
+</div>
+</div>
+<div class="section" id="vista-actualizardetalleitemmodal">
+<h2>Vista ActualizarDetalleItemModal<a class="headerlink" href="#vista-actualizardetalleitemmodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-actualizar-detalle-item-modal"><span class="std std-ref">Template actualizar_detalle_item_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_items</span></code> respectivamente para acceder a la misma, realiza el proceso de activar o inactivar un detalle de un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id36">
+<h3>Método GET<a class="headerlink" href="#id36" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>detalle</p></td>
+<td><p>Objeto del detalle que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id37">
+<h3>Método POST<a class="headerlink" href="#id37" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para activar o inactivar un detalle de ítem:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>estado</p></td>
+<td><p>Su valor puede ser ACTIVO o INACTIVO según sea el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detallecoloresagregarview">
+<h2>Vista DetalleColoresAgregarView<a class="headerlink" href="#vista-detallecoloresagregarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalles-colores-form"><span class="std std-ref">Template detalles_colores_form</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_items</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar los colores en que estará disponible un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id38">
+<h3>Método GET<a class="headerlink" href="#id38" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>colores_lista</p></td>
+<td><p>Listado de colores que pertenecen a un taller determinado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-itemsform"><span class="std std-ref">Formulario ItemsForm</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen al ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Objeto del ítem al cual se le resgistran los colores en que estará disponible.</p></td>
+</tr>
+<tr class="row-even"><td><p>num_detalles</p></td>
+<td><p>Cantidad de detalles que posee el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>colores_item_lista</p></td>
+<td><p>Arreglo que contiene los id’s de los colores registrados para el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id39">
+<h3>Método POST<a class="headerlink" href="#id39" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para registrar los colores en que estará disponible un ítem:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>colores[]</p></td>
+<td><p>Arreglo que contiene los id’s de los colores que se registran para el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-detalleagregarview">
+<h2>Vista DetalleAgregarView<a class="headerlink" href="#vista-detalleagregarview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-agregar-modal"><span class="std std-ref">Template detalle_agregar_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.add_items</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar un detalle para un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id40">
+<h3>Método GET<a class="headerlink" href="#id40" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>form</p></td>
+<td><p>Instancia del <a class="reference internal" href="ctg_forms.html#formulario-detallesform"><span class="std std-ref">Formulario DetallesForm</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>Objeto del ítem al cual se le registrarán los detalles.</p></td>
+</tr>
+<tr class="row-even"><td><p>sin_talla</p></td>
+<td><p>Objeto que corresponde a la talla denominada SIN TALLA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tallas</p></td>
+<td><p>Listado de tallas que pertenecen a un taller determinado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id41">
+<h3>Método POST<a class="headerlink" href="#id41" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes datos en formato JSON para registrar un nuevo detalle para un ítem determinado:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>talla_min</p></td>
+<td><p>Talla mínima de fabricación del ítem (si tipo = 1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>talla_max</p></td>
+<td><p>Talla máxima de fabricación del ítem (si tipo = 1).</p></td>
+</tr>
+<tr class="row-even"><td><p>medida</p></td>
+<td><p>Medida de fabricación del ítem (si tipo = 2).</p></td>
+</tr>
+<tr class="row-odd"><td><p>peso_minimo</p></td>
+<td><p>Peso mínimo de fabricación del ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>peso_maximo</p></td>
+<td><p>Peso máximo de fabricación del ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cantidad_piedras</p></td>
+<td><p>Cantidad de piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>costo_piedras</p></td>
+<td><p>Costo de las piedras que posee el ítem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unidad_medida_id</p></td>
+<td><p>Id de la unidad de medida asignada al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>Identificador del tipo de guardado 1 para talla 2 para longitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-itemdetalleview">
+<h2>Vista ItemDetalleView<a class="headerlink" href="#vista-itemdetalleview" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-detalle-item-modal"><span class="std std-ref">Template detalle_item_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, obtiene la información y detalles de un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id42">
+<h3>Método GET<a class="headerlink" href="#id42" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Objeto del ítem que se consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>detalles</p></td>
+<td><p>Listado de detalles que pertenecen al ítem.</p></td>
+</tr>
+<tr class="row-even"><td><p>colores</p></td>
+<td><p>Listado de colores en que está disponible el ítem.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vista-inactivaritemmodal">
+<h2>Vista InactivarItemModal<a class="headerlink" href="#vista-inactivaritemmodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-inactivar-item-modal"><span class="std std-ref">Template inactivar_item_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_items</span></code> respectivamente para acceder a la misma, realiza el proceso de inactivar un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id43">
+<h3>Método GET<a class="headerlink" href="#id43" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Objeto del ítem que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id44">
+<h3>Método POST<a class="headerlink" href="#id44" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Cambia el estado del ítem seleccionado a INACTIVO, recibe el id del ítem a inactivar.</p>
+</div>
+</div>
+<div class="section" id="vista-activaritemmodal">
+<h2>Vista ActivarItemModal<a class="headerlink" href="#vista-activaritemmodal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-inactivar-item-modal"><span class="std std-ref">Template inactivar_item_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.change_items</span></code> respectivamente para acceder a la misma, realiza el proceso de activar un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id45">
+<h3>Método GET<a class="headerlink" href="#id45" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Objeto del ítem que se va a modificar de ser el caso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id46">
+<h3>Método POST<a class="headerlink" href="#id46" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Cambia el estado del ítem seleccionado a ACTIVO, recibe el id del ítem a activar.</p>
+</div>
+</div>
+<div class="section" id="vista-contarcotizacion">
+<h2>Vista ContarCotizacion<a class="headerlink" href="#vista-contarcotizacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista basada en funciones, hace el llamado al <a class="reference internal" href="ctg_templates.html#template-contar-cotizacion-modal"><span class="std std-ref">Template contar_cotizacion_modal</span></a>. Esta vista utiliza los decoradores <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> y <code class="docutils literal notranslate"><span class="pre">&#64;permission_required</span></code> propios de Django para validar si el usuario se encuentra autenticado y si cuenta con el permiso <code class="docutils literal notranslate"><span class="pre">ctg.view_items</span></code> respectivamente para acceder a la misma, realiza el proceso de registrar una nueva cotización de un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id47">
+<h3>Método GET<a class="headerlink" href="#id47" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Envía el siguiente contexto hacia el template:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Objeto del ítem que se cotiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id48">
+<h3>Método POST<a class="headerlink" href="#id48" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Crea un registro en el modelo <a class="reference internal" href="ctg_models.html#modelo-conteocotizaciones"><span class="std std-ref">Modelo ConteoCotizaciones</span></a>, recibe como parámetro el tipo de cotización que se realiza 1 si se cotiza por un cliente o 2 si se cotiza por una consulta de un empleado.</p>
+</div>
+</div>
+<div class="section" id="vista-busquedadetalle">
+<h2>Vista BusquedaDetalle<a class="headerlink" href="#vista-busquedadetalle" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la informacion de un detalle perteneciente a un ítem determinado, cuenta con las siguientes acciones:</p>
+<div class="section" id="id49">
+<h3>Método GET<a class="headerlink" href="#id49" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>Id del ítem al que pertenece el detalle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>medida</p></td>
+<td><p>Id del detalle del que se desea obtener la información.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-detallesserializer"><span class="std std-ref">Serializador DetallesSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+<div class="section" id="vista-busquedadetallepiedra">
+<h2>Vista BusquedaDetallePiedra<a class="headerlink" href="#vista-busquedadetallepiedra" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vista de tipo <code class="docutils literal notranslate"><span class="pre">APIView</span></code> un tipo de vista perteneciente a <code class="docutils literal notranslate"><span class="pre">rest_framework.views</span></code>. Se utiliza para obtener la informacion de un detalle perteneciente a una piedra determinada, cuenta con las siguientes acciones:</p>
+<div class="section" id="id50">
+<h3>Método GET<a class="headerlink" href="#id50" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_detalle</p></td>
+<td><p>Id del detalle de piedra del que se desea obtener la información.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para procesar los datos obtenidos se utiliza el <a class="reference internal" href="ctg_serializers.html#serializador-detallepiedraserializer"><span class="std std-ref">Serializador DetallePiedraSerializer</span></a>, luego se envía la respuesta al template.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ctg_forms.html" class="btn btn-neutral float-right" title="Forms ctg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ctg_urls.html" class="btn btn-neutral float-left" title="URLs ctg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

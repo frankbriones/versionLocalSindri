@@ -1,0 +1,896 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-23 08:32-0500\n"
+"PO-Revision-Date: 2019-09-23 09:07-0519\n"
+"Last-Translator: b'  <jmoran@orocash.ec>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.3\n"
+
+#: .\bases\templates\bases\login.html:24
+msgid "Bienvenido"
+msgstr "Bem-vindo"
+
+#: .\bases\templates\bases\login.html:48
+msgid "Ingrese su usuario"
+msgstr "Digite seu nome de usuário"
+
+#: .\bases\templates\bases\login.html:52
+msgid "Ingrese su contraseña"
+msgstr "Digite sua senha"
+
+#: .\bases\templates\bases\login.html:62
+msgid "Acceder"
+msgstr "Acesso"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:13
+msgid "Configuración permitir externo"
+msgstr "A configuração permite externo"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:30
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:30
+msgid "No existen usuarios a configurar"
+msgstr "Não há usuários para configurar"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:34
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:24
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:59
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:24
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:60
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:34
+#: .\usr\templates\usr\registro.html:27
+msgid "Usuario"
+msgstr "Nome de usuário"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:35
+#: .\cfg\templates\cfg\cfg_ext_form.html:62
+#: .\cfg\templates\cfg\cfg_ext_form.html:89 .\templates\base\base.html:128
+#: .\usr\templates\usr\registro.html:317
+msgid "Permitir externo"
+msgstr "Permitir externo"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:36
+#: .\cfg\templates\cfg\cfg_ext_form.html:63
+#: .\cfg\templates\cfg\cfg_ext_form.html:90
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:27
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:62
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:91
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:27
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:63
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:92
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:121
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:36
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:63
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:90
+#: .\ctg\templates\ctg\adicionales_lista.html:27
+#: .\ctg\templates\ctg\categorias_lista.html:31
+#: .\ctg\templates\ctg\colores_lista.html:27
+#: .\ctg\templates\ctg\productos_lista.html:37
+#: .\prv\templates\prv\proveedores_lista.html:32
+#: .\ubc\templates\ubc\ciudades_lista.html:31
+#: .\ubc\templates\ubc\localidades_lista.html:31
+#: .\ubc\templates\ubc\paises_lista.html:31
+#: .\ubc\templates\ubc\regiones_lista.html:31
+#: .\ubc\templates\ubc\sectores_lista.html:31
+#: .\ubc\templates\ubc\zonas_lista.html:31
+#: .\usr\templates\usr\roles_lista.html:32
+#: .\usr\templates\usr\tipo_usuarios_lista.html:29
+#: .\usr\templates\usr\usuarios_lista.html:33
+msgid "Acciones"
+msgstr "Acções"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:57
+#: .\cfg\templates\cfg\cfg_ext_form.html:84
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:55
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:84
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:56
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:85
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:114
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:57
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:84
+#: .\usr\templates\usr\roles_lista.html:23
+#: .\usr\templates\usr\roles_permisos_form.html:36
+msgid "No existen roles"
+msgstr "Não há papéis"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:61
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:88
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:89
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:61
+#: .\prv\templates\prv\proveedores_form.html:69
+#: .\prv\templates\prv\proveedores_lista.html:30
+#: .\ubc\templates\ubc\zonas_form.html:17
+msgid "Zona"
+msgstr "Zona"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:88
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:118
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:88
+#: .\ubc\templates\ubc\sectores_form.html:17
+#: .\usr\templates\usr\registro.html:132
+msgid "Sector"
+msgstr "Setor"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:129
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:131
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:161
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:129
+#: .\ctg\templates\ctg\adicionales_lista.html:55
+#: .\ctg\templates\ctg\categorias_lista.html:61
+#: .\ctg\templates\ctg\colores_lista.html:55
+#: .\ctg\templates\ctg\productos_lista.html:67
+#: .\prv\templates\prv\proveedores_lista.html:63
+#: .\ubc\templates\ubc\ciudades_lista.html:61
+#: .\ubc\templates\ubc\localidades_lista.html:61
+#: .\ubc\templates\ubc\paises_lista.html:61
+#: .\ubc\templates\ubc\regiones_lista.html:61
+#: .\ubc\templates\ubc\sectores_lista.html:61
+#: .\ubc\templates\ubc\zonas_lista.html:61
+#: .\usr\templates\usr\roles_lista.html:63
+#: .\usr\templates\usr\roles_permisos_form.html:103
+#: .\usr\templates\usr\usuarios_lista.html:65
+msgid "Procesando..."
+msgstr "Processando ..."
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:130
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:132
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:162
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:130
+#: .\ctg\templates\ctg\adicionales_lista.html:56
+#: .\ctg\templates\ctg\categorias_lista.html:62
+#: .\ctg\templates\ctg\colores_lista.html:56
+#: .\ctg\templates\ctg\productos_lista.html:68
+#: .\prv\templates\prv\proveedores_lista.html:64
+#: .\ubc\templates\ubc\ciudades_lista.html:62
+#: .\ubc\templates\ubc\localidades_lista.html:62
+#: .\ubc\templates\ubc\paises_lista.html:62
+#: .\ubc\templates\ubc\regiones_lista.html:62
+#: .\ubc\templates\ubc\sectores_lista.html:62
+#: .\ubc\templates\ubc\zonas_lista.html:62
+#: .\usr\templates\usr\roles_lista.html:64
+#: .\usr\templates\usr\roles_permisos_form.html:104
+#: .\usr\templates\usr\usuarios_lista.html:66
+msgid "Mostrar _MENU_ registros"
+msgstr "Mostrar _MENU_ registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:131
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:133
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:163
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:131
+#: .\ctg\templates\ctg\adicionales_lista.html:57
+#: .\ctg\templates\ctg\categorias_lista.html:63
+#: .\ctg\templates\ctg\colores_lista.html:57
+#: .\ctg\templates\ctg\productos_lista.html:69
+#: .\prv\templates\prv\proveedores_lista.html:65
+#: .\ubc\templates\ubc\ciudades_lista.html:63
+#: .\ubc\templates\ubc\localidades_lista.html:63
+#: .\ubc\templates\ubc\paises_lista.html:63
+#: .\ubc\templates\ubc\regiones_lista.html:63
+#: .\ubc\templates\ubc\sectores_lista.html:63
+#: .\ubc\templates\ubc\zonas_lista.html:63
+#: .\usr\templates\usr\roles_lista.html:65
+#: .\usr\templates\usr\roles_permisos_form.html:105
+#: .\usr\templates\usr\usuarios_lista.html:67
+msgid "No se encontraron resultados"
+msgstr "Nenhum resultado encontrado"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:132
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:134
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:164
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:132
+#: .\ctg\templates\ctg\adicionales_lista.html:58
+#: .\ctg\templates\ctg\categorias_lista.html:64
+#: .\ctg\templates\ctg\colores_lista.html:58
+#: .\ctg\templates\ctg\productos_lista.html:70
+#: .\prv\templates\prv\proveedores_lista.html:66
+#: .\ubc\templates\ubc\ciudades_lista.html:64
+#: .\ubc\templates\ubc\localidades_lista.html:64
+#: .\ubc\templates\ubc\paises_lista.html:64
+#: .\ubc\templates\ubc\regiones_lista.html:64
+#: .\ubc\templates\ubc\sectores_lista.html:64
+#: .\ubc\templates\ubc\zonas_lista.html:64
+#: .\usr\templates\usr\roles_lista.html:66
+#: .\usr\templates\usr\roles_permisos_form.html:106
+#: .\usr\templates\usr\usuarios_lista.html:68
+msgid "Ningún dato disponible en esta tabla"
+msgstr "Nenhum dado disponível nesta tabela"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:133
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:135
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:165
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:133
+#: .\ctg\templates\ctg\adicionales_lista.html:59
+#: .\ctg\templates\ctg\categorias_lista.html:65
+#: .\ctg\templates\ctg\colores_lista.html:59
+#: .\ctg\templates\ctg\productos_lista.html:71
+#: .\prv\templates\prv\proveedores_lista.html:67
+#: .\ubc\templates\ubc\ciudades_lista.html:65
+#: .\ubc\templates\ubc\localidades_lista.html:65
+#: .\ubc\templates\ubc\paises_lista.html:65
+#: .\ubc\templates\ubc\regiones_lista.html:65
+#: .\ubc\templates\ubc\sectores_lista.html:65
+#: .\ubc\templates\ubc\zonas_lista.html:65
+#: .\usr\templates\usr\roles_lista.html:67
+#: .\usr\templates\usr\roles_permisos_form.html:107
+#: .\usr\templates\usr\usuarios_lista.html:69
+msgid "Registros del _START_ al _END_ de un total de _TOTAL_ registros"
+msgstr "Registros de _START_ a _END_ de um total de _TOTAL_ registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:134
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:136
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:166
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:134
+#: .\ctg\templates\ctg\adicionales_lista.html:60
+#: .\ctg\templates\ctg\categorias_lista.html:66
+#: .\ctg\templates\ctg\colores_lista.html:60
+#: .\ctg\templates\ctg\productos_lista.html:72
+#: .\prv\templates\prv\proveedores_lista.html:68
+#: .\ubc\templates\ubc\ciudades_lista.html:66
+#: .\ubc\templates\ubc\localidades_lista.html:66
+#: .\ubc\templates\ubc\paises_lista.html:66
+#: .\ubc\templates\ubc\regiones_lista.html:66
+#: .\ubc\templates\ubc\sectores_lista.html:66
+#: .\ubc\templates\ubc\zonas_lista.html:66
+#: .\usr\templates\usr\roles_lista.html:68
+#: .\usr\templates\usr\roles_permisos_form.html:108
+#: .\usr\templates\usr\usuarios_lista.html:70
+msgid "Registros del 0 al 0 de un total de 0 registros"
+msgstr "Registros de 0 a 0 de um total de 0 registros"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:135
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:137
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:167
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:135
+#: .\ctg\templates\ctg\adicionales_lista.html:61
+#: .\ctg\templates\ctg\categorias_lista.html:67
+#: .\ctg\templates\ctg\colores_lista.html:61
+#: .\ctg\templates\ctg\productos_lista.html:73
+#: .\prv\templates\prv\proveedores_lista.html:69
+#: .\ubc\templates\ubc\ciudades_lista.html:67
+#: .\ubc\templates\ubc\localidades_lista.html:67
+#: .\ubc\templates\ubc\paises_lista.html:67
+#: .\ubc\templates\ubc\regiones_lista.html:67
+#: .\ubc\templates\ubc\sectores_lista.html:67
+#: .\ubc\templates\ubc\zonas_lista.html:67
+#: .\usr\templates\usr\roles_lista.html:69
+#: .\usr\templates\usr\roles_permisos_form.html:109
+#: .\usr\templates\usr\usuarios_lista.html:71
+msgid "(filtrado de un total de _MAX_ registros)"
+msgstr "(filtrando um total de _MAX_ registros)"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:137
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:139
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:169
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:137
+#: .\ctg\templates\ctg\adicionales_lista.html:63
+#: .\ctg\templates\ctg\categorias_lista.html:69
+#: .\ctg\templates\ctg\colores_lista.html:63
+#: .\ctg\templates\ctg\productos_lista.html:75
+#: .\prv\templates\prv\proveedores_lista.html:71
+#: .\ubc\templates\ubc\ciudades_lista.html:69
+#: .\ubc\templates\ubc\localidades_lista.html:69
+#: .\ubc\templates\ubc\paises_lista.html:69
+#: .\ubc\templates\ubc\regiones_lista.html:69
+#: .\ubc\templates\ubc\sectores_lista.html:69
+#: .\ubc\templates\ubc\zonas_lista.html:69
+#: .\usr\templates\usr\roles_lista.html:71
+#: .\usr\templates\usr\roles_permisos_form.html:111
+#: .\usr\templates\usr\usuarios_lista.html:73
+msgid "Buscar:"
+msgstr "Pesquisa:"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:140
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:142
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:172
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:140
+#: .\ctg\templates\ctg\adicionales_lista.html:66
+#: .\ctg\templates\ctg\categorias_lista.html:72
+#: .\ctg\templates\ctg\colores_lista.html:66
+#: .\ctg\templates\ctg\productos_lista.html:78
+#: .\prv\templates\prv\proveedores_lista.html:74
+#: .\ubc\templates\ubc\ciudades_lista.html:72
+#: .\ubc\templates\ubc\localidades_lista.html:72
+#: .\ubc\templates\ubc\paises_lista.html:72
+#: .\ubc\templates\ubc\regiones_lista.html:72
+#: .\ubc\templates\ubc\sectores_lista.html:72
+#: .\ubc\templates\ubc\zonas_lista.html:72
+#: .\usr\templates\usr\roles_lista.html:74
+#: .\usr\templates\usr\roles_permisos_form.html:114
+#: .\usr\templates\usr\usuarios_lista.html:76
+msgid "Cargando..."
+msgstr "Carregando dados..."
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:148
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:150
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:180
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:148
+#: .\ctg\templates\ctg\adicionales_lista.html:74
+#: .\ctg\templates\ctg\categorias_lista.html:80
+#: .\ctg\templates\ctg\colores_lista.html:74
+#: .\ctg\templates\ctg\productos_lista.html:86
+#: .\prv\templates\prv\proveedores_lista.html:82
+#: .\ubc\templates\ubc\ciudades_lista.html:80
+#: .\ubc\templates\ubc\localidades_lista.html:80
+#: .\ubc\templates\ubc\paises_lista.html:80
+#: .\ubc\templates\ubc\regiones_lista.html:80
+#: .\ubc\templates\ubc\sectores_lista.html:80
+#: .\ubc\templates\ubc\zonas_lista.html:80
+#: .\usr\templates\usr\roles_lista.html:82
+#: .\usr\templates\usr\roles_permisos_form.html:122
+#: .\usr\templates\usr\usuarios_lista.html:84
+msgid ": Activar para ordenar la columna de manera ascendente"
+msgstr ": Ative para classificar a coluna em ordem crescente"
+
+#: .\cfg\templates\cfg\cfg_ext_form.html:149
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:151
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:181
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:149
+#: .\ctg\templates\ctg\adicionales_lista.html:75
+#: .\ctg\templates\ctg\categorias_lista.html:81
+#: .\ctg\templates\ctg\colores_lista.html:75
+#: .\ctg\templates\ctg\productos_lista.html:87
+#: .\prv\templates\prv\proveedores_lista.html:83
+#: .\ubc\templates\ubc\ciudades_lista.html:81
+#: .\ubc\templates\ubc\localidades_lista.html:81
+#: .\ubc\templates\ubc\paises_lista.html:81
+#: .\ubc\templates\ubc\regiones_lista.html:81
+#: .\ubc\templates\ubc\sectores_lista.html:81
+#: .\ubc\templates\ubc\zonas_lista.html:81
+#: .\usr\templates\usr\roles_lista.html:83
+#: .\usr\templates\usr\roles_permisos_form.html:123
+#: .\usr\templates\usr\usuarios_lista.html:85
+msgid ": Activar para ordenar la columna de manera descendente"
+msgstr ": Ative para classificar a coluna em ordem decrescente"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:17
+#: .\cfg\templates\cfg\cfg_ta_form.html:17
+#: .\ctg\templates\ctg\adicionales_form.html:23
+#: .\ctg\templates\ctg\categorias_form.html:17
+#: .\ctg\templates\ctg\colores_form.html:14
+#: .\prv\templates\prv\proveedores_form.html:17
+#: .\ubc\templates\ubc\ciudades_form.html:17
+#: .\ubc\templates\ubc\localidades_form.html:17
+#: .\ubc\templates\ubc\paises_form.html:17
+#: .\ubc\templates\ubc\regiones_form.html:17
+#: .\ubc\templates\ubc\sectores_form.html:17
+#: .\ubc\templates\ubc\zonas_form.html:17 .\usr\templates\usr\registro.html:18
+#: .\usr\templates\usr\roles_form.html:17
+#: .\usr\templates\usr\roles_permisos_form.html:17
+msgid "Editar "
+msgstr "Editar"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:17
+#: .\cfg\templates\cfg\cfg_ta_form.html:17
+#: .\ctg\templates\ctg\adicionales_form.html:23
+#: .\ctg\templates\ctg\colores_form.html:14
+#: .\prv\templates\prv\proveedores_form.html:17
+#: .\ubc\templates\ubc\sectores_form.html:17
+#: .\usr\templates\usr\registro.html:18 .\usr\templates\usr\roles_form.html:17
+#: .\usr\templates\usr\roles_permisos_form.html:17
+msgid "Nuevo "
+msgstr "Novo"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:17
+#: .\cfg\templates\cfg\cfg_ta_form.html:17
+msgid "configuración"
+msgstr "configuração"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:26
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:26
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:61
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:90
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:26
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:62
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:91
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:120
+#: .\usr\templates\usr\registro.html:291
+msgid "Utilidad"
+msgstr "Utilitário"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:38
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:35
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:62
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:89
+#: .\usr\templates\usr\registro.html:304
+msgid "Tiempo límite de venta"
+msgstr "Prazo de venda"
+
+#: .\cfg\templates\cfg\cfg_op_form.html:57
+msgid "Autorizar externo"
+msgstr "Autorizar externo"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:13
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:13
+msgid "Configuración de utilidad en venta"
+msgstr "Configuração de utilitário para venda"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:20
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:20
+msgid "No existen configuraciones guardadas"
+msgstr "Não há configurações salvas"
+
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:25
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:60
+#: .\cfg\templates\cfg\cfg_ope_pro_form.html:89
+msgid "Proveedor"
+msgstr "Fornecedor"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:25
+msgid "taller"
+msgstr "oficina"
+
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:61
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:90
+#: .\cfg\templates\cfg\cfg_ope_tal_form.html:119
+msgid "Taller"
+msgstr "Oficina"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:26
+#: .\usr\templates\usr\registro.html:245
+msgid "Valor fracción"
+msgstr "Valor da fração"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:38
+msgid "Tiempo de respuesta a solicitudes"
+msgstr "Tempo de resposta a pedidos"
+
+#: .\cfg\templates\cfg\cfg_ta_form.html:57
+msgid "Escala de peso"
+msgstr "Escala de peso"
+
+#: .\cfg\templates\cfg\cfg_tmp_lim_form.html:13
+msgid "Configuración de tiempo límite de venta"
+msgstr "Configuração de limite de tempo de venda"
+
+#: .\ctg\templates\ctg\adicionales_form.html:23
+#: .\usr\templates\usr\registro.html:18
+msgid "usuario"
+msgstr "usuário"
+
+#: .\ctg\templates\ctg\adicionales_form.html:32
+#: .\ctg\templates\ctg\adicionales_lista.html:24
+#: .\ctg\templates\ctg\colores_lista.html:24
+#: .\usr\templates\usr\roles_lista.html:28
+#: .\usr\templates\usr\tipo_usuarios_lista.html:28
+msgid "Descripción"
+msgstr "Descrição"
+
+#: .\ctg\templates\ctg\adicionales_form.html:44
+msgid "Costo"
+msgstr "Custo"
+
+#: .\ctg\templates\ctg\adicionales_form.html:63
+#: .\usr\templates\usr\registro.html:194
+msgid "Imagen"
+msgstr "Imagem"
+
+#: .\ctg\templates\ctg\adicionales_form.html:75
+msgid "Disponible en catálogo"
+msgstr "Disponível no catálogo"
+
+#: .\ctg\templates\ctg\adicionales_form.html:94
+#: .\ctg\templates\ctg\categorias_form.html:17
+msgid "Categoría"
+msgstr "Categoria"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:5 .\templates\base\base.html:176
+msgid "Adicionales"
+msgstr "Adicionais"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:11
+#: .\ctg\templates\ctg\categorias_lista.html:15
+#: .\ctg\templates\ctg\colores_lista.html:11
+#: .\ctg\templates\ctg\productos_lista.html:21
+#: .\prv\templates\prv\proveedores_lista.html:15
+#: .\ubc\templates\ubc\ciudades_lista.html:15
+#: .\ubc\templates\ubc\localidades_lista.html:15
+#: .\ubc\templates\ubc\paises_lista.html:15
+#: .\ubc\templates\ubc\regiones_lista.html:15
+#: .\ubc\templates\ubc\sectores_lista.html:15
+#: .\ubc\templates\ubc\zonas_lista.html:15
+#: .\usr\templates\usr\roles_lista.html:15
+#: .\usr\templates\usr\tipo_usuarios_lista.html:15
+#: .\usr\templates\usr\usuarios_lista.html:15
+msgid "Acciones:"
+msgstr "Ações:"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:12
+#: .\ctg\templates\ctg\colores_lista.html:12
+#: .\prv\templates\prv\proveedores_lista.html:16
+#: .\ubc\templates\ubc\paises_lista.html:16
+#: .\ubc\templates\ubc\sectores_lista.html:16
+#: .\usr\templates\usr\roles_lista.html:16
+#: .\usr\templates\usr\tipo_usuarios_lista.html:16
+#: .\usr\templates\usr\usuarios_lista.html:16
+msgid "Nuevo"
+msgstr "Novo"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:19
+msgid "No existen adicionales"
+msgstr "Não há adicionais"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:23
+#: .\ctg\templates\ctg\categorias_lista.html:27
+#: .\ctg\templates\ctg\colores_lista.html:23
+#: .\ctg\templates\ctg\productos_lista.html:33
+#: .\prv\templates\prv\proveedores_lista.html:27
+#: .\ubc\templates\ubc\ciudades_lista.html:27
+#: .\ubc\templates\ubc\localidades_lista.html:27
+#: .\ubc\templates\ubc\paises_lista.html:27
+#: .\ubc\templates\ubc\regiones_lista.html:27
+#: .\ubc\templates\ubc\sectores_lista.html:27
+#: .\ubc\templates\ubc\zonas_lista.html:27
+#: .\usr\templates\usr\roles_lista.html:27
+#: .\usr\templates\usr\tipo_usuarios_lista.html:27
+#: .\usr\templates\usr\usuarios_lista.html:27
+msgid "ID"
+msgstr "ID"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:25
+#: .\ctg\templates\ctg\categorias_lista.html:29
+#: .\ctg\templates\ctg\colores_lista.html:25
+#: .\ctg\templates\ctg\productos_lista.html:35
+#: .\ubc\templates\ubc\ciudades_lista.html:29
+#: .\ubc\templates\ubc\localidades_lista.html:29
+#: .\ubc\templates\ubc\paises_lista.html:29
+#: .\ubc\templates\ubc\regiones_lista.html:29
+#: .\ubc\templates\ubc\sectores_lista.html:29
+#: .\ubc\templates\ubc\zonas_lista.html:29
+#: .\usr\templates\usr\roles_lista.html:30
+msgid "Estado"
+msgstr "Estado"
+
+#: .\ctg\templates\ctg\adicionales_lista.html:26
+#: .\ctg\templates\ctg\categorias_lista.html:30
+#: .\ctg\templates\ctg\colores_lista.html:26
+#: .\prv\templates\prv\proveedores_lista.html:31
+#: .\ubc\templates\ubc\ciudades_lista.html:30
+#: .\ubc\templates\ubc\localidades_lista.html:30
+#: .\ubc\templates\ubc\paises_lista.html:30
+#: .\ubc\templates\ubc\regiones_lista.html:30
+#: .\ubc\templates\ubc\sectores_lista.html:30
+#: .\ubc\templates\ubc\zonas_lista.html:30
+#: .\usr\templates\usr\roles_lista.html:31
+#: .\usr\templates\usr\usuarios_lista.html:32
+msgid "Fecha creación"
+msgstr "Data de criação"
+
+#: .\ctg\templates\ctg\categorias_form.html:17
+#: .\ubc\templates\ubc\ciudades_form.html:17
+#: .\ubc\templates\ubc\localidades_form.html:17
+#: .\ubc\templates\ubc\paises_form.html:17
+#: .\ubc\templates\ubc\regiones_form.html:17
+#: .\ubc\templates\ubc\zonas_form.html:17
+msgid "Nueva "
+msgstr "Novo"
+
+#: .\ctg\templates\ctg\categorias_lista.html:8
+#: .\ctg\templates\ctg\productos_lista.html:14 .\templates\base\base.html:150
+msgid "Categorías"
+msgstr "Categorias"
+
+#: .\ctg\templates\ctg\categorias_lista.html:16
+#: .\ctg\templates\ctg\productos_lista.html:22
+#: .\ubc\templates\ubc\ciudades_lista.html:16
+#: .\ubc\templates\ubc\localidades_lista.html:16
+#: .\ubc\templates\ubc\regiones_lista.html:16
+#: .\ubc\templates\ubc\zonas_lista.html:16
+msgid "Nueva"
+msgstr "Novo"
+
+#: .\ctg\templates\ctg\categorias_lista.html:23
+#: .\ctg\templates\ctg\productos_lista.html:29
+msgid "No existen categorías"
+msgstr "Não existem categorias"
+
+#: .\ctg\templates\ctg\categorias_lista.html:28
+#: .\ctg\templates\ctg\productos_lista.html:34
+#: .\ubc\templates\ubc\ciudades_lista.html:28
+#: .\ubc\templates\ubc\localidades_lista.html:28
+#: .\ubc\templates\ubc\paises_lista.html:28
+#: .\ubc\templates\ubc\regiones_lista.html:28
+#: .\ubc\templates\ubc\sectores_lista.html:28
+#: .\ubc\templates\ubc\zonas_lista.html:28
+msgid "Nombre"
+msgstr "Nome"
+
+#: .\ctg\templates\ctg\colores_form.html:14
+msgid "Color"
+msgstr "Cor"
+
+#: .\ctg\templates\ctg\colores_lista.html:5 .\templates\base\base.html:151
+msgid "Colores"
+msgstr "Cores"
+
+#: .\ctg\templates\ctg\colores_lista.html:19
+msgid "No existen colores"
+msgstr "Não há cores"
+
+#: .\ctg\templates\ctg\productos_lista.html:36
+msgid "Fecha creacion"
+msgstr "Data de criação"
+
+#: .\prv\templates\prv\proveedores_form.html:17
+msgid "proveedor"
+msgstr "vendedor"
+
+#: .\prv\templates\prv\proveedores_form.html:26
+#: .\prv\templates\prv\proveedores_lista.html:28
+#: .\usr\templates\usr\registro.html:58
+#: .\usr\templates\usr\usuarios_lista.html:29
+msgid "Nombres"
+msgstr "Nomes"
+
+#: .\prv\templates\prv\proveedores_form.html:38
+#: .\usr\templates\usr\registro.html:70
+msgid "Apellidos"
+msgstr "Sobrenome"
+
+#: .\prv\templates\prv\proveedores_form.html:57
+#: .\prv\templates\prv\proveedores_lista.html:29
+#: .\ubc\templates\ubc\ciudades_form.html:17
+#: .\usr\templates\usr\registro.html:120
+msgid "Ciudad"
+msgstr "Cidade"
+
+#: .\prv\templates\prv\proveedores_form.html:88
+#: .\usr\templates\usr\registro.html:151
+msgid "Dirección"
+msgstr "Morada"
+
+#: .\prv\templates\prv\proveedores_form.html:100
+#: .\usr\templates\usr\registro.html:101
+msgid "Teléfono"
+msgstr "Número de telefone"
+
+#: .\prv\templates\prv\proveedores_lista.html:8 .\templates\base\base.html:104
+#: .\templates\base\base.html:109
+msgid "Proveedores"
+msgstr "Fornecedores"
+
+#: .\prv\templates\prv\proveedores_lista.html:23
+msgid "No existen proveedores registrados"
+msgstr "Não há fornecedores registrados"
+
+#: .\sindri\settings.py:140
+msgid "Español"
+msgstr "Espanhol"
+
+#: .\sindri\settings.py:141
+msgid "English"
+msgstr "Inglês"
+
+#: .\sindri\settings.py:142
+msgid "Português"
+msgstr "Português"
+
+#: .\templates\base\base.html:62 .\templates\base\base.html:73
+#: .\templates\base\base.html:89 .\templates\base\base.html:108
+#: .\templates\base\base.html:122 .\templates\base\base.html:145
+#: .\templates\base\base.html:149
+msgid "Administración"
+msgstr "Administração"
+
+#: .\templates\base\base.html:69 .\templates\base\base.html:76
+#: .\usr\templates\usr\usuarios_lista.html:8
+msgid "Usuarios"
+msgstr "Usuários"
+
+#: .\templates\base\base.html:74
+#: .\usr\templates\usr\tipo_usuarios_lista.html:8
+msgid "Tipos de usuarios"
+msgstr "Tipos de usuários"
+
+#: .\templates\base\base.html:75
+msgid "Roles de usuario"
+msgstr "Funções de usuário"
+
+#: .\templates\base\base.html:85
+msgid "Ubicaciones"
+msgstr "Localizações"
+
+#: .\templates\base\base.html:90 .\ubc\templates\ubc\regiones_lista.html:8
+msgid "Regiones"
+msgstr "Regiões"
+
+#: .\templates\base\base.html:91 .\ubc\templates\ubc\paises_lista.html:8
+msgid "Paises"
+msgstr "Países"
+
+#: .\templates\base\base.html:92 .\ubc\templates\ubc\localidades_lista.html:8
+msgid "Localidades"
+msgstr "Localizações"
+
+#: .\templates\base\base.html:93 .\ubc\templates\ubc\zonas_lista.html:8
+msgid "Zonas"
+msgstr "Zonas"
+
+#: .\templates\base\base.html:94 .\ubc\templates\ubc\ciudades_lista.html:8
+msgid "Ciudades"
+msgstr "Cidades"
+
+#: .\templates\base\base.html:95 .\ubc\templates\ubc\sectores_lista.html:8
+msgid "Sectores"
+msgstr "Setores"
+
+#: .\templates\base\base.html:118
+msgid "Configuraciones"
+msgstr "Configurações"
+
+#: .\templates\base\base.html:123 .\templates\base\base.html:124
+msgid "Parámetros generales"
+msgstr "Parâmetros gerais"
+
+#: .\templates\base\base.html:125
+msgid "Utilidad sobre talleres"
+msgstr "Utilitário em oficinas"
+
+#: .\templates\base\base.html:126
+msgid "Utilidad sobre proveedores"
+msgstr "Utilitário em fornecedores"
+
+#: .\templates\base\base.html:127
+msgid "Tiempo límite venta"
+msgstr "Venda por prazo"
+
+#: .\templates\base\base.html:138
+msgid "Catálogo"
+msgstr "Catálogo"
+
+#: .\templates\base\base.html:160
+msgid "Ítems"
+msgstr "Itens"
+
+#: .\templates\base\base.html:164
+msgid "Listar:"
+msgstr "Lista:"
+
+#: .\templates\base\base.html:165 .\templates\base\base.html:180
+msgid "Productos"
+msgstr "Produtos"
+
+#: .\templates\base\base.html:166
+msgid "Servicios"
+msgstr "Serviços"
+
+#: .\templates\base\base.html:167
+msgid "Todos"
+msgstr "Todos"
+
+#: .\templates\base\base.html:181
+msgid "Ítems adicionales"
+msgstr "Itens adicionais"
+
+#: .\templates\base\base.html:402
+msgid "Salir"
+msgstr "Sair"
+
+#: .\templates\base\base.html:484
+msgid "Cerrar sesión"
+msgstr "Fechar Sessão"
+
+#: .\ubc\templates\ubc\ciudades_lista.html:23
+msgid "No existen ciudades"
+msgstr "Não há cidades"
+
+#: .\ubc\templates\ubc\localidades_form.html:17
+msgid "Localidad"
+msgstr "Localidade"
+
+#: .\ubc\templates\ubc\localidades_lista.html:23
+msgid "No existen localidades"
+msgstr "Não existem localizações"
+
+#: .\ubc\templates\ubc\paises_form.html:17
+msgid "Pais"
+msgstr "País"
+
+#: .\ubc\templates\ubc\paises_lista.html:23
+msgid "No existen paises"
+msgstr "Não há países"
+
+#: .\ubc\templates\ubc\regiones_form.html:17
+msgid "Región"
+msgstr "Região"
+
+#: .\ubc\templates\ubc\regiones_lista.html:23
+msgid "No existen regiones"
+msgstr "Não há regiões"
+
+#: .\ubc\templates\ubc\sectores_lista.html:23
+msgid "No existen sectores"
+msgstr "Não há setores"
+
+#: .\ubc\templates\ubc\zonas_form.html:23
+msgid "Nombre: "
+msgstr "Nome:"
+
+#: .\ubc\templates\ubc\zonas_lista.html:23
+msgid "No existen zonas"
+msgstr "Não há zonas"
+
+#: .\usr\templates\usr\registro.html:39
+msgid "País"
+msgstr "País"
+
+#: .\usr\templates\usr\registro.html:89
+#: .\usr\templates\usr\usuarios_lista.html:30
+msgid "Correo"
+msgstr "Mail"
+
+#: .\usr\templates\usr\registro.html:163
+msgid "Observación"
+msgstr "Observação"
+
+#: .\usr\templates\usr\registro.html:182
+#: .\usr\templates\usr\usuarios_lista.html:31
+msgid "Rol"
+msgstr "Função"
+
+#: .\usr\templates\usr\registro.html:213
+msgid "Contraseña"
+msgstr "Senha"
+
+#: .\usr\templates\usr\registro.html:225
+msgid "Confirmar contraseña"
+msgstr "Confirmar senha"
+
+#: .\usr\templates\usr\registro.html:258
+msgid "Tiempo de respuesta"
+msgstr "Tempo de resposta"
+
+#: .\usr\templates\usr\registro.html:271
+msgid "Escala peso"
+msgstr "Escala de peso"
+
+#: .\usr\templates\usr\roles_form.html:17
+#: .\usr\templates\usr\roles_permisos_form.html:17
+msgid "rol"
+msgstr "função"
+
+#: .\usr\templates\usr\roles_lista.html:8
+msgid "Roles"
+msgstr "Funções"
+
+#: .\usr\templates\usr\roles_lista.html:29
+msgid "Tipo"
+msgstr "Tipo"
+
+#: .\usr\templates\usr\roles_permisos_form.html:40
+msgid "PERMISOS ADMINISTRADOR"
+msgstr "AUTORIZAÇÕES DO ADMINISTRADOR"
+
+#: .\usr\templates\usr\roles_permisos_form.html:63
+msgid "No existen permisos"
+msgstr "Não há licenças"
+
+#: .\usr\templates\usr\roles_permisos_form.html:67
+msgid "PERMISOS ROL ACTUAL"
+msgstr "AUTORIZAÇÕES ATUAIS"
+
+#: .\usr\templates\usr\tipo_usuario_form.html:13
+msgid "Nuevo tipo de usuario"
+msgstr "Novo tipo de usuário"
+
+#: .\usr\templates\usr\tipo_usuarios_lista.html:23
+msgid "No hay tipos de usuarios"
+msgstr "Não há tipos de usuários"
+
+#: .\usr\templates\usr\usuarios_lista.html:23
+msgid "No existen usuarios registrados"
+msgstr "Não há usuários registrados"
+
+#: .\usr\templates\usr\usuarios_lista.html:28
+msgid "User"
+msgstr "User"

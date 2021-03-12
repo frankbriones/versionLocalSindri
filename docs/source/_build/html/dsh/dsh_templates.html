@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tareas dsh &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="URLs dsh" href="dsh_urls.html" />
+    <link rel="prev" title="Serializadores ctg" href="../ctg/ctg_serializers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Tareas dsh</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#template-dashboard-operaciones">Template dashboard_operaciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargardatos">Función cargarDatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargartotalesporestado">Función cargarTotalesPorEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargartotalesintext">Función cargarTotalesIntExt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargarfabricacionespormes">Función cargarFabricacionesPorMes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargargramosporjoyeria">Función cargarGramosPorJoyeria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargarproductomascotizado">Función cargarProductoMasCotizado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargarproductomasfabricado">Función cargarProductoMasFabricado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargardetallesproducto">Función cargarDetallesProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargarcategoriacolor">Función cargarCategoriaColor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-dashboard-taller">Template dashboard_taller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Función cargarDatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Función cargarTotalesPorEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-cargarsolicitudesestado">Función cargarSolicitudesEstado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Función cargarFabricacionesPorMes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Función cargarGramosPorJoyeria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Función cargarProductoMasCotizado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Función cargarProductoMasFabricado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Función cargarDetallesProducto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Función cargarCategoriaColor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Tareas dsh</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dsh/dsh_templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tareas-dsh">
+<h1><strong>Tareas dsh</strong><a class="headerlink" href="#tareas-dsh" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>dsh</strong> tenemos otra carpeta llamada <strong>templates</strong>. Donde se encuentran los templates de la aplicación dsh, se describe cada uno a continuación.</p>
+<div class="section" id="template-dashboard-operaciones">
+<h2>Template dashboard_operaciones<a class="headerlink" href="#template-dashboard-operaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla donde se muestra el panel de estadísticas para el administrador de operaciones con la información de todas las joyerías pertenecientes al país del administrador, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-cargardatos">
+<h3>Función cargarDatos<a class="headerlink" href="#funcion-cargardatos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="dsh_urls.html#url-dashboard-usuario-api"><span class="std std-ref">url dashboard_usuario_api</span></a> enviando como parámetros la fecha inicio y fin de la consulta y el tipo de consulta que se realiza, obtiene los datos de las órdenes de trabajo dentro del periodo de tiempo dado.</p>
+</div>
+<div class="section" id="funcion-cargartotalesporestado">
+<h3>Función cargarTotalesPorEstado<a class="headerlink" href="#funcion-cargartotalesporestado" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las órdenes generadas clasificadas por estado.</p>
+</div>
+<div class="section" id="funcion-cargartotalesintext">
+<h3>Función cargarTotalesIntExt<a class="headerlink" href="#funcion-cargartotalesintext" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las órdenes generadas clasificadas por tipo insterna y externa.</p>
+</div>
+<div class="section" id="funcion-cargarfabricacionespormes">
+<h3>Función cargarFabricacionesPorMes<a class="headerlink" href="#funcion-cargarfabricacionespormes" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las órdenes generadas clasificadas por mes de fabricación.</p>
+</div>
+<div class="section" id="funcion-cargargramosporjoyeria">
+<h3>Función cargarGramosPorJoyeria<a class="headerlink" href="#funcion-cargargramosporjoyeria" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a los gramos fabricados clasificados por joyería.</p>
+</div>
+<div class="section" id="funcion-cargarproductomascotizado">
+<h3>Función cargarProductoMasCotizado<a class="headerlink" href="#funcion-cargarproductomascotizado" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el ítem más cotizado dentro de un periodo de tiempo.</p>
+</div>
+<div class="section" id="funcion-cargarproductomasfabricado">
+<h3>Función cargarProductoMasFabricado<a class="headerlink" href="#funcion-cargarproductomasfabricado" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el ítem con más fabricaciones dentro de un periodo de tiempo.</p>
+</div>
+<div class="section" id="funcion-cargardetallesproducto">
+<h3>Función cargarDetallesProducto<a class="headerlink" href="#funcion-cargardetallesproducto" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra un modal con la información detallada de un ítem.</p>
+</div>
+<div class="section" id="funcion-cargarcategoriacolor">
+<h3>Función cargarCategoriaColor<a class="headerlink" href="#funcion-cargarcategoriacolor" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el color y la categpría con más fabricaciones dentro de un periodo de tiempo.</p>
+</div>
+</div>
+<div class="section" id="template-dashboard-taller">
+<h2>Template dashboard_taller<a class="headerlink" href="#template-dashboard-taller" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla donde se muestra el panel de estadísticas para el administrador del taller con la información de todas las órdenes de trabajo asignadas a dicho taller, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id1">
+<h3>Función cargarDatos<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo GET a la <a class="reference internal" href="dsh_urls.html#url-dashboard-taller-api"><span class="std std-ref">url dashboard_taller_api</span></a> enviando como parámetros la fecha inicio y fin de la consulta y el tipo de consulta que se realiza, obtiene los datos de las órdenes de trabajo dentro del periodo de tiempo dado.</p>
+</div>
+<div class="section" id="id2">
+<h3>Función cargarTotalesPorEstado<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las órdenes generadas clasificadas por estado.</p>
+</div>
+<div class="section" id="funcion-cargarsolicitudesestado">
+<h3>Función cargarSolicitudesEstado<a class="headerlink" href="#funcion-cargarsolicitudesestado" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las solicitudes generadas clasificadas por estado.</p>
+</div>
+<div class="section" id="id3">
+<h3>Función cargarFabricacionesPorMes<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a las órdenes generadas clasificadas por mes de fabricación.</p>
+</div>
+<div class="section" id="id4">
+<h3>Función cargarGramosPorJoyeria<a class="headerlink" href="#id4" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar las estadísticas correspondientes a los gramos fabricados clasificados por joyería.</p>
+</div>
+<div class="section" id="id5">
+<h3>Función cargarProductoMasCotizado<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el ítem más cotizado dentro de un periodo de tiempo.</p>
+</div>
+<div class="section" id="id6">
+<h3>Función cargarProductoMasFabricado<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el ítem con más fabricaciones dentro de un periodo de tiempo.</p>
+</div>
+<div class="section" id="id7">
+<h3>Función cargarDetallesProducto<a class="headerlink" href="#id7" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Muestra un modal con la información detallada de un ítem.</p>
+</div>
+<div class="section" id="id8">
+<h3>Función cargarCategoriaColor<a class="headerlink" href="#id8" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Genera el elemento HTML para mostrar el color y la categpría con más fabricaciones dentro de un periodo de tiempo.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dsh_urls.html" class="btn btn-neutral float-right" title="URLs dsh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../ctg/ctg_serializers.html" class="btn btn-neutral float-left" title="Serializadores ctg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

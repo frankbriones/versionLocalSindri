@@ -1,0 +1,50 @@
+{% load static %} {% load i18n %}
+<!-- Logout Modal-->
+<div class="modal-dialog modal-dialog-centered modal-s">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{% trans "Activar usuario" %}</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% trans "Está seguro que desea activar este usuario " %}{{ usuario }}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans "Cancelar" %}</button>
+            <a class="btn btn-primary" onclick="activarUsuario()" href="#">{% trans "Activar" %}</a>
+        </div>
+    </div>
+</div>
+<script>
+    function activarUsuario(){
+
+        id_usuario = {{ usuario.id }};
+        var token = '{{ csrf_token }}';
+        dato = {
+        'id_usuario': id_usuario
+        }
+        var datos = JSON.stringify(dato);
+
+        var url_modificada = "{% url 'usr:usuario_activar_modal' 0 %}";
+        url = url_modificada.replace(/0/, id_usuario);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: datos,
+            success: function(response) {
+                location.reload(true);
+                // window.location = template;
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    }
+</script>

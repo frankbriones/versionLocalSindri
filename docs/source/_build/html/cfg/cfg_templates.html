@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Templates cfg &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="cfg_models.html" />
+    <link rel="prev" title="Views Bases" href="../bases/bases_views.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicacion cfg</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Templates cfg</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#template-actualizar-rubro-modal">Template actualizar_rubro_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-actualizarrubro">Función actualizarRubro</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cal-porcentajes-modal">Template cal_porcentajes_modal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularporcentajepromedio">Función CalcularPorcentajePromedio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularporcentajebase">Función CalcularPorcentajeBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-calcularporcentajetaller">Función CalcularPorcentajeTaller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-guardar">Función guardar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-envio-reportes">Template cfg_envio_reportes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-guardarconfiguracion">Función guardarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-ext-form">Template cfg_ext_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#funcion-agregarconfiguracion">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-op-form">Template cfg_op_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-ope-pro-form">Template cfg_ope_pro_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-ope-tal-form">Template cfg_ope_tal_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-pais-form">Template cfg_pais_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-ta-form">Template cfg_ta_form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-cfg-tmp-lim-form">Template cfg_tmp_lim_form</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Función agregarConfiguracion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#template-rubro-form-modal">Template rubro_form_modal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-rubros-lista">Template rubros_lista</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfg_urls.html"><strong>URLs cfg</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>Templates cfg</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cfg/cfg_templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="templates-cfg">
+<h1><strong>Templates cfg</strong><a class="headerlink" href="#templates-cfg" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>cfg</strong> tenemos otra carpeta llamada <strong>templates</strong>. Donde se encuentran los templates de la aplicación cfg correspondiente a las configuraciones que puede realizar el usuario para definir el comportamiento del sistema.</p>
+<div class="section" id="template-actualizar-rubro-modal">
+<h2>Template actualizar_rubro_modal<a class="headerlink" href="#template-actualizar-rubro-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que aparecerá cuando el usuario desea activar o inactivar un rubro, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-actualizarrubro">
+<h3>Función actualizarRubro<a class="headerlink" href="#funcion-actualizarrubro" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-rubros-actualizar"><span class="std std-ref">url cfg_rubros_actualizar</span></a> enviando como parámetro el id del rubro a actualizar</p>
+</div>
+</div>
+<div class="section" id="template-cal-porcentajes-modal">
+<h2>Template cal_porcentajes_modal<a class="headerlink" href="#template-cal-porcentajes-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite calcular los porcentajes de utilidad que se deben aplicar tanto sobre el costo de gramo base como sobre el costo de fabricación de modo que el precio final del gramo sea igual al deseado por quien realiza la configuración, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-calcularporcentajepromedio">
+<h3>Función CalcularPorcentajePromedio<a class="headerlink" href="#funcion-calcularporcentajepromedio" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Toma los valores ingresados por el usuario correspondientes a costo gramo base, costo gramo taller, porcentaje de impuestos y precio final de gramo fabricado, valida que el usuario ingresó todos los valores y que no existan valores negativos, luego calcula los porcentajes de utilidad promedio tanto para el costo gramo base como para el costo gramo taller</p>
+</div>
+<div class="section" id="funcion-calcularporcentajebase">
+<h3>Función CalcularPorcentajeBase<a class="headerlink" href="#funcion-calcularporcentajebase" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Toma los valores ingresados por el usuario correspondientes a costo gramo base, costo gramo taller, porcentaje de impuestos, precio final de gramo fabricado y porcentaje de utilidad sobre costo gramo taller, valida que el usuario ingresó todos los valores y que no existan valores negativos, luego calcula el porcentaje de utilidad que se debe aplicar sobre el costo gramo base para que el precio gramo final corresponda al ingresado por el usuario.</p>
+</div>
+<div class="section" id="funcion-calcularporcentajetaller">
+<h3>Función CalcularPorcentajeTaller<a class="headerlink" href="#funcion-calcularporcentajetaller" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Toma los valores ingresados por el usuario correspondientes a costo gramo base, costo gramo taller, porcentaje de impuestos, precio final de gramo fabricado y porcentaje de utilidad sobre costo gramo base, valida que el usuario ingresó todos los valores y que no existan valores negativos, luego calcula el porcentaje de utilidad que se debe aplicar sobre el costo gramo taller para que el precio gramo final corresponda al ingresado por el usuario.</p>
+</div>
+<div class="section" id="funcion-guardar">
+<h3>Función guardar<a class="headerlink" href="#funcion-guardar" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-calcular-porcentajes"><span class="std std-ref">url calcular_porcentajes</span></a> como parámetro se coloca el id de configuración del usuario que realiza la petición, la data que se envía en la petición corresponde a los datos ingresados por el usuario y los porcentajes calculados.</p>
+</div>
+</div>
+<div class="section" id="template-cfg-envio-reportes">
+<h2>Template cfg_envio_reportes<a class="headerlink" href="#template-cfg-envio-reportes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para configurar el horario y los usuarios a los que el sistema enviará de forma automática un reporte mensual con la información de las transacciones del mes anterior a la fecha de envío, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-guardarconfiguracion">
+<h3>Función guardarConfiguracion<a class="headerlink" href="#funcion-guardarconfiguracion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la url <a class="reference internal" href="cfg_urls.html#url-cfg-envio-reportes"><span class="std std-ref">url cfg_envio_reportes</span></a> como parámetro se coloca el id del usuario que realiza la petición, la data que se envía en la petición corresponde al día del mes y la hora seleccionada por el usuario para el envío además de un array que contiene los id’s de los usuarios a los que se le enviará el reporte.</p>
+</div>
+</div>
+<div class="section" id="template-cfg-ext-form">
+<h2>Template cfg_ext_form<a class="headerlink" href="#template-cfg-ext-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para configurar los usuarios a quienes se le permitirá realizar solicitudes directamente con los proveedores externos, en esta pantalla el usuario podrá configurar los permisos por usuario, por zona o por sector al que pertenecen los usuarios a configurar, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="funcion-agregarconfiguracion">
+<h3>Función agregarConfiguracion<a class="headerlink" href="#funcion-agregarconfiguracion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-aut-ext"><span class="std std-ref">url cfg_aut_ext</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Corresponde al id sea del usuario, la zona o el sector.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>1 para usuario, 2 para zona, 3 para sector.</p></td>
+</tr>
+<tr class="row-even"><td><p>aut_externo</p></td>
+<td><p>Verdadero o falso para autorización de externo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-cfg-op-form">
+<h2>Template cfg_op_form<a class="headerlink" href="#template-cfg-op-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para realizar las configuraciones generales de los usuarios de tipo operaciones para una empresa en específico, realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-ope-editar"><span class="std std-ref">url cfg_ope_editar</span></a> enviando como parámetro el id de la configuración general del usuario, esta pantalla es solo para los usuarios de tipo operaciones y con rol de administrador.</p>
+</div>
+<div class="section" id="template-cfg-ope-pro-form">
+<h2>Template cfg_ope_pro_form<a class="headerlink" href="#template-cfg-ope-pro-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite establecer los porcentajes de utilidad sobre la fabricación para los usuarios de tipo operaciones, en ella se puede configurar dicho porcentaje para cada usuario por proveedor de forma independiente, la configuración la puede hacer por usuario o por zona, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id1">
+<h3>Función agregarConfiguracion<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-ope-prv"><span class="std std-ref">url cfg_ope_prv</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Corresponde al id sea del usuario o la zona.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre</p></td>
+<td><p>Username o nombre de la zona a configurar.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_proveedor</p></td>
+<td><p>Id del proveedor a configurar el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>prv_nombres</p></td>
+<td><p>Nombres del proveedor.</p></td>
+</tr>
+<tr class="row-even"><td><p>prv_apellidos</p></td>
+<td><p>Apellidos del proveedor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>1 para usuario, 2 para zona.</p></td>
+</tr>
+<tr class="row-even"><td><p>utilidad</p></td>
+<td><p>Porcentaje de utilidad que se le asignará al proveedor para el usuario indicado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-cfg-ope-tal-form">
+<h2>Template cfg_ope_tal_form<a class="headerlink" href="#template-cfg-ope-tal-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite establecer el porcentaje de utilidad sobre los talleres de forma independiente, la configuración se puede realizar por usuario, por zona o por sector, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id2">
+<h3>Función agregarConfiguracion<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-ope-tal"><span class="std std-ref">url cfg_ope_tal</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Corresponde al id sea del usuario, la zona o el sector.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre</p></td>
+<td><p>Username o nombre de la zona o sector a configurar.</p></td>
+</tr>
+<tr class="row-even"><td><p>id_taller</p></td>
+<td><p>Id del taller a configurar el porcentaje de utilidad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>taller</p></td>
+<td><p>Nombres del taller.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>1 para usuario, 2 para zona, 3 para sector.</p></td>
+</tr>
+<tr class="row-odd"><td><p>utilidad</p></td>
+<td><p>Porcentaje de utilidad que se le asignará al taller para el usuario indicado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-cfg-pais-form">
+<h2>Template cfg_pais_form<a class="headerlink" href="#template-cfg-pais-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para realizar configuraciones generales que establecen el comportamiento del sistema para usuarios que pertenecen al mismo país, realiza una petición de tipo POST a la url <code class="docutils literal notranslate"><span class="pre">cfg_pais_editar</span></code> enviando como parámetro el id del país a configurar.</p>
+</div>
+<div class="section" id="template-cfg-ta-form">
+<h2>Template cfg_ta_form<a class="headerlink" href="#template-cfg-ta-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para realizar las configuraciones generales de los usuarios de tipo taller para un taller en específico, realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-tal-editar"><span class="std std-ref">url cfg_tal_editar</span></a> enviando como parámetro el id del taller a configurar, esta pantalla es solo para los usuarios de tipo taller y con rol de administrador.</p>
+</div>
+<div class="section" id="template-cfg-tmp-lim-form">
+<h2>Template cfg_tmp_lim_form<a class="headerlink" href="#template-cfg-tmp-lim-form" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla para configurar el tiempo límite de venta que tendrán los usuarios de tipo operaciones que generen órdenes de trabajo, en esta pantalla el usuario administrador podrá configurar el tiempo límite por usuario, por zona o por sector al que pertenecen los usuarios a configurar, las funciones que posee este template son las siguientes:</p>
+<div class="section" id="id3">
+<h3>Función agregarConfiguracion<a class="headerlink" href="#id3" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-tmp-vta"><span class="std std-ref">url cfg_tmp_vta</span></a>, la data que se envía en la petición se describe a continuación:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Dato</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>Corresponde al id sea del usuario, la zona o el sector.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>1 para usuario, 2 para zona, 3 para sector.</p></td>
+</tr>
+<tr class="row-even"><td><p>tmp_lim_vta</p></td>
+<td><p>Tiempo límite en días para que el usuario de por terminada la órden que generó.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="template-rubro-form-modal">
+<h2>Template rubro_form_modal<a class="headerlink" href="#template-rubro-form-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template del modal que permite crear o editar un rubro para un taller determinado, realiza una petición de tipo POST a la <a class="reference internal" href="cfg_urls.html#url-cfg-rubros-form"><span class="std std-ref">url cfg_rubros_form</span></a> en caso de edición de un rubro envia como parámetro el id del rubro a editar, esta pantalla es solo para los usuarios de tipo taller y con rol de administrador.</p>
+</div>
+<div class="section" id="template-rubros-lista">
+<h2>Template rubros_lista<a class="headerlink" href="#template-rubros-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Template de la pantalla que permite visualizar los rubros registrados en un taller determinado, desde esta pantalla el usuario puede agregar, editar, activar o inactivar rubros para su taller. Para la consulta de los rubros se realiza una petición de tipo GET a la <a class="reference internal" href="cfg_urls.html#url-cfg-rubros-lista"><span class="std std-ref">url cfg_rubros_lista</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cfg_models.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../bases/bases_views.html" class="btn btn-neutral float-left" title="Views Bases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

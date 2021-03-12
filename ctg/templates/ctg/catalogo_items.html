@@ -1,0 +1,362 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+<style>
+
+</style>
+{% block page_content %}
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="{% static  'base/app-assets/css/pages/app-file-manager.css' %}">
+<!-- END: Page CSS-->
+
+<div class="app-content content">
+    <div class="content-area-wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar">
+                <div class="app-file-sidebar sidebar-content d-flex">
+                    <!-- App File sidebar - Left section Starts -->
+                    <div class="app-file-sidebar-left">
+                        <!-- sidebar close icon starts -->
+                        <span class="app-file-sidebar-close"><i class="bx bx-x"></i></span>
+                        <!-- sidebar close icon ends -->
+                        <div class="form-group add-new-file text-center">
+                        </div>
+                        <div class="app-file-sidebar-content">
+                            <label class="app-file-label">{% trans "Talleres" %}</label>
+                            <div class="list-group list-group-messages my-50">
+                                {% for taller in talleres %}
+                                <div class="checkbox2">
+                                    <input type="checkbox" class="checkbox-input check-taller" id="id_taller_{{ taller.id_taller }}" value="{{ taller.id_taller }}">
+                                    <label for="id_taller_{{ taller.id_taller }}">{{ taller }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <label class="app-file-label mb-75">{% trans "Categorías" %}</label>
+                            <div class="list-group list-group-messages my-50 " id="id_lista_categorias">
+                                {% for categoria in categorias %}
+                                <div class="row">
+                                    <div class="col-md-1 text-right"><input type="checkbox" class="checkbox-input check-categoria " id="id_categoria_{{ categoria.id_categoria }}" value="{{ categoria.id_categoria }}"/>
+                                        </div>
+                                    <div class="col-10 text-left"><label  for="id_categoria_{{ categoria.id_categoria }}">{{ categoria }}</label></div>
+                                
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- File Manager app overlay -->
+                    <div class="app-file-overlay"></div>
+                    <div class="app-file-area">
+                        <!-- File App Content Area -->
+                        <!-- App File Header Starts -->
+                        <div class="app-file-header">
+                            <!-- Header search bar starts -->
+                            <div class="app-file-header-search flex-grow-1">
+                                <div class="sidebar-toggle d-block d-lg-none">
+                                    <i class="bx bx-menu"></i>
+                                </div>
+                                <fieldset class="form-group position-relative">
+                                    <input id="id_buscar_pro" type="text" class="form-control border-0 shadow-none" placeholder='{% trans "Buscar por sku o descripción" %}'>
+                                    <div class="form-control-position">
+                                        <button onclick="buscarClave();" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="bx bx-search"></i></button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Header search bar Ends -->
+                            <!-- Header Icons Starts -->
+                            <div class="app-file-header-icons">
+                                <!-- <div class="fonticon-wrap d-inline mx-sm-1 align-middle">
+                                    <i class="livicon-evo cursor-pointer" data-options="name: user.svg; size: 24px; style: lines; strokeColor:#596778; duration:0.85;"></i>
+                                </div>
+                                <div class="fonticon-wrap d-inline mr-sm-50 align-middle">
+                                    <i class="livicon-evo cursor-pointer" data-options="name: trash.svg; size: 24px; style: lines; strokeColor:#596778; duration:0.85;"></i>
+                                </div>
+                                <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle cursor-pointer"></i> -->
+                            </div>
+                            <!-- Header Icons Ends -->
+                        </div>
+                        <!-- App File Header Ends -->
+
+                        <!-- App File Content Starts -->
+                        <div class="app-file-content p-2">
+                            {% if tipo == 1 %}
+                            <h5>{% trans "Productos de catálogo" %}</h5>
+                            {% endif %}
+                            {% if tipo == 2 %}
+                            <h5>{% trans "Servicios de catálogo" %}</h5>
+                            {% endif %}
+                            {% if tipo == 3 %}
+                            <h5>{% trans "Productos especiales" %}</h5>
+                            {% endif %}
+                            {% if tipo == 4 %}
+                            <h5>{% trans "Servicios especiales" %}</h5>
+                            {% endif %}
+
+                            <div id="id_cont_items" class="row align-items-center  ps ps--active-y ">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button id="btnProductos" onclick="aumentarLimite()" class="btn round btn-outline-primary mr-1 mb-1">{% trans "Ver más" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script src="{% static  'base/app-assets/js/scripts/pages/app-file-manager.js' %}"></script>
+<script>
+
+    var talleresBusqueda = [];
+    var categoriasBusqueda = [];
+    var claveBusqueda = [];
+    var tipo;
+    var limite = 50;
+    var tipo = parseInt('{{ tipo }}');
+    var admin = ('{{ user.rol.admin }}'.toLowerCase() === 'true');
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('input[type=checkbox]').each(function(){
+            $(this).attr('checked', false);
+        });
+        buscarItems(limite);
+        // console.log(admin);
+    });
+
+    $('#id_buscar_pro').on('keyup', function(){
+        if($(this).val() == ''){
+            limite = 50;
+            buscarItems(limite);
+        }
+    });
+
+    $('.check-taller').on('click', function(){
+        limite = 50;
+        buscarCategorias();
+        buscarItems(limite);
+    });
+
+    $('.check-categoria').on('click', function(){
+        limite = 50;
+        buscarItems(limite);
+    });
+
+
+
+    function aumentarLimite(){
+        limite += 50;
+        buscarItems(limite);
+    }
+
+    function buscarClave(){
+        limite = 50;
+        buscarItems(limite);
+    }
+
+
+
+
+
+    function buscarCategorias(){
+
+        talleresBusqueda = []
+
+        $('.check-taller').each(function(){
+            var taller = $(this);
+            check = taller.prop('checked');
+            if(check){
+                talleresBusqueda.push(parseInt(taller.val()));
+            }
+        });
+
+        url = "{% url 'ctg:categorias_taller_api' %}";
+
+        var token = '{{ csrf_token }}';
+
+        var body = {
+            "talleresBusqueda[]": JSON.stringify(talleresBusqueda),
+            "tipo": tipo
+        };
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                console.log(res)
+                cargarCategorias(res);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+    }
+
+    function cargarCategorias(categorias){
+
+        $('#id_lista_categorias').empty();
+
+        if(categorias.length > 0){
+            categorias.forEach(categoria => {
+                div = '<div class="row" ><div class="col-md-1 text-right" ><input type="checkbox" class="checkbox-input  check-categoria" id="id_categoria_' + categoria.id_categoria + '" value="' + categoria.id_categoria + '"></div><div class="col-md-10 text-left"><label for="id_cat_' + categoria.id_categoria + '">' + categoria.descripcion + '</label></div></div>';
+                $('#id_lista_categorias').append(div);
+            });
+        }
+        $('.check-categoria').on('click', function(){
+            limite = 50;
+            buscarItems(limite);
+        });
+
+    }
+
+
+    // inputCheck = document.querySelector('.checkbox');
+    // $(inputCheck).on('click', function(){
+    //     alert('aplasto')
+    // })
+
+
+    function buscarItems(limite){
+        talleresBusqueda = []
+        categoriasBusqueda = []
+        claveBusqueda = $('#id_buscar_pro').val();
+
+        $('.check-taller').each(function(){
+            var taller = $(this);
+            check = taller.prop('checked');
+            if(check){
+                talleresBusqueda.push(parseInt(taller.val()));
+            }
+        });
+
+        // $('.item-categoria').each(function(){
+        //     var categoria = $(this);
+        //     check = categoria.prop('checked');
+        //     if(check){
+        //         categoriasBusqueda.push(parseInt(categoria.val()));
+        //     }
+        // }); 
+        $('.check-categoria').each(function(){
+            var categoria = $(this);
+            check = categoria.prop('checked');
+            if(check){
+                categoriasBusqueda.push(parseInt(categoria.val()));
+            }
+        });
+     
+
+        url = "{% url 'ctg:buscar_items_api' %}";
+        
+        var token = '{{ csrf_token }}';
+
+        var body = {
+            "talleresBusqueda[]": JSON.stringify(talleresBusqueda),
+            "categoriasBusqueda[]": JSON.stringify(categoriasBusqueda),
+            "claveBusqueda": claveBusqueda,
+            "limite": limite,
+            "tipo": tipo
+        };
+        // console.log(talleresBusqueda)
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: body,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                // console.log(res)
+                cargarItems(res);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+    }
+
+
+
+    function cargarItems(items){
+
+        if(items.length < limite){
+            $('#btnProductos').hide();
+        }
+        $('#id_cont_items').empty();
+        $('div, .ps__thumb-y').animate({scrollTop:0});
+
+        if(items.length > 0){
+            items.forEach(item => {
+                if(item.cantdetalles > 0 && item.cantcolores > 0){
+                    if(admin){
+                        div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + item.taller_nombre + '</small></p></div></div><div class="card-footer text-center"><button type="button" onclick="editarPrecio(' + item.id_item + ')" class="btn btn-primary glow px-4">{% trans "Editar" %}</button></div></div></div>';
+                    } else {
+                        div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + item.taller_nombre + '</small></p></div></div><div class="card-footer text-center"><button type="button" onclick="verDetalles(' + item.id_item + ')" class="btn btn-primary glow px-4">{% trans "Detalles" %}</button></div></div></div>';
+                    }
+                    $('#id_cont_items').append(div);
+                }
+            });
+        } else {
+            div = '<div class="no-results text-center" style="margin-left: auto; margin-right: auto;"><i class="bx bx-error-circle font-large-2"></i><h5>{% trans "No se encontraron artículos" %}</h5></div>';
+            $('#id_cont_items').append(div);
+
+
+        }
+        
+    }
+
+    function verDetalles(id_item){
+        url = "{% url 'ctg:items_detalle' 0 %}";
+        url = url.replace(/0/, id_item);
+        return abrir_modal(url);
+    }
+
+    function editarPrecio(id){
+        url = "{% url 'ctg:items_actualizar_precio_ope' 0 %}"
+        url = url.replace(/0/, id);
+        return abrir_modal(url);
+    }
+    
+</script>
+{% endblock %}

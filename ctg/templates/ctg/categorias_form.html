@@ -1,0 +1,342 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Categorías" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Nueva" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% if obj %} {% trans "Editar " %} {% else %} {% trans "Nuevo " %} {% endif %} {% trans "categoría" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form id="frmCategoria" method="POST" class="form">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.descripcion }}
+                                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divNombreTaller" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input class="form-control" value="{{ obj.division.taller }}" disabled>
+                                                        <label for="first-name-column">{% trans "Taller" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divPrecioTaller" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input class="form-control" value="{{ obj.precio_taller }}" disabled>
+                                                        <label for="first-name-column">{% trans "Precio taller" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divMedida" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.unidad_medida }}
+                                                        <input type="text" hidden>
+                                                        <label for="first-name-column">{% trans "Unidad de medida" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divDivision" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form.division }}
+                                                        <input type="text" hidden>
+                                                        <label for="first-name-column">{% trans "División" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <select name="precio_definido" id="id_precio_definido" class="form-control">
+                                                            <option value="">{% trans "Seleccionar" %}</option>
+                                                            {% for precio in precios %}
+                                                            <option value="{{ precio.id_precio }}" costo="{{ precio.costo }}" utilidad="{{ precio.prct_utilidad }}" precio="{{ precio.precio }}" tipo="{{ precio.tipo.descripcion }}">{{ precio.tipo.descripcion }}: {{ precio.descripcion }}
+                                                            </option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <input type="text" hidden>
+                                                        <label for="last-name-column">{% trans "Precio definido" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divCosto" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_costo" name="costo" type="number" class="form-control" readonly>
+                                                        <label for="first-name-column">{% trans "Costo" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divUtilidad" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_utilidad" name="utilidad" type="number" class="form-control" readonly>
+                                                        <label for="first-name-column">{% trans "Procentaje de utilidad" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divPrecio" class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        <input id="id_precio" name="precio" type="number" class="form-control" readonly>
+                                                        <label for="first-name-column">{% trans "Precio" %}</label>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="categoriataller col-md-12 col-12">
+                                                    <h6>{% trans "Propiedades de ítems" %}</h6>
+                                                </div>
+                                                <br>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.acabado }}
+                                                        <label for="id_acabado">{% trans "Acabado" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.valor_gramo_diferenciado }}
+                                                        <label for="id_valor_gramo_diferenciado">{% trans "Costo gramo diferenciado" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.costo_piedras }}
+                                                        <label for="id_costo_piedras">{% trans "Costo piedras" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.datos_extra }}
+                                                        <label for="id_datos_extra">{% trans "Datos extras" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="divEnvioMaterial" class="col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.envio_material }}
+                                                        <label for="id_envio_material">{% trans "Envío de material" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.escala_peso }}
+                                                        <label for="id_escala_peso">{% trans "Escala de peso" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.parte_interna }}
+                                                        <label for="id_parte_interna">{% trans "Parte interna" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.permite_solicitud }}
+                                                        <label for="id_permite_solicitud">{% trans "Ítem especial" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.proveedor }}
+                                                        <label for="id_proveedor">{% trans "Proveedor" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.tiempos_entrega }}
+                                                        <label for="id_tiempos_entrega">{% trans "Tiempos de entrega" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="categoriataller col-md-6 col-12">
+                                                    <div class="checkbox">
+                                                        {{ form.categoria_alianzas }}
+                                                        <label for="id_categoria_alianzas">{% trans "Categoría alianzas" %}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" onclick="guardar()" class="btn btn-primary mr-1 mb-1">{% trans " Guardar" %}</button>
+                                                    <a href="{% url 'ctg:categorias_lista' %}" class="btn btn-light-secondary mr-1 mb-1">{% trans " Cancelar" %}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function(){
+        error = '{{ mensaje }}';
+        duplicado = error.includes('Duplicate');
+        if(duplicado){
+            mensaje('{% trans "Categoría ya existe" %}','red');
+        }
+
+        tipo_usuario = '{{ user.tipo_usuario.descripcion }}';
+        if(tipo_usuario === 'USUARIO TALLER'){
+            $('#divEnvioMaterial').hide();
+            $('#divNombreTaller').hide();
+            $('#divPrecioTaller').hide();
+            id_precio = parseInt('{{ obj.precio_taller_id }}');
+            if(id_precio){
+                $('#id_precio_definido').val(id_precio);
+                $('#id_costo').val(parseFloat('{{ obj.costo_taller }}'.replace(/,/,'.')));
+                $('#id_utilidad').val(parseFloat('{{ obj.prct_utilidad_taller }}'.replace(/,/,'.')));
+                $('#id_precio').val(parseFloat('{{ obj.precio_taller }}'.replace(/,/,'.')));
+            }
+            tipo_precio_descripcion = '{{ obj.precio_taller_obj.tipo.descripcion }}';
+        }
+                
+        if(tipo_usuario === 'USUARIO OPERACIONES'){
+            $('#divMedida').hide();
+            $('#divDivision').hide();
+            $('.categoriataller').each(function(){
+                $(this).hide();
+            });
+            $('#id_descripcion').attr('readonly', true);
+            id_precio = parseInt('{{ obj.precio_empresa_id }}');
+            if(id_precio){
+                $('#id_precio_definido').val(id_precio);
+                $('#id_precio').val(parseFloat('{{ obj.precio_empresa }}'.replace(/,/,'.')));
+                $('#id_utilidad').val(parseFloat('{{ obj.prct_utilidad_empresa }}'.replace(/,/,'.')));
+            }
+            tipo_precio_descripcion = '{{ obj.precio_empresa_obj.tipo.descripcion }}';
+        }
+        mostrarElementos(tipo_precio_descripcion);
+    });
+
+    function ocultarElementos(){
+        $('#divCosto').hide();
+        $('#divUtilidad').hide();
+        $('#divPrecio').hide();
+    }
+
+    function mostrarElementos(descripcion){
+        tipo_usuario = '{{ user.tipo_usuario.descripcion }}';
+        if(descripcion){
+            if(tipo_usuario === 'USUARIO TALLER'){
+                if(descripcion === 'GRAMO_FINAL_VARIABLE'){
+                    $('#divCosto').show();
+                    $('#divUtilidad').show();
+                    $('#divPrecio').hide();
+                } else {
+                    $('#divCosto').show();
+                    $('#divPrecio').show();
+                    $('#divUtilidad').hide();
+                }
+            }
+            if(tipo_usuario === 'USUARIO OPERACIONES'){
+                if(descripcion === 'GRAMO_FINAL_VARIABLE'){
+                    $('#divCosto').hide();
+                    $('#divUtilidad').show();
+                    $('#divPrecio').hide();
+                } else {
+                    $('#divCosto').hide();
+                    $('#divPrecio').show();
+                    $('#divUtilidad').hide();
+                }
+            }
+        } else {
+            ocultarElementos();
+        }
+    }
+
+    $('#id_precio_definido').on('change', function(){
+        descripcion = $('option:selected', $(this)).attr('tipo');
+        mostrarElementos(descripcion);
+        costo = $('option:selected', $(this)).attr('costo');
+        costo = costo.replace(/,/,'.');
+        costo = parseFloat(costo);
+        $('#id_costo').val(costo);
+        utilidad = $('option:selected', $(this)).attr('utilidad');
+        utilidad = utilidad.replace(/,/,'.');
+        utilidad = parseFloat(utilidad);
+        $('#id_utilidad').val(utilidad);
+        precio = $('option:selected', $(this)).attr('precio');
+        precio = precio.replace(/,/,'.');
+        precio = parseFloat(precio);
+        $('#id_precio').val(precio);
+    });
+
+    function guardar(){
+        form = document.getElementById('frmCategoria');
+        var data = new FormData(form);
+        var id_categoria = '{{ obj.id_categoria }}';
+        if (id_categoria){
+            url = "{% url 'ctg:categorias_editar' 0 %}";
+            url = url.replace(/0/, id_categoria);
+        } else {
+            url = "{% url 'ctg:categorias_crear' %}";
+        }
+        
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function(response){
+                url = "{% url 'ctg:categorias_lista' %}";
+                location.replace(url);
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                mensaje(errorThrow, 'red');
+            }
+        });
+    }
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    mensaje('{{ field.name }}{{ error|escape }}', 'red');
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                    mensaje('{{ error|escape }}', 'red');
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</script>
+{% endblock %}

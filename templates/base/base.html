@@ -1,0 +1,1325 @@
+{% load static %} {% load i18n %}
+<!DOCTYPE html>
+<html class="loading" lang="{{ LANGUAGE_CODE }}" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>SINDRI</title>
+    <!-- <link rel="apple-touch-icon" href="{% static 'base/app-assets/images/ico/apple-icon-120.png' %}"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static  'base/img/icons/sindrilogo.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/tables/datatable/datatables.min.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/components.css' %}">
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/animate/animate.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/hummingbird-treeview.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/fontawesome-free/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/fontawesome-free/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/vendor/fontawesome-free/css/all.min.css' %}">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/swiper.min.css' %}">
+    <!-- END: Vendor CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/swiper.css' %}">
+    <!-- END: Page CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/spinner.css' %}">
+    
+    <!-- jQuery confirm-->
+    <link href="{% static  'base/vendor/jquery_confirm/dist/jquery-confirm.min.css' %}" rel="stylesheet">
+    <!-- END: Custom CSS-->
+    
+    <!-- Select 2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- END: Select 2 -->
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.min.css' %}">  
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/extensions/toastr.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/charts/apexcharts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/charts/chartist.min.css' %}">
+
+
+   
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns content-left-sidebar file-manager-application navbar-sticky footer-static email-application " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    {% block top_bar %}
+    <div class="header-navbar-shadow"></div>
+    <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
+        <div class="navbar-wrapper">
+            <div class="navbar-container content">
+                <div class="navbar-collapse" id="navbar-mobile">
+                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon bx bx-menu"></i></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav bookmark-icons">
+                            <li class="nav-item d-none d-lg-block"><img class="flag-icon mr-50" src="{{ user.pais.bandera.url }}" alt="pais"></li>
+                            <li class="nav-item d-none d-lg-block"><span class="selected-language">{{ user.pais }}</span></li>
+                        </ul>
+                    </div>
+                    <ul class="nav navbar-nav float-right">
+                        <input name="next" type="hidden" value="/" /> {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as lenguajes %}
+                        <li class="dropdown dropdown-language nav-item">
+                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if LANGUAGE_CODE == 'en-us' %}
+                                <i class="flag-icon flag-icon-us mr-50"></i> 
+                                <span class="selected-language">{% trans "Inglés USA" %}</span>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == 'es-ec' %}
+                                <i class="flag-icon flag-icon-ec mr-50"></i>
+                                <span class="selected-language">{% trans "Español Ecuador" %}</span>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == 'es-cl' %}
+                                <i class="flag-icon flag-icon-cl mr-50"></i>
+                                <span class="selected-language">{% trans "Español Chile" %}</span>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == 'es-co' %}
+                                <i class="flag-icon flag-icon-co mr-50"></i>
+                                <span class="selected-language">{% trans "Español Colombia" %}</span>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == 'es-pe' %}
+                                <i class="flag-icon flag-icon-pe mr-50"></i>
+                                <span class="selected-language">{% trans "Español Perú" %}</span>
+                                {% endif %}
+                                {% if LANGUAGE_CODE == 'pt-br' %}
+                                <i class="flag-icon flag-icon-br mr-50"></i>
+                                <span class="selected-language">{% trans "Portugués Brasil" %}</span>
+                                {% endif %}
+                            </a>
+                            <form action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                                    <button title="{{ l.name_local | title }}" name="language" type="submit" value="es-co" class="dropdown-item" style="border: 0px; background-color: transparent">
+                                        <i class="flag-icon flag-icon-co mr-50"></i> {% trans "Español Colombia" %}
+                                    </button>
+                                    <button title="{{ l.name_local | title }}" name="language" type="submit" value="es-ec" class="dropdown-item" style="border: 0px; background-color: transparent">
+                                        <i class="flag-icon flag-icon-ec mr-50"></i> {% trans "Español Ecuador" %}
+                                    </button>
+                                    <button title="{{ l.name_local | title }}" name="language" type="submit" value="es-cl" class="dropdown-item" style="border: 0px; background-color: transparent">
+                                        <i class="flag-icon flag-icon-cl mr-50"></i> {% trans "Español Chile" %}
+                                    </button>
+                                    <button title="{{ l.name_local | title }}" name="language" type="submit" value="es-pe" class="dropdown-item" style="border: 0px; background-color: transparent">
+                                        <i class="flag-icon flag-icon-pe mr-50"></i> {% trans "Español Perú" %}
+                                    </button>
+                                    <button title="{{ l.name_local | title }}" name="language" type="submit" value="pt-br" class="dropdown-item" style="border: 0px; background-color: transparent">
+                                        <i class="flag-icon flag-icon-br mr-50"></i> {% trans "Portugués Brasil" %}
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon bx bx-fullscreen"></i></a></li>
+                        <!-- <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon bx bx-search"></i></a>
+                            <div class="search-input">
+                                <div class="search-input-icon"><i class="bx bx-search primary"></i></div>
+                                <input class="input" type="text" placeholder='{% trans "Buscar elemento" %}' tabindex="-1" data-search="template-list">
+                                <div class="search-input-close"><i class="bx bx-x"></i></div>
+                                <ul class="search-list"></ul>
+                            </div>
+                        </li> -->
+                        <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span id="cant_notificaciones" class="badge badge-pill badge-danger badge-up"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <li class="dropdown-menu-header">
+                                    <div class="dropdown-header px-1 py-75 d-flex justify-content-between"><span id="num_notificaciones" class="notification-title"></span>
+                                </li>
+                                <li style="padding-top: 0px; padding-bottom: 0px;" id="lista_notificaciones" class="scrollable-container media-list">
+                                    
+                                </li>
+
+                                <li class="dropdown-menu-footer"><a type="button" class="dropdown-item p-50 text-primary justify-content-center" onclick="obtenerNotificaciones(1)">{% trans "Ver todas" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{ user.username }}</span></div><span><img class="round" {% if user.img_perfil %} src="{{ user.img_perfil.url }}" {% else %} src="{% static  'base/img/profile/no_perfil.png' %}" {% endif %} alt="avatar" height="40" width="40"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right pb-0"><a style="cursor:pointer;" class="dropdown-item" href="{% url 'usr:usuario_editar_perfil' user.id %}"><i class="bx bx-user mr-50"></i>{% trans "Editar perfil" %}</a><a style="cursor:pointer;" class="dropdown-item" href="{% url 'usr:usuario_cambiar_contrasena' %}"><i class="bx bx-key mr-50"></i>{% trans "Cambiar contraseña" %}</a>
+                                <!-- <a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a> -->
+                                <div class="dropdown-divider mb-0"></div><a style="cursor:pointer;" class="dropdown-item" onclick="return abrir_modal('{% url 'bases:logout_modal' %}');"><i class="bx bx-power-off mr-50"></i>{% trans "Salir" %}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock top_bar %}
+    <!-- END: Header-->
+ {% if messages %}
+				<ul class="messages">
+					    {% for message in messages %}
+					    <li{% if message.tags %} class="{{ message.tags }} alert-success"{% endif %}></li>
+					    {% endfor %}
+				    </ul>
+{% endif %}
+
+    <!-- BEGIN: Main Menu-->
+    {% block side_bar %}
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="{% url 'bases:home' %}">
+                        <div class="brand-logo"><img src="{% static  'base/img/icons/sindrilogo.png' %}" alt="" width="100%"></div>
+                        <h2 class="brand-text mb-0">SINDRI</h2>
+                    </a></li>
+                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+            </ul>
+        </div>
+        <div class="shadow-bottom"></div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+                <!-- <li class=" nav-item"><a href="../../../html/ltr/vertical-menu-template/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span></a>
+                    <ul class="menu-content">
+                        <li class="active"><a href="dashboard-ecommerce.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="eCommerce">eCommerce</span></a>
+                        </li>
+                        <li><a href="dashboard-analytics.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
+                        </li>
+                    </ul>
+                </li> -->
+                {% if user.rol.admin or perms.trn.estadisticas_admin %}
+                {% if user.tipo_usuario_id == 3 %}
+                <li class=" nav-item"><a href="{% url 'dsh:dashboard_operaciones' %}"><i class="menu-livicon" data-icon="pie-chart"></i><span class="menu-title" data-i18n="Invoice">{% trans "Estadísticas" %}</span></a>
+                {% endif %}
+                {% endif %}
+                {% if user.rol.admin or perms.trn.estadisticas_admin %}
+                {% if user.tipo_usuario_id == 2 %}
+                <li class=" nav-item"><a href="{% url 'dsh:dashboard_taller' %}"><i class="menu-livicon" data-icon="pie-chart"></i><span class="menu-title" data-i18n="Invoice">{% trans "Estadísticas" %}</span></a>
+                {% endif %}
+                {% endif %}
+                <li class=" navigation-header"><span>{% trans "Administración" %}</span>
+                </li>
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="Invoice">{% trans "Usuarios" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.usr.view_roles %}
+                        <li><a href="{% url 'usr:roles_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Roles de usuario" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.usr.view_usuarios %}
+                        <li><a href="{% url 'usr:usuario_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Usuarios" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% if user.tipo_usuario.descripcion != 'USUARIO TALLER' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="building"></i><span class="menu-title" data-i18n="Invoice">{% trans "Establecimientos" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.est.view_gruposempresariales %}
+                        <li><a href="{% url 'est:grupos_empresariales_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Grupos empresariales" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.est.view_sociedades %}
+                        <li><a href="{% url 'est:sociedades_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Sociedades" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.est.view_tiendas %}
+                        <li><a href="{% url 'est:tiendas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Tiendas" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.est.view_talleres %}
+                        <li><a href="{% url 'est:talleres_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Talleres" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.tipo_usuario_id == 3 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="location"></i><span class="menu-title" data-i18n="Invoice">{% trans "Ubicaciones" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ubc.view_regiones and user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'ubc:regiones_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Regiones" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ubc.view_paises and user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'ubc:paises_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Paises" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ubc.view_localidades %}
+                        <li><a href="{% url 'ubc:localidades_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Localidades" %}</span></a>
+                        </li>
+                        {% endif %}
+                         {% if perms.est.view_zonas %} 
+                        <li><a href="{% url 'ubc:zonas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Zonas" %}</span></a>
+                        </li>
+                         {% endif %} 
+                        {% if perms.ubc.view_ciudades %}
+                        <li><a href="{% url 'ubc:ciudades_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Ciudades" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.est.view_sectores %}
+                        <li><a href="{% url 'ubc:sectores_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Sectores" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.tipo_usuario_id != 1 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="truck"></i><span class="menu-title" data-i18n="Invoice">{% trans "Proveedores" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.prv.view_proveedores %}
+                        <li><a href="{% url 'prv:proveedores_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Proveedores" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.rol.admin or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' or perms.cfg.change_configgeneral or perms.usr.change_taller %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="settings"></i><span class="menu-title" data-i18n="Invoice">{% trans "Configuraciones" %}</span></a>
+                {% endif %}
+                    <ul class="menu-content">
+                        {% if perms.cfg.view_configuracionapisms or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'cfg:api_mensajes_actualizar' user.pais_id %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "API mensajes" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ubc.change_paises %}
+                        <li><a href="{% url 'cfg:cfg_pais_editar' user.pais_id %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Parámetros generales" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.cfg.change_configgeneral %}
+                        {% if user.grupo_empresarial %}
+                            <li><a href="{% url 'cfg:cfg_ope_editar' user.grupo_empresarial.id_grupo_empresarial %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Parámetros generales" %}</span></a>
+                            </li>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.taller%}
+                            {% if perms.est.change_talleres %}
+                            <li><a href="{% url 'cfg:cfg_tal_editar' user.taller.id_taller %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">{% trans "Parámetros generales" %}</span></a>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if perms.est.env_reportes %}
+                        
+                        <li><a href=""><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Envío de reportes" %}</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{% url 'cfg:cfg_envio_reportes' user.id %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Reporte Mensual" %}</span></a>
+                                </li>
+                                {% if perms.cfg.envio_reporte_user %}
+                                <li><a href="{% url 'cfg:cfg_reporte_usuarios' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Reporte Conexion" %}</span></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% endif %}
+
+                        {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' and perms.est.prioridad_taller %}
+                        <li><a href="{% url 'cfg:prioridad_talleres' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">{% trans "Prioridad talleres" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.cfg.change_configutilidadtaller %}
+                        <!-- <li><a href="{% url 'cfg:cfg_ope_tal' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Utilidad sobre talleres" %}</span></a>
+                        </li> -->
+                        {% endif %}
+                        {% if perms.trn.view_rubrosasociados %}
+                        <li><a href="{% url 'cfg:cfg_rubros_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Rubros asociados" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.cfg.change_configutilidadproveedor %}
+                        <!-- <li><a href="{% url 'cfg:cfg_ope_prv' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Utilidad sobre proveedores" %}</span></a>
+                        </li> -->
+                        {% endif %}
+                        {% if perms.usr.change_usuarios %}
+                        {% if user.tipo_usuario_id == 3 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'cfg:cfg_tmp_vta' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Tiempo límite venta" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.pais.aut_externo %}
+                        {% if perms.usr.change_usuarios %}
+                        {% if user.tipo_usuario_id == 3 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'cfg:cfg_aut_ext' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Permitir externo" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+
+                        {% if perms.cfg.view_politicascomerciales or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                        <li><a href="{% url 'cfg:editar_politicas' user.grupo_empresarial.id_grupo_empresarial %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Políticas y condiciones" %}</span></a>
+                        </li>
+                        {% endif %}
+
+                        {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES'  and perms.trn.permiso_tooltip %} 
+                            <li>
+                                <a href="{% url 'trn:tooltip' user.grupo_empresarial.id_grupo_empresarial %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">{% trans "Notas de Ayuda" %}</span></a>
+                            </li>
+                        {% endif %}
+
+                        {% if perms.trn.permiso_motivo_rechazo %} 
+
+                        <li><a href="{% url 'cfg:obs_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Configuracion de Rechazo" %}</span></a>
+                        </li>
+                        {% endif %}
+                            
+                    </ul>
+                </li>
+                {% if perms.ctg.view_divisiones or perms.ctg.view_items or perms.ctg.view_categorias or perms.ctg.view_tallas or perms.ctg.view_colores or perms.ctg.view_adicionales %}
+                <li class=" navigation-header"><span>{% trans "Catálogo" %}</span>
+                </li>
+                {% endif %}
+                {% if perms.ctg.view_divisiones or perms.ctg.view_categorias or perms.ctg.view_tallas or perms.ctg.view_colores %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="briefcase"></i><span class="menu-title" data-i18n="Content">{% trans "Administración" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ctg.view_preciosdefinidos %}
+                        <li><a href="{% url 'ctg:precios_definidos_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Precios definidos" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_divisiones %}
+                        <li><a href="{% url 'ctg:divisiones_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Divisiones" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_categorias %}
+                        <li><a href="{% url 'ctg:categorias_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Categorías" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_tallas %}
+                        <li><a href="{% url 'ctg:tallas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Tallas" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_colores %}
+                        <li><a href="{% url 'ctg:colores_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Colores" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_acabados %}
+                        <li><a href="{% url 'ctg:acabados_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Acabados" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_partesinternas %}
+                        <li><a href="{% url 'ctg:partes_internas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Partes internas" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_anchuras %}
+                        <li><a href="{% url 'ctg:anchuras_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Anchuras" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% if perms.ctg.view_items %}
+                {% if user.tipo_usuario_id == 2 or user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="box"></i><span class="menu-title" data-i18n="Content">{% trans "Ítems" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ctg.view_items %}
+                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Catálogo" %}</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{% url 'ctg:alianzas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Alianzas" %}</span></a>
+                                </li>
+                                <li><a href="{% url 'ctg:items_lista' 1 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Productos" %}</span></a>
+                                </li>
+                                <li><a href="{% url 'ctg:items_lista' 2 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Servicios" %}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_items %}
+                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Especiales" %}</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{% url 'ctg:items_lista' 3 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Productos" %}</span></a>
+                                </li>
+                                <li><a href="{% url 'ctg:items_lista' 4 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Servicios" %}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% if perms.ctg.view_items %}
+                {% if user.tipo_usuario_id == 3 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="box"></i><span class="menu-title" data-i18n="Content">{% trans "Ítems" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ctg.view_items %}
+                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Catálogo" %}</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{% url 'ctg:alianzas_lista_op' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Alianzas" %}</span></a>
+                                </li>
+                                <li><a href="{% url 'ctg:catalogo_items' 1 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Productos" %}</span></a>
+                                </li>
+                                <li><a href="{% url 'ctg:catalogo_items' 2 %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Servicios" %}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if perms.ctg.view_items %}
+                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Typography">{% trans "Especiales" %}</span></a>
+                            <ul class="menu-content">
+                                <li><a onclick="abrir_modal('{% url "trn:solicitudes_tipo" 1 %}')"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Productos" %}</span></a>
+                                </li>
+                                <li><a  onclick="abrir_modal('{% url "trn:solicitudes_tipo" 2 %}')"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Third Level">{% trans "Servicios" %}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% if perms.ctg.view_adicionales %}
+                {% if user.tipo_usuario_id != 1 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="plus-alt"></i><span class="menu-title" data-i18n="Content">{% trans "Adicionales" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ctg.view_adicionales %}
+                        <li><a href="{% url 'ctg:adicionales_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Ítems adicionales" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% if perms.ctg.view_piedras %}
+                {% if user.tipo_usuario_id != 1 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="morph-octagon2-sticker"></i><span class="menu-title" data-i18n="Content">{% trans "Piedras" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.ctg.view_piedras %}
+                        <li><a href="{% url 'ctg:piedras_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Grid">{% trans "Piedras" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% if user.tipo_usuario_id != 1 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" navigation-header"><span>{% trans "POS" %}</span>
+                </li>
+                {% endif %}
+                {% if user.tipo_usuario_id == 3 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                {% if perms.clt.view_clientes or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Form Elements">{% trans "Clientes" %}</span></a>
+                {% endif %}
+                    <ul class="menu-content">
+                        {% if perms.clt.view_clientes %}
+                        <li><a href="{% url 'clt:clientes_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Clientes" %}</span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.tipo_usuario_id != 1 or user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="shoppingcart-out"></i><span class="menu-title" data-i18n="Form Elements">{% trans "Transacciones" %}</span></a>
+                    <ul class="menu-content">
+                        {% if perms.trn.view_solicitudtrabajo %}
+                        <li><a href="{% url 'trn:solicitudes_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Solicitudes de trabajo" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.trn.view_ordentrabajo %}
+                        <li><a href="{% url 'trn:ordenes_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Órdenes de trabajo" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.trn.pagos_aprobados %}
+                        <li><a href="{% url 'trn:ordenes_pagos_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Aprobación de pagos" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if perms.trn.view_facturas %}
+                        <li><a href="{% url 'trn:facturas_lista' %}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Input">{% trans "Facturas" %}</span></a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endblock side_bar %}
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    {% block page_content %}
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+
+
+            </div>
+        </div>
+    </div>
+    {% endblock page_content %}
+    {% block login %} {% endblock %}
+    <!-- END: Content-->
+    <!-- BEGIN: Footer-->
+    {% block footer %}
+    <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0"><span class="float-left d-inline-block"><script>document.write( new Date().getFullYear() );</script> &copy; INNODE V. 2.0</span><span class="float-right d-sm-inline-block d-none">{% trans "Creado por " %}<a class="text-uppercase" href="#" target="_blank">INNODE</a></span>
+            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+        </p>
+    </footer>
+    {% endblock footer %}
+    <!-- END: Footer-->
+    
+    <!-- Agregar detalle Modal-->
+    <div class="modal fade" id="popup"></div>
+
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{% static  'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+    <script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js' %}"></script>
+    <script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js' %}"></script>
+    <script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js' %}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static  'base/app-assets/vendors/js/tables/datatable/datatables.min.js' %}"></script>
+    <script src="{% static  'base/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static  'base/app-assets/vendors/js/forms/validation/jquery.validate.min.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{% static  'base/app-assets/js/scripts/configs/vertical-menu-light.js' %}"></script>
+    <script src="{% static  'base/app-assets/js/core/app-menu.js' %}"></script>
+    <script src="{% static  'base/app-assets/js/core/app.js' %}"></script>
+    <script src="{% static  'base/app-assets/js/scripts/components.js' %}"></script>
+    <script src="{% static  'base/app-assets/js/scripts/footer.js' %}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{% static  'base/app-assets/js/scripts/datatables/datatable.js' %}"></script>
+    <script src="{% static  'base/app-assets/js/scripts/modal/components-modal.js' %}"></script>
+    <!-- END: Page JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'base/app-assets/vendors/js/extensions/swiper.min.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="{% static 'base/app-assets/js/scripts/extensions/swiper.js' %}"></script>
+    <!-- END: Page JS-->
+
+    <!-- jQuery confirm-->
+    <script src="{% static 'base/vendor/jquery_confirm/dist/jquery-confirm.min.js' %}"></script>
+    <script src="{% static 'base/js/jquery.maskMoney.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.2/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Select 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    <!-- END: Select 2 -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'base/app-assets/vendors/js/extensions/toastr.min.js' %}"></script>
+
+    <script src="{% static 'base/app-assets/js/scripts/extensions/toastr.js' %}"></script>
+    <script src="{% static 'base/app-assets/vendors/js/charts/apexcharts.js' %}"></script>
+    <script src="{% static 'base/app-assets/vendors/js/charts/apexcharts.min.js' %}"></script>
+
+
+    <script src="{% static 'base/app-assets/js/scripts/tooltip/tooltip.min.js' %}"></script>
+    <script src="{% static 'base/app-assets/js/scripts/tooltip/tooltip.js' %}"></script>
+
+    {% block notificaciones %}
+    <script>
+        
+
+        var audio = null;
+        var alerta = null;
+        var permisos_solicitud = ('{{ perms.trn.change_solicitudtrabajo }}').toLowerCase() === 'true';
+        var permisos_orden = ('{{ perms.trn.change_ordentrabajo }}').toLowerCase() === 'true';
+
+        let separador_decimales = '{{ user.pais.separador_decimal }}';
+        let separador_miles = '{{ user.pais.separador_miles }}';
+
+        $(document).ready(function() {
+
+            audio = new Audio('{% static "base/audio/audio.mp3" %}');
+            // audio.autoplay = true;
+
+            jQuery.datetimepicker.setLocale('{{ LANGUAGE_CODE }}');
+            
+            nueva_clave = '{{ user.nueva_clave }}';
+            if(nueva_clave === 'True'){
+                url = "{% url 'usr:usuario_cambiar_contrasena_modal' %}";
+                return abrir_modal(url);
+            } else {
+                rol = '{{ user.rol }}';
+                if(rol === 'ADMIN TALLER'){
+                    configurado = '{{ user.taller.configurado }}';
+                    if(configurado === 'False'){
+                        url = "{% url 'cfg:cfg_tal_editar' 0 %}";
+                        url_config = location.origin + url;
+                        if(location.href !== url_config){
+                            $.confirm({
+                                title: '{% trans "Configuración inicial" %}',
+                                content: '{% trans "Debe agregar la configuración inicial a su taller" %}',
+                                theme: 'supervan',
+                                buttons: {
+                                    confirm: {
+                                        text: '{% trans "Configurar" %}',
+                                        action: function() {
+                                            
+                                            window.location = url;
+                                        }
+                                    },
+                                }
+                            });
+                        }
+                    }
+                }
+                if(rol === 'ADMIN OPERACIONES'){
+                    configurado = '{{ user.grupo_empresarial.configurado }}';
+                    if(configurado === 'False'){
+                        url = "{% url 'cfg:cfg_ope_editar' 0 %}";
+                        url_config = location.origin + url;
+                        if(location.href !== url_config){
+                            $.confirm({
+                                title: '{% trans "Configuración inicial" %}',
+                                content: '{% trans "Debe agregar la configuración inicial a su empresa" %}',
+                                theme: 'supervan',
+                                buttons: {
+                                    confirm: {
+                                        text: '{% trans "Configurar" %}',
+                                        action: function() {
+                                            
+                                            window.location = url;
+                                        }
+                                    },
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+            cargarNotificaciones();
+        });
+
+        function cargarNotificaciones(mensaje){
+            if(mensaje === '{{ user.id }}' ){
+                if(alerta){
+                    alerta.close();
+                }
+            } else {
+                if (parseInt('{{user.tienda_usuario}}') === 1 || ('{{user.tipo_usuario.descripcion}}' === 'USUARIO TALLER')){
+
+                    obtenerNotificaciones(15);
+                    obtenerPrimeraNotificacion();
+                }
+            }
+        }
+
+        function obtenerNotificaciones(limite){
+            var tipo_usuario = '{{ user.tipo_usuario_id }}';
+            let verNotificacion = ('{{ user.ver_notificaciones }}').toLowerCase() === 'true';
+            if( parseInt(tipo_usuario) === parseInt(3) && verNotificacion === true ){
+                if (parseInt('{{user.tienda_usuario}}') === 1 ){
+                    var id_usuario = '{{user.id}}';
+                    var path = "{% url 'ntf:notificaciones_usuario_lista' 0 1 %}";
+                    path = path.replace(/1/, limite);
+                    path = path.replace(/0/, id_usuario);
+                }
+            }
+            if( parseInt(tipo_usuario) === parseInt(2) && verNotificacion === true ){
+                
+                var id_taller = '{{ user.taller.id_taller }}';
+                var path = "{% url 'ntf:notificaciones_taller_lista' 0 1 %}";
+                path = path.replace(/0/, id_taller);
+                path = path.replace(/1/, limite);
+            }
+            
+            $.ajax({
+                type: "GET",
+                url: path,
+                success: function(res) {
+                    
+                    var notificaciones = res
+                    var no_vistas = notificaciones.filter(notificacion => notificacion.vista == false);
+                    var cant_no_vistas = no_vistas.length;
+                    if (cant_no_vistas > 0){
+                        $('#cant_notificaciones').text(no_vistas.length);
+                        document.getElementById('num_notificaciones').innerHTML= no_vistas.length + '{% trans " notificaciones nuevas:" %}';
+                    } else {
+                        $('#cant_notificaciones').hide();
+                        document.getElementById('num_notificaciones').innerHTML= '{% trans "sin notificaciones nuevas:" %}';
+                    }
+                    
+                    $('#lista_notificaciones').empty();
+                    notificaciones.forEach(notificacion => {
+                        fecha_creacion = new Date(notificacion.fecha_creacion);
+                        var a = document.createElement('a');
+                        if(notificacion.vista){
+                            a.innerHTML = 
+                            '<a onclick="ActualizarNotificacion('+notificacion.id_notificacion+','+notificacion.id_transaccion+','+notificacion.tipo_transaccion+')" class="d-flex justify-content-between">'+
+                                '<div class="media d-flex align-items-center">'+
+                                    '<div class="media-body">'+
+                                        '<h6 class="media-heading">'+
+                                            '<span class="text-bold-500">'+
+                                                notificacion.nombre_producto+
+                                            '</span>'+
+                                        '</h6>'+
+                                        '<small class="notification-text">'+
+                                            fecha_creacion.toLocaleString()+
+                                        '</small>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</a>';
+                        } else {
+                            a.innerHTML = 
+                            '<a onclick="ActualizarNotificacion('+notificacion.id_notificacion+','+notificacion.id_transaccion+','+notificacion.tipo_transaccion+')" class="d-flex justify-content-between">'+
+                                '<div style="background-color: lightblue;" class="media d-flex align-items-center">'+
+                                    '<div class="media-body">'+
+                                        '<h6 class="media-heading">'+
+                                            '<span class="text-bold-500">'+
+                                                notificacion.nombre_producto+
+                                            '</span>'+
+                                        '</h6>'+
+                                        '<small class="notification-text">'+
+                                            fecha_creacion.toLocaleString()+
+                                        '</small>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</a>';
+                        }
+                        
+                        document.getElementById('lista_notificaciones').appendChild(a);
+
+                    });
+                },
+                error: function(a, b, c) {
+                    console.log(a);
+                }
+            });
+        }
+
+        function obtenerPrimeraNotificacion(){
+            var tipo_usuario = '{{ user.tipo_usuario_id }}';
+            let verNotificacion = ('{{ user.ver_notificaciones }}').toLowerCase() === 'true';
+            console.log(verNotificacion, 'notificacion')
+            if( parseInt(tipo_usuario) === 3  && verNotificacion === true){
+                if (parseInt('{{user.tienda_usuario}}') === 1 ){
+                    var id_usuario = '{{user.id}}';
+                    var path = "{% url 'ntf:notificaciones_usuario_primera' 1 %}";
+                    path = path.replace(/1/, id_usuario);
+                }
+            }
+            if( parseInt(tipo_usuario) === 2  && verNotificacion === true){
+                var id_taller = '{{ user.taller.id_taller }}';
+                var path = "{% url 'ntf:notificaciones_taller_primera' 1 %}";
+
+                path = path.replace(/1/, id_taller);
+            }
+
+            // validar si el usuario es de operaciones o taller
+            if(alerta){
+                alerta.close();
+            }
+            $.ajax({
+                type: "GET",
+                url: path,
+                success: function(res) {
+                    var notificaciones = res;
+                    notificaciones.forEach(notificacion => {
+                        console.log(notificacion)
+                        if (notificacion.principal && notificacion.estado_nombre === 'ESPERA COTIZACION TALLER' && permisos_solicitud) {
+                            if(notificacion.postergada){ 
+                                if(alerta){
+                                    alerta.close();
+                                }
+                                url_solicitud = "{% url 'trn:solicitudes_detalle' 0 1 %}";
+                                url_solicitud = location.origin + url_solicitud.replace(/0/, notificacion.id_transaccion);
+                                if(location.herf !== url_solicitud){
+                                    audio.play();
+                                    alerta = $.confirm({
+                                        lazyOpen: true,
+                                        title: '{% trans "Solicitud pendiente de respuesta" %}',
+                                        content: '{% trans "Se ha cumplido el plazo para responder la solicitud" %}',
+                                        theme: 'supervan',
+                                        buttons: {
+                                            confirm: {
+                                                text: '{% trans "Responder" %}',
+                                                action: function() {
+                                                
+                                                    ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion)
+                                                    
+                                                }
+                                            },
+                                            cancel: {
+                                                text: '{% trans "Posponer" %}',
+                                                action: function() {
+                                                    console.log('posponer');
+                                                }
+                                            },
+                                        }
+                                    });
+                                    alerta.open();
+                                }
+                            } else {
+                                
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                if(alerta){
+                                    alerta.close();
+                                }
+
+                                url_solicitud = "{% url 'trn:solicitudes_detalle' 0 1 %}";
+                                url_solicitud = location.origin + url_solicitud.replace(/0/, notificacion.id_transaccion);
+                                if(location.href !== url_solicitud){
+                                    audio.play();
+                                    alerta = $.confirm({
+                                        lazyOpen: true,
+                                        title: '{% trans "Nueva solicitud" %}',
+                                        content: '<p>'+ notificacion.tienda_nombre +'{% trans " ha creado una solicitud" %}</p>'+
+                                                '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                                '<p>{% trans "Generada: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                        theme: 'supervan',
+                                        buttons: {
+                                            confirm: {
+                                                text: '{% trans "Mostrar" %}',
+                                                action: function() {
+                                                
+                                                    ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion)
+                                                    
+                                                }
+                                            },
+                                            cancel: {
+                                                text: '{% trans "Posponer" %}',
+                                                action: function() {
+                                                    console.log('posponer');
+                                                }
+                                            },
+                                        }
+                                    });
+                                    alerta.open();
+                                }
+                            }
+                        
+                        } else {
+                            if((!notificacion.vista) && (notificacion.estado_nombre === "COTIZADO TALLER") ){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-success"><strong>{% trans "Cotización lista" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.taller_nombre +'{% trans " ha realizado la cotización" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Cotizado: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                    }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if((notificacion.tipo_notificacion === 1 ) && !notificacion.vista && notificacion.estado_nombre === 'ESPERA DE EVALUACION'){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-warning"><strong>{% trans "Solicitud en evaluación" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.taller_nombre +'{% trans " necesita más tiempo para realizar la cotización" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Respuesta: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if((notificacion.tipo_notificacion === 1 ) && !notificacion.vista && notificacion.estado_nombre === 'RECHAZADO TALLER'){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-danger"><strong>{% trans "Solicitud rechazada" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.taller_nombre +'{% trans " ha rechazado la solicitud" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Respuesta: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if(notificacion.taller === parseInt('{{user.taller.id_taller}}') && ( notificacion.tipo_notificacion === 2 ) && (notificacion.estado_nombre === 'PENDIENTE INICIO' || notificacion.estado_nombre === 'INGRESADO') ){
+                                
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-success"><strong>{% trans "Órden nueva" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.tienda_nombre +'{% trans " ha generado una nueva órden" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Generada: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if(notificacion.taller === parseInt('{{user.taller.id_taller}}') && !notificacion.vista && (notificacion.estado_nombre === 'RECHAZADO CLIENTE')){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-warning"><strong>{% trans "Solicitud Cancelada " %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.tienda_nombre +'{% trans " ha rechazado la solicitud" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Generada: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if((notificacion.tipo_notificacion === 1) && !notificacion.vista && (notificacion.estado_nombre === 'CANCELADO')){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-danger"><strong>{% trans "Orden Anulada" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.taller_nombre +'{% trans " ha cancelado la orden." %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Generada: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            
+                            if( (notificacion.tipo_notificacion === 1) && ( !notificacion.vista && notificacion.estado_nombre === 'PRODUCTO ENVIADO')){
+                                // alert('{{orden.tienda.id_tienda}}')
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-primary"><strong>{% trans "Producto enviado" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.taller_nombre +'{% trans " ha enviado el producto terminado" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Enviado: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if(notificacion.usuario_recibe === parseInt('{{ user.id }}') && notificacion.estado_nombre === 'PRODUCTO RECIBIDO'){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-danger"><strong>{% trans "Límite de venta vencido" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.usuario_nombre +'{% trans " se ha cumplido el tiempo límite para la venta del producto" %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Vencido: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Mostrar" %}'
+                                    }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                            if(notificacion.tipo_notificacion === 2 && notificacion.estado_nombre === 'PRODUCTO RECIBIDO'){
+                                audio.play();
+                                fecha_creacion = new Date(notificacion.fecha_creacion)
+                                opciones = {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+                                alerta = Swal;
+                                alerta.fire({
+                                    title: '<p class="text-success"><strong>{% trans "Producto Recibido" %}</strong></p>',
+                                    html:
+                                        '<p>'+ notificacion.tienda_nombre +'{% trans " ah recibido el producto, sin novedades." %}</p>'+
+                                        '<p>{% trans "Producto: " %}'+ notificacion.nombre_producto +'</p>'+
+                                        '<p>{% trans "Fecha: " %}'+ fecha_creacion.toLocaleString('ja-JP', opciones) +'</p>',
+                                    showClass: {
+                                        popup: 'animated tada'
+                                    },
+                                    confirmButtonColor: '#3085d6',
+                                    confirmButtonText: '{% trans "Entendido" %}'
+                                    }).then((result) => {
+                                    if (result.value) {
+                                        ActualizarNotificacion(notificacion.id_notificacion,notificacion.id_transaccion,notificacion.tipo_transaccion);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                },
+                error: function(a, b, c) {
+                    console.log(a);
+                }
+            });
+        }
+
+        function ActualizarNotificacion(id_notificacion, id_transaccion, tipo_transaccion){
+            
+            var token = '{{ csrf_token }}';
+            var datos = JSON.stringify(id_notificacion);
+            var url = "{% url 'ntf:notificacion_actualizar' 1 %}";
+            url = url.replace(/1/, id_notificacion);
+
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": token
+                },
+                url: url,
+                type: "POST",
+                data: datos,
+                success: function(response) {
+                    if (parseInt('{{user.tienda_usuario}}') === 1 ){
+                        obtenerNotificaciones(15);
+                    }
+                    if(tipo_transaccion === 1){
+
+                        url = "{% url 'trn:solicitudes_detalle' 0 1 %}";
+                        url = url.replace(/0/, id_transaccion);
+                        window.location.replace(url)
+                        return url;
+                    }
+                    if(tipo_transaccion === 2){
+                        url = "{% url 'trn:ordenes_detalle' 0 %}";
+                        url = url.replace(/0/, id_transaccion);
+                        window.location.replace(url)
+                    }                    
+                },
+                error: function(jqXHR, textStatus, errorThrow) {
+                    console.log(textStatus, errorThrow);
+                    alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+                }
+            });
+        }
+
+        function mensaje(msg, color = 'green') {
+            $.alert({
+                title: '',
+                theme: 'material',
+                type: color,
+                content: msg
+            });
+        }
+
+        var roomName = '{{ user.pais.nombre }}';
+        roomName = roomName.toLowerCase();
+        let protocolo;
+        if(window.location.protocol === 'https'){
+            protocolo = 'wss://';
+        }else{
+            protocolo = 'ws://';
+        }
+        var wsSocket = new WebSocket(
+            protocolo + window.location.host +
+            '/ws/websocket/' + roomName + '/');
+        // console.log(wsSocket);
+
+        wsSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            // console.log('recibido: ' + message);
+            cargarNotificaciones(message);
+        };
+
+        wsSocket.onclose = function(e) {
+            console.error('Socket cerrado');
+        };
+
+        /////////// Formato moneda //////////////////
+        $("input[data-type='currency']").on({
+            keyup: function() {
+            formatCurrency($(this));
+            },
+            blur: function() { 
+            formatCurrency($(this), "blur");
+            }
+        });
+
+        
+        decimales = ('{{ user.pais.decimales }}'.toLowerCase() === 'true');
+
+        function formatNumber(n) {
+            // format number 1000000 to 1,234,567
+            return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, separador_miles);
+        }
+
+
+        function formatCurrency(input, blur) {
+            // appends $ to value, validates decimal side
+            // and puts cursor back in right position.
+            
+            // get input value
+            var input_val = input.val();
+            // don't validate empty input
+            if (input_val === "") { return; }
+        
+            // original length
+            var original_len = input_val.length;
+
+            // initial caret position 
+            var caret_pos = input.prop("selectionStart");
+            
+            // check for decimal
+            if (input_val.indexOf(separador_decimales) >= 0) {
+
+                // get position of first decimal
+                // this prevents multiple decimals from
+                // being entered
+                var decimal_pos = input_val.indexOf(separador_decimales);
+
+                // split number by decimal point
+                var left_side = input_val.substring(0, decimal_pos);
+                var right_side = input_val.substring(decimal_pos);
+
+                // add commas to left side of number
+                left_side = formatNumber(left_side);
+
+                // validate right side
+                right_side = formatNumber(right_side);
+                
+                // On blur make sure 2 numbers after decimal
+                if (blur === "blur") {
+                right_side += "00";
+                }
+                
+                // Limit decimal to only 2 digits
+                right_side = right_side.substring(0, 2);
+
+                // join number by .
+                // input_val = '{{ user.pais.simbolo_moneda }}' + left_side + "," + right_side;
+                input_val = left_side + separador_decimales + right_side;
+
+            } else {
+                // no decimal entered
+                // add commas to number
+                // remove all non-digits
+                input_val = formatNumber(input_val);
+                // input_val = '{{ user.pais.simbolo_moneda }}' + input_val;
+                
+                // final formatting
+                if (blur === "blur" && decimales) {
+                    input_val += separador_decimales + "00";
+                }
+            }
+        
+            // send updated string to input
+            input.val(input_val);
+
+            // put caret back in the right position
+            var updated_len = input_val.length;
+            caret_pos = updated_len - original_len + caret_pos;
+            input[0].setSelectionRange(caret_pos, caret_pos);
+        }
+
+        /////////////// formato decimal ///////////////
+        function FormatoDecimal(input){
+            var valor = input.val();
+            if(separador_miles === ','){
+                valor = valor.replace(/\,/g, '');
+            } else {
+                valor = valor.replace(/\./g, '').replace(/,/, '.');
+            }
+            return parseFloat(valor);
+        }
+
+    </script>
+    {% endblock %}
+    {% block control_modal %}
+    <script>
+        function abrir_modal(url)
+        {
+            $("#popup").load(url, function(){
+                $(this).modal({
+                backdrop:'static',
+                keyboard: false
+                });
+                $(this).modal('show');
+            });
+            return false;
+        }
+
+        function cerrar_modal()
+        {
+            $('#popup').modal('hide');
+            return false;
+        }
+    </script>
+    {% endblock %}
+    {% block scripts_local %}  
+    {% endblock scripts_local %}
+    {% block js_page %}
+    {% endblock %}
+
+</body>
+<!-- END: Body-->
+
+</html>

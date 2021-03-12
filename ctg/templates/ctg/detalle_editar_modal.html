@@ -1,0 +1,75 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Editar detalle" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <br>
+            <form method="POST" class="form" action="{% url 'ctg:items_detalle_editar' obj.id_detalle_item %}">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input id="id_medida" readonly value="{{ obj.medida }}" class="form-control">
+                                <label for="city-column">{% trans "Medida" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input id="id_unidad_medida" name="unidad_medida" value="{{ obj.id_item.unidad_medida}}" type="text" disabled class="form-control">
+                                <label for="city-column">{% trans "Unidad de medida" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.peso_minimo }}
+                                <label for="city-column">{% trans "Peso mínimo" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.peso_maximo }}
+                                <label for="city-column">{% trans "Peso máximo" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.cantidad_piedras }}
+                                <label for="city-column">{% trans "Cantidad de piedras" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {{ form.costo_piedras }}
+                                <label for="city-column">{% trans "Costo piedras" %}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                        </button>
+                        <button type="submit" name="aceptar" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">{% trans "Guardar" %}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+</script>

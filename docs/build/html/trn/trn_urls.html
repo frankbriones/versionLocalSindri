@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>URLs trn &mdash; documentación de Sindri - 03-02-2020</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Views trn" href="trn_views.html" />
+    <link rel="prev" title="Modelos trn" href="trn_models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sindri
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html"><strong>Introducción</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requerimientos.html"><strong>Requerimientos</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html"><strong>Configuración del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rutas_principales.html"><strong>Rutas principales del sistema</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruta_sockets.html"><strong>Ruta de WebSockets</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion_celery.html"><strong>Configuración de Celery</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación bases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_templates.html"><strong>Templates Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_models.html"><strong>Modelos Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_urls.html"><strong>URLs Bases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/bases_views.html"><strong>Views Bases</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación cfg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_templates.html"><strong>Templates cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_models.html"><strong>Modelos cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_views.html"><strong>Views cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_forms.html"><strong>Forms cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cfg/cfg_tasks.html"><strong>Tasks cfg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación clt</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_templates.html"><strong>Templates clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_models.html"><strong>Modelos clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_urls.html"><strong>URLs clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_views.html"><strong>Views clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_forms.html"><strong>Forms clt</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clt/clt_serializers.html"><strong>Serializadores clt</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ctg</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_templates.html"><strong>Templates ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_models.html"><strong>Modelos ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_urls.html"><strong>URLs ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_views.html"><strong>Views ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_forms.html"><strong>Forms ctg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctg/ctg_serializers.html"><strong>Serializadores ctg</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación dsh</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_templates.html"><strong>Tareas dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_urls.html"><strong>URLs dsh</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dsh/dsh_views.html"><strong>Views dsh</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ntf</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_models.html"><strong>Modelos ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_urls.html"><strong>URLs cfg</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_views.html"><strong>Views ntf</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ntf/ntf_serializers.html"><strong>Serializadores ntf</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación prv</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_templates.html"><strong>Templates prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_models.html"><strong>Modelos prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_urls.html"><strong>URLs prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_views.html"><strong>Views prv</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prv/prv_forms.html"><strong>Forms prv</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación ubc</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_templates.html"><strong>Templates ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_models.html"><strong>Modelos ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_urls.html"><strong>URLs ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_views.html"><strong>Views ubc</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubc/ubc_forms.html"><strong>Forms ubc</strong></a></li>
+</ul>
+<p class="caption"><span class="caption-text">Aplicación trn</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="trn_templates.html"><strong>Templates trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_models.html"><strong>Modelos trn</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>URLs trn</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-lista">url solicitudes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-api-lista">url solicitudes_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-api-lista-fecha">url solicitudes_api_lista_fecha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-crear">url solicitudes_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-tipo">url solicitudes_tipo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-editar">url solicitudes_editar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitudes-detalle">url solicitudes_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-solicitar-externo">url solicitar_externo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-generar-orden-solicitud">url generar_orden_solicitud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-lista">url ordenes_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-api-lista">url ordenes_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-api-lista-fecha">url ordenes_api_lista_fecha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-pagos-lista">url ordenes_pagos_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-pagos-api-lista">url ordenes_pagos_api_lista</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-tipo">url ordenes_tipo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-solicitud-crear">url ordenes_solicitud_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-item-crear">url ordenes_item_crear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-detalle">url ordenes_detalle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-agregar-piedra">url ordenes_agregar_piedra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-ordenes-agregar-adicional">url ordenes_agregar_adicional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-envio-material">url envio_material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-recibe-material">url recibe_material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-anular-orden">url anular_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-finalizar-trabajo">url finalizar_trabajo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-enviar-producto">url enviar_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-recibir-producto">url recibir_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-cargar-doc-taller">url cargar_doc_taller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-cargar-doc-ope">url cargar_doc_ope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-devolver-producto">url devolver_producto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-finalizar-orden">url finalizar_orden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-finalizar-sin-venta">url finalizar_sin_venta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-orden-aprobacion-pago">url orden_aprobacion_pago</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-correo-cliente">url correo_cliente</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-correo-cliente-tmp">url correo_cliente_tmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-comprobante-tmp">url comprobante_tmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-rep-ordenes">url rep_ordenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-rep-ordenes-admin-op">url rep_ordenes_admin_op</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-rep-pagos-aprobados">url rep_pagos_aprobados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trn_views.html"><strong>Views trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_forms.html"><strong>Forms trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_serializers.html"><strong>Serializadores trn</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="trn_tasks.html"><strong>Tareas trn</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sindri</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><strong>URLs trn</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/trn/trn_urls.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="urls-trn">
+<h1><strong>URLs trn</strong><a class="headerlink" href="#urls-trn" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Dentro de la carpeta <strong>trn</strong> tenemos el archivo llamado <code class="docutils literal notranslate"><span class="pre">urls.py</span></code>. Donde se encuentran las rutas de la aplicación trn, se detalla a continuación cada ruta</p>
+<div class="section" id="url-solicitudes-lista">
+<h2>url solicitudes_lista<a class="headerlink" href="#url-solicitudes-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/lista</span></code> Ruta hacia la pantalla del listado de solicitudes de trabajo registradas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitudeslistaview"><span class="std std-ref">Vista SolicitudesListaView</span></a>.</p>
+</div>
+<div class="section" id="url-solicitudes-api-lista">
+<h2>url solicitudes_api_lista<a class="headerlink" href="#url-solicitudes-api-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/lista</span></code> Ruta hacia la pantalla del listado de solicitudes de trabajo registradas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitudeslistaapiview"><span class="std std-ref">Vista SolicitudesListaAPIView</span></a>.</p>
+</div>
+<div class="section" id="url-solicitudes-api-lista-fecha">
+<h2>url solicitudes_api_lista_fecha<a class="headerlink" href="#url-solicitudes-api-lista-fecha" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/list/fecha/api/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite consultar las solicitudes correspondientes a un rango de fecha para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitudeslistafechaapiview"><span class="std std-ref">Vista SolicitudesListaFechaAPIView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-solicitudes-crear">
+<h2>url solicitudes_crear<a class="headerlink" href="#url-solicitudes-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/crear/&lt;int:tipo&gt;/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite crear una solicitud de trabajo, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitudescrearview"><span class="std std-ref">Vista SolicitudesCrearView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>De tipo entero, se refiere al tipo de solicitud a crear.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id del ítem asociado a la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-solicitudes-tipo">
+<h2>url solicitudes_tipo<a class="headerlink" href="#url-solicitudes-tipo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/tipo/&lt;int:id_item&gt;</span></code> Ruta hacia el modal que permite al usuario escoger el tipo de solicitud a realizar, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-tiposolicitudview"><span class="std std-ref">Vista TipoSolicitudView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_item</p></td>
+<td><p>De tipo entero, se refiere al id del ítem asociado a la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-solicitudes-editar">
+<h2>url solicitudes_editar<a class="headerlink" href="#url-solicitudes-editar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/editar/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite al usuario editar los valores de una solicitud, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitudeseditarview"><span class="std std-ref">Vista SolicitudesEditarView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la solicitud a editar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-solicitudes-detalle">
+<h2>url solicitudes_detalle<a class="headerlink" href="#url-solicitudes-detalle" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/detalle/modal/&lt;int:id_solicitud&gt;/&lt;int:accion&gt;</span></code> Ruta que abre el modal que contiene la información detallada de una solicitud determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicituddetalleview"><span class="std std-ref">Vista SolicitudDetalleView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_solicitud</p></td>
+<td><p>De tipo entero, se refiere al id de la solicitud a consultar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accion</p></td>
+<td><p>De tipo entero, se refiere a la acción a realizar sobre la solicitud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-solicitar-externo">
+<h2>url solicitar_externo<a class="headerlink" href="#url-solicitar-externo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/solicitarexterno/&lt;int:pk&gt;</span></code> Ruta hacia la pantalla que permite al usuario realizar una solicitud externa, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-solicitaraexternoview"><span class="std std-ref">Vista SolicitarAExternoView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la solicitud de la cual se generará la solicitud externa.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-generar-orden-solicitud">
+<h2>url generar_orden_solicitud<a class="headerlink" href="#url-generar-orden-solicitud" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/solicitudes/generarordensolicitud/&lt;int:pk&gt;</span></code> Ruta que actualiza los datos de una solicitud de la cual se generará una órden de trabajo, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-generarordensolicitudview"><span class="std std-ref">Vista GenerarOrdenSolicitudView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la solicitud a la cual se actualizará los datos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-lista">
+<h2>url ordenes_lista<a class="headerlink" href="#url-ordenes-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/lista</span></code> Ruta hacia la pantalla del listado de órdenes de trabajo registradas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordeneslistaview"><span class="std std-ref">Vista OrdenesListaView</span></a>.</p>
+</div>
+<div class="section" id="url-ordenes-api-lista">
+<h2>url ordenes_api_lista<a class="headerlink" href="#url-ordenes-api-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/lista/api/&lt;int:limite&gt;</span></code> Ruta hacia la pantalla del listado de órdenes de trabajo registradas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordeneslistaapiview"><span class="std std-ref">Vista OrdenesListaAPIView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>limite</p></td>
+<td><p>De tipo entero, se refiere a la cantidad de registros obtenidos en la consulta.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-api-lista-fecha">
+<h2>url ordenes_api_lista_fecha<a class="headerlink" href="#url-ordenes-api-lista-fecha" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/lista/fecha/api/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite consultar las órdenes correspondientes a un rango de fecha para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordeneslistafechaapiview"><span class="std std-ref">Vista OrdenesListaFechaAPIView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-pagos-lista">
+<h2>url ordenes_pagos_lista<a class="headerlink" href="#url-ordenes-pagos-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/pagos/lista</span></code> Ruta hacia la pantalla del listado de pagos de órdenes de trabajo registradas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordenespagoslistaview"><span class="std std-ref">Vista OrdenesPagosListaView</span></a>.</p>
+</div>
+<div class="section" id="url-ordenes-pagos-api-lista">
+<h2>url ordenes_pagos_api_lista<a class="headerlink" href="#url-ordenes-pagos-api-lista" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/lista/pagos/api/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite consultar los pagos de las órdenes correspondientes a un rango de fecha para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordenespagoslistaapiview"><span class="std std-ref">Vista OrdenesPagosListaAPIView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-tipo">
+<h2>url ordenes_tipo<a class="headerlink" href="#url-ordenes-tipo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/tipo</span></code> Ruta hacia el modal que permite al usuario escoger el tipo de órden a realizar, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-tipoordenview"><span class="std std-ref">Vista TipoOrdenView</span></a>.</p>
+</div>
+<div class="section" id="url-ordenes-solicitud-crear">
+<h2>url ordenes_solicitud_crear<a class="headerlink" href="#url-ordenes-solicitud-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/solicitudcrear/&lt;int:id_trn&gt;/&lt;str:identificacion&gt;</span></code> Ruta hacia la pantalla que permite al usuario crear una órden a partir de una solicitud, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-crearordensolicitudview"><span class="std std-ref">Vista CrearOrdenSolicitudView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_trn</p></td>
+<td><p>De tipo entero, se refiere al id de la solicitud de la cual se realizará la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>identificacion</p></td>
+<td><p>Identificación del cliente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-item-crear">
+<h2>url ordenes_item_crear<a class="headerlink" href="#url-ordenes-item-crear" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/itemcrear/&lt;int:id_trn&gt;/&lt;str:identificacion&gt;</span></code> Ruta hacia la pantalla que permite al usuario crear una órden a partir de un ítem de catálogo, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-crearordenitemview"><span class="std std-ref">Vista CrearOrdenItemView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_trn</p></td>
+<td><p>De tipo entero, se refiere al id del ítem del cual se realizará la órden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>identificacion</p></td>
+<td><p>Identificación del cliente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-detalle">
+<h2>url ordenes_detalle<a class="headerlink" href="#url-ordenes-detalle" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/detalles/modal/&lt;int:id_orden&gt;</span></code> Ruta que abre el modal que contiene la información detallada de una órden para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-ordendetalleview"><span class="std std-ref">Vista OrdenDetalleView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden a consultar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-agregar-piedra">
+<h2>url ordenes_agregar_piedra<a class="headerlink" href="#url-ordenes-agregar-piedra" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/piedras/agregar/&lt;int:id_orden&gt;/&lt;int:id_piedra&gt;</span></code> Ruta que abre el modal que permite al usuario agregar una piedra a una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-agregarpiedraview"><span class="std std-ref">Vista AgregarPiedraView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden a la cual se le agregará la piedra.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_piedra</p></td>
+<td><p>De tipo entero, se refiere al id de la piedra a agregar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-ordenes-agregar-adicional">
+<h2>url ordenes_agregar_adicional<a class="headerlink" href="#url-ordenes-agregar-adicional" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/adicionales/agregar/&lt;int:id_orden&gt;/&lt;int:id_adicional&gt;</span></code> Ruta que abre el modal que permite al usuario agregar un adicional a una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-agregaradicionalview"><span class="std std-ref">Vista AgregarAdicionalView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden a la cual se le agregará el adicional.</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_adicional</p></td>
+<td><p>De tipo entero, se refiere al id del adicional a agregar.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-envio-material">
+<h2>url envio_material<a class="headerlink" href="#url-envio-material" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/enviomaterial/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar el envío de material de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-enviomaterialview"><span class="std std-ref">Vista EnvioMaterialView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-recibe-material">
+<h2>url recibe_material<a class="headerlink" href="#url-recibe-material" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/recibematerial/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la recepción de material de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-recibirmaterialview"><span class="std std-ref">Vista RecibirMaterialView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-anular-orden">
+<h2>url anular_orden<a class="headerlink" href="#url-anular-orden" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/anularorden/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la anulación de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-anularordenview"><span class="std std-ref">Vista AnularOrdenView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-finalizar-trabajo">
+<h2>url finalizar_trabajo<a class="headerlink" href="#url-finalizar-trabajo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/finalizartrabajo/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la finalización del trabajo de fabricación de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-finalizartrabajoview"><span class="std std-ref">Vista FinalizarTrabajoView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-enviar-producto">
+<h2>url enviar_producto<a class="headerlink" href="#url-enviar-producto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/enviarproducto/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar el envío del producto de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-enviarproductoview"><span class="std std-ref">Vista EnviarProductoView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-recibir-producto">
+<h2>url recibir_producto<a class="headerlink" href="#url-recibir-producto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/recibirproducto/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la recepción del producto de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-recibirproductoview"><span class="std std-ref">Vista RecibirProductoView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-cargar-doc-taller">
+<h2>url cargar_doc_taller<a class="headerlink" href="#url-cargar-doc-taller" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/cargardoctaller/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la carga de documentos por pate del taller de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-cargardocumentostaller"><span class="std std-ref">Vista CargarDocumentosTaller</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-cargar-doc-ope">
+<h2>url cargar_doc_ope<a class="headerlink" href="#url-cargar-doc-ope" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/cargardocope/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la carga de documentos por pate de la joyería de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-cargardocumentosoperaciones"><span class="std std-ref">Vista CargarDocumentosOperaciones</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-devolver-producto">
+<h2>url devolver_producto<a class="headerlink" href="#url-devolver-producto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/devolverproducto/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la devolución del producto de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-devolverproductoview"><span class="std std-ref">Vista DevolverProductoView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-finalizar-orden">
+<h2>url finalizar_orden<a class="headerlink" href="#url-finalizar-orden" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/finalizarorden/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la finalización de una órden con venta, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-finalizarordenview"><span class="std std-ref">Vista FinalizarOrdenView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-finalizar-sin-venta">
+<h2>url finalizar_sin_venta<a class="headerlink" href="#url-finalizar-sin-venta" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/finalizarsinventa/&lt;int:pk&gt;</span></code> Ruta que permite al usuario registrar la finalización de una órden sin venta, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-finalizarsinventaview"><span class="std std-ref">Vista FinalizarSinVentaView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pk</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-orden-aprobacion-pago">
+<h2>url orden_aprobacion_pago<a class="headerlink" href="#url-orden-aprobacion-pago" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/aprobacion/pago/modal/&lt;int:id_orden&gt;</span></code> Ruta hacia el modal que permite al usuario aprobar el pago de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-aprobacionpagomodalview"><span class="std std-ref">Vista AprobacionPagoModalView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-correo-cliente">
+<h2>url correo_cliente<a class="headerlink" href="#url-correo-cliente" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/ordenes/enviarcorreocliente</span></code> Ruta que permite al usuario el envío de correo al cliente, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-enviarcorreoview"><span class="std std-ref">Vista EnviarCorreoView</span></a>.</p>
+</div>
+<div class="section" id="url-correo-cliente-tmp">
+<h2>url correo_cliente_tmp<a class="headerlink" href="#url-correo-cliente-tmp" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/correo/correocliente/&lt;int:id_orden&gt;</span></code> Ruta que permite al usuario el envío de correo al cliente, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-correotemplateview"><span class="std std-ref">Vista CorreoTemplateView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo de la cual se enviará la información.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-comprobante-tmp">
+<h2>url comprobante_tmp<a class="headerlink" href="#url-comprobante-tmp" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/comprobante/&lt;int:id_orden&gt;</span></code> Ruta que permite al usuario generar el comprobante de una órden determinada, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-comprobantetemplateview"><span class="std std-ref">Vista ComprobanteTemplateView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_orden</p></td>
+<td><p>De tipo entero, se refiere al id de la órden de trabajo de la cual se generará el comprobante.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-rep-ordenes">
+<h2>url rep_ordenes<a class="headerlink" href="#url-rep-ordenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/reporte/ordenes/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite al usuario generar un repórte de órdenes generadas dentro de un rango de fechas para un usuario o taller determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-reporteordeneslistaview"><span class="std std-ref">Vista ReporteOrdenesListaView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-rep-ordenes-admin-op">
+<h2>url rep_ordenes_admin_op<a class="headerlink" href="#url-rep-ordenes-admin-op" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/reporte/ordenes/adminop/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite al usuario generar un repórte de órdenes generadas dentro de un rango de fechas para el usuario administrador de operaciones, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-reporteordenesadminopview"><span class="std std-ref">Vista ReporteOrdenesAdminOpView</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-rep-pagos-aprobados">
+<h2>url rep_pagos_aprobados<a class="headerlink" href="#url-rep-pagos-aprobados" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/reporte/aprobacion/pagos/&lt;str:f_inicio&gt;/&lt;str:f_fin&gt;/&lt;int:opcion&gt;</span></code> Ruta que permite al usuario generar un repórte de pago de órdenes generadas dentro de un rango de fechas determinado, hace un llamado a la <a class="reference internal" href="trn_views.html#vista-reporteordenespagos"><span class="std std-ref">Vista ReporteOrdenesPagos</span></a>, recibe los siguientes parámetros:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parámetro</strong></p></th>
+<th class="head"><p><strong>Descripción</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_inicio</p></td>
+<td><p>De tipo string, se refiere a la fecha inicial del rango de la consulta.</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_fin</p></td>
+<td><p>De tipo string, se refiere a la fecha final del rango de la consulta.</p></td>
+</tr>
+<tr class="row-even"><td><p>opcion</p></td>
+<td><p>De tipo entero, se refiere al tipo de consulta que se realiza.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trn_views.html" class="btn btn-neutral float-right" title="Views trn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trn_models.html" class="btn btn-neutral float-left" title="Modelos trn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Innode
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

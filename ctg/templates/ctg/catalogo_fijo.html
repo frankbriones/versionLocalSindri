@@ -1,0 +1,528 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block page_content %}
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-12 mb-2 mt-1">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h5 class="content-header-title float-left pr-1 mb-0">{% trans "Catálogo" %}</h5>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb p-0 mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'bases:home' %}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">{% trans "Ítems" %}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{% trans "Ítems especiales" %}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section>
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="fijo-tab-center" data-toggle="tab" href="#tab_fijo" aria-controls="fijo-center" role="tab" aria-selected="false">
+                            {% trans "Productos" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gramo-tab-center" data-toggle="tab" href="#tab_gramo" aria-controls="gramo-center" role="tab" aria-selected="true">
+                            {% trans "Servicios" %}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_fijo" aria-labelledby="fijo-tab-center" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Productos con precio fijo" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                                <input id="id_buscar_pro" type="text" class="form-control round" placeholder='{% trans "Buscar" %}'>
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-search"></i>
+                                                </div>
+                                            </fieldset>
+                                        </li>
+                                        <!--
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-factory mr-50"></i>{% trans "Taller" %}
+                                            </button>
+                                            <div class="dropdown-menu widget-chat-demo-scroll" aria-labelledby="dropdownMenuButton">
+                                                <h6 class="dropdown-header">{% trans "Taller" %}</h6>
+                                                {% for taller in talleres %}
+                                                <a style="cursor:pointer;" class="dropdown-item" onclick="cargarDivisiones({{ taller.id }}, 1)">{{ taller }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-component mr-50"></i>{% trans "División" %}
+                                            </button>
+                                            <div id="id_divisiones_prod" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-purchase-tag mr-50"></i>{% trans "Categoría" %}
+                                            </button>
+                                            <div id="id_categorias_prod" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="id_cont_productos" class="row align-items-center ">
+                                        {% for item in productos %}
+                                        {% if item.num_detalles > 0 %}
+                                        <div class="col-12 col-md-4 mr-auto ml-md-auto">
+                                            <div class="card widget-img-top">
+                                                <div class="card-content">
+                                                    <img style="cursor:pointer;" onclick="return abrir_modal('{% url 'ctg:items_detalle' item.id_item %}')" class="card-img-top mb-1" width="300px" height="300px" src="{{ item.imagen.url }}" alt="Card image cap" />
+                                                    <div class="heading-elements">
+                                                        <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <h6>{% trans "SKU: " %}{{ item.sku }}</h6>
+                                                        <!-- <p>{{ item.descripcion }}</p> -->
+                                                        <p><small>{{ item.descripcion }}<br>{{ item.taller }}</small></p>
+                                                        <!-- <p class="px-2 pb-1">Jelly beans halvah cake chocolate gummies jelly pudding gingerbread ice
+                                                            cream. Jelly
+                                                            candy canes halvah ice cream donut. I love jujubes wafer pie ice cream tiramisu.</p> -->
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-center">
+                                                    <!-- <div class="d-flex justify-content-around mb-1">
+                                                        <div class="d-flex flex-column align-items-center content-post">
+                                                            <span>593</span>
+                                                            <small class="text-muted">Total Post</small>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-center content-followers">
+                                                            <span>456</span>
+                                                            <small class="text-muted">Followers</small>
+                                                        </div>
+                                                        <div class="d-flex flex-column align-items-center content-following">
+                                                            <span>468</span>
+                                                            <small class="text-muted">Following</small>
+                                                        </div>
+                                                    </div> -->
+                                                    <button type="button" onclick="return abrir_modal('{% url 'ctg:items_detalle' item.id_item %}')" class="btn btn-primary glow px-4">{% trans "Ver detalles" %}</button>
+                                                    <!-- <button type="button" class="btn btn-primary glow px-4">Follow</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_gramo" aria-labelledby="gramo-tab-center" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{% trans "Servicios con precio fijo" %}</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class='bx bx-dots-vertical font-medium-3'></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                                <input id="id_buscar_serv" type="text" class="form-control round" placeholder='{% trans "Buscar" %}'>
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-search"></i>
+                                                </div>
+                                            </fieldset>
+                                        </li>
+                                        <!-- 
+                                        <li>
+                                            <a data-action="expand" title='{% trans "Expandir" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                                <i class="bx bx-fullscreen"></i>
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard">
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-factory mr-50"></i>{% trans "Taller" %}
+                                            </button>
+                                            <div class="dropdown-menu widget-chat-demo-scroll" aria-labelledby="dropdownMenuButton">
+                                                <h6 class="dropdown-header">{% trans "Taller" %}</h6>
+                                                {% for taller in talleres %}
+                                                <a style="cursor:pointer;" class="dropdown-item" onclick="cargarDivisiones({{ taller.id }}, 3)">{{ taller }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButtonServ" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-component mr-50"></i>{% trans "División" %}
+                                            </button>
+                                            <div id="id_divisiones_serv" class="dropdown-menu" aria-labelledby="dropdownMenuButtonServ">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group mb-1">
+                                        <div class="btn-group dropright mr-1 mb-1">
+                                            <button class="btn btn-primary dropdown-toggle mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bxs-purchase-tag mr-50"></i>{% trans "Categoría" %}
+                                            </button>
+                                            <div id="id_categorias_serv" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="id_cont_servicios" class="row align-items-center ">
+                                        {% for item in servicios %}
+                                        {% if item.num_detalles > 0 %}
+                                        <div class="col-12 col-md-4 mr-auto ml-md-auto">
+                                            <div class="card widget-img-top">
+                                                <div class="card-content">
+                                                    <img style="cursor:pointer;" onclick="return abrir_modal('{% url 'ctg:items_detalle' item.id_item %}')" class="card-img-top mb-1" width="300px" height="300px" src="{{ item.imagen.url }}" alt="Card image cap" />
+                                                    <div class="heading-elements">
+                                                        <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <h6>{% trans "SKU: " %}{{ item.sku }}</h6>
+                                                        <!-- <p>{{ item.descripcion }}</p> -->
+                                                        <p><small>{{ item.descripcion }}<br>{{ item.taller }}</small></p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-center">
+                                                    <button type="button" onclick="return abrir_modal('{% url 'ctg:items_detalle' item.id_item %}')" class="btn btn-primary glow px-4">{% trans "Ver detalles" %}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="loader">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+
+    $(document).ready(function() {
+        $('.loader').hide();
+        $('#id_divisiones_prod').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Seleccione un taller" %}</h6>';
+        $('#id_divisiones_prod').append(encabezado);
+        $('#id_divisiones_serv').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Seleccione un taller" %}</h6>';
+        $('#id_divisiones_serv').append(encabezado);
+        $('#id_categorias_prod').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Seleccione una división" %}</h6>';
+        $('#id_categorias_prod').append(encabezado);
+        $('#id_categorias_serv').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Seleccione una división" %}</h6>';
+        $('#id_categorias_serv').append(encabezado);
+    });
+
+    $('#id_buscar_pro').on('keyup', function(){
+        buscarItems(1);
+    });
+
+    $('#id_buscar_serv').on('keyup', function(){
+        buscarItems(3);
+    });
+
+    function buscarItems(tipo){
+        if(tipo === 1){
+            clave = $('#id_buscar_pro').val();
+        } else {
+            clave = $('#id_buscar_serv').val();
+        }        
+
+        if(clave !== ''){
+
+            url = "{% url 'ctg:buscar_items_api' 'clave' 0 %}";
+            url = url.replace(/0/, tipo);
+            url = url.replace(/clave/, clave);
+            
+        } else {
+
+            url = "{% url 'ctg:items_todos_api' 0 %}";
+            url = url.replace(/0/, tipo);
+        
+        }
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                cargarItems(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+    }
+
+    function buscarItemsTaller(id_taller, tipo){
+
+        url = "{% url 'ctg:items_taller_api' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, id_taller);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                cargarItems(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+        
+    }
+
+    function buscarItemsDivision(id_division, tipo){
+
+        url = "{% url 'ctg:items_division_api' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, id_division);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                cargarItems(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+
+    }
+
+    function buscarItemsCategoria(id_categoria, tipo){
+
+        url = "{% url 'ctg:items_categoria_api' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, id_categoria);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                cargarItems(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen ítems", "red");
+                }
+            }
+        });
+
+    }
+
+    function cargarItems(items, tipo){
+
+        if(tipo === 1){
+            $('#id_cont_productos').empty();
+
+            items.forEach(item => {
+                if(item.cantdetalles > 0){
+                    div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + item.taller_nombre + '</small></p></div></div><div class="card-footer text-center"><button type="button" onclick="verDetalles(' + item.id_item + ')" class="btn btn-primary glow px-4">{% trans "Ver detalles" %}</button></div></div></div>';
+                    $('#id_cont_productos').append(div);
+                }
+            });
+        }
+
+        if(tipo === 3){
+            $('#id_cont_servicios').empty();
+
+            items.forEach(item => {
+                if(item.cantdetalles > 0){
+                    div = '<div class="col-12 col-md-4 mr-auto ml-md-auto"><div class="card widget-img-top"><div class="card-content"><img style="cursor:pointer;" onclick="verDetalles(' + item.id_item + ')" class="card-img-top mb-1" width="300px" height="300px" src="' + item.imagen + '" alt="Card image cap" /><div class="text-center"><h6>{% trans "SKU: " %}' + item.sku + '</h6><p><small>' + item.descripcion + '<br>' + item.taller_nombre + '</small></p></div></div><div class="card-footer text-center"><button type="button" onclick="verDetalles(' + item.id_item + ')" class="btn btn-primary glow px-4">{% trans "Ver detalles" %}</button></div></div></div>';
+                    $('#id_cont_servicios').append(div);
+                }
+            });
+        }
+        
+    }
+
+    function verDetalles(id_item){
+        url = "{% url 'ctg:items_detalle' 0 %}";
+        url = url.replace(/0/, id_item);
+        return abrir_modal(url);
+    }
+
+    function cargarDivisiones(taller, tipo){
+        buscarItemsTaller(taller, tipo);
+        url = "{% url 'ctg:divisiones_buscar_api' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, taller);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                llenarDivisiones(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen divisiones", "red");
+                }
+            }
+        });
+    }
+
+    function llenarDivisiones(divisiones, tipo){
+        if(tipo === 1){
+            $('#id_divisiones_prod').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "División" %}</h6>';
+            $('#id_divisiones_prod').append(encabezado);
+            divisiones.forEach(division => {
+                elemento = '<a style="cursor:pointer;" class="dropdown-item" onclick="cargarCategorias( ' + division.id_division + ', 1 )">' + division.descripcion + '</a>';
+                $('#id_divisiones_prod').append(elemento);
+            });
+        }
+
+        if(tipo === 3){
+            $('#id_divisiones_serv').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "División" %}</h6>';
+            $('#id_divisiones_serv').append(encabezado);
+            divisiones.forEach(division => {
+                elemento = '<a style="cursor:pointer;" class="dropdown-item" onclick="cargarCategorias( ' + division.id_division + ', 3 )">' + division.descripcion + '</a>';
+                $('#id_divisiones_serv').append(elemento);
+            });
+        }
+        
+    }
+
+    function cargarCategorias(division, tipo){
+        buscarItemsDivision(division, tipo);
+        url = "{% url 'ctg:categorias_buscar_api' 0 1 %}";
+        url = url.replace(/1/, tipo);
+        url = url.replace(/0/, division);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+            },
+            success: function(res) {
+                llenarCategorias(res, tipo);
+            },
+            error: function(a, b, c) {
+                if (a.status === 404) {
+                    mensaje("no existen categorías", "red");
+                }
+            }
+        });
+    }
+
+    function llenarCategorias(categorias, tipo){
+        if(tipo === 1){
+            $('#id_categorias_prod').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Categoría" %}</h6>';
+            $('#id_categorias_prod').append(encabezado);
+            categorias.forEach(categoria => {
+                elemento = '<a style="cursor:pointer;" class="dropdown-item" onclick="buscarItemsCategoria( ' + categoria.id_categoria + ', 1 )">' + categoria.descripcion + '</a>';
+                $('#id_categorias_prod').append(elemento);
+            });
+        }
+
+        if(tipo === 3){
+            $('#id_categorias_serv').empty();
+            encabezado = '<h6 class="dropdown-header">{% trans "Categoría" %}</h6>';
+            $('#id_categorias_serv').append(encabezado);
+            categorias.forEach(categoria => {
+                elemento = '<a style="cursor:pointer;" class="dropdown-item" onclick="buscarItemsCategoria( ' + categoria.id_categoria + ', 3 )">' + categoria.descripcion + '</a>';
+                $('#id_categorias_serv').append(elemento);
+            });
+        }
+        
+    }
+    
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load i18n %}
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar piedra" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card-content">
+                <div class="card-body card-dashboard">
+                    <div class="row align-items-center ">
+                        {% for piedra in obj %}
+                        <div class="col-12 col-lg-4 col-md-6 mr-auto ml-md-auto">
+                            <div class="card widget-img-top">
+                                <div class="card-content">
+                                    <img class="card-img-top mb-1" width="150px" height="150px" src="{{ piedra.imagen.url }}" alt="Card image cap" />
+                                    <div class="heading-elements">
+                                        <i class="bx bx-dots-vertical-rounded font-medium-3 align-middle text-white"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p>{{ piedra.descripcion }}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="button" onclick="return abrir_modal('{% url 'trn:ordenes_agregar_piedra' id_orden piedra.id_piedra %}')" class="btn btn-primary glow px-4">{% trans "Agregar" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+            {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+            <button type="button" onclick="crearPiedra()" class="btn btn-primary">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Crear" %}</span>
+            </button>
+            {% endif %}
+        </div> -->
+    </div>
+</div>
+<!-- <script>
+    function crearPiedra(){
+        url = "{% url 'ctg:piedra_crear_modal' %}";
+        return abrir_modal(url);
+    }
+</script> -->

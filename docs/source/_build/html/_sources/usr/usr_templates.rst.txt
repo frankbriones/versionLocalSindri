@@ -1,0 +1,65 @@
+*******************
+**Templates usr**
+*******************
+
+Dentro de la carpeta **usr** tenemos otra carpeta llamada **templates**. Donde se encuentran los templates de la aplicación usr correspondiente a la creación, consulta y modificación de clientes en el sistema.
+
+Template activar_usuario_modal
+==================================
+
+Template del modal que aparecerá cuando se requiere activar un usuario, las funciones que posee este template son las siguientes:
+
+Función activarUsuario
+--------------------------
+
+Realiza una petición de tipo POST a la :ref:`url usuario_activar_modal` enviando como parámetro el id del usuario a activar.
+
+Template cambiar_contrasena_inicial
+=====================================
+
+Template de la pantalla que aparecerá cuando el usuario ingresa por primera vez al sistema después de haber sido creado o después de un reestablecimiento de su contraseña, realiza una petición de tipo POST a la :ref:`url usuario_cambiar_contrasena_modal` para modificar la contraseña inicial que le asignó al usuario.
+
+Template cambiar_contrasena
+============================
+
+Template de la pantalla que permite a un usuario cambiar su propia contraseña, realiza una petición de tipo POST a la :ref:`url usuario_cambiar_contrasena` para modificar la contraseña actual del usuario.
+
+Template editar_perfil
+=======================
+
+Template de la pantalla que permite a un usuario modificar su propia información, realiza una petición de tipo POST a la :ref:`url usuario_editar_perfil` para modificar la información actual del usuario.
+
+Template editar_usuario
+========================
+
+Template de la pantalla que permite a un usuario administrador modificar la información de otro usuario, realiza una petición de tipo POST a la :ref:`url usuario_editar` para modificar la información del usuario seleccionado.
+
+Template inactivar_usuario_modal
+==================================
+
+Template del modal que aparecerá cuando se requiere inactivar un usuario, las funciones que posee este template son las siguientes:
+
+Función inactivarUsuario
+--------------------------
+
+Realiza una petición de tipo POST a la :ref:`url usuario_inactivar_modal` enviando como parámetro el id del usuario a inactivar.
+
+Template reestablecer_contrasena_modal
+=======================================
+
+Template del modal que aparecerá cuando se requiere reestablecer la contraseña de un usuario, las funciones que posee este template son las siguientes:
+
+Función reiniciaContrasena
+----------------------------
+
+Realiza una petición de tipo POST a la :ref:`url usuario_reinicia_contrasena` enviando como parámetro el id del usuario a quien se le reestablece la contraseña.
+
+Template registro
+===================
+
+Template de la pantalla que permite crear un usuario para un país determinado, realiza una petición de tipo POST a la :ref:`url usuario_registro` para registrar el nuevo usuario.
+
+Template usuarios_lista
+========================
+
+Template de la pantalla para consultar todos los usuarios que pertenezcan al mismo país. Desde esta pantalla se puede acceder a la pantalla de creación de usuarios :ref:`Template registro` y a la pantalla de edición de usuarios :ref:`Template editar_usuario`. Para la consulta de los usuarios se realiza una petición de tipo GET a la :ref:`url usuario_lista`.

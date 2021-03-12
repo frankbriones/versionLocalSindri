@@ -1,0 +1,12 @@
+{% load i18n %}
+{% trans "Se ha creado su cuenta en el sitio " %} {{ site_name }}.
+
+{% trans "Por favor ingrese al siguiente enlace para registrar su contraseña:" %}
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}
+{% trans 'Su nombre de usuario es el siguiente:' %} {{ user.get_username }}
+
+{% trans "¡Gracias por usar el sitio!" %}
+
+{% trans "El equipo de " %} {{ site_name }}

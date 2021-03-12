@@ -1,0 +1,195 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+</style>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Agregar Adicional" %}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="bx bx-x"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-12">
+                <form method="POST" id="formAdicionales" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-label-group">
+                                    <img id="id_img_tmp" name="imagentmp" {% if adicional %} src="{{ adicional.imagen.url }}" {% else %} src="{% static 'base/img/icons/nofoto2.png' %}" style="width: 300px;" {% endif %} class="img-circle center img-fluid pointer" width="100%">
+                                    <input onchange="seleccionarImagen()" type="file" name="imagen" id="id_imagen" class="inputimage center pointer" width="100%">
+                                    <label for="city-column">{% trans "Imagen" %}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.sku }}
+                                        <label for="first-name-column">{% trans "SKU" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.descripcion }}
+                                        <label for="first-name-column">{% trans "Descripción" %}</label>
+                                    </div>
+                                </div>
+                               <div class="row p-1">
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.costo_taller }}
+                                        <label for="first-name-column">{% trans "Costo Taller" %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-label-group">
+                                        {{ form.precio_taller }}
+                                        <label for="first-name-column">{% trans "Precio Taller" %}</label>
+                                    </div>
+                                </div>
+                               </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+            <button type="button" onclick="guardasAd()" class="btn btn-primary">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Crear" %}</span>
+            </button>
+            {% endif %}
+            <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cerrar" %}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+
+function validarImagen(elemento){
+        var peso_max_img = parseInt('{{ peso_max_img.valor }}');
+        console.log(peso_max_img)
+        var ext_perm_img = eval('{{ ext_perm_img.valor }}');
+        console.log(ext_perm_img)
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo debe ser una imagen" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    function seleccionarImagen(){
+
+        var preview = document.querySelector("img[name='imagentmp']");
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+        var elemento = 'id_imagen';
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            if(validarImagen(elemento)){
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+            }
+        } else {
+            preview.src = "{% static 'base/img/icons/nofoto2.png' %}";
+        }
+
+    }
+
+
+
+    function guardasAd(){
+        if($('#id_imagen').val() === ''){
+            mensaje('{% trans "Falta cargar una imagen" %}', 'orange');
+            return;
+        }
+
+        if($('#id_sku').val() === ''){
+            mensaje('{% trans "Ingrese SKU de la piedra" %}', 'orange');
+            return;
+        }
+
+        if($('#id_descripcion').val() === ''){
+            mensaje('{% trans "Ingrese una descripción" %}', 'orange');
+            return;
+        }
+
+    
+        form = document.getElementById('formAdicionales');
+        let data = new FormData(form);
+        costo_taller = $('#id_costo_taller').val()
+        console.log(costo_taller)
+        // precio_taller = $('#id_precio_taller').val()
+
+        // data.append('costo_taller', costo_taller);
+        // data.append('precio_taller', precio_taller)
+
+        let token = '{{ csrf_token }}';
+
+        let url = "{% url 'ctg:adicional_modal' %}";
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            type: "POST",
+            url: url,
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                cerrar_modal();
+            },
+            error: function(jqXHR, textStatus, errorThrow){
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow); // pendiente mostrar error de clave duplicada
+            }
+        });
+    
+    }
+</script>

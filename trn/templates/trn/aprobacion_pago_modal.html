@@ -1,0 +1,1396 @@
+{% load i18n %}
+{% load static %}
+<style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .inputimage {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /* width: 150px;
+        height: 150px; */
+        margin-bottom: auto;
+        opacity: 0;
+    }
+    .img-circle {
+        border-radius: 100%;
+    }
+
+    .caja {
+        font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+        color: #000000;
+        font-size: 25px;
+        font-weight: 400;
+        text-align: right;
+        ;
+        margin: 0 0 25px;
+        overflow: hidden;
+        padding: 10px;
+        /* border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 35px 0px;  */
+        border: 2px solid #5878ca;
+    }
+
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/core/menu/menu-types/vertical-menu.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/assets/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/vendors/css/vendors.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/themes/semi-dark-layout.css' %}">
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/forms/wizard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/pages/app-file-manager.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'base/app-assets/css/plugins/extensions/toastr.min.css' %}">
+
+
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans "Detalles de órden # " %}{{ orden.secuencia }}</h4>
+            <div class="justify-content-end">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bx bx-x"></i>
+                </button>
+                <!-- <a {% if orden.id_orden %} href="{% url 'trn:comprobante_tmp' orden.id_orden %}" {% else %} href="{% url 'trn:comprobante_tmp' 0 %}" {% endif %} target="_blank" type="button" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" aria-label="Close">
+                    <i class="bx bx-printer"></i>
+                </a> -->
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4 col-12">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            {% if imagenes_orden_terminada %}
+                            {% for imagen in imagenes_orden_terminada %}
+                            <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                            {% endfor %}
+                            {% else %}
+                            {% for imagen in imagenes %}
+                            <li data-target="#carousel-example-generic" data-slide-to="0"></li>
+                            {% endfor %}
+                            {% endif %}
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            {% if imagenes_orden_terminada %}
+                            {% for imagen in imagenes_orden_terminada %}
+                            <div class="carousel-item">
+                                <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            {% for imagen in imagenes %}
+                            <div class="carousel-item">
+                                <img width="100%" class="img-fluid" src="{{ imagen.imagen.url }}" alt="First slide">
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5 col-12">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled {% if detalleSolicitud %} value="{{ detalleSolicitud.item.sku }}" {% else %} value="{{ detalle.id_item.sku }}" {% endif %}>
+                                <label for="first-name-column">{% trans "SKU" %}</label>
+                            </div>
+                        </div>
+                        {% if user.is_superuser or user.tipo_usuario_id == 3 %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.cliente }}">
+                                <label for="first-name-column">{% trans "Cliente" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.tienda.nombre }}">
+                                <label for="first-name-column">{% trans "Solicita" %}</label>
+                            </div>
+                        </div>
+                        {% if not orden.externa %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ item.taller }}">
+                                <label for="first-name-column">{% trans "Taller" %}</label>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ item.proveedor }}">
+                                <label for="first-name-column">{% trans "Proveedor" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.origen_material }}">
+                                <label for="first-name-column">{% trans "Origen material" %}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.estado }}">
+                                <label for="first-name-column">{% trans "Estado" %}</label>
+                            </div>
+                        </div>
+                        {% if detalleSolicitud %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ detalleSolicitud.item.descripcion }}">
+                                <label for="first-name-column">{% trans "Ítem" %}</label>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ item.descripcion }}">
+                                <label for="first-name-column">{% trans "Ítem" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if detalleSolicitud %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <textarea name="txt_detalle" class="form-control" id="id_detalle" disabled>{{ item.detalle }}</textarea>
+                                <label for="first-name-column">{% trans "Detalle" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if orden.datos_extra and orden.datos_extra != 'undefined' %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <textarea name="datos_extra" class="form-control" id="id_datos_extra" disabled>{{ orden.datos_extra }}</textarea>
+                                <label for="first-name-column">{% trans "Detalle" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if orden.peso_solicitado %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.peso_solicitado }} gr">
+                                <label for="first-name-column">{% trans "Peso solicitado" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if user.tipo_usuario_id == 3 %}
+                        {% if orden.precio_final_venta %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input type="text" id="id_precio_final" class="form-control" disabled>
+                                <label for="first-name-column">{% trans "Precio" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.tipo_usuario_id == 2 %}
+                        {% if orden.total_taller %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled {% if user.pais.decimales %} value="{{ orden.total_taller }}" {% else %} value="{{ orden.total_taller|floatformat:'0' }}" {% endif %}>
+                                <label for="first-name-column">{% trans "Precio" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if orden.peso_final %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.peso_final }} gr">
+                                <label for="first-name-column">{% trans "Peso final" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if user.tipo_usuario_id == 3 %}
+                        {% if orden.precio_recalculado %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled disabled {% if user.pais.decimales %} value="{{ user.pais.simbolo_moneda}} {{ orden.precio_recalculado }}" {% else %} value="{{ user.pais.simbolo_moneda}} {{ orden.precio_recalculado|floatformat:'0' }}" {% endif %}>
+                                <label for="first-name-column">{% trans "Precio recalculado" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.tipo_usuario_id == 2 %}
+                        {% if orden.total_taller_recalculado %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled {% if user.pais.decimales %} value="{{ orden.total_taller_recalculado }}" {% else %} value="{{ orden.total_taller_recalculado|floatformat:'0' }}" {% endif %}>
+                                <label for="first-name-column">{% trans "Precio recalculadoss" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if not detalle %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                {% if detalleSolicitud.item.unidad_medida.descripcion == 'TALLA' %}
+                                <input class="form-control" disabled value="{{ item.talla }}">
+                                <label for="first-name-column">{% trans "Talla" %}</label>
+                                {% else %}
+                                <input class="form-control" disabled value="{{ item.longitud }} {{ detalleSolicitud.item.unidad_medida.simbolo }}">
+                                <label for="first-name-column">{% trans "Longitud" %}</label>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled {% if detalle.estandar %} value="{{ detalle.medida }} {{ detalle.estandar }}" {% else %} value="{{ detalle.medida }} {{ detalle.unidad_medida }}" {% endif %}>
+                                <label for="first-name-column">{% trans "Talla/Longitud" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if orden.gramos_enviados %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.gramos_enviados }} gr">
+                                <label for="first-name-column">{% trans "Gramos enviados joyería" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if orden.gramos_recibidos %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ orden.gramos_recibidos }} gr">
+                                <label for="first-name-column">{% trans "Gramos recibidos taller" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-6 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled {% if detalle %} value="{{ detalle.cantidad_piedras }}" {% else %} value="{{ item.cantidad_piedras }}" {% endif %}>
+                                <label for="first-name-column">{% trans "Cantidad de piedras" %}</label>
+                            </div>
+                        </div>
+                        {% if item.secuencia %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <input class="form-control" disabled value="{{ item.secuencia }}">
+                                <label
+                                    for="email-id-column">{% trans "Solicitud" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if orden.obs_recepcion_prod %}
+                        <div class="col-md-12 col-12">
+                            <div class="form-label-group">
+                                <textarea class="form-control" disabled rows="2">{{ orden.obs_recepcion_prod }}</textarea>
+                                <label
+                                    for="email-id-column">{% trans "Observación de devolución" %}</label>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3 col-12 timline-card">
+                    <ul class="widget-timeline">
+                        <li id="li_prod_recibido" class="timeline-items timeline-icon-success active">
+                            <div id="fec_prod_recibido" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_recibe_prod|date:"d/m/y H:i" }}</p></div>
+                            <h6 class="timeline-title"><p id="txt_prod_recibido" class="font-small-2 text-success"><span class="fonticon-wrap mr-1">
+                                    <i class="bx bxs-package"></i>
+                            </span>{% trans "Prod. recibido" %}</p></h6>
+                        </li>
+                        <li id="li_pago_aprobado" class="timeline-items timeline-icon-secondary active">
+                            <div id="fec_pago_aprobado" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_aprueba_pago|date:"d/m/y H:i" }}</p></div>
+                            <h6 class="timeline-title">
+                                <p id="txt_pago_aprobado" class="text-secondary font-small-2">
+                                    <span class="fonticon-wrap mr-1">
+                                    <i class="bx bx-check-circle"></i>
+                                    </span>{% trans "Pago aprobado" %}
+                                </p>
+                            </h6>
+                        </li>
+                        <li id="li_orden_facturada" class="timeline-items timeline-icon-secondary active">
+                            <div id="fec_facturacion" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_facturacion|date:"d/m/y H:i" }}</p></div>
+                            <h6 class="timeline-title">
+                                <p id="txt_orden_facturada" class="text-secondary font-small-2">
+                                    <span class="fonticon-wrap mr-1">
+                                    <i class="bx bx-receipt"></i>
+                                    </span>{% trans "Orden facturada" %}
+                                </p>
+                            </h6>
+                        </li>
+                        <!-- <li id="li_orden_revisada" class="timeline-items timeline-icon-secondary active">
+                            <div id="fec_revision" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_revision|date:"d/m/y H:i" }}</p></div>
+                            <h6 class="timeline-title">
+                                <p id="txt_orden_revisada" class="text-secondary font-small-2">
+                                    <span class="fonticon-wrap mr-1">
+                                    <i class="bx bx-check-double"></i>
+                                    </span>{% trans "Orden revisada" %}
+                                </p>
+                            </h6>
+                        </li> -->
+                        <li id="li_orden_pagada" class="timeline-items timeline-icon-secondary active">
+                            <div id="fec_pago" class="row timeline-time"><p class="font-small-1">{{ orden.fecha_pago|date:"d/m/y H:i" }}</p></div>
+                            <h6 class="timeline-title">
+                                <p id="txt_orden_pagada" class="text-secondary font-small-2">
+                                    <span class="fonticon-wrap mr-1">
+                                    <i class="bx bx-dollar-circle"></i>
+                                    </span>{% trans "Orden pagada" %}
+                                </p>
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% if adicionales_lista %}
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_ads1">
+                                                <div class="card collapse-header">
+                                                    <div id="heading_ads1" class="card-header" data-toggle="collapse" data-target="#accordion_ads1" aria-expanded="false" aria-controls="accordion_ads1" role="tablist">
+                                                        <span class="collapse-title">
+                                                            <i class="bx bx-ruler align-middle"></i>
+                                                            <span class="align-middle">{% trans "Adicionales" %}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div id="accordion_ads1" role="tabpanel" data-parent="#accordionWrapa_ads1" aria-labelledby="heading_ads1" class="collapse">
+                                                        <!-- <div class="card-content">
+                                                            <div class="card-body"> -->
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-12">
+                                                                        <div class="table-responsive">
+                                                                            <table  class="table table-striped table-hover">
+                                                                                <thead>
+                                                                                    <th>{% trans "Descripción" %}</th>
+                                                                                    <th>{% trans "Precio" %}</th>
+                                                                                    <th>{% trans "Cantidad" %}</th>
+                                                                                    <th>{% trans Subtotal %}</th>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    {% for adicional in adicionales_lista %}
+                                                                                    <tr>
+                                                                                        {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                                                            <td>{{ adicional.adicional.descripcion }}</td>
+                                                                                            <td>{% if user.pais.decimales %}{{ adicional.precio_adicional_op|floatformat:'2' }}{% else %}{{ adicional.precio_adicional_op|floatformat:'0' }}{% endif %}</td> 
+                                                                                            <td >{{ adicional.cantidad_adicionales }}</td>
+                                                                                            <td id="id_subtotal_adicional">{% if user.pais.decimales %}{{ adicional.subtotal_adicional_op|floatformat:'2' }}{% else %}{{ adicional.subtotal_adicional_op|floatformat:'0' }}{% endif %}</td>
+                                                                                        {% else %}
+                                                                                        <td>{{ adicional.adicional.descripcion }}</td>
+                                                                                        <td>{% if user.pais.decimales %}{{ adicional.precio_adicional_taller|floatformat:'2' }}{% else %}{{ adicional.precio_adicional_taller|floatformat:'0' }}{% endif %}</td> 
+                                                                                        <td >{{ adicional.cantidad_adicionales }}</td>
+                                                                                        <td id="id_subtotal_adicional">{% if user.pais.decimales %}{{ adicional.subtotal_adicional_taller|floatformat:'2' }}{% else %}{{ adicional.subtotal_adicional_taller|floatformat:'0' }}{% endif %}</td>
+                                                                                   
+
+                                                                                        {% endif %}
+                                                                                    </tr>
+                                                                                    {% endfor %}
+                                                                                </tbody>
+
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <!-- </div>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+            {% if piedras_lista %}
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_ads">
+                                <div class="card collapse-header">
+                                    <div id="heading_ads" class="card-header" data-toggle="collapse" data-target="#accordion_ads" aria-expanded="false" aria-controls="accordion_ads" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-diamond align-middle"></i>
+                                            <span class="align-middle">{% trans "Piedras preciosas" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_ads" role="tabpanel" data-parent="#accordionWrapa_ads" aria-labelledby="heading_ads" class="collapse">
+                                        <!-- <div class="card-content">
+                                            <div class="card-body"> -->
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="table-responsive">
+                                                            <table  class="table table-striped table-hover">
+                                                                <thead>
+                                                                    <th>{% trans "Descripción" %}</th>
+                                                                    <th>{% trans "Cantidad" %}</th>
+                                                                    <th>{% trans "Precio" %}</th>
+                                                                    <th>Subtotal</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for piedra in piedras_lista %}
+                                                                    <tr>
+                                                                        <td>{{ piedra.piedra.descripcion }}</td>
+                                                                        <td>{{ piedra.cantidad_piedras }}</td>
+                                                                        <td>{% if user.pais.decimales %}{{ piedra.precio_piedra_taller|floatformat:'2' }}{% else %}{{ piedra.precio_piedra_taller|floatformat:'0' }}{% endif %}</td> 
+                                                                        <td>{% if user.pais.decimales %}{{ piedra.subtotal_piedras_taller|floatformat:'2' }}{% else %}{{ piedra.subtotal_piedras_taller|floatformat:'0' }}{% endif %}</td>
+                                                                    </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!-- </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if rubros_listado %}
+                    <div class="row" id="id_documentos">
+                        <div class="col-md-12 col-12">
+                            <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                                <div class="card collapse-header">
+                                    <div id="heading_doc1" class="card-header" data-toggle="collapse" data-target="#accordion_rubros" aria-expanded="false" aria-controls="accordion_rubros" role="tablist">
+                                        <span class="collapse-title">
+                                            <i class="bx bx-dollar-circle align-middle"></i>
+                                            <span class="align-middle">{% trans "Rubros asociados" %}</span>
+                                        </span>
+                                    </div>
+                                    <div id="accordion_rubros" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc1" class="collapse">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-12">
+                                                        <div class="table-responsive">
+                                                            <table id="id_lista_adicionales" class="table table-striped table-hover">
+                                                                <thead>
+                                                                    <th>{% trans "Descripción" %}</th>
+                                                                    <th>{% trans "Precio" %}</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for rubro in rubros_listado %}
+                                                                    <tr>
+                                                                        <td>{{ rubro.rubro.descripcion }}</td>
+                                                                        <td>{{ rubro.valor }}</td>
+                                                                    </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+
+            
+            {% if perms.trn.ver_comp_envio_op or perms.trn.ver_comp_envio_ta or perms.trn.ver_factura %}
+            <div class="row" id="id_documentos">
+                <div class="col-md-12 col-12">
+                    <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc2">
+                        <div class="card collapse-header">
+                            <div id="heading_doc2" class="card-header" data-toggle="collapse" data-target="#accordion_doc2" aria-expanded="false" aria-controls="accordion_doc2" role="tablist">
+                                <span class="collapse-title">
+                                    <i class="bx bx-ruler align-middle"></i>
+                                    <span class="align-middle">{% trans "Documentos" %}</span>
+                                </span>
+                            </div>
+                            <div id="accordion_doc2" role="tabpanel" data-parent="#accordionWrapa_doc2" aria-labelledby="heading_doc2" class="collapse">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            {% if orden.anticipo_fabricacion %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.anticipo_fabricacion.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Anticipo de fabricación" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_creacion|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.factura_taller %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.factura_taller.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura taller" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_recibe_prod|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.comp_envio_op and perms.trn.ver_comp_envio_op %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.comp_envio_op.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de material" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_envio_mat|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.comp_envio_ta and perms.trn.ver_comp_envio_ta %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.comp_envio_ta.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Comprobante de envío de producto" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_envio_prod|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                {% if user.tipo_usuario.descripcion == 'USUARIO TALLER' and not orden.pago_aprobado %}
+                                                <button onclick="mostrarFormulario('frmEnvioProducto', 'btnEnviaProducto', 'btnEnviaProducto')" class="btn btn-icon btn-warning rounded-circle button_img" type="button" data-repeater-delete style="position: absolute; top: 10px; right: 10px;"><i class="bx bx-edit"></i></button>
+                                                {% endif %}
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.factura_vta and perms.trn.ver_factura %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.factura_vta.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Factura de venta" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.cta_por_pagar %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.cta_por_pagar.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Cuenta por pagar" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if orden.orden_compra %}
+                                            <div class="col-md-3 col-6">
+                                                <a target="_blank" href="{{ orden.orden_compra.url }}">
+                                                    <div class="card border shadow-none mb-1 app-file-info">
+                                                        <div class="card-content">
+                                                            <div class="app-file-content-logo card-img-top" style="align-content: center; text-align: center;">
+                                                                <i class="bx bx-file" style="font-size: 30px;"></i>
+                                                            </div>
+                                                            <div class="card-body p-50">
+                                                                <div class="app-file-details">
+                                                                    <div class="app-file-name font-size-small font-weight-bold">{% trans "Órden de compra" %}</div>
+                                                                    <div class="app-file-type font-size-small text-muted">{{ orden.fecha_venta|date:"d/m/y H:i" }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+          
+            {% if orden.precio_final_venta  and perms.trn.ver_detalle_costos %}
+            <div class="row" id="id_documentos">
+                <div class="col-md-12 col-12">
+                    <div class="accordion collapse-icon accordion-icon-rotate" id="accordionWrapa_doc">
+                        <div class="card collapse-header">
+                            <div id="heading_doc" class="card-header" data-toggle="collapse" data-target="#accordion_costos" aria-expanded="false" aria-controls="accordion_costos" role="tablist">
+                                <span class="collapse-title">
+                                    <i class="bx bx-dollar-circle align-middle"></i>
+                                    <span class="align-middle">{% trans "Detalle de costos" %}</span>
+                                </span>
+                            </div>
+                            <div id="accordion_costos" role="tabpanel" data-parent="#accordionWrapa_doc" aria-labelledby="heading_doc" class="collapse">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4 col-6 mt-75">
+                                                <p class="text-primary"><b>{% trans "Valores taller" %}</b></p>
+                                                {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                <p class="text-success"><b>{% trans "Valores joyería" %}</b></p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-8 col-6 d-flex justify-content-end mt-75">
+                                                <div class="invoice-subtotal">
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Materia prima" %}</span>
+                                                        <span id="val_mat_prima_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Mano de obra" %}</span>
+                                                        <span id="val_man_obra_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Rubros (fijo)" %}</span>
+                                                        <span id="val_rubros_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <!-- <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Adicional Color" %}</span>
+                                                        <span id="val_color_ta" class="text-primary invoice-value"></span>
+                                                    </div> -->
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Adicional" %}</span>
+                                                        <span id="val_adicionales" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Adic. Piedra Basic." %}</span>
+                                                        <span id="val_piedra_adicional" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between" id="divCosto">
+                                                        <span class="invoice-title">{% trans "Costo envio" %}</span>
+                                                        <span id="costo_env" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Subtotal taller" %}</span>
+                                                        <span id="val_subtotal_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                        <span id="val_impuestos_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Total taller" %}</span>
+                                                        <span id="val_total_ta" class="text-primary invoice-value"></span>
+                                                    </div>
+                                                    {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+                                                    <hr>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Costo materia prima" %}</span>
+                                                        <span id="val_mat_prima_op" class="text-success invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Utilidad" %}</span>
+                                                        <span id="val_util_op" class="text-success invoice-value"></span>
+                                                    </div>
+                                                    <!-- <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Adicional Color" %}</span>
+                                                        <span id="val_color_op" class="text-success invoice-value"></span>
+                                                    </div> -->
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Subtotal" %}</span>
+                                                        <span id="val_subtotal_op" class="text-success invoice-value"></span>
+                                                    </div>
+                                                    <div class="invoice-calc d-flex justify-content-between">
+                                                        <span class="invoice-title">{% trans "Impuestos" %}</span>
+                                                        <span id="val_impuestos_op" class="text-success invoice-value"></span>
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                    <input id="id_precio" disabled name="precio" type="text" class="caja">
+                </div>
+            </div>
+            {% endif %}
+            <div class="divider" id="id_div_frmCargarDocumentosTa">
+                <div class="divider-text">{% trans "Cargar documentos" %}</div>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <form method="POST" id="frmCargarDocumentosTa" name="CargarDocumentosTa" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4 col-10">
+                                <div class="form-label-group">
+                                    <select name="filtro" id="id_numero_factura" class="form-control selectrubro" value="{{factura.numero_factura}}">
+                                    </select>
+                                    <input type="number" hidden>
+                                    <label for="email-id-column">{% trans "Número de factura" %}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-2">
+                                <a onclick="crearFactura()" title='{% trans "Crear" %}' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1">
+                                    <i class="bx bx-plus"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-label-group"   onmouseover="verTooltip()" title  id="id_carga_factura_tool">
+                                    <input id="id_factura_taller" type="file" class="form-control">
+                                    <label
+                                        for="email-id-column">{% trans "Factura taller" %}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-12">
+                                <div class="form-label-group">
+                                    <a class="btn btn-light-secondary" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+                                    </a>
+                                    <button type="button" onclick="cargarDocumentosTa()" class="btn btn-primary">
+                                        {% trans "Listo" %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnCancelar" type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                <i class="bx bx-x d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cancelar" %}</span>
+            </button>
+            {% if not orden.pago_aprobado and user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+            <button id="btnEntregaMaterial" type="button" onclick="aprobarPago()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Aprobar pago" %}</span>
+            </button>
+            {% endif %}
+            {% if orden.pago_aprobado and not orden.orden_facturada and user.tipo_usuario.descripcion == 'USUARIO TALLER' %}
+            <button id="btnCargaFactTa" type="button" onclick="mostrarFormulario('frmCargarDocumentosTa', 'btnCancelar', 'btnCargaFactTa')" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Cargar factura" %}</span>
+            </button>
+            {% endif %}
+            <!-- <button id="btnEntregaMaterial" type="button" onclick="aprobarRevision()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Aprobar revisión" %}</span>
+            </button> -->
+            {% if orden.orden_facturada and not orden.orden_pagada and user.tipo_usuario.descripcion == 'USUARIO OPERACIONES' %}
+            <button id="btnEntregaMaterial" type="button" onclick="pagarOrden()" name="aceptar" class="btn btn-primary ml-1">
+                <i class="bx bx-check d-block d-sm-none"></i>
+                <span class="d-none d-sm-block">{% trans "Pagar orden" %}</span>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN: Vendor JS-->
+{% load static %}
+<script src="{% static  'base/app-assets/vendors/js/vendors.min.js' %}"></script>
+<script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js' %}"></script>
+<script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js' %}"></script>
+<script src="{% static  'base/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js' %}"></script>
+<script src="{% static 'base/vendor/jquery_confirm/dist/jquery-confirm.min.js' %}"></script>
+<!-- BEGIN Vendor JS-->
+<script src="{% static 'base/app-assets/js/scripts/pages/app-file-manager.js' %}"></script>
+
+
+<script src="{% static 'base/app-assets/js/scripts/tooltip/tooltip.js' %}"></script>
+<!-- <script src="{% static 'base/app-assets/js/scripts/tooltip/tooltip.min.js' %}"></script> -->
+
+<script>
+    var costo_piedras_basicas = parseFloat('{{ orden.costo_piedras_basicas }}'.replace(/,/, '.'));
+    $(document).ready(function () {
+
+        $('input').css('background-color','#FBFBFB');
+
+        $('div.carousel-item:first').addClass('active');
+        $('div > div.carousel-item:first', '#carousel-imagenes').addClass('active');
+
+        $('#id_costo').val(parseFloat('{{ orden.total_taller }}'.replace(/,/, '.')));
+
+        $('#id_div_frmCargarDocumentosTa').hide();
+        $('#frmCargarDocumentosTa').hide();
+
+        precio_base_total_ta = parseFloat('{{ orden.precio_base_total_ta }}'.replace(/,/, '.'));
+        precio_fabricacion_total_ta = parseFloat('{{ orden.precio_fabricacion_total }}'.replace(/,/, '.'));
+        total_rubros = parseFloat('{{ orden.costo_total_rubros }}'.replace(/,/, '.'));
+        subtotal_taller = parseFloat('{{ orden.subtotal_taller }}'.replace(/,/, '.'));
+        impuestos_taller = parseFloat('{{ orden.impuestos_taller }}'.replace(/,/, '.'));
+        total_taller = parseFloat('{{ orden.total_taller }}'.replace(/,/, '.'));
+        prct_impuestos_taller = parseFloat('{{ orden.prct_impuestos_ta }}'.replace(/,/, '.'));
+
+
+        costo_base_total_op = parseFloat('{{ orden.costo_base_total_op }}'.replace(/,/, '.'));
+        utilidad_base_op = parseFloat('{{ orden.util_sobre_base_op }}'.replace(/,/, '.'));
+        utilidad_fabricacion_op = parseFloat('{{ orden.util_sobre_fabrica_op }}'.replace(/,/, '.'));
+        subtotal_orden = parseFloat('{{ orden.subtotal_orden }}'.replace(/,/, '.'));
+        impuestos_orden = parseFloat('{{ orden.impuestos_op }}'.replace(/,/, '.'));
+        precio_final_orden = parseFloat('{{ orden.precio_final_venta }}'.replace(/,/, '.'));
+
+        simbolo_moneda = '{{ user.pais.simbolo_moneda }}';
+        decimales = '{{ user.pais.decimales }}';
+        total_adicionals =0;
+        total_piedrass =0;
+
+
+
+
+        
+        // adicionales y piedras
+        var adicionales_l = {{adicionales_listado|safe}};
+        adicionales_l.forEach(adicional => {
+            total_adicional=parseFloat(adicional[4]);
+            total_adicionals += total_adicional
+        })
+
+        var piedras_l = {{piedras_listado|safe}};
+        piedras_l.forEach(piedra => {
+            total_piedras=parseFloat(piedra[2]);
+            total_piedrass += total_piedras
+        })
+
+        total_adicionales = 0;
+        llenarDetallesCostos();
+
+        pagoAprobado = '{{ orden.pago_aprobado }}'.toLowerCase() === 'true';
+        ordenFacturada = '{{ orden.orden_facturada }}'.toLowerCase() === 'true';
+        // ordenRevisada = '{{ orden.orden_revisada }}'.toLowerCase() === 'true';
+        ordenPagada = '{{ orden.orden_pagada }}'.toLowerCase() === 'true';
+
+        $('#id_precio_final').val(simbolo_moneda + ' ' + precio_final_orden);
+        $('#id_precio').val(simbolo_moneda + ' ' + precio_final_orden);
+
+        if(pagoAprobado || ordenFacturada || ordenPagada){
+            // pago aprobado
+            $('#txt_pago_aprobado').removeClass("text-secondary");
+            $('#txt_pago_aprobado').addClass("text-success");
+            $('#li_pago_aprobado').removeClass("timeline-icon-secondary");
+            $('#li_pago_aprobado').addClass("timeline-icon-success");
+            $('#fec_pago_aprobado').show();
+        }
+
+        if(ordenFacturada || ordenPagada){
+            // pago aprobado
+            $('#txt_orden_facturada').removeClass("text-secondary");
+            $('#txt_orden_facturada').addClass("text-success");
+            $('#li_orden_facturada').removeClass("timeline-icon-secondary");
+            $('#li_orden_facturada').addClass("timeline-icon-success");
+            $('#fec_facturacion').show();
+        }
+
+        // if(ordenRevisada || ordenPagada){
+        //     // pago aprobado
+        //     $('#txt_orden_revisada').removeClass("text-secondary");
+        //     $('#txt_orden_revisada').addClass("text-success");
+        //     $('#li_orden_revisada').removeClass("timeline-icon-secondary");
+        //     $('#li_orden_revisada').addClass("timeline-icon-success");
+        //     $('#fec_revision').show();
+        // }
+
+        if(ordenPagada){
+            // pago aprobado
+            $('#txt_orden_pagada').removeClass("text-secondary");
+            $('#txt_orden_pagada').addClass("text-success");
+            $('#li_orden_pagada').removeClass("timeline-icon-secondary");
+            $('#li_orden_pagada').addClass("timeline-icon-success");
+            $('#fec_pago').show();
+        }
+        
+    });
+
+    function llenarDetallesCostos(){
+        var costo_envio = parseFloat('{{orden.costo_envio}}'.replace(/,/, '.'));
+
+        // if(costo_envio !== 0){
+        //    total_taller += parseFloat(costo_envio)
+        // }
+        if(total_adicionals || total_piedrass){
+            total_adicionales = total_adicionals + total_piedrass;
+        }
+
+        let envioSubtotal = redondear(costo_envio / (1 + (prct_impuestos_taller/100)));
+        let impuestosEnvio = redondear(costo_envio - envioSubtotal )
+        
+        var digitos;
+        if(decimales === 'True'){
+            digitos = 2;
+        } else {
+            digitos = 0;
+        }
+
+        $('#val_mat_prima_ta').text(simbolo_moneda + ' ' + precio_base_total_ta.toFixed(digitos));
+        $('#val_man_obra_ta').text(simbolo_moneda + ' ' + precio_fabricacion_total_ta.toFixed(digitos));
+        $('#val_rubros_ta').text(simbolo_moneda + ' ' + total_rubros.toFixed(digitos));
+
+        $('#val_piedra_adicional').text(simbolo_moneda + ' ' + costo_piedras_basicas.toFixed(digitos));
+        $('#costo_env').text(simbolo_moneda + ' ' + envioSubtotal.toFixed(digitos));
+
+        $('#val_subtotal_ta').text(simbolo_moneda + ' ' + (subtotal_taller + envioSubtotal).toFixed(digitos));
+        $('#val_impuestos_ta').text(simbolo_moneda + ' ' + (impuestos_taller + impuestosEnvio).toFixed(digitos));
+        $('#val_total_ta').text(simbolo_moneda + ' ' + (total_taller + costo_envio).toFixed(digitos));
+
+        $('#val_mat_prima_op').text(simbolo_moneda + ' ' + costo_base_total_op.toFixed(digitos));
+        $('#val_util_op').text(simbolo_moneda + ' ' + (utilidad_base_op + utilidad_fabricacion_op).toFixed(digitos));
+        $('#val_subtotal_op').text(simbolo_moneda + ' ' + subtotal_orden.toFixed(digitos));
+        $('#val_impuestos_op').text(simbolo_moneda + ' ' + impuestos_orden.toFixed(digitos));
+        $('#val_adicionales').text(simbolo_moneda + ' ' + total_adicionales.toFixed(digitos));
+        // $('#id_costo_envio').text(simbolo_moneda + ' ' + parseFloat(costo_envio).toFixed(digitos));
+
+
+
+    }
+
+    function mostrarFormulario(formulario, boton1, boton2){
+        $('#'+boton1).hide();
+        $('#'+boton2).hide();
+        $('#id_div_'+formulario).show();
+        $('#'+formulario).show();
+        CargarFacturas();
+    }
+
+    function validarArchivo(elemento){
+        var peso_max_img = parseInt('{{ peso_max_arc.valor }}');
+        var ext_perm_img = eval('{{ ext_perm_arc.valor }}');
+        
+
+        peso_max_img = (peso_max_img * 1024) * 1024;
+        var fileInput = document.getElementById(elemento);
+        var filePath = fileInput.value;
+        if(!ext_perm_img.exec(filePath)){
+            mensaje('{% trans "Archivo con extensión no válida" %}', 'red');
+            fileInput.value='';
+            return false;
+        } else {
+            file = fileInput.files[0];
+            if(file.size > peso_max_img){
+                mensaje('{% trans "Archivo supera el tamaño máximo permitido" %}', 'red');
+                fileInput.value='';
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    $('#id_factura_taller').on('change', function(){
+        elemento = 'id_factura_taller';
+        validarArchivo(elemento);
+    });
+
+    function aprobarPago(){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+
+        var url_modificada = "{% url 'trn:aprobar_pago_orden' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+        $.confirm({
+            title: '{% trans "Aprobar pago" %}',
+            content: '{% trans "¿Confirmar aprobación de pago?. Esta acción no se puede deshacer" %}',
+            theme: 'material',
+            type: 'orange',
+            buttons: {
+                confirm: {
+                    text: '{% trans "Confirmar" %}',
+                    action: function() {
+                        $.ajax({
+                            headers: {
+                                "X-CSRFToken": token
+                            },
+                            url: url,
+                            data: JSON.stringify({'id_orden': orden_id}),
+                            type: "POST",
+                            success: function(response){
+                                location.reload(true);
+                            },
+                            error: function(jqXHR, textStatus, errorThrow){
+                                console.log(textStatus, errorThrow);
+                                mensaje(errorThrow, 'red');
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '{% trans "Cancelar" %}',
+                    action: function() {
+                        return;
+                    }
+                },
+            }
+        });
+    }
+
+    function cargarDocumentosTa(){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+
+        numeroFactura = $('#id_numero_factura').val();
+        if(numeroFactura === '0'){
+            mensaje('{% trans "Seleccione un número de factura" %}', 'red');
+            return;
+        }
+
+        form = document.getElementById('frmCargarDocumentosTa');
+        var data = new FormData(form);
+        cargarFacturaTaller = '{{ user.grupo_empresarial.factura_taller }}';
+        if(cargarFacturaTaller === 'True'){
+            if($('#id_factura_taller').val() === ''){
+                mensaje('{% trans "Por favor cargar una factura" %}', 'red');
+                return;
+            }
+        }
+
+        if($('#id_factura_taller').val() !== ''){
+            data.append('factura_taller', $('#id_factura_taller')[0].files[0]);
+        }
+
+        data.append('numeroFactura', numeroFactura);
+        var url_modificada = "{% url 'trn:cargar_doc_taller' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+
+        $.ajax({
+            headers: {
+                "X-CSRFToken": token
+            },
+            url: url,
+            type: "POST",
+            data: data,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                $('.loader').show();
+            },
+            complete: function(){
+                $('.loader').hide();
+                
+            },
+            success: function(response) {
+                if(response.estado == 2){
+                    toastr.error('Esta orden ya esta Facturada.', 'Error');
+
+                }
+                else{
+                    location.reload(true);
+                    window.location = template;
+                }
+                
+            },
+            
+            
+            error: function(jqXHR, textStatus, errorThrow) {
+                console.log(textStatus, errorThrow);
+                alert("error: " + errorThrow);
+            }
+        });
+        
+    }
+
+    function redondear(valor){
+        if(decimales === 'True'){
+            return Math.round(valor * 100) / 100;
+        } else {
+            return Math.round(valor);
+        }
+    }
+
+    // function aprobarRevision(){
+    //     orden_id = '{{ orden.id_orden }}';
+    //     var token = '{{ csrf_token }}';
+
+    //     var url_modificada = "{% url 'trn:revision_pago_orden' 0 %}";
+    //     url = url_modificada.replace(/0/, orden_id);
+    //     $.confirm({
+    //         title: '{% trans "Aprobar revisión" %}',
+    //         content: '{% trans "¿Confirmar la orden como revisada?. Esta acción no se puede deshacer" %}',
+    //         theme: 'material',
+    //         type: 'orange',
+    //         buttons: {
+    //             confirm: {
+    //                 text: '{% trans "Confirmar" %}',
+    //                 action: function() {
+    //                     $.ajax({
+    //                         headers: {
+    //                             "X-CSRFToken": token
+    //                         },
+    //                         url: url,
+    //                         data: JSON.stringify({'id_orden': orden_id}),
+    //                         type: "POST",
+    //                         success: function(response){
+    //                             location.reload(true);
+    //                         },
+    //                         error: function(jqXHR, textStatus, errorThrow){
+    //                             console.log(textStatus, errorThrow);
+    //                             mensaje(errorThrow, 'red');
+    //                         }
+    //                     });
+    //                 }
+    //             },
+    //             cancel: {
+    //                 text: '{% trans "Cancelar" %}',
+    //                 action: function() {
+    //                     return;
+    //                 }
+    //             },
+    //         }
+    //     });
+    // }
+
+    function pagarOrden(){
+
+        orden_id = '{{ orden.id_orden }}';
+        var token = '{{ csrf_token }}';
+
+        var url_modificada = "{% url 'trn:registrar_pago_orden' 0 %}";
+        url = url_modificada.replace(/0/, orden_id);
+        $.confirm({
+            title: '{% trans "Registrar pago" %}',
+            content: '{% trans "¿Confirmar registro de pago de la orden?. Esta acción no se puede deshacer" %}',
+            theme: 'material',
+            type: 'orange',
+            buttons: {
+                confirm: {
+                    text: '{% trans "Confirmar" %}',
+                    action: function() {
+                        $.ajax({
+                            headers: {
+                                "X-CSRFToken": token
+                            },
+                            url: url,
+                            data: JSON.stringify({'id_orden': orden_id}),
+                            type: "POST",
+                            success: function(response){
+                                location.reload(true);
+                            },
+                            error: function(jqXHR, textStatus, errorThrow){
+                                console.log(textStatus, errorThrow);
+                                mensaje(errorThrow, 'red');
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '{% trans "Cancelar" %}',
+                    action: function() {
+                        return;
+                    }
+                },
+            }
+        });
+    }
+
+    function crearFactura(){
+        orden_id = '{{ orden.id_orden }}';
+        Swal.fire({
+        title: '{% trans "Crear factura" %}',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off',
+            placeholder: '{% trans "Número de factura" %}'
+        },
+        showCancelButton: true,
+        confirmButtonText: '{% trans "Crear" %}',
+        cancelButtonText: '{% trans "Cancelar" %}',
+        showLoaderOnConfirm: true,
+        preConfirm: (numFactura) => {
+            if(numFactura){
+                datos = {
+                    'numero': numFactura,
+                    'orden' : orden_id
+                }
+                validarnumero(datos);
+
+                
+            }
+            else{
+                Swal.showValidationMessage(
+                    `{% trans "Ingrese número de factura" %}`
+                )
+                return;
+                
+            }
+        
+        //     body = JSON.stringify({"numeroFactura": numFactura});
+        //     url = "{% url 'trn:facturas_crear' %}";
+        //     token = '{{ csrf_token }}';
+        //     return fetch(url, {
+        //         method: 'POST',
+        //         body: body,
+        //         headers: {
+        //             'X-CSRFToken': token,
+        //             'Content-Type': 'application/json' 
+        //         }
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //         throw new Error(response.statusText)
+        //         }
+        //         console.log(response)
+        //         return response.json()
+        //     })
+
+        //     .catch(error  => {
+        //         Swal.showValidationMessage(
+        //         `Request failed: ${error}`
+        //         )
+            
+        //     })
+            
+                        
+        // },
+        // allowOutsideClick: () => !Swal.isLoading()
+        // }).then((result) => {
+        // // if (result.value['mensaje'] === "duplicado") {
+            
+        // //     Swal.fire(
+        // //         '{% trans "Error" %}',
+        // //         '{% trans "La factura ya existe." %}',
+        // //         'error'
+        // //     )
+        // // }
+        // // else{
+        // Swal.fire(
+        // '{% trans "Correcto" %}',
+        // '{% trans "La factura fue creada." %}',
+        // 'success'
+        // )
+        // CargarFacturas();
+        // // }
+        // })
+        }
+        })
+    
+    }
+
+        
+    function validarnumero(datos)
+    {
+        $.ajax({
+            url: '/transacciones/facturas/validarfactura/ajax/',
+            type: 'GET',
+            data: datos,
+
+            success: function(data){
+                if(data.estado==1){
+                    Swal.fire(
+                    '{% trans "Correcto" %}',
+                    '{% trans "La factura fue creada." %}',
+                    'success'
+                    )
+                    CargarFacturas();             
+                }else if(data.estado==2){
+                    Swal.fire(
+                    '{% trans "Error" %}',
+                    '{% trans "La factura ya existe." %}',
+                    'error'
+                    )
+                }
+                else{
+                    console.log('no existe')
+                    
+                }
+                console.log(data)
+            }
+
+        })
+
+    }
+
+
+
+    function CargarFacturas(){
+        id_taller = '{{user.taller.id_taller}}';
+        url = "{% url 'trn:facturas_obtener_creadas' 0 %}";
+        url = url.replace(/0/, id_taller);
+        fetch(url)
+            .then(resp => resp.json())
+            .then(({facturas}) => {
+                let select = document.getElementById('id_numero_factura');
+                $('#id_numero_factura').empty();
+                let option = document.createElement("option");
+                option.value = 0;
+                option.text = '{% trans "Seleccionar" %}';
+                select.add(option);
+                facturas.forEach(factura => {
+                    option = document.createElement("option");
+                    option.value = factura.id_factura;
+                    option.text = factura.numero_factura;
+                    select.add(option);
+                });
+            });
+    }
+
+    function verTooltip(){
+        $('#id_carga_factura_tool').attr('data-toggle', 'tooltip');
+        $('#id_carga_factura_tool').attr('data-original-title', '{{tool_fct_taller}}').tooltip();
+        
+    }
+
+    
+
+</script>
